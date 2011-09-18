@@ -1,0 +1,33 @@
+/* classes - grouping */
+.group        { clear: both; overflow: visible; position: relative; zoom: 1; }
+.group .group { list-style: none; margin: 0; padding: 0; width: auto; }
+.group:after  { content: ''; display: block; clear: both; }
+.interior     { padding: 1.5em; }
+
+/* classes - golden ratio */
+.content      { width: 62%; }
+.sidebar      { width: 38%; }
+
+/* classes - common widths */
+.auto-width   { width: 100%; }
+.xx-large     { width: 80%; }
+.x-large      { width: 75%; }
+.large        { width: 66.6%; }
+.medium       { width: 50%; }
+.small        { width: 33.3%; }
+.x-small      { width: 25%; }
+.xx-small     { width: 20%; }
+
+/* classes - alignment */
+.aligncenter  { margin: auto; }
+.alignleft    { float: left; }
+.alignright   { float: right; }
+
+/* classes - clearing */
+.clear        { clear: both; }
+.clearleft    { clear: left; }
+.clearright   { clear: right; }
+
+/* classes - display */
+.hide         { display: none; }
+.invisible    { visibility: hidden; }
