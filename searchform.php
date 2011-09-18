@@ -1,3 +1,1 @@
-<form action="<?php bloginfo( 'siteurl' ); ?>" method="get" id="searchform">
-	<p><input type="text" value="" name="s" id="s" title="<?php _e( 'Search', 'inkblot' ); ?>" /></p>
-</form>
+<form action="<?php echo home_url( '/' ); ?>" method="get" id="searchform"><input type="search" name="s" id="s"></form>

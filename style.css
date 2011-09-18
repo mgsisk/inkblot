@@ -1,561 +1,575 @@
-/**
- * Theme Name: Inkblot
- * Theme URI: http://maikeruon.com/webcomic/
- * Description: Make an impression with the original, highly customizable <a href="http://maikeruon.com/webcomic/">Webcomic</a> theme.
- * Version: 2.1.0
- * Author: Michael Sisk
- * Author URI: http://maikeruon.com/
- * Tags: black, white, one-column, two-columns, three-columns, left-sidebar, right-sidebar, fixed-width, flexible-width, theme-options, threaded-comments, sticky-post
- */
- 
-/** Load the Cascade Failure CSS Framework */
-@import url( 'includes/css/cf-reset.css' );
-@import url( 'includes/css/cf-layout.css' );
-@import url( 'includes/css/cf-typography.css' );
+/*
+Theme Name: Inkblot
+Theme URI: http://webcomicms.net/
+Description: Make an impression with the original, highly customizable <a href="http://webcomicms.net/">Webcomic</a> theme.
+Author: Michael Sisk
+Version: 3.0.8
+*/
 
-/**
- * Thanks for choosing InkBlot! This is the InkBlot style.css file.
- * Wihle you can make alterations to the theme here, it's strongly
- * recommended that you use a child theme and not modify InkBlot
- * itself directly.
- * 
- * For more information on child theme and customizaing InkBlot please
- * see: http://maikeruon.com/wcib/documentation/inkblot/customizing/
- */
+/** Reset */
+address,article,blockquote,body,caption,col,colgroup,dd,dialog,div,dl,dt,fieldset,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,hr,nav,legend,li,menu,ol,p,pre,section,table,tbody,td,tfoot,th,thead,tr,ul,a,abbr,b,bdo,br,cite,code,del,dfn,em,i,ins,kbd,label,mark,meter,progress,q,rp,rt,ruby,samp,small,span,strong,sub,sup,time,var,audio,canvas,embed,figure,figcapture,iframe,img,math,object,svg,video {
+	border:          0;
+	margin:          0;
+	outline:         0;
+	padding:         0;
+	border-spacing:  0;
+	list-style:      none;
+	color:           inherit;
+	font-size:       inherit;
+	font-style:      inherit;
+	text-align:      inherit;
+	font-weight:     inherit;
+	font-family:     inherit;
+	line-height:     inherit;
+	text-decoration: inherit;
+	vertical-align:  baseline;
+	border-collapse: separate;
+	background:      transparent; }
+article,dialog,figure,figcaption,footer,header,hgroup,legend,nav,section { display: block; }
 
-/* defaults - overrides basic styling from the Cascade Failure framework */
-html {
-	background:#fafafa;
+/** Basic Styling */
+html                       { background: #f5f5f5; color: #333; font: 100%/1.5em 'helvetica neue', helvetica, arial, sans-serif; padding: 0 1.5em; }
+a                          { color: #ccc; }
+a:hover                    { color: #333; }
+abbr                       { border-bottom: 1px dotted; cursor: help; }
+b,dfn,strong               { font-weight: bolder; }
+blockquote                 { margin: 0 3em; }
+address,cite,em,i,var      { font-style: italic; }
+code,kbd,pre,var,samp      { font-family: menlo, consolas, courier, monospace; }
+del                        { text-decoration: line-through; }
+ins                        { text-decoration: underline; }
+mark                       { text-decoration: overline; }
+pre                        { margin: 0 0 1.5em; white-space: pre-wrap; }
+p                          { margin: 0 0 1.5em; }
+small                      { font-size: smaller; }
+sub                        { vertical-align: sub; }
+sup                        { vertical-align: super; }
+sub,sup                    { font-size: smaller; line-height: 0; }
+h1                         { font-size: 200%; font-weight: bold; line-height: 1em; margin: 0 0 .75em; }
+h2                         { font-size: 150%; font-weight: bold; line-height: 1em; margin: 0 0 1em; }
+h3                         { font-size: 125%; font-weight: bold; line-height: 1em; margin: 0 0 1.2em; }
+h4                         { font-size: 100%; font-weight: bold; line-height: 1em; margin: 0 0 1.5em; }
+h5                         { font-size: 85%; font-weight: bold; line-height: 1em; margin: 0 0 1.75em; }
+h6                         { font-size: 75%; font-weight: bold; line-height: 1em; margin: 0 0 2em; }
+hr                         { clear: both; }
+ol li                      { list-style: decimal; }
+ul li                      { list-style: disc; }
+menu li                    { list-style: circle; }
+ol,ul,menu                 { margin: 0 0 1.5em 3em; }
+ul ul,ul ol,ol ol,ol ul,dd { margin: 0 0 0 3em; }
+dl,dialog                  { margin: 0 0 1.5em; }
+dt                         { font-weight: bolder; }
+
+/** Classes */
+.alignleft {
+	float: left;
 }
 
-a {
-	color:#333;
-	text-decoration:underline;
-}
-
-h1 a,h2 a,h3 a,h4 a,h5 a,h6 a,a:hover {
-	text-decoration:none;
-}
-
-textarea {
-	width:98%;
-}
-
-.group { /* This rule sets the default width for the entire site */
-	width:760px;
-}
-
-
-
-/* wrappers */
-#wrap-outer {
-	background:url(includes/images/trim-left.png) repeat-y;
-	padding:0 12px;
-}
-
-#wrap-inner {
-	background:url(includes/images/trim-right.png) right repeat-y;
-	margin:0 -12px 0 0;
-	padding:0 12px 0 0;
-}
-
-
-
-/* page */
-#page {
-	background:#fff;
-}
-
-
-
-/* site name */
-#head .name {
-	font:bold 300%/1em Constantia, Palatino, Times, serif;
-	margin:0 0 .25em;
-}
-
-#head .name a {
-	text-decoration:none;
-}
-
-
-
-/* site description */
-#head .description {
-	font:italic 150%/1em Constantia, Palatino, Times, serif;
-}
-
-
-
-/* foot */
-#foot {
-	background:#333;
-	color:#fff;
-	text-align:center;
-}
-
-#foot a {
-	color:#ccc;
-	font-weight:bold;
-	text-decoration:none;
-}
-
-#foot a:hover {
-	color:#fff;
-}
-
-#foot .interior {
-	line-height:2em;
-	padding:0 1em;
-}
-
-
-
-/* navigation - site */
-#head .group { /* This rule ensures dropdown menus aren't hidden behind other page elements in Internet Explorer */
-	z-index:1;
-}
-
-.navi-site {
-	background:#333;
-	float:left;
-	list-style:none;
-	margin:0;
-	padding:0;
-	width:100%;
-}
-
-.navi-site li {
-	float:left;
-}
-
-.navi-site li.alignright {
+.alignright {
 	float: right;
 }
 
-.navi-site a {
-	color:#ccc;
-	display:block;
-	font-weight:bold;
-	line-height:2em;
-	padding:0 1em;
-	text-decoration:none;
+.aligncenter {
+	display: block;
+	margin: auto;
 }
 
-.navi-site a:hover {
-	color:#fff;
+.clear {
+	clear: both;
 }
 
-.navi-site li ul {
-	background:#333;
-	display:none;
-	list-style:none;
-	margin:0;
-	padding:0;
-	position:absolute;
+/** Structure */
+#wrap {
+	background: #fff;
+	border-color: #333;
+	border-style: solid;
+	border-width: 0 1px;
+	box-shadow: 0 0 2em rgba( 0, 0, 0, .2 );
+	-moz-box-shadow: 0 0 2em rgba( 0, 0, 0, .2 );
+	-webkit-box-shadow: 0 0 2em rgba( 0, 0, 0, .2 );
+	margin: auto;
+	overflow: hidden;
 }
 
-.navi-site ul li {
-	float:none;
-	white-space:nowrap;
-}
-
-
+/** Header */
+#header {}
 	
-/* navigation - comic */
-.navi-comic {
-	background:#333;
-	float:left;
-	width:100%;
-}
+	#header hgroup {
+		display: table-cell;
+		vertical-align: middle;
+	}
+		
+		#header hgroup h1 {
+			margin: 0 .25em;
+			padding: 0 .5em;
+		}
+		
+		#header hgroup h2 {
+			font-style: italic;
+			font-weight: normal;
+			padding: 0 1em;
+		}
+		
+	#header nav {
+		background: #333;
+		/*display: none; /* uncomment to hide the main menu */
+		float: left;
+		width: 100%;
+	}
+		
+		#header nav ul {
+			margin: 0;
+		}
+			
+			#header nav ul li {
+				float: left;
+				list-style: none;
+				position: relative;
+			}
+				
+				#header nav ul li a {
+					color: #ccc;
+					display: block;
+					padding: .25em .75em;
+				}
+				
+				#header nav ul li:hover > a,
+				#header nav ul li.current_page_item > a,
+				#header nav ul li.current_page_ancestor > a,
+				#header nav ul li.current-menu-item > a,
+				#header nav ul li.current-menu-ancestor > a {
+					background: #000;
+					color: #fff;
+				}
+				
+				#header nav ul li ul {
+					background: rgba( 0, 0, 0, .8 );
+					display: none;
+					left: 0;
+					position: absolute;
+					top: 2em;
+					z-index: 9999;
+				}
+				
+				#header nav ul li:hover > ul {
+					display: block;
+				}
+				
+					#header nav ul li ul li {
+						min-width: 10em;
+					}
+					
+						#header nav ul li ul li ul {
+							left: 100%;
+							top: 0;
+						}
 
-.navi-comic a {
-	color:#ccc;
-	float:left;
-	font-weight:bold;
-	line-height:2em;
-	text-decoration:none;
-	width:25%;
-}
-
-.navi-comic a:hover {
-	color:#fff;
-}
-
-.navi-comic .current-comic {
-	visibility:hidden;
-}
-
-
+/** Content */
+#content {}
 	
-/* navigation - posts (for the blog and on single post pages) */
-.navi-posts {
-	float:left;
-	width:100%;
+	#content > div {
+		padding: 1.5em;
+	}
+		
+		#content div .webcomic_post .webcomic.full {
+			margin: -1.5em -1.5em 0;
+		}
+		
+		#content div hr.webcomic {
+			 border-bottom: 3px double #ccc;
+			 margin: 0 0 1.5em;
+		}
+
+/** Navigation */
+nav.paginated {
+	font-size: larger;
+	margin: 0 0 1.5em;
+	text-align: center;
 }
 
-.navi-posts-above {
-	margin-bottom:1.5em;
+	nav.paginated a {
+		font-weight: bold;
+	}
+
+nav.prevnext {
+	border-bottom: 1px solid #ccc;
+	float: left;
+	font-size: larger;
+	margin: 0 0 .75em;
+	padding: 0 0 .75em;
+	width: 100%;
 }
-
-.navi-posts .navi-next {
-	float:right;
-}
-
-.navi-posts .navi-previous {
-	float:left;
-}
-
-
 	
-/* navigation - paged (for paged posts) */
-#comments .navi-paged { /* This rule centers the paged navigation above and below comment lists */
-	text-align:center;
+	nav.prevnext a:last-child {
+		float: right;
+	}
+
+	nav.prevnext a:first-child {
+		float: left;
+	}
+
+.attachment nav.prevnext img {
+	height: 80px;
+	width: 80px;
 }
-
-.navi-paged a {
-	border:.1em solid #333;
-	padding:.15em .25em;
-	text-decoration:none;
-}
-
-.navi-paged a:hover {
-	background:#333;
-	color:#fff;
-}
-
-
-
-/* navigation - images */
-.navi-attachment { /* This rule hides the attachment navigation for non-image attachments */
-	display:none;
-}
-
-.attachment-image .navi-attachment { /* This rule reveals the attachment navigation for image attachments */
-	display:block;
-	float:left;
-	width:100%;
-}
-
-.navi-attachment {
-	border-bottom:.1em solid;
-	margin:0 0 1.5em;
-	padding:.75em 0;
-}
-
-.navi-attachment img {
-	height:5em;
-	vertical-align:bottom;
-	width:5em;
-}
-
-.navi-attachment .navi-next {
-	float:right;
-}
-
-.navi-attachment .navi-previous {
-	float:left;
-}
-
-
-
-/* blog title */
-.blog-title {
-	border-bottom:.1em solid;
-	margin:0 0 3em;
-}
-
-.blog-title span {
-	display:none;
-}
-
-
-
-/* content */
-#body .content { /* This rule prevents wide content from overlapping the sidebars */
-	overflow:hidden;
-}
-
-
 	
-/* comics */
-#body .comic img,#body .comic object {
-	vertical-align:bottom;
+
+
+/** Articles */
+article {
+	margin: 0 0 3em;
 }
 
+article.sticky {
+	border: 1px double #ccc;
+	padding: 1.5em 1.5em 0;
+}
+	
+	article h1 {
+		font-weight: normal;
+		margin: 0 0 .25em;
+	}
+	
+	article footer {
+		color: #ccc;
+		font-size: smaller;
+		line-height: 1.5em;
+		margin: 0 0 1.5em;
+	}
+	
+	article .webcomic-embed-code {
+		display: block;
+		margin: 0 0 1.5em;
+		width: 100%;
+	}
 
-
-/* comic embed code */
-.comic-embed-code {
-	display:block;
-	width:98%;
+.single-webcomicpost article .preview {
+	text-align: center;
 }
 
-
-
-/* posts */
-#body .post {
-	margin:0 0 3em;
+.webcomic-verify-age .content,
+.webcomic-verify-fail .content {
+	text-align: center;
 }
 
-#body .post .meta {
-	text-align:right;
+/** Transcripts */
+#transcripts {}
+	
+	#transcripts h1 {
+		cursor: pointer;
+		font-size: 100%;
+		font-weight: bold;
+		margin: 0 0 1.5em;
+	}
+	
+	#transcripts article {
+		display: none;
+	}
+	
+		#transcripts article footer {
+			border-bottom: 1px solid #ccc;
+		}
+
+/** Comments */
+#comments {}
+	
+	#comments h1,
+	#comments h3 {
+		font-size: 100%;
+		font-weight: bold;
+		margin: 0 0 1.5em;
+	}
+	
+		#comments h3 small {
+			font-weight: normal;
+			padding: 0 0 0 1.5em;
+		}
+
+	#comments article {
+		border: 1px solid #ccc;
+		padding: 1.5em;
+	}
+	
+	#comments article.bypostauthor {
+		border: 3px double;
+	}
+	
+		#comments article footer {
+			margin: -1.5em -1.5em 1.5em;
+		}
+		
+			#comments article footer img {
+				padding: 0 .75em 0 0;
+				vertical-align: middle;
+			}
+
+/** Forms */
+#transcribeform {}
+	
+	#transcribeform h2 {
+		cursor: pointer;
+		font-size: 100%;
+		font-weight: bold;
+		margin: 0 0 1.5em;
+	}
+
+	#transcribeform p {
+		display: none;
+		margin: 0 0 .75em;
+	}
+	
+		#transcribeform p .required {
+			padding: .25em;
+		}
+	
+		#transcribeform p label {
+			display: block;
+			float: left;
+			width: 4em;
+		}
+	
+	#transcribeform .transcribe-before {
+		display: none;
+	}
+
+	#transcribeform .webcomic-transcribe-language {
+		margin: 0;
+	}
+
+		#transcribeform .webcomic-transcribe-language label {
+			display: none;
+		}
+
+	#transcribeform .webcomic-transcribe-text {}
+
+		#transcribeform .webcomic-transcribe-text label {
+			display: none;
+		}
+		
+		#transcribeform .webcomic-transcribe-text textarea {
+			width: 100%;
+		}
+		
+	#transcribeform dl {
+		display: none;
+	}
+
+#commentform {}
+
+	#commentform p {
+		margin: 0 0 .75em;
+	}
+	
+		#commentform p label {
+			display: block;
+			float: left;
+			width: 4em;
+		}
+	
+		#commentform p .required {
+			padding: .25em;
+		}
+	
+	#commentform .comment-notes {
+		display: none;
+	}
+
+	#commentform .comment-form-comment {}
+	
+		#commentform .comment-form-comment label {
+			display: none;
+		}
+		
+		#commentform .comment-form-comment textarea {
+			width: 100%;
+		}
+
+	#commentform .form-allowed-tags {
+		display: none;
+	}
+
+.webcomic-purchase-form {}
+
+	.webcomic-purchase-form input {
+		float: left;
+		margin: 0 .75em 0 0;
+	}
+
+/** Webcomics */
+.home article.webcomic_post {}
+	
+	#webcomic nav {
+		background: #333;
+		color: #ccc;
+		float: left;
+		width: 100%;
+	}
+	
+	#webcomic nav.above {
+		border-top: 1px solid #fff;
+		/*display: none; /* uncomment to hide the navigation above the webcomic */
+	}
+	
+	#webcomic nav.below {
+		/*display: none; /* uncomment to hide the navigation below the webcomic */
+		margin: 0 0 1em;
+	}
+		
+		#webcomic nav a {
+			color: #ccc;
+			float: left;
+			font-weight: bold;
+			line-height: 2em;
+			text-align: center;
+			width: 20%;
+		}
+		
+		#webcomic nav a:hover {
+			background: #000;
+			color: #fff;
+		}
+			
+		#webcomic nav a.current-webcomic {
+			visibility: hidden;
+		}
+		
+	#webcomic .webcomic-object {
+		display: block;
+		text-align: center;
+	}
+	
+		#webcomic .webcomic-object img {
+			vertical-align: bottom;
+		}
+	
+/** Galleries */
+article .gallery {
+	border: 1px solid #ccc;
+	margin: 0 0 1.5em;
+	padding: .75em;
 }
 
-#body .post .meta-single {
-	border-style:solid;
-	border-width:.1em 0;
-	padding:.75em 0;
-	text-align:left;
+	article .gallery figure {
+		float: left;
+	}
+	
+		article .gallery figure a {
+			float: left;
+			padding: .75em;
+		}
+		
+		article .gallery figure div {}
+	
+			article .gallery figure div img {
+				vertical-align: bottom;
+			}
+	
+	article .gallery hr {
+		margin: .75em 0;
+	}
+
+/** Attachments */
+article.attachment .attachment {
+	text-align: center;
 }
 
-
-
-/* attachments */
-#body .attachment .object {
-	text-align:center;
+/** Characters */
+.character-avatar {
+	float: left;
+	margin: 0 .75em .75em 0;
 }
 
-#body .attachment .meta {
-	border-style:solid;
-	border-width:.1em 0;
-	padding:.75em 0;
+/** Sidebars & Widgetized Areas */
+aside > div {
+	padding: 1.5em;
 }
 
+	aside select,
+	aside #s {
+		width: 100%;
+	}
 
-
-/* transcripts */
-#transcript-title {
-	border-top:.1em solid;
-	cursor:pointer;
-	font-weight:bold;
-	padding:.75em 0;
+div.widgetized {
+	clear: both;
 }
 
-#transcript {
-	display:none;
+	.widgetized figure {
+		margin-bottom: 1.5em;
+	}
+	
+		.widgetized figure figcaption {
+			border-top: 1px solid #ccc;
+			font-size: smaller;
+			font-weight: bold;
+			padding: .25em;
+		}
+		
+		.widgetized figure table {
+			border: 1px solid #ccc;
+			text-align: center;
+			width: 100%;
+		}
+		
+			.widgetized figure table tbody {}
+			
+				.widgetized figure table tbody tr:nth-child(even) {
+					background: #eee;
+				}
+			
+			.widgetized figure table thead {}
+				
+				.widgetized figure table thead tr {}
+				
+					.widgetized figure table thead tr th {
+						border-bottom: 3px double #ccc;
+						font-weight: bold;
+					}
+			
+			.widgetized figure table tfoot {}
+				
+				.widgetized figure table tfoot tr {}
+				
+					.widgetized figure table tfoot tr td {
+						border-top: 3px double #ccc;
+						font-weight: bold;
+					}
+		
+					.widgetized figure table tfoot tr #today {
+						border: 3px double;
+					}
+
+/** Webcomic Archives */
+table.webcomic-archive {
+	border: 1px solid #ccc;
+	border-collapse: collapse;
+	margin: 0 0 1.5em;
+	text-align: center;
+	width: 100%;
 }
 
-#transcript label {
-	display:block;
-	float:left;
-	width:25%;
+	table.webcomic-archive th {
+		border: 3px double #ccc;
+		font-weight: bold;
+		padding: .75em 0;
+	}
+	
+	table.webcomic-archive tr.alt {
+		background: #f5f5f5;
+	}
+						
+/** Footer */
+#footer {
+	background: #333;
+	clear: both;
+	color: #fff;
+	padding: .25em .5em;
 }
-
-#transcript-response {
-	color:#fff;
-	margin:0 0 1.5em;
-	font-weight:bold;
-	text-align:center;
-}
-
-#transcript-response span {
-	display:block;
-	padding:.75em;
-}
-
-#transcript-response .error {
-	background:#c10;
-}
-
-#transcript-response .success {
-	background:#9c0;
-}
-
-
-
-/* comments */
-#respond label {
-	display:block;
-	float:left;
-	width:25%;
-}
-
-.commentlist {
-	list-style:none;
-	margin:0 0 3em;
-	padding:0;
-}
-
-.commentlist .comment,.commentlist .pingback {
-	border:.1em solid #ccc;
-	margin:0 0 3em;
-	padding:.75em .75em 0;
-}
-
-.commentlist .comment.bypostauthor {
-	border:.25em double #333;
-}
-
-.commentlist .vcard {
-	font-weight:bold;
-}
-
-.commentlist .vcard img.avatar {
-	float:left;
-	margin:0 1.5em 1.5em 0;
-}
-
-.commentlist .vcard span.says {
-	display:none;
-}
-
-.commentlist .comment-meta {
-	color:#999;
-	padding:0 0 1.5em;
-}
-
-.commentlist .reply {
-	padding-bottom:.75em;
-}
-
-.commentlist .children {
-	list-style:none;
-	margin:0;
-	padding:0;
-}
-
-.commentlist .even {
-	background:#fff;
-}
-
-.commentlist .odd {
-	background:#fafafa;
-}
-
-
-
-/* sidebars and widgetized areas */
-.sidebar { /* This rule prevents wide content from breaking the sidebar */
-	overflow:hidden;
-}
-
-.sidebar .interior {
-	list-style:none;
-	margin:0;
-}
-
-.sidebar .interior ul,.widgetized ul { /* This rule and the next correct unordered list display in the sidebars and widgetized areas */
-	margin:0 0 1.5em 1.5em;
-	padding:0 0 0 1.5em;
-}
-
-.sidebar .interior ul ul,.widgetized ul ul {
-	margin:0 0 0 1.5em;
-}
-
-.sidebar input,.sidebar select { /* This rule ensures <input> and <select> elements don't break out of the sidebar */
-	width:100%;
-}
-
-
-
-/* comic archive - date */
-.comic-year {
-	font:200%/1em 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
-	margin:0 0 .75em;
-}
-
-table.comic-archive .comic-date-col {
-	border-right:.1em solid #ccc;
-	width:30%;
-}
-
-table.comic-archive .alt {
-	background:#fafafa;
-}
-
-table.comic-archive th {
-	text-align:left;
-}
-
-
-
-/* comic archive - chapter */
-ol.comic-archive {
-	list-style:none;
-	margin:0;
-	padding:0;
-}
-
-ol.comic-archive .comic-series-item a {
-	font:200%/1em 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
-	margin:0 0 .75em;
-}
-
-ol.comic-archive .comic-volume-item a {
-	font:150%/1em 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
-	margin:0 0 1em;
-}
-
-ol.comic-archive .comic-chapter-item a {
-	font:125%/1em 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
-	margin:0 0 1.2em;
-}
-
-ol.comic-archive .comic-chapter-pages a {
-	font:115%/1em 'Lucida Sans', 'Lucida Grande', 'DejaVu Sans', sans-serif;
-	margin:0 0 1.3em;
-}
-
-
-
-/* WordPress Calendar */
-#calendar .widgettitle {
-	display:none;
-}
-
-#wp-calendar {
-	border:.1em solid #ccc;
-	caption-side:top;
-}
-
-#wp-calendar caption {
-	font-size:100%;
-	font-weight:bold;
-}
-
-#wp-calendar th {
-	padding:0;
-}
-
-#wp-calendar td {
-	border:.1em solid #ccc;
-	padding:0;
-	text-align:center;
-}
-
-#wp-calendar .pad {
-	background:#fafafa;
-}
-
-#wp-calendar a {
-	background:#333;
-	color:#fff;
-	display:block;
-	text-decoration:none;
-}
-
-#wp-calendar #today {
-	border:.25em double #333;
-}
-
-
-
-/* 404 Recent Comics */
-.error-404 .recent-comics {
-	float:left;
-	list-style:none;
-	margin:0;
-	padding:0;
-	width:100%;
-}
-
-.error-404 .recent-comics li {
-	float:left;
-	margin:0 1.5em 1.5em 0;
-}
-
-.error-404 .recent-comics a {
-	text-decoration:none;
-}
+	
+	#footer a {
+		color: #ccc;
+		font-weight: bold;
+	}
+	
+	#footer a:hover {
+		color: #fff;
+	}

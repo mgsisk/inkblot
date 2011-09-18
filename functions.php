@@ -1,764 +1,926 @@
 <?php
-//
-// Base Loaders
-//
+/** Set the content width */
+if ( !isset( $content_width ) ) $content_width = 640;
 
-/** Load text domain for translations */
-load_theme_textdomain( 'inkblot' );
+/** Load the core */
+if ( !class_exists( 'mgs_core' ) ) require_once( 'includes/mgs-core.php' );
 
-/** Register widgetized areas. */
-register_sidebars( 2, array( 'name' => 'Sidebar %d' ) );
-register_sidebar( array( 'name' => 'Page Top', 'id' => 'page-top' ) );
-register_sidebar( array( 'name' => 'Body Top', 'id' => 'body-top' ) );
-register_sidebar( array( 'name' => 'Content Top', 'id' => 'content-top' ) );
-register_sidebar( array( 'name' => 'Content Insert', 'id' => 'content-insert' ) );
-register_sidebar( array( 'name' => 'Content Bottom', 'id' => 'content-bottom' ) );
-register_sidebar( array( 'name' => 'Body Bottom', 'id' => 'body-bottom' ) );
-register_sidebar( array( 'name' => 'Page Bottom', 'id' => 'page-bottom' ) );
-
-/** Enqueue necessary javascript. */
-function inkblot_template_redirect() {
-	wp_enqueue_script( 'inkblot-scripts', get_bloginfo( 'template_directory' ) . '/includes/js/scripts.js', array( 'jquery' ) );
+/** Defines all theme functionality, extending mgs_core */
+class inkblot extends mgs_core {
+	/** Override mgs_core variables */
+	protected $name    = 'inkblot';
+	protected $version = '3.0.5';
+	protected $file    = __FILE__;
+	protected $type    = 'theme';
 	
-	if ( is_singular() ) wp_enqueue_script( 'comment-reply' );
-} add_action( 'template_redirect', 'inkblot_template_redirect' );
-
-/** Ensure WebComic is installed and activated. */
-function inkblot_get_header() { if ( !function_exists( 'get_the_comic' ) ) die( sprintf( __( 'It looks like <a href="%s">WebComic</a> is not installed. WebComic must be installed and activated before Inkblot can be used.', 'inkblot' ), 'http://maikeruon.com/webcomic/' ) ); } add_action( 'get_header', 'inkblot_get_header' );
-
-/** Echo <head> content */
-function inkblot_head() {
-	echo '
-<meta http-equiv="content-type" content="' . get_bloginfo( 'html_type' ) . 'charset=' . get_bloginfo( 'charset' ) . '" />
-<title>' . wp_title( ' | ', false, 'right' ) . get_bloginfo( 'name' ) . '</title>
-<meta name="description" content="' . get_bloginfo( 'description' ) . '" />' . "\n" .
-'<link rel="stylesheet" href="' . get_bloginfo( 'stylesheet_url' ) . '" />' . "\n" . 
-'<link rel="pingback" href="' . get_bloginfo( 'pingback_url' ) . '" />' . "\n";
-} add_action( 'wp_head', 'inkblot_head', 0 ); automatic_feed_links();
-
-
-//
-// Template Tags & Option Retrieval
-//
-
-/**
- * Verifies that the specified sidebar is active.
- * 
- * This function verifies that the specified sidebar is active,
- * returning true if it has any active widgets.
- * 
- * @package Inkblot
- * @since 2.0.0
- * 
- * @param str $index The sidebar slug.
- * @return True if the sidebar has widgets.
- */
-function is_sidebar_active( $index ) {
-  global $wp_registered_sidebars;
-
-  $widgetized = wp_get_sidebars_widgets();
-		 
-  if ( $widgetized[ $index ] )
-  	return true;
-}
-
-/**
- * Returns the correct 'link' parameter for the_comic based on user settings.
- * 
- * @package Inkblot
- * @since 2.0.0
- */
-function get_inkblot_comic_link() {
-	if ( get_option( 'inkblot_comic_link' ) )
-		return get_option( 'inkblot_comic_link_direction' );
-}
-
-/**
- * Displays beginning <div> container tags and sidebars as necessary.
- * 
- * @package Inkblot
- * @since 2.0.0
- * 
- * @param str|arr $class One or more classes to add to the class list.
- */
-function inkblot_begin_content( $class = false ) {
-	$layout = get_inkblot_layout();
-	
-	get_sidebar( 'body-top' );
-	
-	if ( $layout->comic ) {
-		if ( $layout->special )
-			get_sidebar();
-		
-		$classes = array( 'content' );
-		
-		if ( 3 == $layout->columns )
-			$classes[] = 'medium';
-		elseif ( 1 == $layout->columns )
-			$classes[] = 'clear';
-		
-		$classes[] = $layout->content;
-		$classes[] = 'content-main';
-	
-		//Add any user provided classes
-		if ( $class ) {
-			if ( !is_array( $class ) )
-				$class = preg_split( '#\s+#', $class );
-			
-			$classes = array_merge( $classes, $class );
-		}
-		
-		echo '<div class="' . join( ' ', $classes ) . '">';
+	/** Run-once installation */
+	function install() {
+		$this->option( array(
+			'version'                  => $this->version,
+			'layout'                   => '1c1',
+			'dim_alignment'            => 'center',
+			'dim_webcomic'             => 600,
+			'dim_site'                 => 600,
+			'dim_content'              => 600,
+			'dim_sidebar1'             => 0,
+			'dim_sidebar2'             => 0,
+			'header_w'                 => 600,
+			'header_h'                 => 90,
+			'post_w'                   => get_option( 'thumbnail_size_w' ),
+			'post_h'                   => get_option( 'thumbnail_size_h' ),
+			'home_webcomic_toggle'     => true,
+			'home_webcomic_order'      => 'DESC',
+			'home_webcomic_collection' => false,
+			'single_webcomic_link'     => false,
+			'archive_webcomic_toggle'  => true,
+			'archive_webcomic_size'    => 'small',
+			'embed_webcomic_toggle'    => false,
+			'embed_webcomic_format'    => 'shtml',
+			'embed_webcomic_size'      => 'small',
+			'prints_original_toggle'   => false
+		) );
 	}
-}
-
-/**
- * Displays beginning <div> container tags and sidebars as necessary.
- * 
- * @package Inkblot
- * @since 2.0.0
- * 
- * @param str|arr $class One or more classes to add to the class list.
- */
-function inkblot_inside_content( $class = false ) {
-	global $post;
 	
-	$layout = get_inkblot_layout();
-	
-	if ( !$layout ) {
-		echo '<div class="content alignleft content-main"><div class="interior">';
-	} elseif ( $layout->comic ) {
-		echo '<div class="interior">';
-	} else {
-		if ( $layout->special ) {
-			$temp = $post; //Save any existing post information
-			get_sidebar();
-			$post = $temp; //Reload our previously saved post information
-		}
-		
-		$classes = array( 'content' );
-		
-		if ( 3 == $layout->columns )
-			$classes[] = 'medium';
-		elseif ( 1 == $layout->columns )
-			$classes[] = 'clear';
-		
-		$classes[] = $layout->content;
-		$classes[] = 'content-main';
-	
-		//Add any user provided classes
-		if ( $class ) {
-			if ( !is_array( $class ) )
-				$class = preg_split( '#\s+#', $class );
-			
-			$classes = array_merge( $classes, $class );
-		}
-		
-		echo '<div class="' . join( ' ', $classes ) . '"><div class="interior">';
+	/** Upgrade older versions */
+	function upgrade() {
+		$this->option( 'version', $this->version );
 	}
-}
-
-/**
- * Displays ending <div> container tags and sidebars as necessary.
- * 
- * @package Inkblot
- * @since 2.0.0
- */
-function inkblot_end_content() {
-	get_sidebar( 'content-bottom' );
 	
-	echo '</div> <!-- .interior --> </div> <!-- .content-main -->';
-	get_sidebar();
-	get_sidebar( 2 );
+	/** Downgrade newer versions */
+	function downgrade() {
+		$this->option( 'version', $this->version );
+	}
 	
-	get_sidebar( 'body-bottom' );
-}
-
-/**
- * Displays the correct alignment class based on the site alignment setting.
- * 
- * @package Inkblot
- * @since 2.0.0
- */
-function inkblot_site_alignment() {
-	$layout = get_inkblot_layout();
+	/** Uninstall the theme */
+	function uninstall() {
+		$this->option( array(
+			'version'   => $this->version,
+			'uninstall' => true
+		) );
+	}
 	
-	if ( !$layout || 2 == $layout->position )
-		echo 'aligncenter';
-	elseif ( 1 == $layout->position )
-		echo 'alignright';
-	else
-		echo 'alignleft';
-}
-
-/**
- * Returns an object containing Inkblot layout information.
- * 
- * @package Inkblot
- * @since 2.0.0
- * 
- * @return obj Object containing Inkblot layout information.
- */
-function get_inkblot_layout() {
-	if ( $lop = get_option( 'inkblot_layout' ) ) {
-		$layout = array();
+	
+	
+	////
+	// Hooks - These functions hook into WordPress to add, change, and remove functionality.
+	////
+	
+	/** Add standard features */
+	function hook_after_setup_theme() {
+		$this->domain();
 		
-		if ( strstr( $lop, '1c' ) ) {
-			$layout[ 'columns' ] = 1;
-			$layout[ 'comic' ]   = 0;
-			$layout[ 'content' ] = 'auto-width';
-		} elseif ( strstr( $lop, '2c' ) ) {
-			$layout[ 'columns' ] = 2;
-			$layout[ 'comic' ]   = ( strstr( $lop, 'i' ) ) ? 1 : 0;
-			$layout[ 'content' ] = ( strstr( $lop, 'r' ) ) ? 'alignleft' : 'alignright';
+		//remove_action( 'wp_head', 'rsd_link' );
+		//remove_action( 'wp_head', 'wlwmanifest_link' );
+		
+		define( 'HEADER_IMAGE', '%s/includes/images/header.jpg' );
+		define( 'HEADER_TEXTCOLOR', '333' );
+		define( 'HEADER_IMAGE_WIDTH', $this->option( 'header_w' ) );
+		define( 'HEADER_IMAGE_HEIGHT', $this->option( 'header_h' ) );
+		
+		set_post_thumbnail_size( $this->option( 'post_w' ), $this->option( 'post_h' ), true );
+		
+		add_editor_style( 'style-editor.css' );
+		add_theme_support( 'nav-menus' );
+		add_theme_support( 'post-thumbnails' );
+		add_theme_support( 'automatic-feed-links' );
+		add_custom_background( array( &$this, 'custom_background' ) );
+		add_custom_image_header( array( &$this, 'custom_header' ), array( &$this, 'admin_custom_header' ) );
+		
+		register_nav_menus( array(
+			'navbar' => __( 'Navbar', 'inkblot' )
+		) );
+		
+		register_default_headers( array (
+			'default' => array (
+				'url'           => '%s/includes/images/headers/header.png',
+				'thumbnail_url' => '%s/includes/images/headers/thumbs/header.png',
+				'description'   => ucwords( str_replace( '_', ' ', $this->name ) )
+			)
+		) );
+	}
+	
+	/** Add theme scripts */
+	function hook_template_redirect() {
+		if ( is_singular() ) wp_enqueue_script( 'comment-reply', '', '', '', true );
+		
+		wp_enqueue_script( 'html5shiv', 'http://html5shiv.googlecode.com/svn/trunk/html5.js' );
+		wp_enqueue_script( 'inkblot-scripts', $this->url . '/includes/scripts.js', array( 'jquery' ), '', true );
+	}
+	
+	/** Add widgetized areas */
+	function hook_init() {
+		$sidebars = array(
+			'inkblot-sidebar1'          => array( __( 'Sidebar 1', 'inkblot' ), __( 'The first sidebar, used in both two and three-column layouts.', 'inkblot' ) ),
+			'inkblot-sidebar2'          => array( __( 'Sidebar 2', 'inkblot' ), __( 'The second sidebar, used in three-column layouts.', 'inkblot' ) ),
+			'inkblot-page-above'        => array( __( 'Page Above', 'inkblot' ), __( 'Located at the very top of every page, before the header.', 'inkblot' ) ),
+			'inkblot-page-below'        => array( __( 'Page Below', 'inkblot' ), __( 'Located at the very bottom of every page, below the footer.', 'inkblot' ) ),
+			'inkblot-webcomic-above'    => array( __( 'Webcomic Above', 'inkblot' ), __( 'Located above the webcomic on the home page and single-webcomic pages.', 'inkblot' ) ),
+			'inkblot-webcomic-below'    => array( __( 'Webcomic Below', 'inkblot' ), __( 'Located below the webcomic on the home page and single-webcomic pages.', 'inkblot' ) ),
+			'inkblot-content-above'     => array( __( 'Content Above', 'inkblot' ), __( 'Located above the content block, just after the webcomic.', 'inkblot' ) ),
+			'inkblot-content-below'     => array( __( 'Content Below', 'inkblot' ), __( 'Located below the content block, just before the footer.', 'inkblot' ) ),
+			'inkblot-transcripts-above' => array( __( 'Transcripts Above', 'inkblot' ), __( 'Located above the transcripts section on single-webcomic pages.', 'inkblot' ) ),
+			'inkblot-transcripts-below' => array( __( 'Transcripts Below', 'inkblot' ), __( 'Located below the transcripts section on single-webcomic pages.', 'inkblot' ) ),
+			'inkblot-comments-above'    => array( __( 'Comments Above', 'inkblot' ), __( 'Located above the comments section on single-post pages.', 'inkblot' ) ),
+			'inkblot-comments-below'    => array( __( 'Comments Below', 'inkblot' ), __( 'Located below the comments section on single-post pages.', 'inkblot' ) )
+		);
+		
+		foreach ( $sidebars as $k => $v ) register_sidebar( array( 'id' => $k, 'name' => $v[ 0 ], 'description' => $v[ 1 ], 'before_widget' => '<figure id="%s" class="widget %s">', 'after_widget' => '</figure>', 'before_title' => '<figcaption>', 'after_title' => '</figcaption>' ) );
+	}
+	
+	/** Add custom body classes */
+	function hook_body_class( $classes ) {
+		global $is_lynx, $is_gecko, $is_winIE, $is_macIE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone;
+		
+		if ( $is_lynx )       $classes[] = 'browser-lynx';
+		elseif ( $is_gecko )  $classes[] = 'browser-gecko';
+		elseif ( $is_winIE )  $classes[] = 'browser-winie';
+		elseif ( $is_macIE )  $classes[] = 'browser-macie';
+		elseif ( $is_opera )  $classes[] = 'browser-oepra';
+		elseif ( $is_NS4 )    $classes[] = 'browser-netscape';
+		elseif ( $is_safari ) $classes[] = 'browser-safari';
+		elseif ( $is_chrome ) $classes[] = 'browser-chrome';
+		else                  $classes[] = 'browser-unknown';
+		
+		if ( $is_iphone ) $classes[] = 'device-iphone';
+		
+		$classes[] = 'layout-align-' . $this->option( 'dim_alignment' );
+		$classes[] = 'layout-' . $this->option( 'layout' );
+		
+		return $classes;
+	}
+	
+	/** Add custom bloginfo */
+	function hook_bloginfo( $r, $s ) {
+		global $wpdb, $wp_query;
+		
+		if ( 'meta_description' == $s ) {
+			if ( is_single() || is_attachment() || is_page() )
+				$r = ( get_the_excerpt() ) ? get_the_excerpt() : wp_trim_excerpt( '' );
+			elseif ( is_category() || is_tag() || is_tax() || is_author() ) {
+				$o = $wp_query->get_queried_object();
+				$r = implode( ' ', array_slice( explode( ' ', trim( htmlentities( strip_tags( $o->description ) ) ) ), 0, apply_filters( 'excerpt_length', 55 ) ) );
+			} else
+				$r = get_option( 'blogdescription' );
+		} elseif ( 'copyright' == $s ) {
+			$c = current( $wpdb->get_results( "SELECT YEAR( min( post_date ) ) AS start, YEAR( max( post_date ) ) AS end FROM $wpdb->posts WHERE post_status = 'publish'" ) );
+			$r = ( $c->start == $c->end ) ? "&copy; $c->end" : "&copy; $c->start &ndash; $c->end";
+		}
+		
+		return $r;
+	}
+	
+	/** Add custom url bloginfo */
+	function hook_bloginfo_url( $r, $s ) {
+		if ( 'icon_url' == $s )
+			$r = $this->url . '/includes/images/icon.png';
+		
+		return $r;
+	}
+	
+	/** Add theme avatar */
+	function hook_avatar_defaults( $d ) {
+		$d[ $this->url . '/includes/images/avatar.png' ] = ucwords( str_replace( '_', ' ', $this->name ) );
+		
+		return $d;
+	}
+	
+	/** Remove the generator <meta> field
+	function hook_the_generator() {
+		return false;
+	}
+	
+	/** Remove recent comments widget styles */
+	function hook_widgets_init() {
+		global $wp_widget_factory;
+		
+		remove_action( 'wp_head', array( $wp_widget_factory->widgets[ 'WP_Widget_Recent_Comments' ], 'recent_comments_style' ) );
+	}
+	
+	/** Change wp_title for better search engine optimization */
+	function hook_wp_title( $title, $sep, $seplocation ) {
+		if ( is_feed() )
+			return $title;
+		
+		global $paged, $page;
+		
+		$a = explode( " $sep ", $title );
+		$p = ( 1 < $paged || 1 < $page ) ? sprintf( __( 'Page %s', 'inkblot' ), max( $paged, $page ) ) : '';
+		$n = array( $p, get_bloginfo( 'name', 'display' ), get_bloginfo( 'description', 'display' ) );
+		
+		if ( !is_home() || !is_front_page() )
+			unset( $n[ 2 ] );
+		
+		$a = ( 'right' == $seplocation ) ? array_merge( $a, $n ) : array_merge( $n, $a );
+		
+		foreach ( $a as $k => $v )
+			if ( !$v )
+				unset( $a[ $k ] );
+		
+		return implode( " $sep ", $a );
+	}
+	
+	/** Change the exceprt word length */
+	function hook_excerpt_length( $l ) {
+		return 60;
+	}
+	
+	/** Change the excerpt 'Read More' link */
+	function hook_excerpt_more( $m ) {
+		return ' <a href="' . get_permalink() . '" title="' . __( 'Continue reading', 'inkblot' ) . '">&hellip;</a>';
+	}
+	function hook_custom_excerpt_more( $o ) {
+		if ( has_excerpt() && !is_attachment() )
+			$o .= ' <a href="' . get_permalink() . '" title="' . __( 'Continue reading', 'inkblot' ) . '">&hellip;</a>';
+		
+		return $o;
+	}
+	
+	/** Change the gallery shortcode to use HTML5 */
+	function hook_post_gallery( $null, $attr ) {
+		global $post, $wp_locale;
+		static $instance = 0; $instance++;
+		
+		if ( isset( $attr[ 'orderby' ] ) ) {
+			$attr[ 'orderby' ] = sanitize_sql_orderby( $attr[ 'orderby' ] );
+			
+			if ( empty( $attr[ 'orderby' ] ) )
+				unset( $attr[ 'orderby' ] );
+		}
+		
+		extract( shortcode_atts( array(
+			'id'         => $post->ID,
+			'size'       => 'thumbnail',
+			'order'      => 'ASC',
+			'orderby'    => 'menu_order ID',
+			'itemtag'    => 'figure',
+			'icontag'    => 'div',
+			'include'    => false,
+			'exclude'    => false,
+			'columns'    => false,
+			'captiontag' => 'figcaption'
+		), $attr ) );
+		
+		$id          = intval( $id );
+		$orderby     = ( 'RAND' == $order ) ? 'none' : $orderby;
+		$attachments = array();
+		$itemtag     = tag_escape( $itemtag );
+		$captiontag  = tag_escape( $captiontag );
+		$columns     = intval( $columns );
+		
+		if ( !empty( $include ) ) {
+			$include      = preg_replace( '/[^0-9,]+/', '', $include );
+			$_attachments = get_posts( array( 'include' => $include, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby ) );
+			
+			foreach ( $_attachments as $k => $v )
+				$attachments[ $v->ID ] = $_attachments[ $k ];
+		} elseif ( !empty( $exclude ) ) {
+			$exclude     = preg_replace( '/[^0-9,]+/', '', $exclude );
+			$attachments = get_children( array( 'post_parent' => $id, 'exclude' => $exclude, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby ) );
+		} else
+			$attachments = get_children( array( 'post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby ) );
+		
+		if ( empty( $attachments ) )
+			return false;
+		
+		if ( is_feed() ) {
+			$r = "\n";
+			
+			foreach ( $attachments as $att_id => $attachment )
+				$r .= wp_get_attachment_link( $att_id, $size, true ) . "\n";
 		} else {
-			$layout[ 'columns' ] = 3;
-			$layout[ 'comic' ]   = ( strstr( $lop, 'i' ) ) ? 1 : 0;
+			$i = 0;
+			$r = '<div id="gallery-' . $instance . '" class="gallery gallery-' . $id . '">';
 			
-			if ( strstr( $lop, 'l' ) )
-				$layout[ 'content' ] = 'alignright';
-			else
-				$layout[ 'content' ] = 'alignleft';
+			foreach ( $attachments as $id => $attachment ) {
+				$l  = isset( $attr[ 'link' ] ) && 'file' == $attr[ 'link' ] ? wp_get_attachment_link( $id, $size, false, false ) : wp_get_attachment_link( $id, $size, true, false );
+				$r .= '<' . $itemtag . ' class="gallery-item"><' . $icontag . ' class="gallery-icon">' . $l . '</' . $icontag . '>';
+				$r .= ( $captiontag && trim( $attachment->post_excerpt ) ) ? '<' . $captiontag . ' class="gallery-caption">' . wptexturize( $attachment->post_excerpt ) . '</' . $captiontag . '></' . $itemtag . '>' : '</' . $itemtag . '>';
+				
+				$i++;
+				
+				$r .= ( 0 < $columns && 0 == ( $i % $columns ) ) ? '<hr>' : '';
+			}
 			
-			if ( '3coc' == $lop || '3cic' == $lop )
-				$layout[ 'special' ] = true;
+			$r .= '<hr></div>';
+			$r  = str_replace( '<hr><hr></div>', '<hr></div>', $r );
 		}
 		
-		$layout[ 'position' ] = get_option( 'inkblot_layout_position' );
-		
-		return ( object ) $layout;
-	}
-}
-
-
-
-//
-// Semantic Classes
-//
-
-/**
- * Displays semantic sidebar classes.
- * 
- * This function generates and displays a set of semantic classes
- * for the Inkblot sidebars based on user settings.
- * 
- * @package Inkblot
- * @since 2.0.0
- * 
- * @param bool $right The right sidebar. Defaults to false (left sidebar).
- * @param str|arr $class One or more classes to add to the class list.
- */
-function inkblot_sidebar_class( $right = false, $class = false ) {
-	$layout = get_inkblot_layout();
-	
-	//Must be a sidebar
-	$classes   = array( 'sidebar' );
-	
-	//Add the alignment class
-	if ( $layout->special )
-		$class[] = 'alignleft';
-	else
-		$classes[] = ( $right ) ? 'alignright' : 'alignleft';
-	
-	//Add the size class
-	if ( 3 == $layout->columns )
-		$classes[] = 'x-small';
-	
-	//Add the hide class
-	if ( ( !$layout && $right ) || 1 == $layout->columns || ( 2 == $layout->columns && $right ) )
-		$classes[] = 'hide';
-	
-	//Add the sidebar specifier class
-	$classes[] = ( $right ) ? 'sidebar-two' : 'sidebar-one';
-	
-	//Add any user provided classes
-	if ( $class ) {
-		if ( !is_array( $class ) )
-			$class = preg_split( '#\s+#', $class );
-		
-		$classes = array_merge( $classes, $class );
+		return $r;
 	}
 	
-	echo 'class="' . join( ' ', $classes ) . '"';
-}
-
-/**
- * Displays semantic comic navigation classes.
- * 
- * This function generates and displays a set of semantic classes
- * for Inkblot's comic navigation blocks based on user settings.
- * 
- * @package Inkblot
- * @since 2.0.0
- * 
- * @param bool $above The navigation block above the comic.
- * @param str|arr $class One or more classes to add to the class lsit.
- */
-function inkblot_comic_navi_class( $above = false, $class = false ) {
-	$navi = get_option( 'inkblot_comic_navigation' );
-	
-	//Must be comic navigation
-	$classes   = array( 'navi' );
-	$classes[] = 'navi-comic';
-	$classes[] = ( $above ) ? 'navi-comic-above' : 'navi-comic-below';
-	
-	//Hide the top navigation bar based on user settings
-	if ( $above && !$navi )
-		$classes[] = 'hide';
-	
-	//Hide the bottom navigation bar based on user settings
-	if ( !$above && 1 == $navi )
-		$classes[] = 'hide';
-	
-	//Add any user provided classes
-	if ( $class ) {
-		if ( !is_array( $class ) )
-			$class = preg_split( '#\s+#', $class );
-		
-		$classes = array_merge( $classes, $class );
+	/** Display standard <head> information */
+	function hook_wp_head_0() { ?>
+		<meta charset="<?php bloginfo( 'charset' ); ?>">
+		<title><?php wp_title( '|', true, 'right' ); ?></title>
+		<meta name="description" content="<?php bloginfo( 'meta_description' ); ?>">
+		<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>">
+		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+		<link rel="icon" href="<?php bloginfo( 'icon_url' ); ?>">
+		<link rel="profile" href="http://gmpg.org/xfn/11">
+		<?php $this->custom_layout();
 	}
 	
-	echo 'class="' . join( ' ', $classes ) . '"';
-}
-
-/**
- * Displays semantic site navigation classes.
- * 
- * This function generates and displays a set of semantic classes
- * for Inkblot's site navigation block based on user settings.
- * 
- * @package Inkblot
- * @since 2.0.0
- * 
- * @param str|arr $class One or more classes to add to the class lsit.
- */
-function inkblot_site_navi_class( $class = false ) {
-	$navi = get_option( 'inkblot_site_navigation' );
-	
-	//Must be site navigation
-	$classes   = array( 'navi' );
-	$classes[] = 'navi-site';
-	
-	if ( !$navi )
-		$classes[] = 'hide';
-	
-	//Add any user provided classes
-	if ( $class ) {
-		if ( !is_array( $class ) )
-			$class = preg_split( '#\s+#', $class );
+	/** Display meta information */
+	function hook_wp_meta() { ?>
+		<a href="#body" title="Return to Top"><?php bloginfo( 'copyright' ); ?> <?php bloginfo( 'name' ); ?></a> | <?php printf( __( 'Powered by <a href="%s">WordPress</a> with <a href="%s">Webcomic</a> | <a href="%s">Subscribe</a>', 'inkblot' ), 'http://wordpress.org/', 'http://webcomicms.net/', get_bloginfo( 'rss2_url' ) ); ?>
+		<?php
 		
-		$classes = array_merge( $classes, $class );
 	}
 	
-	echo 'class="' . join( ' ', $classes ) . '"';
-}
-
-
-
-//
-// Theme Settings
-//
-
-/**
- * Creates the default Inkblot settings.
- * 
- * This funciton should only run when the theme is first activated.
- * It will attempt to create all of the default Inkblots stetings.
- * 
- * @package Inkblot
- * @since 1.0.0
- */
-if ( !get_option( 'inkblot_version' ) || '2.1.0' != get_option( 'inkblot_version' ) ) {
-	function inkblot_install(){
-		add_option( 'inkblot_layout', '2cor' );
-		add_option( 'inkblot_layout_position', '2' );
-		add_option( 'inkblot_site_navigation', '1' );
-		add_option( 'inkblot_comic_frontpage', '1' );
-		add_option( 'inkblot_comic_frontpage_series', '' );
-		add_option( 'inkblot_comic_frontpage_order', 'DESC' );
-		add_option( 'inkblot_comic_navigation', '' );
-		add_option( 'inkblot_comic_limit', '' );
-		add_option( 'inkblot_comic_link', '' );
-		add_option( 'inkblot_comic_link_direction', 'next' );
-		add_option( 'inkblot_comic_archives', '1' );
-		add_option( 'inkblot_comic_archives_size', 'thumb' );
-		add_option( 'inkblot_comic_embed', '' );
-		add_option( 'inkblot_comic_embed_size', 'thumb' );
-		add_option( 'inkblot_comic_embed_format', 'html' );
+	
+	
+	////
+	// Utilities
+	////
+	
+	/** Display custom background CSS */
+	function custom_background() {
+		$background = get_background_image();
+		$color = get_background_color();
 		
-		/** Add or update the 'inkblot_version' setting */
-		if ( get_option( 'inkblot_version' ) )
-			update_option( 'inkblot_version', '2.1.0' );
+		if ( !$background && !$color )
+			return false;
+		
+		switch ( get_theme_mod( 'background_repeat', 'repeat' ) ) {
+			case "no-repeat": $repeat = "no-repeat"; break;
+			case "repeat-x": $repeat = "repeat-x"; break;
+			case "repeat-y": $repeat = "repeat-y"; break;
+			default: $repeat = "repeat";
+		}
+		
+		switch ( get_theme_mod( 'background_position', 'left' ) ) {
+			case "center": $position = "0 50%"; break;
+			case "right": $position = "0 100%"; break;
+			default: $position = "0 0";
+		}
+		
+		$attachment = ( 'scroll' == get_theme_mod( 'background_attachment', 'fixed' ) ) ? 'scroll' : 'fixed';
+		$image = ( !empty( $background ) ) ? "url($background) $repeat $attachment $position" : '';
+		$color = ( !empty( $color ) ) ? "#$color" : '';
+		
+		echo "<style>html{background:$color $image}</style>";
+	}
+	
+	/** Display custom header CSS */
+	function custom_header() {
+		$background = ( get_header_image() ) ? '#header hgroup a{background:url(' . get_header_image() . ');display:block;height:' . HEADER_IMAGE_HEIGHT . 'px;width:' . HEADER_IMAGE_WIDTH . 'px}' : '';
+		$color = get_header_textcolor();
+		
+		if ( !$background && !$color )
+			return false;
+		
+		$text = ( 'blank' == $color ) ? '#header hgroup h1,#header hgroup h2{display:none}' : "#header hgroup,#header hgroup a{color:#$color}";
+		
+		echo '<style>' . $background . $text . "</style>";
+	}
+	
+	/** Display custom header in administrative dashboard CSS */
+	function admin_custom_header() {
+		echo '<style>#headimg{height:' . HEADER_IMAGE_HEIGHT . 'px;width:' . HEADER_IMAGE_WIDTH . 'px}</style>';
+	}
+	
+	/** Display custom layout CSS */
+	function custom_layout() {
+		$l = explode( 'c', $this->option( 'layout' ) );
+		$s = false;
+		
+		if ( 'left' == $this->option( 'dim_alignment' ) )
+			$s = '#wrap{margin:0 auto 0 0;';
+		elseif ( 'right' == $this->option( 'dim_alignment' ) )
+			$s = '#wrap{margin:0 0 0 auto;';
 		else
-			add_option( 'inkblot_version', '2.1.0' );
+			$s = '#wrap{';
 		
-		echo '<div class="updated fade"><p>' . sprintf( __( 'Thanks for choosing Inkblot! Please check the <a href="%s">setting page</a> to configure the theme.', 'inkblot' ), 'themes.php?page=functions.php' ) . '</p></div>';
-	} add_action( 'admin_notices', 'inkblot_install' );
-}
-
-/**
- * Registers theme settings.
- * 
- * @package Inkblot
- * @since 2.0.0
- */
-function inkblot_admin_init() {
-	register_setting( 'inkblot_options', 'inkblot_layout' );
-	register_setting( 'inkblot_options', 'inkblot_layout_position' );
-	register_setting( 'inkblot_options', 'inkblot_site_navigation' );
-	register_setting( 'inkblot_options', 'inkblot_comic_frontpage' );
-	register_setting( 'inkblot_options', 'inkblot_comic_frontpage_series' );
-	register_setting( 'inkblot_options', 'inkblot_comic_frontpage_order' );
-	register_setting( 'inkblot_options', 'inkblot_comic_navigation' );
-	register_setting( 'inkblot_options', 'inkblot_comic_limit' );
-	register_setting( 'inkblot_options', 'inkblot_comic_link' );
-	register_setting( 'inkblot_options', 'inkblot_comic_link_direction' );
-	register_setting( 'inkblot_options', 'inkblot_comic_archives' );
-	register_setting( 'inkblot_options', 'inkblot_comic_archives_size' );
-	register_setting( 'inkblot_options', 'inkblot_comic_embed' );
-	register_setting( 'inkblot_options', 'inkblot_comic_embed_size' );
-	register_setting( 'inkblot_options', 'inkblot_comic_embed_format' );
-} add_action( 'admin_init', 'inkblot_admin_init' );
-
-/**
- * Registers the Inkblot administrative page.
- * 
- * @package Inkblot
- * @since 1.0.0
- */
-function inkblot_theme_page(){
-	add_theme_page( __( 'Inkblot', 'inkblot' ), __( 'Inkblot', 'inkblot' ), 'edit_themes', basename( __FILE__ ), 'inkblot_theme_page_display' );
+		$s .= 'width:' . $this->option( 'dim_site' ) . 'px}';
+		
+		if ( 3 == $l[ 0 ] ) {
+			$s1 = $s2 = false;
+			$s .= '#content{width:' . $this->option( 'dim_content' ) . 'px;';
+			
+			if ( 3 == $l[ 1 ] || 6 == $l[ 1 ] ) {
+				$s .= 'float:left;}';
+				$s1 = 'float:left;';
+				$s2 = 'float:right;';
+			} elseif ( 2 == $l[ 1 ] || 5 == $l[ 1 ] )
+				$s .= 'float:right}#sidebar1,#sidebar2{float:left}';
+			else
+				$s .= 'float:left}#sidebar1,#sidebar2{float:right}';
+			
+			$s .= '#sidebar1{' . $s1 .'width:' . $this->option( 'dim_sidebar1' ) . 'px}#sidebar2{' . $s2 .'width:' . $this->option( 'dim_sidebar2' ) . 'px}';
+			
+			if ( 6 == $l[ 1 ] )
+				$s = str_replace( '#content', '#main', $s );
+		} elseif ( 2 == $l[ 0 ] ) {
+			$s .= '#sidebar2{display:none}#content{width:' . $this->option( 'dim_content' ) . 'px;' . ( ( $l[ 1 ] % 2 ) ? 'float:left}#sidebar1{float:right;width:' . $this->option( 'dim_sidebar1' ) . 'px}' : 'float:right}#sidebar1{float:left;width:' . $this->option( 'dim_sidebar1' ) . 'px}' );
+			
+			if ( 3 == $l[ 1 ] || 4 == $l[ 1 ] )
+				$s = str_replace( '#content', '#main', $s );
+		} else
+			$s .= '#sidebar1,#sidebar2{display:none}';
+		
+		echo '<style>' . $s . '</style>';
+	}
 	
-	if ( function_exists( 'add_meta_box' ) )
-		add_meta_box( 'inkblot', __( 'Inkblot', 'inkblot' ), 'inkblot_page_meta_box', 'page', 'normal', 'high' );
-} add_action( 'admin_menu', 'inkblot_theme_page' );
-
-/**
- * Displays the Inkblot settings page.
- * 
- * @package Inkblot
- * @since 1.0.0
- */
-function inkblot_theme_page_display() {
-	if ( isset( $_REQUEST[ 'updated' ] ) )
-		echo '<div class="updated fade"><p><strong>' . __( 'Settings saved.', 'inkblot' ) . '</strong></p></div>';
+	/** Return paginated posts links */
+	function get_paginated_posts_links( $args = array() ) {
+		global $wp_query, $wp_rewrite;
+		
+		$p = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+		
+		$defaults = array(
+			'base'     => @add_query_arg( 'paged','%#%' ),
+			'format'   => false,
+			'total'    => $wp_query->max_num_pages,
+			'current'  => $p,
+			'add_args' => false
+		); $args = wp_parse_args( $args, $defaults );
+		
+		$args[ 'base' ]     = ( is_object( $wp_rewrite ) && $wp_rewrite->using_permalinks() ) ? user_trailingslashit( trailingslashit( remove_query_arg( 's', get_pagenum_link( 1 ) ) ) . 'page/%#%', 'page' ) : $args[ 'base' ];
+		$args[ 'add_args' ] = ( !empty( $wp_query->query_vars[ 's' ] ) ) ? array( 's' => get_query_var( 's' ) ) : $args[ 'add_args' ];
+		
+		return preg_replace( '/>...</', '>&hellip;<', paginate_links( $args ) );
+	}
 	
-	$layout     = get_inkblot_layout();
-	$categories = get_comic_category( true );
-?>
-	<div class="wrap">
-		<div id="icon-themes" class="icon32"></div>
-		<h2><?php _e( 'Inkblot', 'inkblot' ); ?></h2>
-		<form method="post" action="options.php">
-			<?php wp_nonce_field( 'inkblot_save_settings' ); ?>
-			<table class="form-table">
-				<tr>
-					<th scope="row"><label for="inkblot_comic_frontpage_order"><?php _e( 'Comics', 'inkblot' ); ?></label></th>
-					<td>
-						<input type="checkbox" name="inkblot_comic_frontpage" value="1"<?php if ( get_option( 'inkblot_comic_frontpage' ) ) echo ' checked="checked"'; ?> />
-						<label>
-							<?php _e( 'Show the', 'inkblot' ); ?>
-							<select name="inkblot_comic_frontpage_order" id="inkblot_comic_frontpage_order" style="vertical-align:middle">
-								<option value="DESC"<?php if ( 'DESC' == get_option( 'inkblot_comic_frontpage_order' ) ) echo 'selected="selected"'; ?>><?php _e( 'most recent', 'inkblot' ); ?></option>
-								<option value="ASC"<?php if ( 'ASC' == get_option( 'inkblot_comic_frontpage_order' ) ) echo 'selected="selected"'; ?>><?php _e( 'first', 'inkblot' ); ?></option>
+	
+	
+	////
+	// Administration - These functions add various administrative pages and options.
+	////
+	
+	/** Add the custom layout page */
+	function hook_admin_menu() {
+		add_theme_page( __( 'Layout', 'inkblot' ), __( 'Layout', 'inkblot' ), 'edit_themes', basename( __FILE__ ), array( &$this, 'admin_layout' ) );
+		add_meta_box( 'inkblot', __( 'Inkblot', 'inkblot' ), array( &$this, 'admin_metabox' ), 'page', 'normal', 'high' );
+	}
+	
+	function hook_admin_notices() {
+		if ( $this->update ) { ?><div id="message" class="updated fade"><p><?php echo implode( '</p><p>', $this->update ); ?></p></div><?php }
+		if ( $this->errors ) { ?><div id="message" class="error"><p><?php echo implode( '</p><p>', $this->errors ); ?></p></div><?php }
+	}
+	
+	function hook_admin_init() {
+		if ( isset( $_REQUEST[ 'action' ] ) && 'inkblot_settings' == $_REQUEST[ 'action' ] ) {
+			check_admin_referer( 'inkblot_settings' );
+			
+			$new[ 'version' ]                  = $this->version;
+			$new[ 'layout' ]                   = $_REQUEST[ 'layout' ];
+			$new[ 'dim_alignment' ]            = $_REQUEST[ 'dim_alignment' ];
+			$new[ 'dim_webcomic' ]             = intval( $_REQUEST[ 'dim_webcomic' ] );
+			$new[ 'dim_content' ]              = intval( $_REQUEST[ 'dim_content' ] );
+			$new[ 'dim_sidebar1' ]             = intval( $_REQUEST[ 'dim_sidebar1' ] );
+			$new[ 'dim_sidebar2' ]             = intval( $_REQUEST[ 'dim_sidebar2' ] );
+			$new[ 'dim_site' ]                 = intval( $_REQUEST[ 'dim_site' ] );
+			$new[ 'header_w' ]                 = intval( $_REQUEST[ 'header_w' ] );
+			$new[ 'header_h' ]                 = intval( $_REQUEST[ 'header_h' ] );
+			$new[ 'post_w' ]                   = intval( $_REQUEST[ 'post_w' ] );
+			$new[ 'post_h' ]                   = intval( $_REQUEST[ 'post_h' ] );
+			$new[ 'home_webcomic_toggle' ]     = ( isset( $_POST[ 'home_webcomic_toggle' ] ) ) ? true : false;
+			$new[ 'home_webcomic_order' ]      = $_REQUEST[ 'home_webcomic_order' ];
+			$new[ 'home_webcomic_collection' ] = intval( $_REQUEST[ 'home_webcomic_collection' ] );
+			$new[ 'single_webcomic_link' ]     = ( isset( $_REQUEST[ 'single_webcomic_toggle' ] ) ) ? $_REQUEST[ 'single_webcomic_link' ] : false;
+			$new[ 'archive_webcomic_toggle' ]  = ( isset( $_REQUEST[ 'archive_webcomic_toggle' ] ) ) ? true : false;
+			$new[ 'archive_webcomic_size' ]    = $_REQUEST[ 'archive_webcomic_size' ];
+			$new[ 'embed_webcomic_toggle' ]    = ( isset( $_POST[ 'embed_webcomic_toggle' ] ) ) ? true : false;
+			$new[ 'embed_webcomic_format' ]    = $_REQUEST[ 'embed_webcomic_format' ];
+			$new[ 'embed_webcomic_size' ]      = $_REQUEST[ 'embed_webcomic_size' ];
+			$new[ 'prints_original_toggle' ]   = ( isset( $_POST[ 'prints_original_toggle' ] ) ) ? true : false;
+			
+			$this->option( $new );
+			$this->update[ 'settings' ] = __( 'Settings saved', 'inkblot' );
+		}
+	}
+	
+	function admin_layout() {
+		?>
+		<style>.form-table input[type=radio]{display:none}.form-table .layout label{border:1px solid transparent;display:block;float:left;padding:.25em}.form-table input[type=radio]:checked + label{background:#ffffe0;border:1px solid #e6db55}</style>
+		<div class="wrap">
+			<div id="icon-themes" class="icon32"></div>
+			<h2><?php _e( 'Custom Layout', 'inkblot' ); ?></h2>
+			<form method="post" action="">
+				<?php wp_nonce_field( 'inkblot_settings' ); ?>
+				<table class="form-table">
+					<tr>
+						<th scope="row" rowspan="4">
+							<?php _e( 'Layout', 'inkblot' ); ?>
+							<p class="description"><?php _e( 'A one-column layout focuses primarily on the webcomic, while a two or three-column layout provides greater flexibility for additional content.', 'inkblot' ); ?></p>
+						</th>
+						<td class="layout"><input type="radio" name="layout" value="1c1" id="l1c1"<?php if ( '1c1' == $this->option( 'layout' ) ) echo ' checked'; ?>><label for="l1c1"><img src="<?php echo $this->url . '/includes/images/admin/1c1.png'; ?>" alt=""></label></td>
+					</tr>
+					<tr>
+						<td class="layout">
+							<input type="radio" name="layout" value="2c1" id="l2c1"<?php if ( '2c1' == $this->option( 'layout' ) ) echo ' checked'; ?>><label for="l2c1"><img src="<?php echo $this->url . '/includes/images/admin/2c1.png'; ?>" alt=""></label>
+							<input type="radio" name="layout" value="2c2" id="l2c2"<?php if ( '2c2' == $this->option( 'layout' ) ) echo ' checked'; ?>><label for="l2c2"><img src="<?php echo $this->url . '/includes/images/admin/2c2.png'; ?>" alt=""></label>
+							<input type="radio" name="layout" value="2c3" id="l2c3"<?php if ( '2c3' == $this->option( 'layout' ) ) echo ' checked'; ?>><label for="l2c3"><img src="<?php echo $this->url . '/includes/images/admin/2c3.png'; ?>" alt=""></label>
+							<input type="radio" name="layout" value="2c4" id="l2c4"<?php if ( '2c4' == $this->option( 'layout' ) ) echo ' checked'; ?>><label for="l2c4"><img src="<?php echo $this->url . '/includes/images/admin/2c4.png'; ?>" alt=""></label>
+						</td>
+					</tr>
+					<tr>
+						<td class="layout">
+							<input type="radio" name="layout" value="3c1" id="l3c1"<?php if ( '3c1' == $this->option( 'layout' ) ) echo ' checked'; ?>><label for="l3c1"><img src="<?php echo $this->url . '/includes/images/admin/3c1.png'; ?>" alt=""></label>
+							<input type="radio" name="layout" value="3c2" id="l3c2"<?php if ( '3c2' == $this->option( 'layout' ) ) echo ' checked'; ?>><label for="l3c2"><img src="<?php echo $this->url . '/includes/images/admin/3c2.png'; ?>" alt=""></label>
+							<input type="radio" name="layout" value="3c3" id="l3c3"<?php if ( '3c3' == $this->option( 'layout' ) ) echo ' checked'; ?>><label for="l3c3"><img src="<?php echo $this->url . '/includes/images/admin/3c3.png'; ?>" alt=""></label>
+							<input type="radio" name="layout" value="3c4" id="l3c4"<?php if ( '3c4' == $this->option( 'layout' ) ) echo ' checked'; ?>><label for="l3c4"><img src="<?php echo $this->url . '/includes/images/admin/3c4.png'; ?>" alt=""></label>
+							<input type="radio" name="layout" value="3c5" id="l3c5"<?php if ( '3c5' == $this->option( 'layout' ) ) echo ' checked'; ?>><label for="l3c5"><img src="<?php echo $this->url . '/includes/images/admin/3c5.png'; ?>" alt=""></label>
+							<input type="radio" name="layout" value="3c6" id="l3c6"<?php if ( '3c6' == $this->option( 'layout' ) ) echo ' checked'; ?>><label for="l3c6"><img src="<?php echo $this->url . '/includes/images/admin/3c6.png'; ?>" alt=""></label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<?php _e( 'Alignment:', 'inkblot' ); ?>
+							<select name="dim_alignment">
+								<option value="left"<?php if ( 'left' == $this->option( 'dim_alignment' ) ) echo ' selected'; ?>><?php _e( 'Left', 'inkblot' ); ?></option>
+								<option value="center"<?php if ( 'center' == $this->option( 'dim_alignment' ) ) echo ' selected'; ?>><?php _e( 'Center', 'inkblot' ); ?></option>
+								<option value="right"<?php if ( 'right' == $this->option( 'dim_alignment' ) ) echo ' selected'; ?>><?php _e( 'Right', 'inkblot' ); ?></option>
 							</select>
-						</label>
-						<label>
-							<?php _e( 'comic from', 'inkblot' ); ?>
-							<select name="inkblot_comic_frontpage_series" style="vertical-align:middle">
-								<option value="0"><?php _e( 'any series', 'inkblot' ); ?></option>
-							<?php foreach ( $categories as $cat ) { ?>
-								<option value="<?php echo $cat ?>"<?php if ( get_option( 'inkblot_comic_frontpage_series' ) == $cat ) echo ' selected="selected"'; echo '>' . get_term_field( 'name', $cat, 'chapter' ); ?></option>
-							<?php } ?>
-							</select>
-							<?php _e( 'on the front page', 'inkblot' ); ?>
-						</label>
-						<p>
-							<input type="checkbox" name="inkblot_comic_archives" value="1"<?php if ( get_option( 'inkblot_comic_archives' ) ) echo ' checked="checked"'; ?> />
-							<label>
-								<?php _e( 'Show', 'inkblot' ); ?>
-								<select name="inkblot_comic_archives_size" style="vertical-align:middle">
-									<option value="thumb"<?php if ( 'thumb' == get_option( 'inkblot_comic_archives_size' ) ) echo ' selected="selected"'; ?>><?php _e( 'thumbnail', 'inkblot' ); ?></option>
-									<option value="medium"<?php if ( 'medium' == get_option( 'inkblot_comic_archives_size' ) ) echo ' selected="selected"'; ?>><?php _e( 'medium', 'inkblot' ); ?></option>
-									<option value="large"<?php if ( 'large' == get_option( 'inkblot_comic_archives_size' ) ) echo ' selected="selected"'; ?>><?php _e( 'large', 'inkblot' ); ?></option>
-									<option value="full"<?php if ( 'full' == get_option( 'inkblot_comic_archives_size' ) ) echo ' selected="selected"'; ?>><?php _e( 'full', 'inkblot' ); ?></option>
-								</select>
-								<?php _e( 'comics on archive and search pages', 'inkblot' ); ?>
-							</label>
-						</p>
-						<p>
-							<input type="checkbox" name="inkblot_comic_embed" value="1"<?php if ( get_option( 'inkblot_comic_embed' ) ) echo ' checked="checked"'; ?> />
-							<label>
-								<?php _e( 'Show comic embed code formatted as', 'inkblot' ); ?>
-								<select name="inkblot_comic_embed_format" style="vertical-align:middle">
-									<option value="html"<?php if ( 'html' == get_option( 'inkblot_comic_embed_format' ) ) echo ' selected="selected"'; ?>><?php _e( 'html', 'inkblot' ); ?></option>
-									<option value="bbcode"<?php if ( 'bbcode' == get_option( 'inkblot_comic_embed_format' ) ) echo ' selected="selected"'; ?>><?php _e( 'bbcode', 'inkblot' ); ?></option>
-								</select>
-							</label>
-							<label>
-								<?php _e( 'with', 'inkblot' ); ?>
-								<select name="inkblot_comic_embed_size" style="vertical-align:middle">
-									<option value="thumb"<?php if ( 'thumb' == get_option( 'inkblot_comic_embed_size' ) ) echo ' selected="selected"'; ?>><?php _e( 'thumbnail', 'inkblot' ); ?></option>
-									<option value="medium"<?php if ( 'medium' == get_option( 'inkblot_comic_embed_size' ) ) echo ' selected="selected"'; ?>><?php _e( 'medium', 'inkblot' ); ?></option>
-									<option value="large"<?php if ( 'large' == get_option( 'inkblot_comic_embed_size' ) ) echo ' selected="selected"'; ?>><?php _e( 'large', 'inkblot' ); ?></option>
-									<option value="full"<?php if ( 'full' == get_option( 'inkblot_comic_embed_size' ) ) echo ' selected="selected"'; ?>><?php _e( 'full', 'inkblot' ); ?></option>
-								</select>
-								<?php _e( 'comics on single post pages', 'inkblot' ); ?>
-							</label>
-						</p>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row"><label for="inkblot_comic_navigation"><?php _e( 'Navigation', 'inkblot' ); ?></label></th>
-					<td>
-						<label>
-							<?php _e( 'Show comic navigation', 'inkblot' ); ?>
-							<select name="inkblot_comic_navigation" id="inkblot_comic_navigation" style="vertical-align:middle">
-								<option value="1"<?php if ( 1 == get_option( 'inkblot_comic_navigation' ) ) echo ' selected="selected"'; ?>><?php _e( 'above', 'inkblot' ); ?></option>
-								<option value="0"<?php if ( !get_option( 'inkblot_comic_navigation' ) ) echo ' selected="selected"'; ?>><?php _e( 'below', 'inkblot' ); ?></option>
-								<option value="2"<?php if ( 2 == get_option( 'inkblot_comic_navigation' ) ) echo ' selected="selected"'; ?>><?php _e( 'above and blow', 'inkblot' ); ?></option>
-							</select>
-							<?php _e( 'comics', 'inkblot' ); ?>
-						</label>
-						<label>
-							<?php _e( 'and imit comic navigation to the current', 'inkblot' ); ?>
-							<select name="inkblot_comic_limit" style="vertical-align:middle">
-								<option value=""><?php _e( 'series', 'inkblot' ); ?></option>
-								<option value="volume"<?php if ( 'volume' == get_option( 'inkblot_comic_limit' ) ) echo ' selected="selected"'; ?>><?php _e( 'volume', 'inkblot' ); ?></option>
-								<option value="chapter"<?php if ( 'chapter' == get_option( 'inkblot_comic_limit' ) ) echo ' selected="selected"'; ?>><?php _e( 'chapter', 'inkblot' ); ?></option>
-							</select>
-						</label>
-						<p>
-							<input type="checkbox" name="inkblot_comic_link" value="1"<?php if ( get_option( 'inkblot_comic_link' ) ) echo ' checked="checked"'; ?> />
-							<label>
-								<?php _e( 'Link comic images to the', 'inkblot' ); ?>
-								<select name="inkblot_comic_link_direction" style="vertical-align:middle">
-									<option value="next"<?php if ( 'next' == get_option( 'inkblot_comic_link_direction' ) ) echo ' selected="selected"'; ?>><?php _e( 'next', 'inkblot' ); ?></option>
-									<option value="previous"<?php if ( 'previous' == get_option( 'inkblot_comic_link_direction' ) ) echo ' selected="selected"'; ?>><?php _e( 'previous', 'inkblot' ); ?></option>
-								</select>
-								<?php _e( 'comic', 'inkblot' ); ?>
-							</label>
-						</p>
-						<p><label><input type="checkbox" name="inkblot_site_navigation" value="1"<?php if ( get_option( 'inkblot_site_navigation' ) ) echo ' checked="checked"'; ?> /> <?php _e( 'Show the page navigation bar', 'inkblot' ); ?></label></p>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row"><label for="inkblot_site_navigation"><?php _e( 'Layout', 'inkblot' ); ?></label></th>
-					<td>
-						<label><input type="radio" name="inkblot_layout" value="1c"<?php if( '1c' == get_option( 'inkblot_layout' ) ) echo ' checked="checked"'; ?> /><img src="<?php bloginfo('template_directory') ?>/includes/images/1c.png" alt="1c" style="vertical-align: middle;" /></label> &emsp;</label>
-						<p class="setting-description"><?php _e( 'One column layouts focus primarily on the comic.', 'inkblot' );  ?></p>
-						<label><input type="radio" name="inkblot_layout" value="2cor"<?php if( '2cor' == get_option( 'inkblot_layout' ) ) echo ' checked="checked"'; ?> /><img src="<?php bloginfo('template_directory') ?>/includes/images/2cor.png" alt="2cor" style="vertical-align: middle;" /></label> &emsp;
-						<label><input type="radio" name="inkblot_layout" value="2col"<?php if( '2col' == get_option( 'inkblot_layout' ) ) echo ' checked="checked"'; ?> /><img src="<?php bloginfo('template_directory') ?>/includes/images/2col.png" alt="2col" style="vertical-align: middle;" /></label> &emsp;
-						<label><input type="radio" name="inkblot_layout" value="2cir"<?php if( '2cir' == get_option( 'inkblot_layout' ) ) echo ' checked="checked"'; ?> /><img src="<?php bloginfo('template_directory') ?>/includes/images/2cir.png" alt="2cir" style="vertical-align: middle;" /></label> &emsp;
-						<label><input type="radio" name="inkblot_layout" value="2cil"<?php if( '2cil' == get_option( 'inkblot_layout' ) ) echo ' checked="checked"'; ?> /><img src="<?php bloginfo('template_directory') ?>/includes/images/2cil.png" alt="2cil" style="vertical-align: middle;" /></label>
-						<p class="setting-description"><?php _e( 'Two column layouts provide additional flexibility.', 'inkblot' );  ?></p>
-						<label><input type="radio" name="inkblot_layout" value="3coc"<?php if( '3coc' == get_option( 'inkblot_layout' ) ) echo ' checked="checked"'; ?> /><img src="<?php bloginfo('template_directory') ?>/includes/images/3coc.png" alt="3oc" style="vertical-align: middle;" /></label> &emsp;
-						<label><input type="radio" name="inkblot_layout" value="3cor"<?php if( '3cor' == get_option( 'inkblot_layout' ) ) echo ' checked="checked"'; ?> /><img src="<?php bloginfo('template_directory') ?>/includes/images/3cor.png" alt="3cor" style="vertical-align: middle;" /></label> &emsp;
-						<label><input type="radio" name="inkblot_layout" value="3col"<?php if( '3col' == get_option( 'inkblot_layout' ) ) echo ' checked="checked"'; ?> /><img src="<?php bloginfo('template_directory') ?>/includes/images/3col.png" alt="3col" style="vertical-align: middle;" /></label> &emsp;
-						<label><input type="radio" name="inkblot_layout" value="3cic"<?php if( '3cic' == get_option( 'inkblot_layout' ) ) echo ' checked="checked"'; ?> /><img src="<?php bloginfo('template_directory') ?>/includes/images/3cic.png" alt="3cic" style="vertical-align: middle;" /></label> &emsp;
-						<label><input type="radio" name="inkblot_layout" value="3cir"<?php if( '3cir' == get_option( 'inkblot_layout' ) ) echo ' checked="checked"'; ?> /><img src="<?php bloginfo('template_directory') ?>/includes/images/3cir.png" alt="3cir" style="vertical-align: middle;" /></label> &emsp;
-						<label><input type="radio" name="inkblot_layout" value="3cil"<?php if( '3cil' == get_option( 'inkblot_layout' ) ) echo ' checked="checked"'; ?> /><img src="<?php bloginfo('template_directory') ?>/includes/images/3cil.png" alt="3cil" style="vertical-align: middle;" /></label>
-						<p class="setting-description"><?php _e( 'Three column layouts provide maximum configuration options.', 'inkblot' );  ?></p>
-						<p>
-							<label>
-								<?php _e( 'The site should be ', 'inkblot' ); ?>
-								<select name="inkblot_layout_position" id="inkblot_layout_position" style="vertical-align:middle">
-									<option value="2"<?php if ( 2 == get_option( 'inkblot_layout_position' ) ) echo ' selected="selected"'; ?>><?php _e( 'centered', 'inkblot' ); ?></option>
-									<option value="0"<?php if ( !get_option( 'inkblot_layout_position' ) ) echo ' selected="selected"'; ?>><?php _e( 'left-aligned', 'inkblot' ); ?></option>
-									<option value="1"<?php if ( 1 == get_option( 'inkblot_layout_position' ) ) echo ' selected="selected"'; ?>><?php _e( 'right-aligned', 'inkblot' ); ?></option>
-								</select>
-							</label>
-						</p>
-					</td>
-				</tr>
-				<tr>
-					<th><label for="inkblot_comic_width"><?php _e( 'Dimensions', 'inkblot' ); ?></label></th>
-					<td>
-						<label>
-							<input type="text" name="inkblot_comic_width" id="inkblot_comic_width" class="small-text" /><span class="setting-description">
-							<?php _e( 'Enter the width of your comic in pixels and Inkblot will calculate the correct width for your site based on your current layout:', 'inkblot' ); ?> <img src="<?php bloginfo('template_directory') ?>/includes/images/<?php echo get_option( 'inkblot_layout' ); ?>.png" alt="<?php echo get_option( 'inkblot_layout' ); ?>" style="vertical-align: middle;" /></span>
-						</label>
-						<p><textarea rows="10" cols="50" id="inkblot_css" class="large-text code"></textarea></p>
-						<script type="text/javascript">
-							jQuery( '#inkblot_comic_width' ) . change( function() {
-								var comic  = Number( jQuery( this ) . attr( 'value' ) );
-								comic      = ( comic % 1 ) ? Math.floor( comic ) : comic;
-								var column = <?php echo $layout->columns; ?>;
-								var locale = <?php echo ( $layout->comic ) ? 1 : 0 ?>;
+						</td>
+					</tr>
+					<tr>
+						<th scope="row" rowspan="5">
+							<?php _e( 'Dimensions', 'inkblot' ); ?>
+							<p class="description"><?php _e( 'These numbers specify the widths of the major parts of your site. Only a <code>Webcomic</code> width is necessary; the others will be calculated automatically if not provided.', 'inkblot' ); ?></p>
+						</th>
+						<td><label><?php _e( 'Webomic', 'inkblot' ); ?> <input type="text" name="dim_webcomic" value="<?php echo $this->option( 'dim_webcomic' ); ?>" class="small-text dim" style="text-align:center"></label></td>
+					</tr>
+					<tr><td><label><?php _e( 'Content&nbsp;&nbsp;', 'inkblot' ); ?> <input type="text" name="dim_content" value="<?php echo $this->option( 'dim_content' ); ?>" class="small-text dim" style="text-align:center"></label></td></tr>
+					<tr><td><label><?php _e( 'Sidebar 1', 'inkblot' ); ?> <input type="text" name="dim_sidebar1" value="<?php echo $this->option( 'dim_sidebar1' ); ?>" class="small-text dim" style="text-align:center"></label></td></tr>
+					<tr><td><label><?php _e( 'Sidebar 2', 'inkblot' ); ?> <input type="text" name="dim_sidebar2" value="<?php echo $this->option( 'dim_sidebar2' ); ?>" class="small-text dim" style="text-align:center"></label></td></tr>
+					<tr><td><label><?php _e( 'Site Total', 'inkblot' ); ?> <input type="text" name="dim_site" value="<?php echo $this->option( 'dim_site' ); ?>" class="small-text dim" style="text-align:center"></label></td></tr>
+					<tr>
+						<th scope="row">
+							<?php _e( 'Header', 'inkblot' ); ?>
+							<p class="description"><?php printf( __( 'These numbers specify the width and height of your <a href="%s">site header</a> in pixels.', 'inkblot' ), admin_url( 'themes.php?page=custom-header' ) ); ?></p>
+						</th>
+						<td style="vertical-align:top"><input type="text" name="header_w" value="<?php echo $this->option( 'header_w' ); ?>" class="small-text" style="text-align:center"> &#215; <input type="text" name="header_h" value="<?php echo $this->option( 'header_h' ); ?>" class="small-text" style="text-align:center"></td>
+					</tr>
+					<tr>
+						<th scope="row">
+							<?php _e( 'Thumbnails', 'inkblot' ); ?>
+							<p class="description"><?php _e( 'These numbers specify the width and height (in pixels) to use for post thumbnails.', 'inkblot' ); ?></p>
+						</th>
+						<td style="vertical-align:top"><input type="text" name="post_w" value="<?php echo $this->option( 'post_w' ); ?>" class="small-text" style="text-align:center"> &#215; <input type="text" name="post_h" value="<?php echo $this->option( 'post_h' ); ?>" class="small-text" style="text-align:center"></td>
+					</tr>
+					<tr>
+						<th scope="row">
+							<?php _e( 'Miscellanea', 'inkblot' ) ?>
+							<p class="description"><?php _e( 'Additional layout-related options to customize the look of your site.', 'inkblot' ); ?></p>
+						</th>
+						<td>
+							<p>
+								<input type="checkbox" name="home_webcomic_toggle" value="1"<?php if ( $this->option( 'home_webcomic_toggle' ) ) echo ' checked'; ?>>
+								<?php
+									$a = $b = $c = $d = '';
+									
+									switch ( $this->option( 'home_webcomic_order' ) ) {
+										case 'DESC' : $a = ' selected'; break;
+										default     : $b = ' selected';
+									}
+									
+									$s = '
+									<select name="home_webcomic_order">
+										<option value="ASC"' . $b . '>' . __( 'first', 'inkblot' ) . '</option>
+										<option value="DESC"' . $a . '>' . __( 'last', 'inkblot' ) . '</option>
+									</select>'; unset( $a, $b );
+									
+									$walker   = new webcomic_Walker_AdminTermDropdown();
+									$selected = array( $this->option( 'home_webcomic_collection' ) );
 								
-								if ( 2 < column ) {
-									var site     = ( locale ) ? comic * 2 : comic;
-									site         = ( site % 1 ) ? Math.floor( site ) : site;
-									var content  = ( locale ) ? comic : site - Math.round( site * .5 );
-									var sidebar1 = Math.round( site * .25 ) + 'PX';
-									var sidebar2 = Math.round( site * .25 ) + 'PX';
-								} else if ( 1 < column ) {
-									var site     = ( locale ) ? comic * 1.62 : comic;
-									site         = ( site % 2 ) ? Math.floor( site ) : site;
-									var content  = ( locale ) ? comic : site - Math.round( site * .38 );
-									var sidebar1 = Math.round( site * .38 ) + 'PX';
-									var sidebar2 = '<?php _e( 'Not used in your selected layout.', 'inkblot' ) ?>';
-								} else {
-									var site     = comic;
-									var content  = site;
-									var sidebar1 = '<?php _e( 'Not used in your selected layout.', 'inkblot' ) ?>';
-									var sidebar2 = '<?php _e( 'Not used in your selected layout.', 'inkblot' ) ?>';
-								}
-								
-								var output = '/** <?php _e( 'Site Width - This should replace any existing CSS rule in your style.css file', 'inkblot' ); ?> */\n.group { width: ' + site + 'px; }\n\n/**\n * <?php _e( 'These are the widths that Inkblot will use for the content and sidebar areas. See the style.css file if you want to change these widths.', 'inkblot' ); ?>\n * \n * .content-main will be ' + content + 'px\n * .sidebar-one will be ' + sidebar1 + '\n * .sidebar-two will be ' + sidebar2 + '\n */';
-								
-								jQuery( '#inkblot_css' ) . html( output );
-							} );
-						</script>
-					</td>
-				</tr>
-			</table>
-			<p class="submit"><input type="submit" name="Submit" class="button-primary" value="<?php _e('Save Changes','inkblot') ?>" /><input type="hidden" name="action" value="inkblot_save_settings" /> <span class="alignright setting-description"><?php printf( __( 'Inkblot Version %s', 'inkblot' ), get_option( 'inkblot_version' ) ); ?></span></p>
-			<?php settings_fields( 'inkblot_options' ); ?>
-		</form>
+									$t = '<select name="home_webcomic_collection"><option value="0">' . __( 'any collection', 'inkblot' ) . '</option>' . $walker->walk( get_terms( 'webcomic_collection', 'get=all' ), 0, array( 'selected' => $selected ) ) . '</select>';
+									
+									printf( __( 'Show the %s webcomic from %s on the home page', 'inkblot' ), $s, $t );
+								?>
+							</p>
+							<p>
+								<input type="checkbox" name="single_webcomic_toggle" value="1"<?php if ( $this->option( 'single_webcomic_link' ) ) echo ' checked'; ?>>
+								<?php
+									$a = $b = '';
+									
+									switch ( $this->option( 'single_webcomic_link' ) ) {
+										case 'previous' : $a = ' selected'; break;
+										default         : $b = ' selected';
+									}
+									
+									$s = '
+									<select name="single_webcomic_link">
+										<option value="next"' . $b . '>' . __( 'next', 'inkblot' ) . '</option>
+										<option value="previous"' . $a . '>' . __( 'previous', 'inkblot' ) . '</option>
+									</select>'; unset( $a, $b );
+									
+									printf( __( '<label>Link webcomic images to the %s webcomic</label>', 'inkblot' ), $s );
+								?>
+							</p>
+							<p>
+								<input type="checkbox" name="archive_webcomic_toggle" value="1"<?php if ( $this->option( 'archive_webcomic_toggle' ) ) echo ' checked'; ?>>
+								<label>
+								<?php
+									$a = $b = $c = $d = '';
+									
+									switch ( $this->option( 'archive_webcomic_size' ) ) {
+										case 'small' : $a = ' selected'; break;
+										case 'medium': $b = ' selected'; break;
+										case 'large' : $c = ' selected'; break;
+										default      : $d = ' selected';
+									}
+									
+									$s = '
+									<select name="archive_webcomic_size">
+										<option value="full"' . $d . '>' . __( 'full', 'inkblot' ) . '</option>
+										<option value="large"' . $c . '>' . __( 'large', 'inkblot' ) . '</option>
+										<option value="medium"' . $b . '>' . __( 'medium', 'inkblot' ) . '</option>
+										<option value="small"' . $a . '>' . __( 'small', 'inkblot' ) . '</option>
+									</select>'; unset( $a, $b, $c, $d );
+									
+									printf( __( 'Show %s webcomic previews on archive and search pages', 'inkblot' ), $s );
+								?>
+								</label>
+							</p>
+							<p>
+								<input type="checkbox" name="embed_webcomic_toggle" value="1"<?php if ( $this->option( 'embed_webcomic_toggle' ) ) echo ' checked'; ?>>
+								<?php
+									$a = $b = $c = $d = '';
+									
+									switch ( $this->option( 'embed_webcomic_size' ) ) {
+										case 'small' : $a = ' selected'; break;
+										case 'medium': $b = ' selected'; break;
+										case 'large' : $c = ' selected'; break;
+										default      : $d = ' selected';
+									}
+									
+									$s = '
+									<select name="embed_webcomic_size">
+										<option value="full"' . $d . '>' . __( 'full', 'inkblot' ) . '</option>
+										<option value="large"' . $c . '>' . __( 'large', 'inkblot' ) . '</option>
+										<option value="medium"' . $b . '>' . __( 'medium', 'inkblot' ) . '</option>
+										<option value="small"' . $a . '>' . __( 'small', 'inkblot' ) . '</option>
+									</select>'; unset( $a, $b, $c, $d );
+									
+									$e = $f = '';
+									
+									switch ( $this->option( 'embed_webcomic_format' ) ) {
+										case 'sbbcode' : $e = ' selected'; break;
+										default        : $f = ' selected';
+									}
+									
+									$t = '
+									<select name="embed_webcomic_format">
+										<option value="shtml"' . $f . '>' . __( 'html', 'inkblot' ) . '</option>
+										<option value="sbbcode"' . $e . '>' . __( 'bbcode', 'inkblot' ) . '</option>
+									</select>'; unset( $e, $f );
+									
+									printf( __( '<label>Show embed code with %s previews</label><label> in %s format on single webcomic pages</label>', 'inkblot' ), $s, $t );
+								?>
+							</p>
+							<p><label><input type="checkbox" name="prints_original_toggle" value="1"<?php if ( $this->option( 'prints_original_toggle' ) ) echo ' checked'; ?>> <?php _e( 'Sell original prints', 'inkblot' ); ?></label></p>
+						</td>
+					</tr>
+				</table>
+				<p class="submit">
+					<input type="submit" name="Submit" class="button-primary" value="<?php _e( 'Save Changes', 'inkblot' ); ?>">
+					<input type="hidden" name="action" value="inkblot_settings">
+				</p>
+			</form>
+		</div>
+		<script type="text/javascript">
+			jQuery( document ) . ready( function( $ ) {
+				$( 'input[name=layout],input[name=dim_webcomic]' ) . change( function() {
+					var webcomic, content, sidebar1, sidebar2, site, columns, layout;
+					
+					webcomic = Math.floor( Number( $( 'input[name=dim_webcomic]' ) . attr( 'value' ) ) );
+					columns  = Number( $( 'input[name=layout]:checked' ) . attr( 'value' ) . substring( 0, 1 ) );
+					layout   = Number( $( 'input[name=layout]:checked' ) . attr( 'value' ) . substring( 2, 4 ) );
+					
+					if ( 2 < columns ) {
+						if ( 1 == layout || 2 == layout || 3 == layout ) {
+							site     = webcomic;
+							content  = site * .5;
+							sidebar1 = sidebar2 = Math.round( ( content / 2 ) );
+						} else if ( 4 == layout || 5 == layout || 6 == layout ) {
+							site     = webcomic * 2;
+							content  = webcomic;
+							sidebar1 = sidebar2 = Math.round( ( content / 2 ) );
+						} else {
+							site     = webcomic + Math.floor( webcomic * .38 );
+							content  = Math.floor( webcomic * .62 );
+							sidebar1 = sidebar2 = Math.floor( webcomic * .38 );
+						}
+					} else if ( 1 < columns ) {
+						if ( 3 == layout || 4 == layout ) {
+							site     = Math.floor( webcomic * 1.62 );
+							content  = webcomic;
+						} else {
+							site     = webcomic;
+							content  = site - Math.round( site * .38 );
+						}
+						
+						sidebar1 = site - content;
+						sidebar2 = 0;
+					} else {
+						site     = webcomic;
+						content  = webcomic;
+						sidebar1 = sidebar2 = 0;
+					}
+					
+					$( 'input[name=dim_content]' ) . attr( 'value', content );
+					$( 'input[name=dim_sidebar1]' ) . attr( 'value', sidebar1 );
+					$( 'input[name=dim_sidebar2]' ) . attr( 'value', sidebar2 );
+					$( 'input[name=dim_site],input[name=header_w]' ) . attr( 'value', site ); } );
+				});
+			</script>
+		<?php
+	}
+	
+	function hook_save_post( $id, $post ) {
+		if ( empty( $_REQUEST[ 'original_publish' ] ) || wp_is_post_autosave( $id ) || wp_is_post_revision( $id ) )
+			return false;
+		
+		if ( 'webcomic_archive.php' == $post->page_template || 'webcomic_home.php' == $post->page_template ) {
+			$post_meta = array();
+			
+			$post_meta[ 'webcomic_collection' ] = intval( $_REQUEST[ 'webcomic_collection' ] );
+			$post_meta[ 'webcomic_order' ]      = ( !empty( $_REQUEST[ 'webcomic_order' ] ) ) ? $_REQUEST[ 'webcomic_order' ] : null;
+			$post_meta[ 'webcomic_group' ]      = ( !empty( $_REQUEST[ 'webcomic_group' ] ) ) ? $_REQUEST[ 'webcomic_group' ] : null;
+			$post_meta[ 'webcomic_image' ]      = ( !empty( $_REQUEST[ 'webcomic_image' ] ) ) ? $_REQUEST[ 'webcomic_image' ] : null;
+			
+			update_post_meta( $id, 'inkblot', $post_meta );
+		} else
+			delete_post_meta( $id, 'inkblot' );
+	}
+	
+	function admin_metabox( $post ) {
+		$post_meta = current( get_post_meta( $post->ID, 'inkblot' ) );
+	?>
+	<div class="archive-controls">
+		<?php
+			$a = $b = '';
+			
+			switch ( $post_meta[ 'webcomic_group' ] ) {
+				case 'storyline': $a = ' selected'; break;
+				default         : $b = ' selected';
+			}
+			
+			$s = '
+			<select name="webcomic_group">
+				<option value="month"' . $b . '>' . __( 'date', 'inkblot' ) . '</option>
+				<option value="storyline"' . $a . '>' . __( 'storyline', 'inkblot' ) . '</option>
+			</select>'; unset( $a, $b );
+			
+			$a = $b = $c = $d = '';
+			
+			switch ( $post_meta[ 'webcomic_image' ] ) {
+				case 'full'  : $a = ' selected'; break;
+				case 'large' : $b = ' selected'; break;
+				case 'medium': $c = ' selected'; break;
+				case 'small' : $d = ' selected'; break;
+			}
+			
+			$u = '
+			<select name="webcomic_image">
+				<option value="">' . __( 'text links', 'inkblot' ) . '</option>
+				<option value="small"' . $d . '>' . __( 'small images', 'inkblot' ) . '</option>
+				<option value="medium"' . $c . '>' . __( 'medium images', 'inkblot' ) . '</option>
+				<option value="large"' . $b . '>' . __( 'large images', 'inkblot' ) . '</option>
+				<option value="full"' . $a . '>' . __( 'full images', 'inkblot' ) . '</option>
+			</select>'; unset( $a, $b, $c, $d );
+			
+			$walker   = new webcomic_Walker_AdminTermDropdown();
+			$selected = array( $post_meta[ 'webcomic_collection' ] );
+		
+			$t = '<select name="webcomic_collection" class="archive"><option value="0">' . __( 'any collection', 'inkblot' ) . '</option>' . $walker->walk( get_terms( 'webcomic_collection', 'get=all' ), 0, array( 'selected' => $selected ) ) . '</select>';
+			
+			printf( __( 'Show webcomics grouped by %s from %s as %s on this page', 'inkblot' ), $s, $t, $u );
+			
+			unset( $s, $t, $u );
+		?>
 	</div>
-<?php
-}
-
-/**
- * Displays the Inkblot Metabox
- * 
- * @package Inkblot
- * @since 1.3.0
- */
-function inkblot_page_meta_box( $post ) { $categories = get_comic_category( true );	?>
-	<strong><?php _e( 'Comic Template Options', 'inkblot' ); ?></strong><br />
-	<p>
-		<label>
-			<?php _e( 'Show the', 'inkblot' ); ?>
-			<select name="inkblot_comic_order" id="inkblot_comic_order" style="vertical-align:middle">
-				<option value="DESC"<?php if ( 'DESC' == get_option( 'inkblot_comic_frontpage_order' ) ) echo 'selected="selected"'; ?>><?php _e( 'most recent', 'inkblot' ); ?></option>
-				<option value="ASC"<?php if ( 'ASC' == get_option( 'inkblot_comic_frontpage_order' ) ) echo 'selected="selected"'; ?>><?php _e( 'first', 'inkblot' ); ?></option>
-			</select>
-			<?php _e( 'comic', 'inkblot' ); ?>
-		</label>
-	</p><br />
-	<strong><?php _e( 'Archive Template Options', 'inkblot' ); ?></strong><br />
-	<p>
-		<label>
-			<?php _e( 'Organize comics by', 'inkblot' ); ?>
-			<select name="inkblot_archive_groupby" style="vertical-align:middle">
-				<option value="date"<?php if ( 'date' == get_post_meta( $post->ID, 'inkblot_archive_groupby', true ) ) echo ' selected="selected"'; ?>><?php _e( 'year, month, and day', 'inkblot' ); ?></option>
-				<option value="chapter"<?php if ( 'chapter' == get_post_meta( $post->ID, 'inkblot_archive_groupby', true ) ) echo ' selected="selected"'; ?>><?php _e( 'series, volume, and chapter', 'inkblot' ); ?></option>
-			</select>
-		</label>
-		<label>
-			<?php _e( 'and display comic links as', 'inkblot' ); ?>
-			<select name="inkblot_archive_format" style="vertical-align:middle">
-				<option value=""><?php _e( 'text', 'inkblot' ); ?></option>
-				<option value="thumb"<?php if ( 'thumb' == get_post_meta( $post->ID, 'inkblot_archive_format', true ) ) echo ' selected="selected"'; ?>><?php _e( 'thumbnail images', 'inkblot' ); ?></option>
-				<option value="medium"<?php if ( 'medium' == get_post_meta( $post->ID, 'inkblot_archive_format', true ) ) echo ' selected="selected"'; ?>><?php _e( 'medium images', 'inkblot' ); ?></option>
-				<option value="large"<?php if ( 'large' == get_post_meta( $post->ID, 'inkblot_archive_format', true ) ) echo ' selected="selected"'; ?>><?php _e( 'large images', 'inkblot' ); ?></option>
-				<option value="full"<?php if ( 'full' == get_post_meta( $post->ID, 'inkblot_archive_format', true ) ) echo ' selected="selected"'; ?>><?php _e( 'full images', 'inkblot' ); ?></option>
-				<option value="number"<?php if ( 'number' == get_post_meta( $post->ID, 'inkblot_archive_format', true ) ) echo ' selected="selected"'; ?>><?php _e( 'numbers (chapters only)', 'inkblot' ); ?></option>
-			</select>
-		</label>
-	</p>
-	<p>
-		<label>
-			<?php _e( 'Sort chapters by ', 'inkblot' ); ?>
-			<select name="inkblot_archive_orderby" style="vertical-align:middle">
-				<option value="id"<?php if ( 'id' == get_post_meta( $post->ID, 'inkblot_archive_order', true ) ) echo ' selected="selected"'; ?>><?php _e( 'ID', 'inkblot' ); ?></option>
-				<option value="name"<?php if ( 'name' == get_post_meta( $post->ID, 'inkblot_archive_order', true ) ) echo ' selected="selected"'; ?>><?php _e( 'title', 'inkblot' ); ?></option>
-				<option value="count"<?php if ( 'count' == get_post_meta( $post->ID, 'inkblot_archive_order', true ) ) echo ' selected="selected"'; ?>><?php _e( 'page count', 'webcomi' ); ?></option>
-			</select>
-		</label>
-		<label>
-			<?php _e( 'and point chapter links to the' ); ?>
-			<select name="inkblot_archive_bound" style="vertical-align:middle">
-				<option value="first"<?php if ( 'first' == get_post_meta( $post->ID, 'inkblot_archive_bound', true ) ) echo ' selected="selected"'; ?>><?php _e( 'beginning of the chapter', 'inkblot' ); ?></option>
-				<option value="last"<?php if ( 'last' == get_post_meta( $post->ID, 'inkblot_archive_bound', true ) ) echo ' selected="selected"'; ?>><?php _e( 'end of the chapter', 'inkblot' ); ?></option>
-				<option value="page"<?php if ( 'page' == get_post_meta( $post->ID, 'inkblot_archive_bound', true ) ) echo ' selected="selected"'; ?>><?php _e( 'chapter archive page', 'webcomi' ); ?></option>
-			</select>
-		</label>
-	</p>
-	<p><label><input type="checkbox" name="inkblot_archive_post_order" value="1"<?php if ( 'ASC' == get_post_meta( $post->ID, 'inkblot_archive_post_order', true ) ) echo ' checked="checked"'; ?> /> <?php _e( 'Show posts in reverse order', 'inkblot' ); ?></label></p>
-	<p><label><input type="checkbox" name="inkblot_archive_order" value="1"<?php if ( 'DESC' == get_post_meta( $post->ID, 'inkblot_archive_order', true ) ) echo ' checked="checked"'; ?> /> <?php _e( 'Show chapters in reverse order', 'inkblot' ); ?></label></p>
-	<p><label><input type="checkbox" name="inkblot_archive_descriptions" value="1"<?php if ( get_post_meta( $post->ID, 'inkblot_archive_descriptions', true ) ) echo ' checked="checked"'; ?> /> <?php _e( 'Show chapter descriptions', 'inkblot' ); ?></label></p>
-	<p><label><input type="checkbox" name="inkblot_archive_pages" value="1"<?php if ( get_post_meta( $post->ID, 'inkblot_archive_pages', true ) ) echo ' checked="checked"'; ?> /> <?php _e( 'Show chapter page counts', 'inkblot' ); ?></label></p>
+	<div class="home-controls">
+		<?php
+			$a = $b = '';
+			
+			switch ( $post_meta[ 'webcomic_order' ] ) {
+				case 'DESC' : $a = ' selected'; break;
+				default     : $b = ' selected';
+			}
+			
+			$s = '
+			<select name="webcomic_order">
+				<option value="ASC"' . $b . '>' . __( 'first', 'inkblot' ) . '</option>
+				<option value="DESC"' . $a . '>' . __( 'last', 'inkblot' ) . '</option>
+			</select>'; unset( $a, $b );
+			
+			$walker   = new webcomic_Walker_AdminTermDropdown();
+			$selected = array( $post_meta[ 'webcomic_collection' ] );
+		
+			$t = '<select name="webcomic_collection" class="home"><option value="0">' . __( 'any collection', 'inkblot' ) . '</option>' . $walker->walk( get_terms( 'webcomic_collection', 'get=all' ), 0, array( 'selected' => $selected ) ) . '</select>';
+			
+			printf( __( 'Show the %s webcomic from %s on this page', 'inkblot' ), $s, $t );
+		?>
+	</div>
+	<div class="wrongtemplate"><?php _e( 'Select the <em>Webcomic Archive</em> template from the <strong>Page Attributes</strong> metabox to create a webcomic archive page, or the <em>Webcomic Home</em> template to create a webcomic "home" page.', 'inkblot' ); ?></div>
+	<script>
+		if ( 'webcomic_archive.php' == jQuery( '#page_template' ) . val() )
+			jQuery( '#inkblot .wrongtemplate,#inkblot .home-controls' ) . hide();
+		else if ( 'webcomic_home.php' == jQuery( '#page_template' ) . val() )
+			jQuery( '#inkblot .wrongtemplate,#inkblot .archive-controls' ) . hide();
+		else
+			jQuery( '#inkblot .archive-controls,#inkblot .home-controls' ) . hide();
+		
+		jQuery( '#page_template' ) . change(
+			function() {
+				if ( 'webcomic_archive.php' == jQuery( '#page_template' ) . val() )
+					jQuery( '#inkblot .wrongtemplate,#inkblot .home-controls' ) . fadeOut('fast',function(){jQuery('#inkblot .archive-controls').fadeIn('fast')});
+				else if ( 'webcomic_home.php' == jQuery( '#page_template' ) . val() )
+					jQuery( '#inkblot .wrongtemplate,#inkblot .archive-controls' ) . fadeOut('fast',function(){jQuery('#inkblot .home-controls').fadeIn('fast')});
+				else
+					jQuery( '#inkblot .archive-controls,#inkblot .home-controls' ) . fadeOut('fast',function(){jQuery('#inkblot .wrongtemplate').fadeIn('fast')});
+			}
+		);
+		
+		jQuery( 'select[name=webcomic_collection]' ) . change(
+			function() {
+				if ( 'archive' == jQuery( this ) . attr( 'class' ) )
+					jQuery( 'select[name=webcomic_collection].home' ) . val( jQuery( this ) . val() );
+				else
+					jQuery( 'select[name=webcomic_collection].archive' ) . val( jQuery( this ) . val() );
+			}
+		);
+	</script>
 	<?php
-}
+	}
+} global $inkblot; $inkblot = new inkblot(); //Initialize the theme
 
-/**
- * Manages the Inkblot Metabox settings
- * 
- * @package Inkblot
- * @since 1.3.0
- */
-function inkblot_page_meta_box_save( $id ) {
-	if ( !$_REQUEST[ 'original_publish' ] )
-		return; //User did not manually update the post
+/** Displays post comments */
+class inkblot_Walker_Comment extends Walker {
+	var $tree_type = 'comment';
+	var $db_fields = array ( 'parent' => 'comment_parent', 'id' => 'comment_ID' );
 	
-	//Make sure we're working with the post, not a revisions
-	if ( $the_post = wp_is_post_revision( $id ) )
-		$id = $the_post;
-	
-	/** Attempt to update the comic template options */
-	if ( 'comic.php' == get_post_meta( $id, '_wp_page_template', true ) ) {
-		if ( $_REQUEST[ 'inkblot_comic_order' ] != get_post_meta( $id, 'inkblot_comic_order', true ) )
-			if ( !add_post_meta( $id, 'inkblot_comic_order', $_REQUEST[ 'inkblot_comic_order' ], true ) )
-				update_post_meta( $id, 'inkblot_comic_order', $_REQUEST[ 'inkblot_comic_order' ] );
-	} else {
-		delete_post_meta( $id, 'inkblot_comic_order' );
+	function start_lvl( &$output, $depth, $args ) {
+		$GLOBALS[ 'comment_depth' ] = $depth++;
 	}
 	
-	/** Attempt to update the archive template options */
-	if ( 'archives.php' == get_post_meta( $id, '_wp_page_template', true ) ) {
-		if ( $_REQUEST[ 'inkblot_archive_groupby' ] != get_post_meta( $id, 'inkblot_archive_groupby', true ) )
-			if ( !add_post_meta( $id, 'inkblot_archive_groupby', $_REQUEST[ 'inkblot_archive_groupby' ], true ) )
-				update_post_meta( $id, 'inkblot_archive_groupby', $_REQUEST[ 'inkblot_archive_groupby' ] );
-		
-		if ( !$_REQUEST[ 'inkblot_archive_format' ] )
-			delete_post_meta( $id, 'inkblot_archive_format' );
-		elseif ( $_REQUEST[ 'inkblot_archive_format' ] && $_REQUEST[ 'inkblot_archive_format' ] != get_post_meta( $id, 'inkblot_archive_format', true ) )
-			if ( !add_post_meta( $id, 'inkblot_archive_format', $_REQUEST[ 'inkblot_archive_format' ], true ) )
-				update_post_meta( $id, 'inkblot_archive_format', $_REQUEST[ 'inkblot_archive_format' ] );
-		
-		if ( $_REQUEST[ 'inkblot_archive_orderby' ] && $_REQUEST[ 'inkblot_archive_orderby' ] != get_post_meta( $id, 'inkblot_archive_orderby', true ) )
-			if ( !add_post_meta( $id, 'inkblot_archive_orderby', $_REQUEST[ 'inkblot_archive_orderby' ], true ) )
-				update_post_meta( $id, 'inkblot_archive_orderby', $_REQUEST[ 'inkblot_archive_orderby' ] );
-		
-		if ( $_REQUEST[ 'inkblot_archive_bound' ] && $_REQUEST[ 'inkblot_archive_bound' ] != get_post_meta( $id, 'inkblot_archive_bound', true ) )
-			if ( !add_post_meta( $id, 'inkblot_archive_bound', $_REQUEST[ 'inkblot_archive_bound' ], true ) )
-				update_post_meta( $id, 'inkblot_archive_bound', $_REQUEST[ 'inkblot_archive_bound' ] );
-		
-		if ( $_REQUEST[ 'inkblot_archive_post_order' ] )
-			if ( !add_post_meta( $id, 'inkblot_archive_post_order', 'ASC', true ) )
-				update_post_meta( $id, 'inkblot_archive_post_order', 'ASC' );
-		else
-			if ( !add_post_meta( $id, 'inkblot_archive_post_order', 'DESC', true ) )
-				update_post_meta( $id, 'inkblot_archive_post_order', 'DESC' );
-		
-		if ( $_REQUEST[ 'inkblot_archive_order' ] )
-			if ( !add_post_meta( $id, 'inkblot_archive_order', 'DESC', true ) )
-				update_post_meta( $id, 'inkblot_archive_order', 'DESC' );
-		else
-			if ( !add_post_meta( $id, 'inkblot_archive_order', 'ASC', true ) )
-				update_post_meta( $id, 'inkblot_archive_order', 'ASC' );
-		
-		if ( $_REQUEST[ 'inkblot_archive_descriptions' ] )
-			add_post_meta( $id, 'inkblot_archive_descriptions', $_REQUEST[ 'inkblot_archive_descriptions' ], true );
-		else
-			delete_post_meta( $id, 'inkblot_archive_descriptions' );
-		
-		if ( $_REQUEST[ 'inkblot_archive_pages' ] )
-			add_post_meta( $id, 'inkblot_archive_pages', $_REQUEST[ 'inkblot_archive_pages' ], true );
-		else
-			delete_post_meta( $id, 'inkblot_archive_pages' );
-	} else {
-		delete_post_meta( $id, 'inkblot_archive_groupby' );
-		delete_post_meta( $id, 'inkblot_archive_format' );
-		delete_post_meta( $id, 'inkblot_archive_orderby' );
-		delete_post_meta( $id, 'inkblot_archive_bound' );
-		delete_post_meta( $id, 'inkblot_archive_post_order' );
-		delete_post_meta( $id, 'inkblot_archive_order' );
-		delete_post_meta( $id, 'inkblot_archive_descriptions' );
-		delete_post_meta( $id, 'inkblot_archive_pages' );
+	function end_lvl( &$output, $depth, $args ) {
+		$GLOBALS[ 'comment_depth' ] = $depth++;
 	}
-} add_action( 'save_post', 'inkblot_page_meta_box_save' );
+	
+	function display_element( $element, &$children_elements, $max_depth, $depth = 0, $args, &$output ) {
+		if ( !$element )
+			return false;
+		
+		$id_field = $this->db_fields[ 'id' ];
+		$id       = $element->$id_field;
+		
+		parent::display_element( $element, $children_elements, $max_depth, $depth, $args, $output );
+		
+		if ( $max_depth <= $depth + 1 && isset( $children_elements[ $id ] ) ) {
+			foreach ( $children_elements[ $id ] as $child )
+				$this->display_element( $child, $children_elements, $max_depth, $depth, $args, $output );
+			
+			unset( $children_elements[ $id ] );
+		}
+	}
+	
+	function start_el( &$output, $comment, $depth, $args ) {
+		$depth++;
+		
+		$GLOBALS[ 'comment' ]       = $comment;
+		$GLOBALS[ 'comment_depth' ] = $depth;
+		
+		extract( $args, EXTR_SKIP );
+		
+		if ( !$comment->comment_type ) {
+		?>
+		<article id="comment-<?php comment_ID(); ?>" <?php comment_class(); ?>>
+			<footer>
+				<?php 
+					if ( !empty( $args[ 'avatar_size' ] ) )
+						echo get_avatar( $comment, $args[ 'avatar_size' ] );
+					
+					printf( '<b class="author">%s</b>', get_comment_author_link() );
+				?>
+				<small>
+					<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>"><time pubdate><?php printf( '%s @ %s', get_comment_date(),  get_comment_time() ); ?></time></a>
+					<?php comment_reply_link( array_merge( $args, array( 'add_below' => 'comment-clear', 'depth' => $depth, 'max_depth' => $args[ 'max_depth' ] ) ) ); ?>
+					<?php edit_comment_link(); ?>
+				</small>
+			</footer>
+		<?php
+			if ( empty( $comment->comment_approved ) )
+				echo '<p class="pending">' . __( 'Your comment is awaiting moderation.', 'inkblot' ) . '</p>';
+			
+			comment_text();
+		?>
+		<hr id="comment-clear-<?php comment_ID(); ?>">
+		<?php } else { ?>
+		<article id="pingback-<?php comment_ID(); ?>" <?php comment_class(); ?>>
+			<footer class="pingback-meta">
+				<b><?php comment_type(); ?></b>
+				<small><?php comment_author_link(); edit_comment_link ( __( 'edit', 'inkblot') ); ?></small>
+			</footer>
+			<p><?php comment_author_link();?></p>
+		<?php
+		}
+	}
+	
+	function end_el( &$output, $comment, $depth, $args ) {
+		echo '</article>';
+	}
+}
 ?>

@@ -1,7 +1,21 @@
-<div <?php inkblot_sidebar_class(); ?>>
-	<ul class="interior">
-	<?php if ( !function_exists( 'dynamic_sidebar' ) || !dynamic_sidebar( 'sidebar-1' ) ) : ?>
-	<li><p><?php _e( 'This is Sidebar 1, used in both two and three column layouts. You can add content to this sidebar using Widgets from the WordPress control panel. Adding widgets to this sidebar will remove this message.', 'inkblot' ); ?></p></li>
-	<?php endif; ?>
-	</ul>
-</div>
+<aside id="sidebar1" class="widgetized">
+	<div>
+	<?php if ( !dynamic_sidebar( 'inkblot-sidebar1' ) ) { //see functions.php hook_init ?>
+		<figure>
+			<figcapture><?php _e( 'Sidebar 1', 'inkblot' ); ?></figcapture>
+			<?php _e( 'This area is widgetized. You can add widgets by going to <em>Appearance > Widgets</em> in the administrative dashboard. Adding widgets will remove this message.', 'inkblot' ); ?>
+		</figure>
+	<?php } ?>
+	</div>
+</aside><!--#sidebar1-->
+
+<aside id="sidebar2" class="widgetized">
+	<div>
+	<?php if ( !dynamic_sidebar( 'inkblot-sidebar2' ) ) { //see functions.php hook_init ?>
+		<figure>
+			<figcapture><?php _e( 'Sidebar 2', 'inkblot' ); ?></figcapture>
+			<?php _e( 'This area is widgetized. You can add widgets by going to <em>Appearance > Widgets</em> in the administrative dashboard. Adding widgets will remove this message.', 'inkblot' ); ?>
+		</figure>
+	<?php } ?>
+	</div>
+</aside><!--#sidebar2-->
