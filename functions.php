@@ -876,16 +876,18 @@ class inkblot_Walker_Comment extends Walker {
 		if ( !$comment->comment_type ) {
 		?>
 		<article id="comment-<?php comment_ID(); ?>" <?php comment_class(); ?>>
-			<footer class="comment-foot">
+			<footer>
 				<?php 
 					if ( !empty( $args[ 'avatar_size' ] ) )
 						echo get_avatar( $comment, $args[ 'avatar_size' ] );
 					
 					printf( '<b class="author">%s</b>', get_comment_author_link() );
 				?>
-				<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>"><time pubdate><?php printf( '%s @ %s', get_comment_date(),  get_comment_time() ); ?></time></a>
-				<?php comment_reply_link( array_merge( $args, array( 'add_below' => 'comment-clear', 'depth' => $depth, 'max_depth' => $args[ 'max_depth' ] ) ) ); ?>
-				<?php edit_comment_link(); ?>
+				<small>
+					<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>"><time pubdate><?php printf( '%s @ %s', get_comment_date(),  get_comment_time() ); ?></time></a>
+					<?php comment_reply_link( array_merge( $args, array( 'add_below' => 'comment-clear', 'depth' => $depth, 'max_depth' => $args[ 'max_depth' ] ) ) ); ?>
+					<?php edit_comment_link(); ?>
+				</small>
 			</footer>
 		<?php
 			if ( empty( $comment->comment_approved ) )
