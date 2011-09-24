@@ -129,18 +129,6 @@ class inkblot extends mgs_core {
 	
 	/** Add custom body classes */
 	function hook_body_class( $classes ) {
-		global $is_lynx, $is_gecko, $is_winIE, $is_macIE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone;
-		
-		if ( $is_lynx )       $classes[] = 'browser-lynx';
-		elseif ( $is_gecko )  $classes[] = 'browser-gecko';
-		elseif ( $is_winIE )  $classes[] = 'browser-winie';
-		elseif ( $is_macIE )  $classes[] = 'browser-macie';
-		elseif ( $is_opera )  $classes[] = 'browser-oepra';
-		elseif ( $is_NS4 )    $classes[] = 'browser-netscape';
-		elseif ( $is_safari ) $classes[] = 'browser-safari';
-		elseif ( $is_chrome ) $classes[] = 'browser-chrome';
-		else                  $classes[] = 'browser-unknown';
-		
 		if ( $is_iphone ) $classes[] = 'device-iphone';
 		
 		$classes[] = 'layout-align-' . $this->option( 'dim_alignment' );
