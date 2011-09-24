@@ -2,7 +2,7 @@
 	<div>
 	<?php if ( !dynamic_sidebar( 'inkblot-sidebar1' ) ) { //see functions.php hook_init ?>
 		<figure>
-			<figcaption><?php _e( 'Sidebar 1', 'inkblot' ); ?></figcaption>
+			<figcapture><?php _e( 'Sidebar 1', 'inkblot' ); ?></figcapture>
 			<?php _e( 'This area is widgetized. You can add widgets by going to <em>Appearance > Widgets</em> in the administrative dashboard. Adding widgets will remove this message.', 'inkblot' ); ?>
 		</figure>
 	<?php } ?>
@@ -13,7 +13,7 @@
 	<div>
 	<?php if ( !dynamic_sidebar( 'inkblot-sidebar2' ) ) { //see functions.php hook_init ?>
 		<figure>
-			<figcaption><?php _e( 'Sidebar 2', 'inkblot' ); ?></figcaption>
+			<figcapture><?php _e( 'Sidebar 2', 'inkblot' ); ?></figcapture>
 			<?php _e( 'This area is widgetized. You can add widgets by going to <em>Appearance > Widgets</em> in the administrative dashboard. Adding widgets will remove this message.', 'inkblot' ); ?>
 		</figure>
 	<?php } ?>

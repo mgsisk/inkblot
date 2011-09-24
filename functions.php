@@ -888,18 +888,16 @@ class inkblot_Walker_Comment extends Walker {
 		if ( !$comment->comment_type ) {
 		?>
 		<article id="comment-<?php comment_ID(); ?>" <?php comment_class(); ?>>
-			<footer>
+			<footer class="comment-foot">
 				<?php 
 					if ( !empty( $args[ 'avatar_size' ] ) )
 						echo get_avatar( $comment, $args[ 'avatar_size' ] );
 					
 					printf( '<b class="author">%s</b>', get_comment_author_link() );
 				?>
-				<small>
-					<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>"><time pubdate><?php printf( '%s @ %s', get_comment_date(),  get_comment_time() ); ?></time></a>
-					<?php comment_reply_link( array_merge( $args, array( 'add_below' => 'comment-clear', 'depth' => $depth, 'max_depth' => $args[ 'max_depth' ] ) ) ); ?>
-					<?php edit_comment_link(); ?>
-				</small>
+				<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>"><time pubdate><?php printf( '%s @ %s', get_comment_date(),  get_comment_time() ); ?></time></a>
+				<?php comment_reply_link( array_merge( $args, array( 'add_below' => 'comment-clear', 'depth' => $depth, 'max_depth' => $args[ 'max_depth' ] ) ) ); ?>
+				<?php edit_comment_link(); ?>
 			</footer>
 		<?php
 			if ( empty( $comment->comment_approved ) )
@@ -910,7 +908,7 @@ class inkblot_Walker_Comment extends Walker {
 		<hr id="comment-clear-<?php comment_ID(); ?>">
 		<?php } else { ?>
 		<article id="pingback-<?php comment_ID(); ?>" <?php comment_class(); ?>>
-			<footer class="pingback-meta">
+			<footer class="pingback-foot">
 				<b><?php comment_type(); ?></b>
 				<small><?php comment_author_link(); edit_comment_link ( __( 'edit', 'inkblot') ); ?></small>
 			</footer>
