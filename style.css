@@ -7,7 +7,7 @@ Version: 3.0.8
 */
 
 /** Reset */
-address,article,blockquote,body,caption,col,colgroup,dd,dialog,div,dl,dt,fieldset,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,hr,nav,legend,li,menu,ol,p,pre,section,table,tbody,td,tfoot,th,thead,tr,ul,a,abbr,b,bdo,br,cite,code,del,dfn,em,i,ins,kbd,label,mark,meter,progress,q,rp,rt,ruby,samp,small,span,strong,sub,sup,time,var,audio,canvas,embed,figure,figcapture,iframe,img,math,object,svg,video {
+address,article,blockquote,body,caption,col,colgroup,dd,dialog,div,dl,dt,fieldset,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,hr,nav,legend,li,menu,ol,p,pre,section,table,tbody,td,tfoot,th,thead,tr,ul,a,abbr,b,bdo,br,cite,code,del,dfn,em,i,ins,kbd,label,mark,meter,progress,q,rp,rt,ruby,samp,small,span,strong,sub,sup,time,var,audio,canvas,embed,figure,figcaption,iframe,img,math,object,svg,video {
 	border:          0;
 	margin:          0;
 	outline:         0;
