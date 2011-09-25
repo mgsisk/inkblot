@@ -437,7 +437,7 @@ class inkblot extends mgs_core {
 	
 	/** Add the custom layout page */
 	function hook_admin_menu() {
-		add_theme_page( __( 'Layout', 'inkblot' ), __( 'Layout', 'inkblot' ), 'edit_themes', basename( __FILE__ ), array( &$this, 'admin_layout' ) );
+		add_theme_page( __( 'Layout', 'inkblot' ), __( 'Layout', 'inkblot' ), 'edit_theme_options', basename( __FILE__ ), array( &$this, 'admin_layout' ) );
 		add_meta_box( 'inkblot', __( 'Inkblot', 'inkblot' ), array( &$this, 'admin_metabox' ), 'page', 'normal', 'high' );
 	}
 	
