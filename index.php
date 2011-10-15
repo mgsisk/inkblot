@@ -144,7 +144,7 @@
 			<?php } else { ?><h1><?php _e( 'Archives', 'inkblot' ); ?></h1>
 			<?php } rewind_posts(); get_template_part( 'loop', 'archive' ); ?>
 			
-		<?php } elseif ( is_404() ) { /* 404.ph */ ?>
+		<?php } elseif ( is_404() ) { /* 404.php */ ?>
 			
 			<article id="post-0" class="post error404 not-found">
 				<h1><?php _e( '404 Not Found', 'inkblot' ); ?></h1>
