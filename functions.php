@@ -143,7 +143,7 @@ class inkblot extends mgs_core {
 		
 		if ( 'meta_description' == $s ) {
 			if ( is_single() || is_attachment() || is_page() )
-				$r = ( get_the_excerpt() ) ? get_the_excerpt() : wp_trim_excerpt( '' );
+				$r = esc_attr( strip_tags( wp_trim_excerpt( get_the_excerpt() ) ) );
 			elseif ( is_category() || is_tag() || is_tax() || is_author() ) {
 				$o = $wp_query->get_queried_object();
 				$r = implode( ' ', array_slice( explode( ' ', trim( htmlentities( strip_tags( $o->description ) ) ) ), 0, apply_filters( 'excerpt_length', 55 ) ) );
