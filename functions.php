@@ -383,7 +383,7 @@ class inkblot extends mgs_core {
 		
 		if ( 3 == $l[ 0 ] ) {
 			$s1 = $s2 = false;
-			$s .= '#content{width:' . $this->option( 'dim_content' ) . 'px;';
+			$s .= ( $l[ 1 ] > 3 ? '#main,' : '' ) . '#content{width:' . $this->option( 'dim_content' ) . 'px;';
 			
 			if ( 3 == $l[ 1 ] || 6 == $l[ 1 ] ) {
 				$s .= 'float:left;}';
