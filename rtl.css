@@ -1,0 +1,36 @@
+/** 
+ * This stylesheet is used in addition to the `style.css` file for
+ * right-to-left languages.
+ */
+ 
+body {
+	direction: rtl;
+	unicode-bidi: embed;
+}
+
+#header nav ul ul ul {
+	left: auto;
+	right: 100%;
+}
+
+#header nav li,
+#commentform label,
+.webcomic-transcribe-form label,
+.post-webcomic nav a,
+.gallery-item {
+	float: right;
+}
+
+.post-image {
+	float: left;
+}
+
+.comment .comment {
+	border: 0;
+	border-right: thin solid #333;
+	margin: 0 1rem 0 0;
+}
+
+.comment-footer img {
+	margin: 0 0 0 1rem;
+}

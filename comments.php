@@ -1,31 +1,36 @@
-<div id="comments-above" class="widgetized"><?php dynamic_sidebar( 'inkblot-comments-above' ); ?></div>
-<section id="comments">
 <?php
-	if ( post_password_required() ) {
-		/** If a password must be entered to view comments */
-	} elseif ( have_comments() ) {
+/** Comments template.
+ * 
+ * @package Inkblot
+ * @uses inkblot_comments_nav()
+ * @uses inkblot_start_coment()
+ * @uses inkblot_end_coment()
+ */
 ?>
-	<h1><?php comments_number(); ?></h1>
-	
-	<?php if ( get_comment_pages_count() > 1 ) { ?>
-	<nav class="paginate above"><?php paginate_comments_links(); ?></nav>
-	<?php
-		}
+
+<aside id="comments">
+	<div id="comment-header" role="complementary" class="widgets"><?php dynamic_sidebar( 'comment-header' ); ?></div><!-- #comment-header -->
+	<?php if ( post_password_required() ) : ?>
 		
-		wp_list_comments( array( 'walker' => new inkblot_Walker_Comment() ) ); /* see functions.php inkblot_Walker_Comment */
-		
-		if ( get_comment_pages_count() > 1 ) {
-	?>
-	<nav class="paginated below"><?php paginate_comments_links(); ?></nav>
-	<?php
-		}
-	} elseif ( comments_open() ) {
-		/** If comments are open but none have been posted */
-	} else {
-		/** If comments are closed */
-	}
-	
-	comment_form();
-?>
-</section><!-- #comments -->
-<div id="comments-below" class="widgetized"><?php dynamic_sidebar( 'inkblot-comments-below' ); ?></div>
+	<?php else : ?>
+		<?php if ( have_comments() ) : ?>
+			<header class="comments-header">
+				<h1><?php comments_number( '', __( 'One Comment', 'inkblot' ), __( '% Comments', 'inkblot' ) ); ?></h1>
+			</header><!-- .comments-header -->
+			<?php inkblot_comments_nav( 'above' ); ?>
+			<?php
+				wp_list_comments( array(
+					'style'        => 'div',
+					'avatar_size'  => 32,
+					'callback'     => 'inkblot_start_comment',
+					'end-callback' => 'inkblot_end_comment'
+				) );
+			?>
+			<?php inkblot_comments_nav( 'below' ); ?>
+		<?php elseif ( !comments_open() and get_comments_number() and post_type_supports( get_post_type(), 'comments' ) ) : ?>
+			
+		<?php endif; ?>
+		<?php comment_form(); ?>
+	<?php endif; ?>
+	<div id="comment-footer" role="complementary" class="widgets"><?php dynamic_sidebar( 'comment-footer' ); ?></div><!-- #comment-footer -->
+</aside><!-- #comments -->

@@ -1,0 +1,40 @@
+/** TinyMCE editor stylesheet.
+ * 
+ * To keep things simple and avoid duplicating a lot of style rules
+ * we just import our normalization stylesheet and the main theme
+ * stylesheet, then tweak as appropriate. Things may not match up
+ * perfectly since most of our colors and the width of our content
+ * area can be modified by the user.
+ * 
+ * @package Inkblot
+ */
+
+@import url( -/css/normalize.css );
+@import url( style.css );
+
+body {
+	background: #fff;
+	color: #333;
+	font-family: sans-serif;
+	font-size: 100%;
+	margin: 1rem;
+}
+
+.wp-caption {
+	background: transparent;
+	border: 0;
+	margin: 0;
+	max-width: 100%;
+	padding: .25rem;
+	text-align: center;
+}
+
+.wp-caption img {
+	border-radius: .25rem;
+	box-shadow: 0 .12rem .25rem rgba( 0, 0, 0, .25 );
+}
+
+.wp-caption-dd {
+	font-size: smaller;
+	margin: .5rem 0 0;
+}

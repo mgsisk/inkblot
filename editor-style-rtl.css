@@ -1,0 +1,15 @@
+/** Right-to-left language support for the TinyMCE editor.
+ * 
+ * Like the normal `editor-style.css` we can save on a lot of
+ * duplication by importing the standard site `rtl.css` file and
+ * tweaking as necessary.
+ * 
+ * @package Inkblot
+ */
+
+@import( rtl.css );
+ 
+html .mceContentBody {
+	direction: rtl;
+	unicode-bidi: embed;
+}

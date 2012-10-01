@@ -1,0 +1,40 @@
+/** Responsive menu styles.
+ * 
+ * @package Inkblot
+ */
+@media only screen and ( max-width: 640px ) {
+	#header nav:before {
+		background: #333;
+		content: '\2630';
+		font-size: 200%;
+		line-height: 2;
+		padding: 0 1rem;
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+	
+	.rtl #header nav:before {
+		left: 0;
+	}
+	
+	#header nav {
+		cursor: pointer;
+	}
+	
+	#header nav ul ul,
+	.rtl #header nav ul ul {
+		box-shadow: none;
+		display: block;
+		position: static;
+	}
+	
+	#header nav li,
+	.rtl #header nav li {
+		float: none;
+	}
+	
+	#header nav a {
+		border-bottom: thin solid;
+	}
+}
