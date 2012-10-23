@@ -424,6 +424,7 @@ nav.post-pages {
 /** webcomic */
 .post-webcomic .webcomic-image {
 	overflow: auto;
+	text-align: center;
 }
 
 .post-webcomic nav {
