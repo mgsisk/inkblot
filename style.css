@@ -245,6 +245,7 @@ nav.posts,
 nav.posts-paged,
 nav.comments-paged {
 	border-bottom: thin solid #333;
+	clear: both;
 	margin: 0 0 1rem;
 	padding: 0 0 1rem;
 	text-align: center;
@@ -266,6 +267,7 @@ nav.posts a:hover img {
 }
 
 nav.post-pages {
+	clear: both;
 	margin: 0 0 1rem;
 	text-align: center;
 }
