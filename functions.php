@@ -82,8 +82,8 @@ class Inkblot {
 	 */
 	public function widgets_init() {
 		foreach ( array(
-			__( 'Primary Sidebar', 'inkblot' )   => __( 'Used in both two and three-column layouts.', 'inkblot' ),
-			__( 'Secondary Sidebar', 'inkblot' ) => __( 'Used in three-column layouts only.', 'inkblot' ),
+			__( 'Primary Sidebar', 'inkblot' )   => __( 'Used in both two and three-column layouts. You can change theme layout from the Appearance > Customize page.', 'inkblot' ),
+			__( 'Secondary Sidebar', 'inkblot' ) => __( 'Used in three-column layouts only. You can change theme layout from the Appearance > Customize page.', 'inkblot' ),
 			__( 'Document Header', 'inkblot' )   => __( 'Located at the very top of the page, outside of the #page wrapper.', 'inkblot' ),
 			__( 'Document Footer', 'inkblot' )   => __( 'Located at the very bottom of the page, outside of the #page wrapper.', 'inkblot' ),
 			__( 'Page Header', 'inkblot' )       => __( 'Located near the top of the page, just inside the #page wrapper.', 'inkblot' ),
