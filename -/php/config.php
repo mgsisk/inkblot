@@ -37,7 +37,7 @@ class InkblotConfig extends Inkblot {
 		$customize->add_section( 'inkblot_fonts', array( 'title' => __( 'Fonts', 'inkblot' ), 'priority' => 30 ) );
 		$customize->add_setting( 'font_size', array( 'default' => 100, 'transport' => 'postMessage' ) );
 		
-		if ( $google_fonts = wp_remote_get( 'https://www.googleapis.com/webfonts/v1/webfonts?sort=alpha&key=AIzaSyDGeJxu3MGJVi5RiUw4rQ3Jt_Q4VtSOnyE' ) and $google_fonts = json_decode( $google_fonts[ 'body' ] ) ) {
+		if ( $google_fonts = wp_remote_get( 'https://www.googleapis.com/webfonts/v1/webfonts?sort=alpha&key=AIzaSyDGeJxu3MGJVi5RiUw4rQ3Jt_Q4VtSOnyE' ) and !is_wp_error( $google_fonts ) and $google_fonts = json_decode( $google_fonts[ 'body' ] ) ) {
 			$fonts = array( __( '(default)', 'inkblot' ) );
 			
 			foreach ( $google_fonts->items as $font ) {
