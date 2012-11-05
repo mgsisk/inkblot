@@ -297,6 +297,7 @@ class InkblotConfig extends Inkblot {
 			$customize->add_setting( 'webcomic_home_collection', array( 'default' => '' ) );
 			$customize->add_setting( 'webcomic_nav_above', array( 'default' => true, 'transport' => 'postMessage' ) );
 			$customize->add_setting( 'webcomic_nav_below', array( 'default' => true, 'transport' => 'postMessage' ) );
+			$customize->add_setting( 'webcomic_nav_link', array( 'default' => '' ) );
 			$customize->add_setting( 'first_webcomic_image', array( 'default' => '', 'transport' => 'postMessage' ) );
 			$customize->add_setting( 'last_webcomic_image', array( 'default' => '', 'transport' => 'postMessage' ) );
 			$customize->add_setting( 'previous_webcomic_image', array( 'default' => '', 'transport' => 'postMessage' ) );
@@ -354,6 +355,18 @@ class InkblotConfig extends Inkblot {
 				'label'    => __( 'Show webcomics from this collection on the posts page:', 'inkblot' ),
 				'section'  => 'webcomic',
 				'choices'  => $collections,
+				'priority' => 30
+			) );
+			
+			$customize->add_control( 'webcomic_nav_link', array(
+				'type'     => 'select',
+				'label'    => __( 'Link webcomic attachments to:', 'inkblot' ),
+				'section'  => 'webcomic',
+				'choices'  => array(
+					''         => __( 'Nothing', 'inkblot' ),
+					'next'     => __( 'Next webcomic', 'inkblot' ),
+					'previous' => __( 'Previous webcomic', 'inkblot' )
+				),
 				'priority' => 30
 			) );
 			

@@ -18,7 +18,7 @@
 	<?php last_webcomic_link( '%link', get_theme_mod( 'last_webcomic_image', '' ) ? sprintf( '<img src="%s" alt="%s">', get_theme_mod( 'last_webcomic_image' ), __( '&raquo;', 'inkblot' ) ) : '' ); ?>
 </nav><!-- .webcomics.above -->
 <div class="webcomic-image">
-	<?php the_webcomic( 'full' ); ?>
+	<?php the_webcomic( 'full', get_theme_mod( 'webcomic_nav_link', '' ) ); ?>
 </div><!-- .webcomic-image -->
 <nav class="webcomics below">
 	<?php first_webcomic_link( '%link', get_theme_mod( 'first_webcomic_image', '' ) ? sprintf( '<img src="%s" alt="%s">', get_theme_mod( 'first_webcomic_image' ), __( '&laquo;', 'inkblot' ) ) : '' ); ?>
