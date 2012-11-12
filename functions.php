@@ -227,8 +227,8 @@ class Inkblot {
 	 * @hook wp_enqueue_scripts
 	 */
 	public function enqueue_scripts() {
-		wp_register_style( 'inkblot-normalize', self::$url . '-/css/normalize.css' );
-		wp_register_style( 'inkblot-theme', get_stylesheet_uri(), array( 'inkblot-normalize' ) );
+		wp_register_style( 'inkblot-normalizr', self::$url . '-/css/normalizr.css' );
+		wp_register_style( 'inkblot-theme', get_stylesheet_uri(), array( 'inkblot-normalizr' ) );
 		wp_register_script( 'jquery', '', '', '', true);
 		
 		wp_enqueue_script( 'modernizr', self::$url . '-/js/modernizr.js' );
