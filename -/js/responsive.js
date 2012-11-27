@@ -3,17 +3,11 @@
  * @package Inkblot
  */
 jQuery( function( $ ) {
-	$( '#header nav' ).on( 'click', function() {
-		if ( Modernizr.mq( 'only screen and ( max-width: 45em )' ) ) {
-			$( this ).children().toggle();
+	$( '#header nav select' ).on( 'change', function() {
+		var url = $( this ).find( 'option:selected' ).val();
+		
+		if ( url ) {
+			window.location.href = url;
 		}
 	} );
-	
-	$( window ).on( 'resize', function() {
-		if ( Modernizr.mq( 'only screen and ( min-width: 45em )' ) ) {
-			$( '#header nav' ).children().show();
-		} else {
-			$( '#header nav' ).children().hide();
-		}
-	} ).trigger( 'resize' );
 } );

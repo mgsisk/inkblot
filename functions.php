@@ -234,7 +234,6 @@ class Inkblot {
 		wp_enqueue_script( 'modernizr', self::$url . '-/js/modernizr.js' );
 		
 		if ( get_theme_mod( 'responsive', true ) ) {
-			wp_enqueue_style( 'inkblot-responsive', self::$url . '-/css/responsive.css', array( 'inkblot-theme' ) );
 			wp_enqueue_script( 'inkblot-responsive', self::$url . '-/js/responsive.js', array( 'modernizr', 'jquery' ), '', true );
 		}
 		

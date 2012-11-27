@@ -57,7 +57,7 @@ if ( $title_font = get_theme_mod( 'title_font' ) ) {
 }
 
 if ( $trim_font = get_theme_mod( 'trim_font' ) ) {
-	$css[ '#header nav,#footer,nav.webcomics' ][] = sprintf( 'font-family:"%s"', str_replace( '+', ' ', substr( $trim_font, 0, strpos( $trim_font, ':' ) ) ) );
+	$css[ '#header nav,#header nav select,#footer,nav.webcomics' ][] = sprintf( 'font-family:"%s"', str_replace( '+', ' ', substr( $trim_font, 0, strpos( $trim_font, ':' ) ) ) );
 }
 
 if ( $font_size = get_theme_mod( 'font_size' ) and 100 !== $font_size ) {
@@ -98,13 +98,13 @@ if ( $trim_color = get_theme_mod( 'trim_color' ) ) {
 	$css[ '::-moz-selection' ][] = sprintf( 'background-color:%s', $trim_color );
 	$css[ '::selection' ][] = sprintf( 'background-color:%s', $trim_color );
 	$css[ '#page,blockquote,pre,td,nav.posts,nav.posts-paged,nav.comments-paged,.post-footer,.comment,.trackback,.comment .comment' ][] = sprintf( 'border-color:%s', $trim_color );
-	$css[ '#header nav,#header nav ul ul,#footer,.post-comments-link a,.post-actions a,.comment-actions a,#commentform .required,.webcomic-transcribe-form .required,.post-webcomic nav' ][] = sprintf( 'background-color:%s', $trim_color );
+	$css[ '#header nav,#header nav select,#header nav ul ul,#footer,.post-comments-link a,.post-actions a,.comment-actions a,#commentform .required,.webcomic-transcribe-form .required,.post-webcomic nav' ][] = sprintf( 'background-color:%s', $trim_color );
 }
 
 if ( $trim_text_color = get_theme_mod( 'trim_text_color' ) ) {
 	$css[ '::-moz-selection' ][] = sprintf( 'color:%s', $trim_color );
 	$css[ '::selection' ][] = sprintf( 'color:%s', $trim_color );
-	$css[ '#header nav,#footer,.post-comments-link a,.post-comments-link a:focus,.post-comments-link a:hover,.post-actions a,.post-actions a:focus,.post-actions a:hover,.comment-actions a,.comment-actions a:focus,.comment-actions a:hover,#commentform .required,.webcomic-transcribe-form .required,.post-webcomic nav' ][] = sprintf( 'color:%s', $trim_text_color );
+	$css[ '#header nav,#header nav select,#footer,.post-comments-link a,.post-comments-link a:focus,.post-comments-link a:hover,.post-actions a,.post-actions a:focus,.post-actions a:hover,.comment-actions a,.comment-actions a:focus,.comment-actions a:hover,#commentform .required,.webcomic-transcribe-form .required,.post-webcomic nav' ][] = sprintf( 'color:%s', $trim_text_color );
 }
 
 if ( $trim_link_color = get_theme_mod( 'trim_link_color' ) ) {

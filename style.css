@@ -123,9 +123,14 @@ td {
 	margin: 0;
 }
 
-#header nav {
+#header nav,
+#header nav select {
 	background: #333;
 	color: #ccc;
+}
+
+#header nav select {
+	display: none;
 }
 
 #header nav:before,
@@ -581,4 +586,15 @@ nav.post-pages {
 
 .gallery-columns-9 .gallery-item {
 	width: 11%;
+}
+
+@media only screen and ( max-width: 640px ) {
+	#header nav ul {
+		display: none;
+	}
+	
+	#header nav select {
+		display: block;
+		width: 100%;
+	}
 }

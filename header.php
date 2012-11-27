@@ -21,7 +21,22 @@
 				<?php if ( $header = get_custom_header() and $header->url ) : ?>
 					<a href="<?php echo esc_url( home_url() ); ?>" rel="home"><img src="<?php header_image(); ?>" width="<?php echo $header->width; ?>" height="<?php echo $header->height; ?>" alt=""></a>
 				<?php endif; ?>
-				<nav><?php wp_nav_menu( array( 'theme_location' => 'primary', 'show_home' => true, 'container' => false ) ); ?></nav>
+				<nav>
+					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'show_home' => true, 'container' => false ) ); ?>
+					<?php
+						if ( get_theme_mod( 'responsive', true ) ) {
+							if ( has_nav_menu( 'primary' ) ) {
+								wp_nav_menu( array( 'theme_location' => 'primary', 'show_home' => true, 'container' => false, 'items_wrap' => '<select>%3$s</select>', 'walker' => new Walker_InkblotNavMenu_Dropdown ) );
+							} else {
+								echo '<select>';
+								
+								wp_list_pages( array( 'title_li' => '', 'walker' => new Walker_InkblotPageMenu_Dropdown ) );
+								
+								echo '</select>';
+							}
+						}
+					?>
+				</nav>
 			</header><!-- #header -->
 			<div id="content">
 				<div id="content-header" role="complementary" class="widgets"><?php dynamic_sidebar( 'content-header' ); ?></div><!-- #content-header -->

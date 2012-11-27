@@ -370,3 +370,98 @@ if ( !function_exists( 'webcomic' ) ) {
 		return false;
 	}
 }
+
+/** @todo Add inline documentation for walker classes */
+
+if ( !class_exists( 'Walker_InkblotNavMenu_Dropdown' ) ) {
+	class Walker_InkblotNavMenu_Dropdown extends Walker_Nav_Menu {
+		function start_lvl( &$output, $depth ){}
+		
+		function end_lvl( &$output, $depth ){}
+		
+		function start_el( &$output, $item, $depth, $args ) {
+			$classes     = empty( $item->classes ) ? array() : ( array ) $item->classes;
+			$classes[]   = 'menu-item-' . $item->ID;
+			$classes     = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args ) );
+			
+			$item_output = sprintf( '<option value="%s"%s%s%s%s>%s%s%s%s',
+				empty( $item->url ) ? '' : esc_attr( $item->url ),
+				empty( $classes ) ? '' : sprintf( ' class="%s"', esc_attr( $classes ) ),
+				empty( $item->attr_title ) ? '' : sprintf( ' title="%s"', esc_attr( $item->attr_title ) ),
+				empty( $item->target ) ? '' : sprintf( ' data-target="%s"', esc_attr( $item->target ) ),
+				false === strpos( $classes, 'current-menu-item' ) ? '' : ' selected',
+				str_repeat( "&nbsp", $depth * 4 ),
+				$args->link_before,
+				apply_filters( 'the_title', $item->title, $item->ID ),
+				$args->link_after
+			);
+			
+			$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+		}
+		
+		function end_el( &$output, $item, $depth ) {
+			$output .= '</option>';
+		}
+	}
+}
+
+if ( !class_exists( 'Walker_InkblotPageMenu_Dropdown' ) ) {
+	class Walker_InkblotPageMenu_Dropdown extends Walker_PageDropdown {
+		function start_lvl( &$output, $depth ){}
+		
+		function end_lvl( &$output, $depth ){}
+		
+		function start_el( &$output, $page, $depth, $args, $current_page = 0 ) {
+			if ( empty( $output ) ) {
+				$output .= sprintf( '<option value="%s">%s%s%s',
+					home_url( '/' ),
+					$args[ 'link_before' ],
+					__( 'Home', 'inkblot' ),
+					$args[ 'link_after' ]
+				);
+			}
+			
+			$classes = array( 'page_item', "page-item-{$page->ID}" );
+			
+			if ( !empty( $current_page ) ) {
+				$current_page_object = get_page( $current_page );
+				_get_post_ancestors( $current_page_object );
+				
+				if ( isset( $current_page_object->ancestors )and in_array( $page->ID, ( array ) $current_page_object->ancestors ) ) {
+					$classes[] = 'current_page_ancestor';
+				}
+				
+				if ( $page->ID === $current_page ) {
+					$classes[] = 'current_page_item';
+				} elseif ( $current_page_object and $page->ID === $current_page_object->post_parent ) {
+					$classes[] = 'current_page_parent';
+				}
+			} else if ( $page->ID === get_option( 'page_for_posts' ) ) {
+				$classes[] = 'current_page_parent';
+			}
+			
+			$classes = join( ' ', apply_filters( 'page_css_class', array_filter( $classes ), $page, $depth, $args, $current_page ) );
+			
+			if ( !empty( $args[ 'show_date' ] ) ) {
+				$time = mysql2date( $args[ 'date_format' ], 'modified' === $args[ 'show_date' ] ? $page->post_modified : $page->post_date );
+			} else {
+				$time = '';
+			}
+			
+			$output .= sprintf( '<option value="%s"%s%s>%s%s%s%s%s',
+				get_permalink( $page->ID ),
+				empty( $classes ) ? '' : sprintf( ' class="%s"', esc_attr( $classes ) ),
+				false === strpos( $classes, 'current_page_item' ) ? '' : ' selected',
+				str_repeat( "&nbsp", $depth * 4 ),
+				$args[ 'link_before' ],
+				apply_filters( 'the_title', $page->post_title, $page->ID ),
+				$args[ 'link_after' ],
+				$time
+			);
+		}
+		
+		function end_el( &$output, $item, $depth ) {
+			$output .= '</option>';
+		}
+	}
+}

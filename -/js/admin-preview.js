@@ -80,10 +80,10 @@
 	/** Update the title font. */
 	wp.customize( 'trim_font', function( value ) { value.bind( function( to ) {
 		if ( 0 === to ) {
-			$( '#header nav,#footer,.post-webcomic nav' ).css( 'font-family', 'inherit' );
+			$( '#header nav,#header nav select,#footer,.post-webcomic nav' ).css( 'font-family', 'inherit' );
 		} else {
 			$( 'head' ).append( '<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=' + to + '">' );
-			$( '#header nav,#footer,.post-webcomic nav' ).css( 'font-family', to.replace( /\+/g, ' ' ).substr( 0, to.indexOf( ':' ) ) );
+			$( '#header nav,#header nav select,#footer,.post-webcomic nav' ).css( 'font-family', to.replace( /\+/g, ' ' ).substr( 0, to.indexOf( ':' ) ) );
 		}
 	} ); } );
 	
@@ -132,12 +132,12 @@
 	/** Update the trim color. */
 	wp.customize( 'trim_color', function( value ) { value.bind( function( to ) {
 		$( '#page,blockquote,pre,td,nav.posts,nav.posts-paged,nav.comments-paged,.post-footer,.comment,.trackback,.comment .comment' ).css( 'border-color', to );
-		$( '#header nav,#header nav ul ul,#footer,.post-comments-link a,.post-actions a,.comment-actions a,#commentform .required,.webcomic-transcribe-form .required,.post-webcomic nav' ).css( 'background-color', to );
+		$( '#header nav,#header nav select,#header nav ul ul,#footer,.post-comments-link a,.post-actions a,.comment-actions a,#commentform .required,.webcomic-transcribe-form .required,.post-webcomic nav' ).css( 'background-color', to );
 	} ); } );
 	
 	/** Update the trim text color. */
 	wp.customize( 'trim_text_color', function( value ) { value.bind( function( to ) {
-		$( '#header nav,#footer,.post-comments-link a,.post-comments-link a:focus,.post-comments-link a:hover,.post-actions a,.post-actions a:focus,.post-actions a:hover,.comment-actions a,.comment-actions a:focus,.comment-actions a:hover,#commentform .required,.webcomic-transcribe-form .required,.post-webcomic nav' ).css( 'color', to );
+		$( '#header nav,#header nav select,#footer,.post-comments-link a,.post-comments-link a:focus,.post-comments-link a:hover,.post-actions a,.post-actions a:focus,.post-actions a:hover,.comment-actions a,.comment-actions a:focus,.comment-actions a:hover,#commentform .required,.webcomic-transcribe-form .required,.post-webcomic nav' ).css( 'color', to );
 	} ); } );
 	
 	/** Update the trim link color. */
