@@ -144,3 +144,7 @@ if ( !get_theme_mod( 'webcomic_nav_below', true ) ) {
 foreach ( $css as $k => $v ) {
 	printf( '%s{%s}', $k, join( ';', ( array ) $v ) );
 }
+
+if ( get_theme_mod( 'responsive', true ) ) {
+	echo'@media only screen and (max-width:640px){#main,#sidebar1,#sidebar2{float:none;left:0;width:100%;}}';
+}
