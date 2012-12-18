@@ -108,7 +108,7 @@ class InkblotTag extends Inkblot {
 		);
 		
 		
-		if ( current_user_can( 'edit_post' ) ) {
+		if ( current_user_can( 'edit_post', false ) ) {
 			$edit = sprintf( __( '<a href="%s" class="post-edit-link">Edit This</a>', 'inkblot' ), get_edit_post_link() );
 		}
 		
