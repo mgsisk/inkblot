@@ -102,8 +102,8 @@ if ( $trim_color = get_theme_mod( 'trim_color' ) ) {
 }
 
 if ( $trim_text_color = get_theme_mod( 'trim_text_color' ) ) {
-	$css[ '::-moz-selection' ][] = sprintf( 'color:%s', $trim_color );
-	$css[ '::selection' ][] = sprintf( 'color:%s', $trim_color );
+	$css[ '::-moz-selection' ][] = sprintf( 'color:%s', $trim_text_color );
+	$css[ '::selection' ][] = sprintf( 'color:%s', $trim_text_color );
 	$css[ '#header nav,#header nav select,#footer,.post-comments-link a,.post-comments-link a:focus,.post-comments-link a:hover,.post-actions a,.post-actions a:focus,.post-actions a:hover,.comment-actions a,.comment-actions a:focus,.comment-actions a:hover,#commentform .required,.webcomic-transcribe-form .required,.post-webcomic nav' ][] = sprintf( 'color:%s', $trim_text_color );
 }
 
