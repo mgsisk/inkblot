@@ -22,6 +22,7 @@ class InkblotAdmin extends Inkblot {
 		add_action( 'admin_menu', array( $this, 'admin_menu' ), 99 );
 		add_action( 'after_switch_theme', array( $this, 'after_switch_theme' ) );
 		
+		require_once self::$dir . '-/php/media.php'; new InkblotMedia;
 		require_once self::$dir . '-/php/pages.php'; new InkblotPages;
 	}
 	
