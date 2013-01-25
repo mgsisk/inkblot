@@ -122,7 +122,7 @@ class InkblotTag extends Inkblot {
 			}
 			
 			$collection = WebcomicTag::webcomic_collection_link( '%link', '%title' );
-			$storylines = WebcomicTag::get_the_webcomic_term_list( 0, 'sotyrline' );
+			$storylines = WebcomicTag::get_the_webcomic_term_list( 0, 'storyline' );
 			$characters = WebcomicTag::get_the_webcomic_term_list( 0, 'character' );
 			
 			if ( $storylines and $characters ) {
