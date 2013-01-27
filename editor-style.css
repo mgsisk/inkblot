@@ -9,7 +9,7 @@
  * @package Inkblot
  */
 
-@import url( -/css/normalize.css );
+@import url( -/css/normalizr.css );
 @import url( style.css );
 
 body {
