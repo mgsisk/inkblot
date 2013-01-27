@@ -11,13 +11,13 @@
 
 <?php while ( have_posts() ) : the_post(); ?>
 	<?php if ( !get_theme_mod( 'webcomic_content', false ) ) : ?>
-		<div id="webcomic" class="post-webcomic">
+		<div id="webcomic" class="post-webcomic" data-webcomic-shortcuts>
 			<?php get_template_part( 'webcomic/webcomic', get_post_type() ); ?>
 		</div><!-- .post-webcomic -->
 	<?php endif; ?>
 	<section id="main" role="main">
 		<?php if ( get_theme_mod( 'webcomic_content', false ) ) : ?>
-			<div id="webcomic" class="post-webcomic">
+			<div id="webcomic" class="post-webcomic" data-webcomic-shortcuts>
 				<?php get_template_part( 'webcomic/webcomic', get_post_type() ); ?>
 			</div><!-- .post-webcomic -->
 		<?php endif; ?>

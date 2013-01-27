@@ -26,7 +26,7 @@ $webcomics           = new WP_Query( array(
 
 <?php if ( !get_theme_mod( 'webcomic_content', false ) and $webcomics->have_posts() ) : ?>
 	<?php while ( $webcomics->have_posts() ) : $webcomics->the_post(); ?>
-		<div id="webcomic" class="post-webcomic" data-webcomic-container>
+		<div id="webcomic" class="post-webcomic" data-webcomic-shortcuts data-webcomic-container>
 			<?php get_template_part( 'webcomic/webcomic', get_post_type() ); ?>
 		</div><!-- .post-webcomic -->
 	<?php endwhile; $webcomics->rewind_posts(); ?>
@@ -34,7 +34,7 @@ $webcomics           = new WP_Query( array(
 <section id="main" role="main">
 	<?php if ( get_theme_mod( 'webcomic_content', false ) and $webcomics->have_posts() ) : ?>
 		<?php while ( $webcomics->have_posts() ) : $webcomics->the_post(); ?>
-			<div id="webcomic" class="post-webcomic" data-webcomic-container>
+			<div id="webcomic" class="post-webcomic" data-webcomic-shortcuts data-webcomic-container>
 				<?php get_template_part( 'webcomic/webcomic', get_post_type() ); ?>
 			</div><!-- .post-webcomic -->
 		<?php endwhile; $webcomics->rewind_posts(); ?>
