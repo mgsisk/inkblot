@@ -38,22 +38,23 @@ class Inkblot {
 	 * 
 	 * @uses Inkblot::$dir
 	 * @uses Inkblot::$url
+	 * @uses Inkblot::head()
+	 * @uses Inkblot::title()
+	 * @uses Inkblot::loaded()
 	 * @uses Inkblot::widgets_init()
-	 * @uses Inkblot::after_setup_theme()
-	 * @uses Inkblot::wp_head()
-	 * @uses Inkblot::wp_title()
-	 * @uses Inkblot::wp_loaded()
 	 * @uses Inkblot::customize_head()
 	 * @uses Inkblot::wp_enqueue_scripts()
+	 * @uses Inkblot::after_setup_theme()
 	 * @uses Inkblot::customize_register()
 	 * @uses Inkblot::body_class()
-	 * @uses inkblot_init()
-	 * @uses inkblot_widgets_init()
-	 * @uses inkblot_after_setup_theme()
-	 * @uses inkblot_wp_loaded()
+	 * @uses InkblotConfig
 	 * @uses inkblot_head()
 	 * @uses inkblot_title()
+	 * @uses inkblot_wp_loaded()
+	 * @uses inkblot_widgets_init()
+	 * @uses inkblot_customize_head()
 	 * @uses inkblot_enqueue_scripts()
+	 * @uses inkblot_after_setup_theme()
 	 * @uses inkblot_customize_register()
 	 * @uses inkblot_body_class()
 	 */
@@ -74,71 +75,6 @@ class Inkblot {
 		
 		require_once self::$dir . '-/php/tags.php';
 		require_once self::$dir . '-/php/config.php'; new InkblotConfig;
-	}
-	
-	/** Register widgetized areas.
-	 * 
-	 * @hook widgets_init
-	 */
-	public function widgets_init() {
-		foreach ( array(
-			__( 'Primary Sidebar', 'inkblot' )   => __( 'Used in both two and three-column layouts. You can change theme layout from the Appearance > Customize page.', 'inkblot' ),
-			__( 'Secondary Sidebar', 'inkblot' ) => __( 'Used in three-column layouts only. You can change theme layout from the Appearance > Customize page.', 'inkblot' ),
-			__( 'Document Header', 'inkblot' )   => __( 'Located at the very top of the page, outside of the #page wrapper.', 'inkblot' ),
-			__( 'Document Footer', 'inkblot' )   => __( 'Located at the very bottom of the page, outside of the #page wrapper.', 'inkblot' ),
-			__( 'Page Header', 'inkblot' )       => __( 'Located near the top of the page, just inside the #page wrapper.', 'inkblot' ),
-			__( 'Page Footer', 'inkblot' )       => __( 'Located near the bottom of the page, just inside the #page wrapper.', 'inkblot' ),
-			__( 'Content Header', 'inkblot' )    => __( 'Located near the top of the page, just inside the #content wrapper.', 'inkblot' ),
-			__( 'Content Footer', 'inkblot' )    => __( 'Located near the bottom of the page, just inside the #content wrapper.', 'inkblot' ),
-			__( 'Comment Header', 'inkblot' )    => __( 'Located above the comments list for a post, just inside the #comments wrapper.', 'inkblot' ),
-			__( 'Comment Footer', 'inkblot' )    => __( 'Located below the comments list for a post, just inside the #comments wrapper.', 'inkblot' )
-		) as $k => $v ) {
-			register_sidebar( array(
-				'id'            => 'sidebar-' . sanitize_title( $k ),
-				'name'          => $k,
-				'description'   => $v,
-				'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-				'after_widget'  => '</aside>',
-				'before_title'  => '<h1>',
-				'after_title'   => '</h1>'
-			) );
-		}
-	}
-	
-	/** Setup theme features.
-	 * 
-	 * @uses Inkblot::$dir
-	 * @hook after_setup_theme
-	 */
-	public function after_setup_theme() {
-		load_theme_textdomain( 'inkblot', self::$dir . '-/locale' );
-		
-		add_editor_style();
-		
-		add_filter( 'use_default_gallery_style', '__return_false' );
-		add_filter( 'show_recent_comments_widget_style', '__return_false' );
-		
-		add_theme_support( 'post-thumbnails' );
-		add_theme_support( 'automatic-feed-links' );
-		add_theme_support( 'post-formats', array( 'aside', 'audio', 'chat', 'gallery', 'image', 'link', 'status', 'quote', 'video' ) );
-		add_theme_support( 'custom-background', array(
-			'default-color'    => 'e8e8e8',
-			'wp-head-callback' => '__return_false'
-		) );
-		add_theme_support( 'custom-header', array(
-			'width'                  => get_theme_mod( 'header_width', 960 ),
-			'height'                 => get_theme_mod( 'header_height', 240 ),
-			'flex-width'             => true,
-			'flex-height'            => true,
-			'default-text-color'     => '333',
-			'wp-head-callback'       => '__return_false',
-			'admin-head-callback'    => array( 'InkblotAdmin', 'admin_head' ),
-			'admin-preview-callback' => array( 'InkblotAdmin', 'admin_preview' )
-		) );
-		
-		register_nav_menu( 'primary', __( 'Primary Menu', 'inkblot' ) );
-		
-		set_post_thumbnail_size( get_theme_mod( 'post_thumbnail_width', 144 ), get_theme_mod( 'post_thumbnail_height', 144 ) );
 	}
 	
 	/** Render the <head> portion of the page.
@@ -206,6 +142,35 @@ class Inkblot {
 		}
 	}
 	
+	/** Register widgetized areas.
+	 * 
+	 * @hook widgets_init
+	 */
+	public function widgets_init() {
+		foreach ( array(
+			__( 'Primary Sidebar', 'inkblot' )   => __( 'Used in both two and three-column layouts. You can change theme layout from the Appearance > Customize page.', 'inkblot' ),
+			__( 'Secondary Sidebar', 'inkblot' ) => __( 'Used in three-column layouts only. You can change theme layout from the Appearance > Customize page.', 'inkblot' ),
+			__( 'Document Header', 'inkblot' )   => __( 'Located at the very top of the page, outside of the #page wrapper.', 'inkblot' ),
+			__( 'Document Footer', 'inkblot' )   => __( 'Located at the very bottom of the page, outside of the #page wrapper.', 'inkblot' ),
+			__( 'Page Header', 'inkblot' )       => __( 'Located near the top of the page, just inside the #page wrapper.', 'inkblot' ),
+			__( 'Page Footer', 'inkblot' )       => __( 'Located near the bottom of the page, just inside the #page wrapper.', 'inkblot' ),
+			__( 'Content Header', 'inkblot' )    => __( 'Located near the top of the page, just inside the #content wrapper.', 'inkblot' ),
+			__( 'Content Footer', 'inkblot' )    => __( 'Located near the bottom of the page, just inside the #content wrapper.', 'inkblot' ),
+			__( 'Comment Header', 'inkblot' )    => __( 'Located above the comments list for a post, just inside the #comments wrapper.', 'inkblot' ),
+			__( 'Comment Footer', 'inkblot' )    => __( 'Located below the comments list for a post, just inside the #comments wrapper.', 'inkblot' )
+		) as $k => $v ) {
+			register_sidebar( array(
+				'id'            => 'sidebar-' . sanitize_title( $k ),
+				'name'          => $k,
+				'description'   => $v,
+				'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+				'after_widget'  => '</aside>',
+				'before_title'  => '<h1>',
+				'after_title'   => '</h1>'
+			) );
+		}
+	}
+	
 	/** Include customized styles inline.
 	 * 
 	 * We need to do this while previewing to ensure customizations show
@@ -261,6 +226,42 @@ class Inkblot {
 		if ( self::$preview ) {
 			wp_enqueue_script( 'inkblot-preview', self::$url . '-/js/admin-preview.js', '', '', true );
 		}
+	}
+	
+	/** Setup theme features.
+	 * 
+	 * @uses Inkblot::$dir
+	 * @hook after_setup_theme
+	 */
+	public function after_setup_theme() {
+		load_theme_textdomain( 'inkblot', self::$dir . '-/locale' );
+		
+		add_editor_style();
+		
+		add_filter( 'use_default_gallery_style', '__return_false' );
+		add_filter( 'show_recent_comments_widget_style', '__return_false' );
+		
+		add_theme_support( 'post-thumbnails' );
+		add_theme_support( 'automatic-feed-links' );
+		add_theme_support( 'post-formats', array( 'aside', 'audio', 'chat', 'gallery', 'image', 'link', 'status', 'quote', 'video' ) );
+		add_theme_support( 'custom-background', array(
+			'default-color'    => 'e8e8e8',
+			'wp-head-callback' => '__return_false'
+		) );
+		add_theme_support( 'custom-header', array(
+			'width'                  => get_theme_mod( 'header_width', 960 ),
+			'height'                 => get_theme_mod( 'header_height', 240 ),
+			'flex-width'             => true,
+			'flex-height'            => true,
+			'default-text-color'     => '333',
+			'wp-head-callback'       => '__return_false',
+			'admin-head-callback'    => array( 'InkblotAdmin', 'admin_head' ),
+			'admin-preview-callback' => array( 'InkblotAdmin', 'admin_preview' )
+		) );
+		
+		register_nav_menu( 'primary', __( 'Primary Menu', 'inkblot' ) );
+		
+		set_post_thumbnail_size( get_theme_mod( 'post_thumbnail_width', 144 ), get_theme_mod( 'post_thumbnail_height', 144 ) );
 	}
 	
 	/** Set the Inkblot::$preview variable.
