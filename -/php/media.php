@@ -30,7 +30,7 @@ class InkblotMedia extends Inkblot {
 			if ( 'inkblot-page-background' === $type ) {
 				$states[] = __( 'Inkblot Page Background', 'inkblot' );
 			} elseif ( 'inkblot-webcomic-navigation-image' === $type ) {
-				$states[] = __( 'Webcomic Navigation Image', 'inkblot' );
+				$states[] = __( 'Inkblot Webcomic Navigation Image', 'inkblot' );
 			}
 		}
 		
