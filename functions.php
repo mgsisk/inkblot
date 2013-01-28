@@ -254,7 +254,7 @@ class Inkblot {
 			wp_enqueue_style( 'inkblot-fonts', add_query_arg( array( 'family' => join( '|', $fonts ) ), "{$proto}://fonts.googleapis.com/css" ) );
 		}
 		
-		if ( is_singular() ) {
+		if ( is_singular() and comments_open() and get_option( 'thread_comments' ) ) {
 			wp_enqueue_script( 'comment-reply' );
 		}
 		
