@@ -15,6 +15,8 @@ class InkblotAdmin extends Inkblot {
 	 * @uses Inkblot::__construct()
 	 * @uses InkblotAdmin::admin_menu()
 	 * @uses InkblotAdmin::after_switch_theme()
+	 * @uses InkblotMedia
+	 * @uses InkbotPages
 	 */
 	public function __construct() {
 		parent::__construct();
