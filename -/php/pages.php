@@ -9,12 +9,11 @@
  * @package Inkblot
  */
 class InkblotPages extends Inkblot {
-	/** Register hooks and istantiate the administrative classes.
+	/** Register hooks.
 	 * 
-	 * @uses Inkblot::$dir
-	 * @uses Inkblot::__construct()
-	 * @uses InkblotAdmin::admin_menu()
-	 * @uses InkblotAdmin::after_switch_theme()
+	 * @uses InkblotPages::add_meta_boxes()
+	 * @uses InkblotPages::save_page()
+	 * @uses InkblotPages::admin_enqueue_scripts()
 	 */
 	public function __construct() {
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
@@ -24,10 +23,6 @@ class InkblotPages extends Inkblot {
 	
 	/** Add page meta boxes.
 	 * 
-	 * @uses Webcomic::$config
-	 * @uses WebcomicPosts::media()
-	 * @uses WebcomicPosts::commerce()
-	 * @uses WebcomicPosts::transcripts()
 	 * @hook add_meta_boxes
 	 */
 	public function add_meta_boxes() {
@@ -36,8 +31,7 @@ class InkblotPages extends Inkblot {
 	
 	/** Register and enqueue meta box scripts.
 	 * 
-	 * @uses Webcomic::$url
-	 * @uses Webcomic::$config
+	 * @uses Inkblot::$url
 	 * @hook admin_enqueue_scripts
 	 */
 	public function admin_enqueue_scripts() {
@@ -81,6 +75,8 @@ class InkblotPages extends Inkblot {
 	/** Render the webcomic template meta box.
 	 * 
 	 * @param object $page Current page object.
+	 * @uses webcomic()
+	 * @uses get_webcomic_collections()
 	 */
 	public function inkblot_options( $page ) {
 		if ( webcomic() ) {
