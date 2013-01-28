@@ -6,7 +6,7 @@
  * variables. The `$attachments` variable is an array of
  * Webcomic-recognized WordPress attachments, and the `$feed_size`
  * variable stores the preview size selected in the current
- * collections settings.
+ * collection's settings.
  * 
  * @package Inkblot
  * @see github.com/mgsisk/webcomic/wiki/Templates
