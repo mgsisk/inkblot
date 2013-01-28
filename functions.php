@@ -244,7 +244,14 @@ class Inkblot {
 		wp_enqueue_style( 'inkblot-custom', add_query_arg( array( 'inkblot_custom_styles' => true ), home_url( '/' ) ), array( 'inkblot-theme' ) );
 		
 		if ( get_theme_mod( 'page_font' ) or get_theme_mod( 'title_font' ) or get_theme_mod( 'trim_font' ) ) {
-			wp_enqueue_style( 'inkblot-fonts', sprintf( "http%s://fonts.googleapis.com/css?family=%s|%s|%s", is_ssl() ? 's' : '', get_theme_mod( 'page_font' ), get_theme_mod( 'title_font' ), get_theme_mod( 'trim_font' ) ) );
+			$proto = is_ssl() ? 'https' : 'http';
+			$fonts = array_filter( array(
+				get_theme_mod( 'page_font' ),
+				get_theme_mod( 'title_font' ),
+				get_theme_mod( 'trim_font' )
+			) );
+			
+			wp_enqueue_style( 'inkblot-fonts', add_query_arg( array( 'family' => join( '|', $fonts ) ), "{$proto}://fonts.googleapis.com/css" ) );
 		}
 		
 		if ( is_singular() ) {
