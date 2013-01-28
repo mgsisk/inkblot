@@ -28,7 +28,7 @@ class InkblotMedia extends Inkblot {
 		
 		if ( $type = get_post_meta( $post->ID, '_wp_attachment_context', true ) and preg_match( '/^inkblot-.+$/', $type ) ) {
 			if ( 'inkblot-page-background' === $type ) {
-				$states[] = __( 'Page Background', 'inkblot' );
+				$states[] = __( 'Inkblot Page Background', 'inkblot' );
 			} elseif ( 'inkblot-webcomic-navigation-image' === $type ) {
 				$states[] = __( 'Webcomic Navigation Image', 'inkblot' );
 			}
