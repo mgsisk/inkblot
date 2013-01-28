@@ -167,6 +167,10 @@ class Inkblot {
 	public function title( $title, $sep, $location ) {
 		global $page, $paged;
 		
+		if ( is_feed() ) {
+			return $title;
+		}
+		
 		$name        = get_bloginfo( 'name' );
 		$title       = explode( " {$sep} ", $title );
 		$pages       = 2 <= max( $page, $paged ) ? sprintf( __( 'Page %s', 'inkblot' ), max( $paged, $page ) ) : '';
