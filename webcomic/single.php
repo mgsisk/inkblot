@@ -15,7 +15,7 @@
 			<?php get_template_part( 'webcomic/webcomic', get_post_type() ); ?>
 		</div><!-- .post-webcomic -->
 	<?php endif; ?>
-	<section id="main" role="main">
+	<main role="main">
 		<?php if ( get_theme_mod( 'webcomic_content', false ) ) : ?>
 			<div id="webcomic" class="post-webcomic" data-webcomic-shortcuts>
 				<?php get_template_part( 'webcomic/webcomic', get_post_type() ); ?>
@@ -24,5 +24,5 @@
 		<?php get_template_part( 'webcomic/content', get_post_type() ); ?>
 		<?php webcomic_transcripts_template(); ?>
 		<?php comments_template( '', true ); ?>
-	</section><!-- #main -->
+	</main>
 <?php endwhile; ?>

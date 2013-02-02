@@ -10,7 +10,7 @@
 
 get_header(); ?>
 
-<section id="main" role="main">
+<main role="main">
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 		<div class="post-webcomic">
 			<div class="webcomic-image">
@@ -39,7 +39,7 @@ get_header(); ?>
 				<?php webcomic_print_form( 'international', __( '%total International', 'inkblot' ) ); ?>
 			</div>
 		</div>
-</section><!-- #main -->
+</main>
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

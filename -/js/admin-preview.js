@@ -208,7 +208,7 @@
 	/** Update the webcomic position. */
 	wp.customize( 'webcomic_content', function( value ) { value.bind( function( to ) {
 		if ( to ) {
-			$( '#webcomic' ).prependTo( '#main' );
+			$( '#webcomic' ).prependTo( 'main' );
 		} else {
 			$( '#webcomic' ).prependTo( '#content' );
 		}
@@ -309,13 +309,13 @@
 		}
 		
 		if ( $( 'body' ).hasClass( 'three-column-center' ) ) {
-			$( '#main' ).css( { 'left': sidebar1 + 1 + '%', 'position': 'relative' } );
+			$( 'main ' ).css( { 'left': sidebar1 + 1 + '%', 'position': 'relative' } );
 			$( '#sidebar1' ).css( { 'left': '-' + width + '%', 'position': 'relative' } );
 		} else {
-			$( '#main' ).css( { 'left': '0', 'position': 'static' } );
+			$( 'main ' ).css( { 'left': '0', 'position': 'static' } );
 			$( '#sidebar1' ).css( { 'left': '-' + width + '%', 'position': 'static' } );
 		}
 		
-		$( '#main' ).css( 'width', width + '%' );
+		$( 'main ' ).css( 'width', width + '%' );
 	}
 } )( jQuery )

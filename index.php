@@ -10,7 +10,7 @@ get_header(); ?>
 <?php if ( webcomic() ) : ?>
 	<?php get_template_part( 'webcomic/index' ); ?>
 <?php else : ?>
-	<section id="main" role="main">
+	<main role="main">
 		<?php if ( have_posts() ) : ?>
 			<?php inkblot_posts_nav( 'above' ); ?>
 			<?php while ( have_posts() ) : the_post(); ?>
@@ -27,7 +27,7 @@ get_header(); ?>
 		<?php else : ?>
 			<?php get_template_part( 'content', 'none' ); ?>
 		<?php endif; ?>
-	</section><!-- #main -->
+	</main>
 <?php endif; ?>
 
 <?php get_sidebar(); ?>

@@ -11,14 +11,14 @@
 
 get_header(); ?>
 
-<section id="main" role="main">
+<main role="main">
 	<header class="page-header">
 		<h1><?php _e( 'Restricted Content', 'inkblot' ); ?></h1>
 	</header><!-- .page-header -->
 	<div class="page-content">
 		<p><?php _e( "Apologies, but you don't have permission to view this content.", 'inkblot' ); ?></p>
 	</div><!-- .page-content -->
-</section><!-- #main -->
+</main>
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

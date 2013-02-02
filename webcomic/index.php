@@ -27,7 +27,7 @@ if ( inkblot_theme_preview() or ( get_theme_mod( 'webcomic_home_hook', true ) an
 		</div><!-- .post-webcomic -->
 	<?php endwhile; $webcomics->rewind_posts(); ?>
 <?php endif; ?>
-<section id="main" role="main">
+<main role="main">
 	<?php if ( get_theme_mod( 'webcomic_content', false ) and $webcomics and $webcomics->have_posts() ) : ?>
 		<?php while ( $webcomics->have_posts() ) : $webcomics->the_post(); ?>
 			<div id="webcomic" class="post-webcomic" data-webcomic-shortcuts data-webcomic-container>
@@ -63,4 +63,4 @@ if ( inkblot_theme_preview() or ( get_theme_mod( 'webcomic_home_hook', true ) an
 	<?php else : ?>
 		<?php get_template_part( 'content', 'none' ); ?>
 	<?php endif; ?>
-</section><!-- #main -->
+</main>

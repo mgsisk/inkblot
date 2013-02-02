@@ -12,7 +12,7 @@
 
 get_header(); ?>
 
-<section id="main" role="main">
+<main role="main">
 	<header class="page-header">
 		<h1><?php _e( 'Age Restricted Content', 'inkblot' ); ?></h1>
 	</header><!-- .page-header -->
@@ -28,7 +28,7 @@ get_header(); ?>
 			<p><?php _e( "Apologies, but you're not old enough to view this content.", 'inkblot' ); ?></p>
 		<?php endif; ?>
 	</div><!-- .page-content -->
-</section><!-- #main -->
+</main>
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

@@ -30,10 +30,10 @@ if ( $content = get_theme_mod( 'content' ) and 'one-column' !== $content ) {
 	
 	if ( 'three-column-center' === $content ) {
 		$css[ '#sidebar1' ][] = sprintf( 'left:-%s%%', $content_width );
-		$css[ '#main' ][] = sprintf( 'left:%s%%', $sidebar1_width );
+		$css[ 'main ' ][] = sprintf( 'left:%s%%', $sidebar1_width );
 	}
 	
-	$css[ '#main' ][] = sprintf( 'width:%s%%', $content_width );
+	$css[ 'main ' ][] = sprintf( 'width:%s%%', $content_width );
 }
 
 if ( $min_width = get_theme_mod( 'min_width', 0 ) ) {
@@ -142,7 +142,7 @@ if ( !get_theme_mod( 'webcomic_nav_below', true ) ) {
 }
 
 if ( get_theme_mod( 'responsive', true ) ) {
-	$css[ '@media only screen and (max-width:640px)' ][] = '#main,#sidebar1,#sidebar2{float:none;left:0;width:100%;}';
+	$css[ '@media only screen and (max-width:640px)' ][] = 'main ,#sidebar1,#sidebar2{float:none;left:0;width:100%;}';
 }
 
 if ( $css = apply_filters( 'inkblot_custom_styles', $css ) ) {

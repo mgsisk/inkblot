@@ -15,7 +15,7 @@ get_header(); $object = get_queried_object(); $taxonomy = empty( $object->taxono
 <?php if ( webcomic() and ( is_webcomic_archive() or is_webcomic_storyline() or is_webcomic_character() ) ) : ?>
 	<?php get_template_part( 'webcomic/archive' ); ?>
 <?php else : ?>
-	<section id="main" role="main">
+	<main role="main">
 		<?php if ( have_posts() ) : ?>
 			<header class="page-header">
 				<?php if ( is_day() ) : ?>
@@ -86,7 +86,7 @@ get_header(); $object = get_queried_object(); $taxonomy = empty( $object->taxono
 		<?php else : ?>
 			<?php get_template_part( 'content-none', 'archive' ); ?>
 		<?php endif; ?>
-	</section><!-- #main -->
+	</main>
 <?php endif; ?>
 
 <?php get_sidebar(); ?>

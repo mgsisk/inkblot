@@ -192,25 +192,25 @@ td {
 	clear: both;
 }
 
-#main,
+main ,
 #sidebar1,
 #sidebar2 {
 	padding: 1rem;
 }
 
-.two-column-left #main,
-.three-column-left #main,
+.two-column-left main ,
+.three-column-left main ,
 .two-column-right #sidebar1,
 .three-column-right #sidebar1,
 .three-column-right #sidebar2,
-.three-column-center #main,
+.three-column-center main ,
 .three-column-center #sidebar1,
 .three-column-center #sidebar2 {
 	float: left;
 }
 
-.two-column-right #main,
-.three-column-right #main,
+.two-column-right main ,
+.three-column-right main ,
 .two-column-left #sidebar1,
 .three-column-left #sidebar1,
 .three-column-left #sidebar2 {
@@ -224,7 +224,7 @@ td {
 	display: none;
 }
 
-.three-column-center #main,
+.three-column-center main ,
 .three-column-center #sidebar1 {
 	position: relative;
 }

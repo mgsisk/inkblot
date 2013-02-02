@@ -11,7 +11,7 @@ get_header(); ?>
 <?php if ( webcomic() and is_webcomic() ) : ?>
 	<?php get_template_part( 'webcomic/single', get_post_type() ); ?>
 <?php else : ?>
-	<section id="main" role="main">
+	<main role="main">
 		<?php while ( have_posts() ) : the_post(); ?>
 			<?php get_template_part( 'content', get_post_type() ); ?>
 			<nav class="posts">
@@ -20,7 +20,7 @@ get_header(); ?>
 			</nav>
 			<?php comments_template( '', true ); ?>
 		<?php endwhile; ?>
-	</section><!-- #main -->
+	</main>
 <?php endif; ?>
 
 <?php get_sidebar(); ?>

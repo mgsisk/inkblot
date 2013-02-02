@@ -16,7 +16,7 @@ global $wp_query;
 query_posts( array_merge( $wp_query->query_vars, array( 'order' => 'ASC' ) ) );
 ?>
 
-<section id="main" role="main">
+<main role="main">
 	<?php if ( have_posts() ) : ?>
 		<header class="page-header">
 			<?php if ( is_webcomic_storyline() ) : ?>
@@ -55,4 +55,4 @@ query_posts( array_merge( $wp_query->query_vars, array( 'order' => 'ASC' ) ) );
 	<?php else : ?>
 		<?php get_template_part( 'content-none', 'archive' ); ?>
 	<?php endif; ?>
-</section><!-- #main -->
+</main>

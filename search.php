@@ -8,7 +8,7 @@
 
 get_header(); ?>
 
-<section id="main" role="main">
+<main role="main">
 	<?php if ( have_posts() ) : global $wp_query; ?>
 		<header class="page-header">
 			<hgroup>
@@ -37,7 +37,7 @@ get_header(); ?>
 			<?php get_search_form(); ?>
 		</div><!-- .page-content -->
 	<?php endif; ?>
-</section><!-- #main -->
+</main>
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

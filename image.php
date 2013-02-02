@@ -6,7 +6,7 @@
 
 get_header(); ?>
 
-<section id="main" role="main">
+<main role="main">
 	<?php while ( have_posts() ) : the_post(); ?>
 		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 			<header class="post-header">
@@ -34,7 +34,7 @@ get_header(); ?>
 		</article><!-- #post-<?php the_ID(); ?> -->
 		<?php comments_template( '', true ); ?>
 	<?php endwhile; ?>
-</section><!-- #main -->
+</main>
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>
