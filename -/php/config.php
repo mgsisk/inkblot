@@ -146,7 +146,7 @@ class InkblotConfig extends Inkblot {
 		
 		$customize->add_control( 'responsive', array(
 			'type'    => 'checkbox',
-			'label'   => __( 'Enable responsive menu for small screens', 'inkblot' ),
+			'label'   => __( 'Enable responsive features for small screens', 'inkblot' ),
 			'section' => 'inkblot_layout'
 		) );
 		
@@ -283,7 +283,14 @@ class InkblotConfig extends Inkblot {
 		) );
 		
 		if ( webcomic() ) {
+			$sizes       = array( '' => __( '(none)', 'inkblot' ) );
 			$collections = array( __( '(any collection)', 'inkblot' ) );
+			
+			foreach ( get_intermediate_image_sizes() as $size ) {
+				$sizes[ $size ] = $size;
+			}
+			
+			$sizes[ 'full' ] = __( 'full', 'inkblot' );
 			
 			foreach ( get_webcomic_collections( true ) as $k => $v ) {
 				$collections[ $k ] = $v[ 'name' ];
@@ -298,6 +305,7 @@ class InkblotConfig extends Inkblot {
 			$customize->add_setting( 'webcomic_nav_above', array( 'default' => true, 'transport' => 'postMessage' ) );
 			$customize->add_setting( 'webcomic_nav_below', array( 'default' => true, 'transport' => 'postMessage' ) );
 			$customize->add_setting( 'webcomic_nav_link', array( 'default' => '' ) );
+			$customize->add_setting( 'webcomic_archive_size', array( 'default' => 'large' ) );
 			$customize->add_setting( 'first_webcomic_image', array( 'default' => '', 'transport' => 'postMessage' ) );
 			$customize->add_setting( 'last_webcomic_image', array( 'default' => '', 'transport' => 'postMessage' ) );
 			$customize->add_setting( 'previous_webcomic_image', array( 'default' => '', 'transport' => 'postMessage' ) );
@@ -334,14 +342,14 @@ class InkblotConfig extends Inkblot {
 			
 			$customize->add_control( 'webcomic_home_hook', array(
 				'type'     => 'checkbox',
-				'label'    => __( 'Show webcomic on the posts page', 'inkblot' ),
+				'label'    => __( 'Show webcomic on the front page', 'inkblot' ),
 				'section'  => 'webcomic',
 				'priority' => 20
 			) );
 			
 			$customize->add_control( 'webcomic_home_order', array(
 				'type'     => 'select',
-				'label'    => __( 'Start with this webcomic on the posts page:', 'inkblot' ),
+				'label'    => __( 'Start with this webcomic on the front page:', 'inkblot' ),
 				'section'  => 'webcomic',
 				'choices'  => array(
 					'DESC' => __( 'Most Recently Published', 'inkblot' ),
@@ -352,7 +360,7 @@ class InkblotConfig extends Inkblot {
 			
 			$customize->add_control( 'webcomic_home_collection', array(
 				'type'     => 'select',
-				'label'    => __( 'Show webcomics from this collection on the posts page:', 'inkblot' ),
+				'label'    => __( 'Show webcomics from this collection on the front page:', 'inkblot' ),
 				'section'  => 'webcomic',
 				'choices'  => $collections,
 				'priority' => 30
@@ -367,6 +375,14 @@ class InkblotConfig extends Inkblot {
 					'next'     => __( 'Next webcomic', 'inkblot' ),
 					'previous' => __( 'Previous webcomic', 'inkblot' )
 				),
+				'priority' => 30
+			) );
+			
+			$customize->add_control( 'webcomic_archive_size', array(
+				'type'     => 'select',
+				'label'    => __( 'Show webcomic previews of this size on archive pages:', 'inkblot' ),
+				'section'  => 'webcomic',
+				'choices'  => $sizes,
 				'priority' => 30
 			) );
 			
