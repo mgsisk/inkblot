@@ -24,7 +24,7 @@
 				<nav>
 					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'show_home' => true, 'container' => false ) ); ?>
 					<?php
-						if ( get_theme_mod( 'responsive', true ) ) {
+						if ( get_theme_mod( 'responsive', true ) or inkblot_theme_preview() ) {
 							if ( has_nav_menu( 'primary' ) ) {
 								wp_nav_menu( array( 'theme_location' => 'primary', 'show_home' => true, 'container' => false, 'items_wrap' => '<select>%3$s</select>', 'walker' => new Walker_InkblotNavMenu_Dropdown ) );
 							} else {
