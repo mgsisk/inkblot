@@ -6,8 +6,10 @@
  * separate `/webcomic/webcomic.php` template.
  * 
  * @package Inkblot
+ * @see github.com/mgsisk/webcomic/wiki/Templates
  */
-?>
+
+get_header(); ?>
 
 <?php while ( have_posts() ) : the_post(); ?>
 	<?php if ( !get_theme_mod( 'webcomic_content', false ) ) : ?>
@@ -26,3 +28,6 @@
 		<?php comments_template( '', true ); ?>
 	</main>
 <?php endwhile; ?>
+
+<?php get_sidebar(); ?>
+<?php get_footer(); ?>
