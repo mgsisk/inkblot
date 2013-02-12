@@ -133,7 +133,7 @@ class Inkblot {
 	 * @action wp_loaded
 	 */
 	public function loaded() {
-		if ( !empty( $_GET[ 'inkblot_custom_styles' ] ) ) {
+		if ( isset( $_GET[ 'inkblot_styles' ] ) ) {
 			header( 'Content-Type: text/css' );
 			
 			require_once self::$dir . '-/php/style.php';
@@ -196,17 +196,7 @@ class Inkblot {
 	 * @hook wp_enqueue_scripts
 	 */
 	public function enqueue_scripts() {
-		wp_register_style( 'inkblot-normalizr', self::$url . '-/css/normalizr.css' );
-		wp_register_style( 'inkblot-theme', get_stylesheet_uri(), array( 'inkblot-normalizr' ) );
-		wp_register_script( 'jquery', '', '', '', true);
-		
-		wp_enqueue_script( 'modernizr', self::$url . '-/js/modernizr.js' );
-		
-		if ( get_theme_mod( 'responsive', true ) ) {
-			wp_enqueue_script( 'inkblot-responsive', self::$url . '-/js/responsive.js', array( 'modernizr', 'jquery' ), '', true );
-		}
-		
-		wp_enqueue_style( 'inkblot-custom', add_query_arg( array( 'inkblot_custom_styles' => true ), home_url( '/' ) ), array( 'inkblot-theme' ) );
+		wp_enqueue_style( 'inkblot-theme', add_query_arg( array( 'inkblot_styles' => '' ), home_url( '/' ) ) );
 		
 		if ( get_theme_mod( 'page_font' ) or get_theme_mod( 'title_font' ) or get_theme_mod( 'trim_font' ) ) {
 			$proto = is_ssl() ? 'https' : 'http';
@@ -217,6 +207,12 @@ class Inkblot {
 			) );
 			
 			wp_enqueue_style( 'inkblot-fonts', add_query_arg( array( 'family' => join( '|', $fonts ) ), "{$proto}://fonts.googleapis.com/css" ) );
+		}
+		
+		wp_register_script( 'jquery', '', '', '', true);
+		
+		if ( get_theme_mod( 'responsive', true ) ) {
+			wp_enqueue_script( 'inkblot-responsive', self::$url . '-/js/responsive.js', array( 'jquery' ), '', true );
 		}
 		
 		if ( is_singular() and comments_open() and get_option( 'thread_comments' ) ) {
