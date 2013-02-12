@@ -2,7 +2,6 @@
 /** Search form template.
  * 
  * @package Inkblot
- * @uses inkblot_search_id()
  */
 ?>
 

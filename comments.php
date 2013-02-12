@@ -2,9 +2,6 @@
 /** Comments template.
  * 
  * @package Inkblot
- * @uses inkblot_comments_nav()
- * @uses inkblot_start_coment()
- * @uses inkblot_end_coment()
  */
 ?>
 

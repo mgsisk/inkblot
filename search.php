@@ -2,8 +2,6 @@
 /** Search results template.
  * 
  * @package Inkblot
- * @uses webcomic()
- * @uses is_a_webcomic()
  */
 
 get_header(); ?>
