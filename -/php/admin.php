@@ -13,7 +13,6 @@ class InkblotAdmin extends Inkblot {
 	 * 
 	 * @uses Inkblot::$dir
 	 * @uses Inkblot::__construct()
-	 * @uses InkblotAdmin::admin_menu()
 	 * @uses InkblotAdmin::after_switch_theme()
 	 * @uses InkblotMedia
 	 * @uses InkbotPages
@@ -21,19 +20,10 @@ class InkblotAdmin extends Inkblot {
 	public function __construct() {
 		parent::__construct();
 		
-		add_action( 'admin_menu', array( $this, 'admin_menu' ), 99 );
 		add_action( 'after_switch_theme', array( $this, 'after_switch_theme' ) );
 		
 		require_once self::$dir . '-/php/media.php'; new InkblotMedia;
 		require_once self::$dir . '-/php/pages.php'; new InkblotPages;
-	}
-	
-	/** Register customization page.
-	 * 
-	 * @hook admin_menu
-	 */
-	function admin_menu() {
-		add_theme_page( __( 'Customize', 'inkblot' ), __( 'Customize', 'inkblot' ), 'edit_theme_options', 'customize.php' );
 	}
 	
 	/** Activation hook.
@@ -44,8 +34,6 @@ class InkblotAdmin extends Inkblot {
 		if ( get_theme_mod( 'uninstall', false ) ) {
 			remove_theme_mods();
 		}
-		
-		set_theme_mod( 'version', self::$version );
 	}
 	
 	/** Render custom header preview styles.
