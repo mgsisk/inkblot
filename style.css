@@ -11,10 +11,23 @@ Tags: dark, light, white, black, gray, one-column, two-columns, three-columns, l
 Webcomic: 4
 */
 
+/** 
+ * To ensure the Theme Customizer doesn't interfere with your own
+ * styles you should add any custom rules to the custom.css file.
+ */
+
+* { /** paulirish.com/2012/box-sizing-border-box-ftw */
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
 body {
 	background: #e8e8e8;
 	color: #333;
+	line-height: 1.4;
 	margin: 1rem;
+	text-rendering: optimizeLegibility; /** aestheticallyloyal.com/public/optimize-legibility */
 }
 
 ::-moz-selection {
@@ -40,6 +53,14 @@ a {
 a:focus,
 a:hover {
 	color: #333;
+}
+
+a:not([href]) {
+	cursor: default;
+}
+
+abbr[title] {
+	cursor: help;
 }
 
 address {
@@ -69,6 +90,13 @@ ol ol ol {
 	list-style: lower-roman;
 }
 
+nav ul,
+nav ol {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
 pre {
 	border: thin solid #333;
 	box-shadow: 0 .12rem .25rem rgba( 0, 0, 0, .25 ) inset;
@@ -83,6 +111,27 @@ table {
 td {
 	border: thin solid #333;
 	padding: .5rem;
+}
+
+textarea {
+	resize: vertical;
+}
+
+embed,
+iframe,
+object,
+video {
+	max-width: 100%;
+}
+
+img {
+	height: auto;
+	max-width: 100%;
+	vertical-align: middle;
+}
+
+video {
+	height: auto;
 }
 
 #page {
@@ -192,25 +241,25 @@ td {
 	clear: both;
 }
 
-main ,
+main,
 #sidebar1,
 #sidebar2 {
 	padding: 1rem;
 }
 
-.two-column-left main ,
-.three-column-left main ,
+.two-column-left main,
+.three-column-left main,
 .two-column-right #sidebar1,
 .three-column-right #sidebar1,
 .three-column-right #sidebar2,
-.three-column-center main ,
+.three-column-center main,
 .three-column-center #sidebar1,
 .three-column-center #sidebar2 {
 	float: left;
 }
 
-.two-column-right main ,
-.three-column-right main ,
+.two-column-right main,
+.three-column-right main,
 .two-column-left #sidebar1,
 .three-column-left #sidebar1,
 .three-column-left #sidebar2 {
@@ -224,7 +273,7 @@ main ,
 	display: none;
 }
 
-.three-column-center main ,
+.three-column-center main,
 .three-column-center #sidebar1 {
 	position: relative;
 }
@@ -586,15 +635,4 @@ nav.post-pages {
 
 .gallery-columns-9 .gallery-item {
 	width: 11%;
-}
-
-@media only screen and ( max-width: 640px ) {
-	#header nav ul {
-		display: none;
-	}
-	
-	#header nav select {
-		display: block;
-		width: 100%;
-	}
 }
