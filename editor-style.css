@@ -1,15 +1,14 @@
 /** TinyMCE editor stylesheet.
  * 
  * To keep things simple and avoid duplicating a lot of style rules
- * we just import our normalization stylesheet and the main theme
- * stylesheet, then tweak as appropriate. Things may not match up
- * perfectly since most of our colors and the width of our content
- * area can be modified by the user.
+ * we just import normalize.css, style.css, and custom.css, then
+ * tweak as appropriate. Things may not match up perfectly since
+ * a lot of the site look can be changed witht the customizer.
  * 
  * @package Inkblot
  */
 
-@import url( -/css/normalizr.css );
+@import url( -/css/normalize.css );
 @import url( style.css );
 
 body {
@@ -24,14 +23,6 @@ body {
 	background: transparent;
 	border: 0;
 	margin: 0;
-	max-width: 100%;
-	padding: .25rem;
-	text-align: center;
-}
-
-.wp-caption img {
-	border-radius: .25rem;
-	box-shadow: 0 .12rem .25rem rgba( 0, 0, 0, .25 );
 }
 
 .wp-caption-dd {
