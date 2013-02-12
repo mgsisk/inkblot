@@ -1,11 +1,13 @@
 <?php
-/** Custom stylesheet generator.
+/** Theme stylesheet generator.
  * 
- * To keep a lot of embedded styles out of our `<head>` we use this
- * file to generate a custom stylesheet based on theme
- * modifications. For convenience, the styles are loaded directly
- * into the site `<head>` while actually customizing the theme, to
- * ensure that live modification previews work correctly.
+ * To keep a lot of embedded styles and `<link>` tags out of our
+ * `<head>` we use this file to generate a custom stylesheet based
+ * on `normalize.css`, `style.css`, theme modifications, and
+ * `custom.css` (in that order). For convenience, the styles are
+ * loaded directly into the site `` while actually customizing
+ * the theme to ensure that live modification previews work
+ * correctly.
  * 
  * @package Inkblot
  */
@@ -13,6 +15,9 @@
 if ( !function_exists( 'get_theme_mod' ) ) {
 	return;
 }
+
+locate_template( array( '-/css/normalize.css' ), true, true );
+locate_template( array( 'style.css' ), true, true );
 
 $css = array();
 $sidebar1_width = get_theme_mod( 'sidebar1_width', 25 );
@@ -130,7 +135,7 @@ if ( $page_background_image = get_theme_mod( 'page_background_image' ) ) {
 }
 
 if ( !get_theme_mod( 'webcomic_resize', true ) ) {
-	$css[ '#webcomic .webcomic-image img' ][] = 'max-width:none';
+	$css[ '.post-webcomic .webcomic-image img' ][] = 'max-width:none';
 }
 
 if ( !get_theme_mod( 'webcomic_nav_above', true ) ) {
@@ -141,12 +146,14 @@ if ( !get_theme_mod( 'webcomic_nav_below', true ) ) {
 	$css[ 'nav.webcomics.below' ][] = 'display:none';
 }
 
-if ( get_theme_mod( 'responsive', true ) ) {
-	$css[ '@media only screen and (max-width:640px)' ][] = 'main ,#sidebar1,#sidebar2{float:none;left:0;width:100%;}';
-}
-
 if ( $css = apply_filters( 'inkblot_custom_styles', $css ) ) {
 	foreach ( $css as $k => $v ) {
 		printf( '%s{%s}', $k, join( ';', ( array ) $v ) );
 	}
 }
+
+if ( get_theme_mod( 'responsive', true ) ) {
+	echo apply_filters( 'inkblot_responsive_styles', sprintf( '@media only screen and (max-width:%spx){main,#sidebar1,#sidebar2{float:none;left:0;width:100%%;}#header nav ul{display:none}#header nav select{display:block;width:100%%}}', get_theme_mod( 'responsive_width', 640 ) ) );
+}
+
+locate_template( array( 'custom.css' ), true, true );
