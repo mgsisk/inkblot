@@ -2,11 +2,12 @@
 /** Webcomic index template.
  * 
  * This is the Webcomic-specific homepage template (used in place of
- * the normal `index.php` when Webcomic is active). The only real
- * difference between this template and the normal `index.php`
+ * the normal `home.php` or `index.php` when Webcomic is active).
+ * The only real difference between this template and the normal
  * template is the inclusion of a webcomic.
  * 
  * @package Inkblot
+ * @see github.com/mgsisk/webcomic/wiki/Templates
  */
 
 if ( inkblot_theme_preview() or ( get_theme_mod( 'webcomic_home_hook', true ) and !is_paged() ) ) {
@@ -18,7 +19,8 @@ if ( inkblot_theme_preview() or ( get_theme_mod( 'webcomic_home_hook', true ) an
 } else {
 	$webcomics = false;
 }
-?>
+
+get_header(); ?>
 
 <?php if ( !get_theme_mod( 'webcomic_content', false ) and $webcomics and $webcomics->have_posts() ) : ?>
 	<?php while ( $webcomics->have_posts() ) : $webcomics->the_post(); ?>
@@ -64,3 +66,6 @@ if ( inkblot_theme_preview() or ( get_theme_mod( 'webcomic_home_hook', true ) an
 		<?php get_template_part( 'content', 'none' ); ?>
 	<?php endif; ?>
 </main>
+
+<?php get_sidebar(); ?>
+<?php get_footer(); ?>
