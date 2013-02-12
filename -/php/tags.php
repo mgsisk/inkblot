@@ -18,18 +18,15 @@ class InkblotTag extends Inkblot {
 	 * @return string
 	 */
 	public function inkblot_page_description() {
-		global $wp_query;
+		$object = get_queried_object();
+		$output = get_bloginfo( 'description', 'display' );
 		
-		if ( is_singular() and !is_home() ) {
-			if ( post_password_required( $wp_query->get_queried_object() ) ) {
-				$output = __( 'There is no description because this is a protected post.', 'inkblot' );
-			} else if ( !$output = $wp_query->get_queried_object()->post_excerpt ) {
-				$output = apply_filters( 'wp_trim_excerpt', wp_trim_words( str_replace( ']]>', ']]&gt;', apply_filters( 'the_content', strip_shortcodes( $wp_query->get_queried_object()->post_content ) ) ), apply_filters( 'excerpt_length', 55 ), apply_filters( 'excerpt_more', ' [...]' ) ) );
-			}
-		} else if ( is_category() or is_tag() or is_tax() or is_author() ) {
-			$output = is_author() ? get_user_meta( $wp_query->get_queried_object()->data->ID, 'description', true ) : $wp_query->get_queried_object()->description;
-		} else {
-			$output = get_bloginfo( 'description', 'display' );
+		if ( is_singular() and has_excerpt() and !is_home() ) {
+			$output = get_the_excerpt();
+		} else if ( ( is_category() or is_tag() or is_tax() ) and $object->description ) {
+			$output = $object->description;
+		} elseif ( is_author() and $bio = get_user_meta( $object->ID, 'description', true ) ) {
+			$output = $bio;
 		}
 		
 		$output = 140 < strlen( $output = strip_tags( $output ) ) ? substr( $output, 0, 132 ) . '&hellip;' : $output;
@@ -95,73 +92,59 @@ class InkblotTag extends Inkblot {
 	public static function inkblot_post_meta() {
 		global $post;
 		
-		$edit = $media = $parent = $categories = $tags = $collection = $storylines = $characters = $transcribe = $purchase = '';
-		$date = sprintf( __( '<a href="%1$s" title="%2$s" rel="bookmark"><time datetime="%3$s">%4$s</time></a>', 'inkblot' ),
+		$date = sprintf( __( ' on <a href="%1$s" title="%2$s" rel="bookmark"><time datetime="%3$s">%4$s</time></a>', 'inkblot' ),
 			esc_url( get_permalink() ),
 			esc_attr( get_the_time() ),
 			esc_attr( get_the_date( 'c' ) ),
 			esc_html( get_the_date() )
 		);
-		$author = sprintf( __( '<a href="%1$s" rel="author">%2$s</a>', 'inkblot' ),
+		
+		$author = sprintf( __( ' by <a href="%1$s" rel="author">%2$s</a>', 'inkblot' ),
 			esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 			get_the_author()
 		);
 		
-		
-		if ( current_user_can( 'edit_post', false ) ) {
-			$edit = sprintf( __( '<a href="%s" class="post-edit-link">Edit This</a>', 'inkblot' ), get_edit_post_link() );
-		}
+		$edit = current_user_can( 'edit_post', $post->ID ) ? sprintf( __( '<a href="%s" class="post-edit-link">Edit This</a>', 'inkblot' ), get_edit_post_link() ) : '';
 		
 		if ( webcomic() and is_a_webcomic() ) {
-			if ( webcomic_transcripts_open() ) {
-				$transcribe = WebcomicTag::webcomic_transcripts_link( '%link' );
-			}
-			
-			if ( webcomic_prints_available() ) {
-				$purchase = WebcomicTag::purchase_webcomic_link( '%link', __( 'Purchase', 'inkblot' ) );
-			}
-			
-			$collection = WebcomicTag::webcomic_collection_link( '%link', '%title' );
-			$storylines = WebcomicTag::get_the_webcomic_term_list( 0, 'storyline' );
-			$characters = WebcomicTag::get_the_webcomic_term_list( 0, 'character' );
-			
-			if ( $storylines and $characters ) {
-				$meta = __( 'Published in %8$s as part of %9$s featuring %10$s on %3$s by %4$s<span class="post-actions">%11$s%12$s%7$s</span>', 'inkblot' );
-			} else if ( $storylines ) {
-				$meta = __( 'Published in %8$s as part of %9$s on %3$s by %4$s<span class="post-actions">%11$s%12$s%7$s</span>', 'inkblot' );
-			} else if ( $characters ) {
-				$meta = __( 'Published in %8$s featuring %10$s on %3$s by %4$s<span class="post-actions">%11$s%12$s%7$s</span>', 'inkblot' );
-			} else {
-				$meta = __( 'Published in %8$s on %3$s by %4$s<span class="post-actions">%11$s%12$s%7$s</span>', 'inkblot' );
-			}
+			$meta = sprintf( __( 'Published%1$s%2$s%3$s%4$s%5$s<span class="post-actions">%6$s%7$s%8$s</span>', 'inkblot' ),
+				WebcomicTag::get_the_webcomic_collection_list( 0, __( ' in ', 'inkblot' ) ),
+				WebcomicTag::get_the_webcomic_term_list( 0, 'storyline', __( ' as part of ', 'inkblot' ) ),
+				WebcomicTag::get_the_webcomic_term_list( 0, 'character', __( ' featuring ', 'inkblot' ) ),
+				$date,
+				$author,
+				webcomic_transcripts_open() ? WebcomicTag::webcomic_transcripts_link( '%link' ) : '',
+				webcomic_prints_available() ? WebcomicTag::purchase_webcomic_link( '%link', __( 'Purchase', 'inkblot' ) ) : '',
+				$edit
+			);
 		} else if ( is_attachment() ) {
-			$data  = wp_get_attachment_metadata();
-			$media = sprintf( __( '<a href="%1$s" title="Link to full-size image">%2$s &times; %3$s</a>', 'inkblot' ),
-				esc_url( wp_get_attachment_url() ),
-				$data[ 'width' ],
-				$data[ 'height' ]
+			$data = wp_get_attachment_metadata();
+			$meta = sprintf( __( 'Published%1$s%2$s%3$s%4$s<span class="post-actions">%5$s</span>', 'inkblot' ),
+				$post->post_parent ? sprintf( __( ' in <a href="%1$s" title="Return to %2$s" rel="gallery">%3$s</a>', 'inkblot' ),
+					esc_url( get_permalink( $post->post_parent ) ),
+					esc_attr( strip_tags( get_the_title( $post->post_parent ) ) ),
+					get_the_title( $post->post_parent )
+				) : '',
+				isset( $data[ 'width' ], $data[ 'height' ] ) ? sprintf( __( ' at <a href="%1$s" title="Link to full-size image">%2$s &times; %3$s</a>', 'inkblot' ),
+					esc_url( wp_get_attachment_url() ),
+					$data[ 'width' ],
+					$data[ 'height' ]
+				) : '',
+				$date,
+				$author,
+				$edit
 			);
-			$parent = sprintf( __( '<a href="%1$s" title="Return to %2$s" rel="gallery">%3$s</a>', 'inkblot' ),
-				esc_url( get_permalink( $post->post_parent ) ),
-				esc_attr( strip_tags( get_the_title( $post->post_parent ) ) ),
-				get_the_title( $post->post_parent )
-			);
-			
-			$meta = __( 'Published in %5$s at %6$s on %3$s<span class="post-actions">%7$s</span>', 'inkblot' );
 		} else {
-			$tags = get_the_tag_list( '', __( ', ', 'inkblot' ) );
-			$categories = get_the_category_list( __( ', ', 'inkblot' ) );
-			
-			if ( $tags ) {
-				$meta = __( 'Published in %1$s and tagged %2$s on %3$s by %4$s<span class="post-actions">%7$s</span>', 'inkblot' );
-			} else if ( $categories ) {
-				$meta = __( 'Published in %1$s on %3$s by %4$s<span class="post-actions">%7$s</span>', 'inkblot' );
-			} else {
-				$meta = __( 'Published on %3$s by %4$s<span class="post-actions">%7$s</span>', 'inkblot' );
-			}
+			$meta = sprintf( __( 'Published%1$s%2$s%3$s%4$s<span class="post-actions">%5$s</span>', 'inkblot' ),
+				get_the_term_list( $post->ID, 'category', __( ' in ', 'inkblot' ), __( ', ', 'inkblot' ) ),
+				get_the_tag_list( __( ' and tagged ', 'inkblot' ), _( ', ', 'inkblot' ) ),
+				$date,
+				$author,
+				$edit
+			);
 		} 
 		
-		return sprintf( $meta, $categories, $tags, $date, $author, $parent, $media, $edit, $collection, $storylines, $characters, $transcribe, $purchase );
+		return $meta;
 	}
 	
 	/** Return a unique search form ID.
@@ -371,14 +354,25 @@ if ( !function_exists( 'webcomic' ) ) {
 	}
 }
 
-/** @todo Add inline documentation for walker classes */
-
 if ( !class_exists( 'Walker_InkblotNavMenu_Dropdown' ) ) {
+	/** Handle responsive dropdown custom menu output.
+	 * 
+	 * @package Inkblot
+	 */
 	class Walker_InkblotNavMenu_Dropdown extends Walker_Nav_Menu {
+		/** Override parent function. */
 		function start_lvl( &$output, $depth ){}
 		
+		/** Override parent function. */
 		function end_lvl( &$output, $depth ){}
-		
+	
+		/** Start element output.
+		 * 
+		 * @param string $output Walker output string.
+		 * @param object $item Current item being handled by the walker.
+		 * @param integer $depth Depth the walker is currently at.
+		 * @param array $args Arguments passed to the walker.
+		 */
 		function start_el( &$output, $item, $depth, $args ) {
 			$classes     = empty( $item->classes ) ? array() : ( array ) $item->classes;
 			$classes[]   = 'menu-item-' . $item->ID;
@@ -398,19 +392,39 @@ if ( !class_exists( 'Walker_InkblotNavMenu_Dropdown' ) ) {
 			
 			$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 		}
-		
-		function end_el( &$output, $item, $depth ) {
+	
+		/** End element output.
+		 * 
+		 * @param string $output Walker output string.
+		 * @param object $item Current item being handled by the walker.
+		 * @param integer $depth Depth the walker is currently at.
+		 * @param array $args Arguments passed to the walker.
+		 */
+		function end_el( &$output, $item, $depth, $args ) {
 			$output .= '</option>';
 		}
 	}
 }
 
 if ( !class_exists( 'Walker_InkblotPageMenu_Dropdown' ) ) {
+	/** Handle responsive dropdown page menu output.
+	 * 
+	 * @package Inkblot
+	 */
 	class Walker_InkblotPageMenu_Dropdown extends Walker_PageDropdown {
+		/** Override parent function. */
 		function start_lvl( &$output, $depth ){}
 		
+		/** Override parent function. */
 		function end_lvl( &$output, $depth ){}
-		
+	
+		/** Start element output.
+		 * 
+		 * @param string $output Walker output string.
+		 * @param object $page Current page being handled by the walker.
+		 * @param integer $depth Depth the walker is currently at.
+		 * @param array $args Arguments passed to the walker.
+		 */
 		function start_el( &$output, $page, $depth, $args, $current_page = 0 ) {
 			if ( empty( $output ) ) {
 				$output .= sprintf( '<option value="%s">%s%s%s',
@@ -459,8 +473,15 @@ if ( !class_exists( 'Walker_InkblotPageMenu_Dropdown' ) ) {
 				$time
 			);
 		}
-		
-		function end_el( &$output, $item, $depth ) {
+	
+		/** End element output.
+		 * 
+		 * @param string $output Walker output string.
+		 * @param object $page Current page being handled by the walker.
+		 * @param integer $depth Depth the walker is currently at.
+		 * @param array $args Arguments passed to the walker.
+		 */
+		function end_el( &$output, $item, $depth, $args ) {
 			$output .= '</option>';
 		}
 	}
