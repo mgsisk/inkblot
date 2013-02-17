@@ -5,8 +5,6 @@
  */
 ?>
 <!doctype html>
-<!--[if IE]>
-<html <?php language_attributes(); ?> class="no-js ie"><!-->
 <html <?php language_attributes(); ?> class="no-js">
 	<head><?php wp_head(); ?></head>
 	<body id="document" <?php body_class(); ?>>
@@ -39,4 +37,4 @@
 				</nav>
 			</header><!-- #header -->
 			<div id="content">
-				<div id="content-header" role="complementary" class="widgets"><?php dynamic_sidebar( 'content-header' ); ?></div><!-- #content-header -->
+				<div id="content-header" role="complementary" class="widgets"><?php dynamic_sidebar( 'content-header' ); ?></div><!-- #content-header -->?php dynamic_sidebar( 'content-header' ); ?></div><!-- #content-header -->
