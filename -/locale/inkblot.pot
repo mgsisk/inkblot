@@ -1,14 +1,761 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Inkblot\n"
-"POT-Creation-Date: 2013-02-17 15:26-0500\n"
-"PO-Revision-Date: 2013-02-17 15:28-0500\n"
+"POT-Creation-Date: 2013-02-17 15:42-0500\n"
+"PO-Revision-Date: 2013-02-17 15:42-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.5\n"
-"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e;esc_attr_e;_n\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e;_n;esc_attr_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: 404.php:11
+msgid "Not Found"
+msgstr ""
+
+#: 404.php:14
+msgid ""
+"Apologies, but we can't seem to find what you're looking for. Perhaps "
+"searching will help."
+msgstr ""
+
+#: archive.php:17
+msgid "Daily Archives"
+msgstr ""
+
+#: archive.php:20
+#, php-format
+msgid "Daily Archives: %s"
+msgstr ""
+
+#: archive.php:23
+msgid "Monthly Archives"
+msgstr ""
+
+#: archive.php:24
+msgid "F Y"
+msgstr ""
+
+#: archive.php:28
+msgid "Yearly Archives"
+msgstr ""
+
+#: archive.php:29
+msgid "Y"
+msgstr ""
+
+#: archive.php:33
+msgid "Category Archives"
+msgstr ""
+
+#: archive.php:38
+msgid "Tag Archives"
+msgstr ""
+
+#: archive.php:43 archive.php:52
+#, php-format
+msgid "%s Archives"
+msgstr ""
+
+#: archive.php:48
+msgid "Author Archives"
+msgstr ""
+
+#: archive.php:54
+msgid "Archives"
+msgstr ""
+
+#: comments.php:15
+msgid "One Comment"
+msgstr ""
+
+#: comments.php:15
+msgid "% Comments"
+msgstr ""
+
+#: content-none.php:8 search.php:29
+msgid "Nothing Found"
+msgstr ""
+
+#: content-none.php:11
+msgid "Nothing could be found for the requested archive."
+msgstr ""
+
+#: content.php:20 webcomic/content.php:31
+#, php-format
+msgid "Permalink to %s"
+msgstr ""
+
+#: footer.php:11
+#, php-format
+msgid "<a href=\"#document\">%1$s</a> &bull; Powered by %2$s with %3$s"
+msgstr ""
+
+#: functions.php:112
+#, php-format
+msgid "Page %s"
+msgstr ""
+
+#: functions.php:151 sidebar.php:11
+msgid "Primary Sidebar"
+msgstr ""
+
+#: functions.php:151
+msgid ""
+"Used in both two and three-column layouts. You can change theme layout from "
+"the Appearance > Customize page."
+msgstr ""
+
+#: functions.php:152 sidebar.php:19
+msgid "Secondary Sidebar"
+msgstr ""
+
+#: functions.php:152
+msgid ""
+"Used in three-column layouts only. You can change theme layout from the "
+"Appearance > Customize page."
+msgstr ""
+
+#: functions.php:153
+msgid "Document Header"
+msgstr ""
+
+#: functions.php:153
+msgid "Located at the very top of the page, outside of the #page wrapper."
+msgstr ""
+
+#: functions.php:154
+msgid "Document Footer"
+msgstr ""
+
+#: functions.php:154
+msgid "Located at the very bottom of the page, outside of the #page wrapper."
+msgstr ""
+
+#: functions.php:155
+msgid "Page Header"
+msgstr ""
+
+#: functions.php:155
+msgid "Located near the top of the page, just inside the #page wrapper."
+msgstr ""
+
+#: functions.php:156
+msgid "Page Footer"
+msgstr ""
+
+#: functions.php:156
+msgid "Located near the bottom of the page, just inside the #page wrapper."
+msgstr ""
+
+#: functions.php:157
+msgid "Content Header"
+msgstr ""
+
+#: functions.php:157
+msgid "Located near the top of the page, just inside the #content wrapper."
+msgstr ""
+
+#: functions.php:158
+msgid "Content Footer"
+msgstr ""
+
+#: functions.php:158
+msgid "Located near the bottom of the page, just inside the #content wrapper."
+msgstr ""
+
+#: functions.php:159
+msgid "Comment Header"
+msgstr ""
+
+#: functions.php:159
+msgid ""
+"Located above the comments list for a post, just inside the #comments "
+"wrapper."
+msgstr ""
+
+#: functions.php:160
+msgid "Comment Footer"
+msgstr ""
+
+#: functions.php:160
+msgid ""
+"Located below the comments list for a post, just inside the #comments "
+"wrapper."
+msgstr ""
+
+#: functions.php:258
+msgid "Primary Menu"
+msgstr ""
+
+#: index.php:21 webcomic/home.php:58
+msgid "No Posts"
+msgstr ""
+
+#: index.php:24 webcomic/home.php:61
+#, php-format
+msgid "Ready to publish your first post? <a href=\"%s\">Start here &raquo;</a>"
+msgstr ""
+
+#: search.php:13 search.php:30
+#, php-format
+msgid "Searching for %s"
+msgstr ""
+
+#: search.php:14
+#, php-format
+msgid "%s results"
+msgstr ""
+
+#: search.php:34
+msgid "No results containing all your search terms were found."
+msgstr ""
+
+#: searchform.php:9 searchform.php:10 searchform.php:11
+msgid "Search"
+msgstr ""
+
+#: sidebar.php:12
+#, php-format
+msgid ""
+"This is the primary sidebar. You can remove this message by adding widgets "
+"to it from the <a href=\"%s\"><strong>Appearance > Widgets</strong> "
+"administrative page</a>."
+msgstr ""
+
+#: sidebar.php:20
+#, php-format
+msgid ""
+"This is the secondary sidebar. You can remove this message by adding widgets "
+"to it from the <a href=\"%s\"><strong>Appearance > Widgets</strong> "
+"administrative page</a>."
+msgstr ""
+
+#: -/php/config.php:37
+msgid "Fonts"
+msgstr ""
+
+#: -/php/config.php:41
+msgid "(default)"
+msgstr ""
+
+#: -/php/config.php:53
+msgid "Page Font"
+msgstr ""
+
+#: -/php/config.php:60
+msgid "Title Font"
+msgstr ""
+
+#: -/php/config.php:67
+msgid "Trim Font"
+msgstr ""
+
+#: -/php/config.php:74
+msgid "Font Size (%)"
+msgstr ""
+
+#: -/php/config.php:92
+msgid "Page Color"
+msgstr ""
+
+#: -/php/config.php:98
+msgid "Text Color"
+msgstr ""
+
+#: -/php/config.php:104
+msgid "Link Color"
+msgstr ""
+
+#: -/php/config.php:110
+msgid "Link Hover Color"
+msgstr ""
+
+#: -/php/config.php:116
+msgid "Trim Color"
+msgstr ""
+
+#: -/php/config.php:122
+msgid "Trim Text Color"
+msgstr ""
+
+#: -/php/config.php:128
+msgid "Trim Link Color"
+msgstr ""
+
+#: -/php/config.php:134
+msgid "Trim Link Hover Color"
+msgstr ""
+
+#: -/php/config.php:139
+msgid "Layout"
+msgstr ""
+
+#: -/php/config.php:149
+msgid "Enable responsive features for small screens"
+msgstr ""
+
+#: -/php/config.php:155
+msgid "Content"
+msgstr ""
+
+#: -/php/config.php:158
+msgid "No sidebars"
+msgstr ""
+
+#: -/php/config.php:159
+msgid "Content on left (one sidebar)"
+msgstr ""
+
+#: -/php/config.php:160
+msgid "Content on right (one sidebar)"
+msgstr ""
+
+#: -/php/config.php:161
+msgid "Content on left (two sidebars)"
+msgstr ""
+
+#: -/php/config.php:162
+msgid "Content on right (two sidebars)"
+msgstr ""
+
+#: -/php/config.php:163
+msgid "Content centered (two sidebars)"
+msgstr ""
+
+#: -/php/config.php:168
+msgid "Minimum Width (px)"
+msgstr ""
+
+#: -/php/config.php:175
+msgid "Maximum Width (px)"
+msgstr ""
+
+#: -/php/config.php:182
+msgid "Primary Sidebar Width (%)"
+msgstr ""
+
+#: -/php/config.php:189
+msgid "Secondary Sidebar Width (%)"
+msgstr ""
+
+#: -/php/config.php:195 -/php/config.php:464
+msgid "Page Background Image"
+msgstr ""
+
+#: -/php/config.php:205
+msgid "Page Background Repeat"
+msgstr ""
+
+#: -/php/config.php:208
+msgid "No Repeat"
+msgstr ""
+
+#: -/php/config.php:209
+msgid "Tile"
+msgstr ""
+
+#: -/php/config.php:210
+msgid "Tile Horizontally"
+msgstr ""
+
+#: -/php/config.php:211
+msgid "Tile Vertically"
+msgstr ""
+
+#: -/php/config.php:217
+msgid "Page Background Position"
+msgstr ""
+
+#: -/php/config.php:220
+msgid "Left"
+msgstr ""
+
+#: -/php/config.php:221
+msgid "Center"
+msgstr ""
+
+#: -/php/config.php:222
+msgid "Right"
+msgstr ""
+
+#: -/php/config.php:228
+msgid "Page Background Attachment"
+msgstr ""
+
+#: -/php/config.php:231
+msgid "Fixed"
+msgstr ""
+
+#: -/php/config.php:232
+msgid "Scroll"
+msgstr ""
+
+#: -/php/config.php:236
+msgid "Miscellanea"
+msgstr ""
+
+#: -/php/config.php:245
+msgid "Header Image Width (px)"
+msgstr ""
+
+#: -/php/config.php:252
+msgid "Header Image Height (px)"
+msgstr ""
+
+#: -/php/config.php:259
+msgid "Post Thumbnail Width (px)"
+msgstr ""
+
+#: -/php/config.php:266
+msgid "Post Thumbnail Height (px)"
+msgstr ""
+
+#: -/php/config.php:273
+msgid "Content Width (px)"
+msgstr ""
+
+#: -/php/config.php:281
+msgid "Remove theme modifications when changing themes"
+msgstr ""
+
+#: -/php/config.php:286
+msgid "(none)"
+msgstr ""
+
+#: -/php/config.php:287
+msgid "(any collection)"
+msgstr ""
+
+#: -/php/config.php:293
+msgid "full"
+msgstr ""
+
+#: -/php/config.php:299
+msgid "Webcomic"
+msgstr ""
+
+#: -/php/config.php:317
+msgid "Resize webcomics to fit the available space"
+msgstr ""
+
+#: -/php/config.php:324
+msgid "Place webcomic in the content column"
+msgstr ""
+
+#: -/php/config.php:331
+msgid "Show navigation above the webcomic"
+msgstr ""
+
+#: -/php/config.php:338
+msgid "Show navigation below the webcomic"
+msgstr ""
+
+#: -/php/config.php:345
+msgid "Show webcomic on the front page"
+msgstr ""
+
+#: -/php/config.php:352
+msgid "Start with this webcomic on the front page:"
+msgstr ""
+
+#: -/php/config.php:355
+msgid "Most Recently Published"
+msgstr ""
+
+#: -/php/config.php:356
+msgid "Chronologically First"
+msgstr ""
+
+#: -/php/config.php:363
+msgid "Show webcomics from this collection on the front page:"
+msgstr ""
+
+#: -/php/config.php:371
+msgid "Link webcomic attachments to:"
+msgstr ""
+
+#: -/php/config.php:374
+msgid "Nothing"
+msgstr ""
+
+#: -/php/config.php:375
+msgid "Next webcomic"
+msgstr ""
+
+#: -/php/config.php:376
+msgid "Previous webcomic"
+msgstr ""
+
+#: -/php/config.php:383
+msgid "Show webcomic previews of this size on archive pages:"
+msgstr ""
+
+#: -/php/config.php:390
+msgid "First Webcomic Image"
+msgstr ""
+
+#: -/php/config.php:395
+msgid "Last Webcomic Image"
+msgstr ""
+
+#: -/php/config.php:400
+msgid "Previous Webcomic Image"
+msgstr ""
+
+#: -/php/config.php:405
+msgid "Next Webcomic Image"
+msgstr ""
+
+#: -/php/config.php:410
+msgid "Random Webcomic Image"
+msgstr ""
+
+#: -/php/media.php:31
+msgid "Inkblot Page Background"
+msgstr ""
+
+#: -/php/media.php:33
+msgid "Inkblot Webcomic Navigation Image"
+msgstr ""
+
+#: -/php/pages.php:29
+msgid "Inkblot Options"
+msgstr ""
+
+#: -/php/pages.php:91
+msgid ""
+"Select one of the following templates to modify template-specific options:"
+msgstr ""
+
+#: -/php/pages.php:103
+msgid "Webcomic Archive Options"
+msgstr ""
+
+#: -/php/pages.php:115
+#, php-format
+msgid "<label>Show webcomics as %1$s grouped by %2$s</label>"
+msgstr ""
+
+#: -/php/pages.php:121
+msgid "text links"
+msgstr ""
+
+#: -/php/pages.php:130
+msgid "collection"
+msgstr ""
+
+#: -/php/pages.php:132
+msgid "storyline"
+msgstr ""
+
+#: -/php/pages.php:134
+msgid "character"
+msgstr ""
+
+#: -/php/pages.php:140
+msgid "Webcomic Homepage Options"
+msgstr ""
+
+#: -/php/pages.php:142
+#, php-format
+msgid "<label>Show the %1$s webcomic</label>"
+msgstr ""
+
+#: -/php/pages.php:149
+msgid "chronologically first"
+msgstr ""
+
+#: -/php/pages.php:151
+msgid "most recently published"
+msgstr ""
+
+#: -/php/pages.php:159
+#, php-format
+msgid ""
+"<a href=\"%s\" target=\"_blank\">Webcomic</a> is not installed. Selecting "
+"the following templates will not change the appearance of this page:"
+msgstr ""
+
+#: -/php/tags.php:95
+#, php-format
+msgid ""
+" on <a href=\"%1$s\" title=\"%2$s\" rel=\"bookmark\"><time datetime=\"%3$s\">"
+"%4$s</time></a>"
+msgstr ""
+
+#: -/php/tags.php:102
+#, php-format
+msgid " by <a href=\"%1$s\" rel=\"author\">%2$s</a>"
+msgstr ""
+
+#: -/php/tags.php:107
+#, php-format
+msgid "<a href=\"%s\" class=\"post-edit-link\">Edit This</a>"
+msgstr ""
+
+#: -/php/tags.php:110
+#, php-format
+msgid ""
+"Published%1$s%2$s%3$s%4$s%5$s<span class=\"post-actions\">%6$s%7$s%8$s</span>"
+msgstr ""
+
+#: -/php/tags.php:111 -/php/tags.php:139 webcomic/transcripts.php:30
+msgid " in "
+msgstr ""
+
+#: -/php/tags.php:112
+msgid " as part of "
+msgstr ""
+
+#: -/php/tags.php:113
+msgid " featuring "
+msgstr ""
+
+#: -/php/tags.php:117
+msgid "Purchase"
+msgstr ""
+
+#: -/php/tags.php:122 -/php/tags.php:138
+#, php-format
+msgid "Published%1$s%2$s%3$s%4$s<span class=\"post-actions\">%5$s</span>"
+msgstr ""
+
+#: -/php/tags.php:123
+#, php-format
+msgid " in <a href=\"%1$s\" title=\"Return to %2$s\" rel=\"gallery\">%3$s</a>"
+msgstr ""
+
+#: -/php/tags.php:128
+#, php-format
+msgid ""
+" at <a href=\"%1$s\" title=\"Link to full-size image\">%2$s &times; %3$s</a>"
+msgstr ""
+
+#: -/php/tags.php:139 -/php/tags.php:140 webcomic/transcripts.php:30
+msgid ", "
+msgstr ""
+
+#: -/php/tags.php:140
+msgid " and tagged "
+msgstr ""
+
+#: -/php/tags.php:195
+#, php-format
+msgid ""
+"%1$s%2$s on <a href=\"%3$s\"><time datetime=\"%4$s\">%5$s @ %6$s</time></a>"
+msgstr ""
+
+#: -/php/tags.php:210
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: -/php/tags.php:433
+msgid "Home"
+msgstr ""
+
+#: webcomic/archive.php:24
+#, php-format
+msgid "%s Crossover Archive"
+msgstr ""
+
+#: webcomic/archive.php:26
+#, php-format
+msgid "Webcomics from %s"
+msgstr ""
+
+#: webcomic/archive.php:28
+#, php-format
+msgid "Appearances in %s"
+msgstr ""
+
+#: webcomic/archive.php:33
+msgid "Webcomic Storyline Archive"
+msgstr ""
+
+#: webcomic/archive.php:38
+msgid "Webcomic Character Archive"
+msgstr ""
+
+#: webcomic/home.php:44 webcomic/template-home.php:48
+msgid "No Webcomics"
+msgstr ""
+
+#: webcomic/home.php:47 webcomic/template-home.php:51
+#, php-format
+msgid ""
+"Ready to publish your first webcomic? <a href=\"%s\">Start here &raquo;</a>"
+msgstr ""
+
+#: webcomic/prints.php:32
+msgid "%total Original Print"
+msgstr ""
+
+#: webcomic/prints.php:36
+msgid "%total Domestic"
+msgstr ""
+
+#: webcomic/prints.php:39
+msgid "%total International"
+msgstr ""
+
+#: webcomic/restricted.php:20
+msgid "Restricted Content"
+msgstr ""
+
+#: webcomic/restricted.php:23
+msgid "Apologies, but you don't have permission to view this content."
+msgstr ""
+
+#: webcomic/restricted.php:29
+msgid "Age Restricted Content"
+msgstr ""
+
+#: webcomic/restricted.php:33
+msgid "We must verify your age before you can continue."
+msgstr ""
+
+#: webcomic/restricted.php:36
+msgid "Date of Birth"
+msgstr ""
+
+#: webcomic/restricted.php:37
+msgid "Verify Age"
+msgstr ""
+
+#: webcomic/restricted.php:40
+msgid "Apologies, but you're not old enough to view this content."
+msgstr ""
+
+#: webcomic/transcripts.php:22
+msgid "Transcripts"
+msgstr ""
+
+#: webcomic/transcripts.php:30
+#, php-format
+msgid "Transcribed by %1$s%2$s"
+msgstr ""
+
+#: webcomic/webcomic.php:14 webcomic/webcomic.php:24
+msgid "&laquo;"
+msgstr ""
+
+#: webcomic/webcomic.php:15 webcomic/webcomic.php:25
+msgid "&lsaquo;"
+msgstr ""
+
+#: webcomic/webcomic.php:16 webcomic/webcomic.php:26
+msgid "&infin;"
+msgstr ""
+
+#: webcomic/webcomic.php:17 webcomic/webcomic.php:27
+msgid "&rsaquo;"
+msgstr ""
+
+#: webcomic/webcomic.php:18 webcomic/webcomic.php:28
+msgid "&raquo;"
+msgstr ""
