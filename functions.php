@@ -62,12 +62,12 @@ class Inkblot {
 		self::$dir = trailingslashit( get_template_directory() );
 		self::$url = trailingslashit( get_template_directory_uri() );
 		
-		add_action( 'wp_head', function_exists( 'inkblot_head' ) ? 'inkblot_head' : array( $this, 'head' ), 0 );
-		add_action( 'wp_title', function_exists( 'inkblot_title' ) ? 'inkblot_title' : array( $this, 'title' ), 10, 3 );
-		add_action( 'wp_loaded', function_exists( 'inkblot_wp_loaded' ) ? 'inkblot_wp_loaded' : array( $this, 'loaded' ) );
+		add_action( 'wp_head', function_exists( 'inkblot_head' ) ? 'inkblot_head' : array( $this, 'wp_head' ), 0 );
+		add_action( 'wp_title', function_exists( 'inkblot_title' ) ? 'inkblot_title' : array( $this, 'wp_title' ), 10, 3 );
+		add_action( 'wp_loaded', function_exists( 'inkblot_wp_loaded' ) ? 'inkblot_wp_loaded' : array( $this, 'wp_loaded' ) );
 		add_action( 'widgets_init', function_exists( 'inkblot_widgets_init' ) ? 'inkblot_widgets_init' : array( $this, 'widgets_init' ) );
 		add_action( 'wp_head', function_exists( 'inkblot_customize_head' ) ? 'inkblot_customize_head' : array( $this, 'customize_head' ) );
-		add_action( 'wp_enqueue_scripts', function_exists( 'inkblot_enqueue_scripts' ) ? 'inkblot_enqueue_scripts' : array( $this, 'enqueue_scripts' ) );
+		add_action( 'wp_enqueue_scripts', function_exists( 'inkblot_enqueue_scripts' ) ? 'inkblot_enqueue_scripts' : array( $this, 'wp_enqueue_scripts' ) );
 		add_action( 'after_setup_theme', function_exists( 'inkblot_after_setup_theme' ) ? 'inkblot_after_setup_theme' : array( $this, 'after_setup_theme' ) );
 		add_action( 'customize_register', function_exists( 'inkblot_customize_register' ) ? 'inkblot_customize_register' : array( $this, 'customize_register' ), 10, 1 );
 		
@@ -82,7 +82,7 @@ class Inkblot {
 	 * @uses inkblot_page_description()
 	 * @hook wp_head
 	 */
-	public function head() { ?>
+	public function wp_head() { ?>
 		<meta charset="<?php bloginfo( 'charset' ); ?>">
 		<meta name="description" content="<?php inkblot_page_description(); ?>">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1">
@@ -100,7 +100,7 @@ class Inkblot {
 	 * @return string
 	 * @hook wp_title
 	 */
-	public function title( $title, $sep, $location ) {
+	public function wp_title( $title, $sep, $location ) {
 		global $page, $paged;
 		
 		if ( is_feed() ) {
@@ -132,7 +132,7 @@ class Inkblot {
 	 * @uses Inkblot::$dir
 	 * @action wp_loaded
 	 */
-	public function loaded() {
+	public function wp_loaded() {
 		if ( isset( $_GET[ 'inkblot_styles' ] ) ) {
 			header( 'Content-Type: text/css' );
 			
@@ -195,7 +195,7 @@ class Inkblot {
 	 * @uses Inkblot::$preview
 	 * @hook wp_enqueue_scripts
 	 */
-	public function enqueue_scripts() {
+	public function wp_enqueue_scripts() {
 		wp_enqueue_style( 'inkblot-theme', add_query_arg( array( 'inkblot_styles' => '' ), home_url( '/' ) ) );
 		
 		if ( get_theme_mod( 'page_font' ) or get_theme_mod( 'title_font' ) or get_theme_mod( 'trim_font' ) ) {
