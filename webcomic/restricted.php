@@ -1,10 +1,10 @@
 <?php
 /** Webcomic restricted template.
- * 
+ *
  * This template will be displayed in place of the normal post
  * content when a user with an innapropriate role or an unknown or
- * inappropriate age tries to view an age-restricted Webcomic. The
- * age verification form requires only a single input named
+ * inappropriate age tries to view aa restricted Webcomic. The age
+ * verification form requires only a single input named
  * `webcomic_birthday`.
  * 
  * @package Inkblot

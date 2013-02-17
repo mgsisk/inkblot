@@ -9,8 +9,7 @@
  * @see github.com/mgsisk/webcomic/wiki/Templates
  */
 
-/** Reverse the order of Webcomic archive pages so older webcomics appear first.
- */
+/** Reverse the order of Webcomic archive pages so older webcomics appear first. */
 global $wp_query;
 
 query_posts( array_merge( $wp_query->query_vars, array( 'order' => 'ASC' ) ) );

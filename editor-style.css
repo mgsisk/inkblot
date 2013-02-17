@@ -3,7 +3,7 @@
  * To keep things simple and avoid duplicating a lot of style rules
  * we just import normalize.css, style.css, and custom.css, then
  * tweak as appropriate. Things may not match up perfectly since
- * a lot of the site look can be changed witht the customizer.
+ * a lot of the site look can be changed with the customizer.
  * 
  * @package Inkblot
  */
@@ -28,4 +28,4 @@ body {
 .wp-caption-dd {
 	font-size: smaller;
 	margin: .5rem 0 0;
-}
+}}
