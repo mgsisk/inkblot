@@ -439,9 +439,8 @@ if ( !class_exists( 'Walker_InkblotPageMenu_Dropdown' ) ) {
 			
 			if ( !empty( $current_page ) ) {
 				$current_page_object = get_page( $current_page );
-				_get_post_ancestors( $current_page_object );
 				
-				if ( isset( $current_page_object->ancestors )and in_array( $page->ID, ( array ) $current_page_object->ancestors ) ) {
+				if ( $ancestors = get_post_ancestors( $current_page_object->ID ) and in_array( $page->ID, ( array ) $ancestors ) ) {
 					$classes[] = 'current_page_ancestor';
 				}
 				
