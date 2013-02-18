@@ -37,4 +37,4 @@
 				</nav>
 			</header><!-- #header -->
 			<div id="content">
-				<div id="content-header" role="complementary" class="widgets"><?php dynamic_sidebar( 'content-header' ); ?></div><!-- #content-header -->?php dynamic_sidebar( 'content-header' ); ?></div><!-- #content-header -->
+				<div id="content-header" role="complementary" class="widgets"><?php dynamic_sidebar( 'content-header' ); ?></div><!-- #content-header -->
