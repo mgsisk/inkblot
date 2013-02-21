@@ -16,14 +16,33 @@ class InkblotAdmin extends Inkblot {
 	 * @uses InkblotAdmin::after_switch_theme()
 	 * @uses InkblotMedia
 	 * @uses InkbotPages
+	 * @uses InkbotConfig
 	 */
 	public function __construct() {
 		parent::__construct();
 		
+		add_action( 'admin_init', array( $this, 'admin_init' ) );
 		add_action( 'after_switch_theme', array( $this, 'after_switch_theme' ) );
 		
 		require_once self::$dir . '-/php/media.php'; new InkblotMedia;
 		require_once self::$dir . '-/php/pages.php'; new InkblotPages;
+		require_once self::$dir . '-/php/config.php'; new InkblotConfig;
+	}
+	
+	/** Handle dynamic requests and remove taxonomy submenus.
+	 * 
+	 * Dynamic request must have a 'webcomic_admin_ajax' value that is a
+	 * valid callback in the form of a static class method, like
+	 * 'Webcomic::method'.
+	 * 
+	 * @hook admin_init
+	 */
+	public function admin_init() {
+		if ( ( isset( $_GET[ 'inkblot_admin_ajax' ] ) or isset( $_POST[ 'inkblot_admin_ajax' ] ) ) and isset( $_SERVER[ 'HTTP_X_REQUESTED_WITH' ] ) and 'xmlhttprequest' === strtolower( $_SERVER[ 'HTTP_X_REQUESTED_WITH' ] ) ) {
+			call_user_func_array( explode( '::', isset( $_GET[ 'inkblot_admin_ajax' ] ) ? $_GET[ 'inkblot_admin_ajax' ] : $_POST[ 'inkblot_admin_ajax' ] ), isset( $_GET[ 'inkblot_admin_ajax' ] ) ? $_GET : $_POST );
+			
+			die;
+		}
 	}
 	
 	/** Activation hook.
@@ -31,7 +50,7 @@ class InkblotAdmin extends Inkblot {
 	 * @hook after_switch_theme
 	 */
 	public function after_switch_theme() {
-		if ( get_theme_mod( 'uninstall', false ) ) {
+		if ( get_theme_mod( 'uninstall' ) ) {
 			remove_theme_mods();
 		}
 	}

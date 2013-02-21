@@ -9,12 +9,19 @@
  * @package Inkblot
  */
 class InkblotConfig extends Inkblot {
+	/** Store subtlepatterns.com JSON data.
+	 * @var array
+	 */
+	private $patterns = array();
+	
 	/** Register hooks.
 	 * 
 	 * @uses InkblotConfig::customize_register()
+	 * @uses InkblotConfig::customize_controls_print_scripts()
 	 */
 	public function __construct() {
 		add_action( 'customize_register', array( $this, 'customize_register' ), 10, 1 );
+		add_action( 'customize_controls_print_scripts', array( $this, 'customize_controls_print_scripts' ) );
 	}
 	
 	/** Register theme customization sections, settings, and controls.
@@ -28,11 +35,26 @@ class InkblotConfig extends Inkblot {
 	 * @uses Control_InkblotNumber
 	 * @uses Control_InkblotPageBG
 	 * @uses Control_InkblotWebcomicNavigationImage
+	 * @hook customize_register
 	 */
 	public function customize_register( $customize ) {
 		foreach ( array( 'blogname', 'blogdescription', 'header_textcolor', 'header_image', 'background_color', 'background_image', 'background_repeat', 'background_position_x', 'background_attachment' ) as $v ) {
 			$customize->get_setting( $v )->transport = 'postMessage';
 		}
+		
+		if ( $patterns = wp_remote_get( 'https://api.github.com/repos/subtlepatterns/SubtlePatterns/git/trees/master' ) and !is_wp_error( $patterns ) ) {
+			$this->patterns = json_decode( $patterns[ 'body' ] );
+		}
+		
+		$bg = new Control_InkblotBG( $customize, 'background_image', array(
+			'label'   => __( 'Background Image', 'inkblot' ),
+			'section' => 'background_image',
+			'context' => 'custom-background'
+		) );
+		
+		$bg->add_tab( 'inkblot_bg_more', __( 'More&hellip;', 'inkblot' ), array( $this, 'tab_subtle_patterns' ) );
+		
+		$customize->add_control( $bg );
 		
 		$customize->add_section( 'inkblot_fonts', array( 'title' => __( 'Fonts', 'inkblot' ), 'priority' => 30 ) );
 		$customize->add_setting( 'font_size', array( 'default' => 100, 'transport' => 'postMessage' ) );
@@ -198,7 +220,15 @@ class InkblotConfig extends Inkblot {
 		$customize->add_setting( 'page_background_position_x', array( 'default' => 'left', 'transport' => 'postMessage' ) );
 		$customize->add_setting( 'page_background_attachment', array( 'default' => 'scroll', 'transport' => 'postMessage' ) );
 		
-		$customize->add_control( new Control_InkblotPageBG( $customize ) );
+		$pagebg = new Control_InkblotBG( $customize, 'page_background_image', array(
+			'label'   => __( 'Page Background Image', 'inkblot' ),
+			'section' => 'inkblot_page_background_image',
+			'context' => 'inkblot-page-background'
+		) );
+		
+		$pagebg->add_tab( 'inkblot_pagebg_more', __( 'More&hellip;', 'inkblot' ), array( $this, 'tab_subtle_patterns' ) );
+		
+		$customize->add_control( $pagebg );
 		
 		$customize->add_control( 'page_background_repeat', array(
 			'type'    => 'radio',
@@ -412,6 +442,64 @@ class InkblotConfig extends Inkblot {
 			) ) );
 		}
 	}
+	
+	/** Enqueue custom control scripts.
+	 * 
+	 * @uses Inkblot::$url
+	 * @hook customize_controls_print_scripts
+	 */
+	public function customize_controls_print_scripts() {
+		wp_enqueue_script( 'inkblot-customizer-controls', self::$url . '-/js/admin-customizer-controls.js', array( 'jquery' ), '', true );
+	}
+	
+	/** Render the SubtlePatterns.com background image tab.
+	 * 
+	 * @uses Inkblot::$url
+	 */
+	public function tab_subtle_patterns() {
+		if ( $this->patterns ) {
+			printf( '<blockquote data-inkblot-admin-url="%s"><p><small>%s</small></p></blockquote>', admin_url(), sprintf( __( '%1$s is created and curated by %2$s.', 'inkblot' ), '<a href="http://subtlepatterns.com" target="_blank">Subtle Patterns</a>', '<a href="http://atlemo.com" target="_blank">Atle Mo</a>' ) );
+			
+			foreach ( $this->patterns->tree as $pattern ) {
+				if ( 'png' === substr( $pattern->path, -3 ) ) {
+					printf( '<a href="#" class="thumbnail" data-customize-image-value="https://raw.github.com/subtlepatterns/SubtlePatterns/master/%1$s"><img src="%2$s-/img/subtlepattern.png" title="%3$s" style="background:url(https://raw.github.com/subtlepatterns/SubtlePatterns/master/%1$s)"></a>',
+						$pattern->path,
+						self::$url,
+						str_replace( array( '.png', '_'), array( '', ' ' ), $pattern->path )
+					);
+				}
+			}
+		} else {
+			printf( '<blockquote><p><small>%s</small></p></blockquote>', __( "Sorry, we couldn't connect to <a href='http://subtlepatterns.com' target='_blank'>subtlepatterns.com</a>", 'inkblot' ) );
+		}
+	}
+	
+	/** Import external background images.
+	 * 
+	 * @uses Inkblot::$dir
+	 */
+	public static function ajax_sideload_image( $src, $type, $context ) {
+		if ( $tmp = download_url( $src ) and !is_wp_error( $tmp ) ) {
+			$file = array(
+				'name'     => pathinfo( parse_url( $src, PHP_URL_PATH ), PATHINFO_BASENAME ),
+				'tmp_name' => $tmp
+			);
+			
+			if ( $id = media_handle_sideload( $file, 0, $file[ 'name' ] ) and !is_wp_error( $id ) ) {
+				set_theme_mod( $type, wp_get_attachment_url( $id ) );
+				
+				update_post_meta( $id, '_wp_attachment_context', $context );
+				
+				if ( 'custom-background' === $context ) {
+					update_post_meta( $id, '_wp_attachment_is_custom_background', 'inkblot' );
+				}
+				
+				echo wp_get_attachment_url( $id );
+			} else {
+				set_theme_mod( $type, '' );
+			}
+		}
+	}
 }
 
 if ( class_exists( 'WP_Customize_Control' ) ) {
@@ -450,21 +538,17 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		}
 	}
 	
-	/** Inkblot page background control.
+	/** Inkblot background control.
 	 * 
 	 * @package Inkblot
 	 */
-	class Control_InkblotPageBG extends WP_Customize_Image_Control {
+	class Control_InkblotBG extends WP_Customize_Image_Control {
 		/** Initialize the control.
 		 * 
 		 * @uses WP_Customize_Image_Control::__contruct()
 		 */
-		public function __construct( $manager ) {
-			parent::__construct( $manager, 'page_background_image', array(
-				'label'   => __( 'Page Background Image', 'inkblot' ),
-				'section' => 'inkblot_page_background_image',
-				'context' => 'inkblot-page-background'
-			) );
+		public function __construct( $manager, $id, $args ) {
+			parent::__construct( $manager, $id, $args );
 		}
 		
 		/** Render the uploaded images tab.
@@ -475,7 +559,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 			$backgrounds = get_posts( array(
 				'post_type'  => 'attachment',
 				'meta_key'   => '_wp_attachment_context',
-				'meta_value' => 'inkblot-page-background',
+				'meta_value' => $this->context,
 				'orderby'    => 'none',
 				'nopaging'   => true
 			) );
@@ -489,7 +573,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		}
 	}
 	
-	/** Inkblot first webcomic image control.
+	/** Inkblot webcomic navigation image control.
 	 * 
 	 * @package Inkblot
 	 */
