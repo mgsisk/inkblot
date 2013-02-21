@@ -5,7 +5,7 @@
  * `<head>` we use this file to generate a custom stylesheet based
  * on `normalize.css`, `style.css`, theme modifications, and
  * `custom.css` (in that order). For convenience, the styles are
- * loaded directly into the site `` while actually customizing
+ * loaded directly into the site `<head>` while actually customizing
  * the theme to ensure that live modification previews work
  * correctly.
  * 
