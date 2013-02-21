@@ -38,6 +38,7 @@ class Inkblot {
 	 * 
 	 * @uses Inkblot::$dir
 	 * @uses Inkblot::$url
+	 * @uses Inkblot::customize_preview_init()
 	 * @uses Inkblot::head()
 	 * @uses Inkblot::title()
 	 * @uses Inkblot::loaded()
@@ -62,6 +63,7 @@ class Inkblot {
 		self::$dir = trailingslashit( get_template_directory() );
 		self::$url = trailingslashit( get_template_directory_uri() );
 		
+		add_action( 'customize_preview_init', array( $this, 'customize_preview_init' ) );
 		add_action( 'wp_head', function_exists( 'inkblot_head' ) ? 'inkblot_head' : array( $this, 'wp_head' ), 0 );
 		add_action( 'wp_title', function_exists( 'inkblot_title' ) ? 'inkblot_title' : array( $this, 'wp_title' ), 10, 3 );
 		add_action( 'wp_loaded', function_exists( 'inkblot_wp_loaded' ) ? 'inkblot_wp_loaded' : array( $this, 'wp_loaded' ) );
@@ -74,7 +76,15 @@ class Inkblot {
 		add_filter( 'body_class', function_exists( 'inkblot_body_class' ) ? 'inkblot_body_class' : array( $this, 'body_class' ), 10, 2 );
 		
 		require_once self::$dir . '-/php/tags.php';
-		require_once self::$dir . '-/php/config.php'; new InkblotConfig;
+	}
+	
+	/** Enqueue dynamic preview script.
+	 * 
+	 * @uses Inkblot::$url
+	 * @hook customize_preview_init
+	 */
+	public function customize_preview_init() {
+		wp_enqueue_script( 'inkblot-customizer', self::$url . '-/js/admin-customizer.js', '', '', true );
 	}
 	
 	/** Render the <head> portion of the page.
@@ -216,10 +226,6 @@ class Inkblot {
 		
 		if ( is_singular() and comments_open() and get_option( 'thread_comments' ) ) {
 			wp_enqueue_script( 'comment-reply' );
-		}
-		
-		if ( self::$preview ) {
-			wp_enqueue_script( 'inkblot-preview', self::$url . '-/js/admin-preview.js', '', '', true );
 		}
 	}
 	
