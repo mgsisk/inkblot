@@ -13,7 +13,7 @@
 if ( inkblot_theme_preview() or ( get_theme_mod( 'webcomic_home_hook', true ) and !is_paged() ) ) {
 	$webcomics = new WP_Query( array(
 		'posts_per_page' => 1,
-		'post_type'      => get_theme_mod( 'webcomic_home_collection', '' ) ? get_theme_mod( 'webcomic_home_collection' ) : get_webcomic_collections(),
+		'post_type'      => get_theme_mod( 'webcomic_home_collection' ) ? get_theme_mod( 'webcomic_home_collection' ) : get_webcomic_collections(),
 		'order'          => get_theme_mod( 'webcomic_home_order', 'DESC' )
 	) );
 } else {
@@ -22,7 +22,7 @@ if ( inkblot_theme_preview() or ( get_theme_mod( 'webcomic_home_hook', true ) an
 
 get_header(); ?>
 
-<?php if ( !get_theme_mod( 'webcomic_content', false ) and $webcomics and $webcomics->have_posts() ) : ?>
+<?php if ( !get_theme_mod( 'webcomic_content' ) and $webcomics and $webcomics->have_posts() ) : ?>
 	<?php while ( $webcomics->have_posts() ) : $webcomics->the_post(); ?>
 		<div id="webcomic" class="post-webcomic" data-webcomic-shortcuts data-webcomic-gestures data-webcomic-container>
 			<?php get_template_part( 'webcomic/webcomic', get_post_type() ); ?>
@@ -32,7 +32,7 @@ get_header(); ?>
 <main role="main">
 	<?php if ( $webcomics and $webcomics->have_posts() ) : ?>
 		<?php while ( $webcomics->have_posts() ) : $webcomics->the_post(); ?>
-			<?php if ( get_theme_mod( 'webcomic_content', false ) ) : ?>
+			<?php if ( get_theme_mod( 'webcomic_content' ) ) : ?>
 				<div id="webcomic" class="post-webcomic" data-webcomic-shortcuts data-webcomic-gestures data-webcomic-container>
 					<?php get_template_part( 'webcomic/webcomic', get_post_type() ); ?>
 				</div><!-- .post-webcomic -->
