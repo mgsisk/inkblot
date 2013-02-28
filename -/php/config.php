@@ -32,8 +32,8 @@ class InkblotConfig extends Inkblot {
 	 * updates in the `-/js/admin-preview.js` file.
 	 * 
 	 * @param object $customize WordPress theme customization object.
+	 * @uses Control_InkblotBG
 	 * @uses Control_InkblotNumber
-	 * @uses Control_InkblotPageBG
 	 * @uses Control_InkblotWebcomicNavigationImage
 	 * @hook customize_register
 	 */
@@ -161,6 +161,7 @@ class InkblotConfig extends Inkblot {
 		$customize->add_section( 'inkblot_layout', array( 'title' => __( 'Layout', 'inkblot' ), 'priority' => 20 ) );
 		$customize->add_setting( 'responsive', array( 'default' => true ) );
 		$customize->add_setting( 'content', array( 'default' => 'one-column', 'transport' => 'postMessage' ) );
+		$customize->add_setting( 'responsive_width', array( 'default' => 640 ) );
 		$customize->add_setting( 'min_width', array( 'default' => 0, 'transport' => 'postMessage' ) );
 		$customize->add_setting( 'max_width', array( 'default' => 0, 'transport' => 'postMessage' ) );
 		$customize->add_setting( 'sidebar1_width', array( 'default' => 25, 'transport' => 'postMessage' ) );
@@ -186,32 +187,44 @@ class InkblotConfig extends Inkblot {
 			)
 		) );
 		
+		$customize->add_control( new Control_InkblotNumber( $customize, 'responsive_width', array(
+			'label'    => __( 'Responsive Width (px)', 'inkblot' ),
+			'section'  => 'inkblot_layout',
+			'min'      => 0,
+			'step'     => 10,
+			'priority' => 10
+		) ) );
+		
 		$customize->add_control( new Control_InkblotNumber( $customize, 'min_width', array(
 			'label'    => __( 'Minimum Width (px)', 'inkblot' ),
 			'section'  => 'inkblot_layout',
 			'min'      => 0,
-			'step'     => 10
+			'step'     => 10,
+			'priority' => 15
 		) ) );
 		
 		$customize->add_control( new Control_InkblotNumber( $customize, 'max_width', array(
 			'label'    => __( 'Maximum Width (px)', 'inkblot' ),
 			'section'  => 'inkblot_layout',
 			'min'      => 0,
-			'step'     => 10
+			'step'     => 10,
+			'priority' => 15
 		) ) );
 		
 		$customize->add_control( new Control_InkblotNumber( $customize, 'sidebar1_width', array(
 			'label'    => __( 'Primary Sidebar Width (%)', 'inkblot' ),
 			'section'  => 'inkblot_layout',
 			'min'      => 0,
-			'step'     => 5
+			'step'     => 5,
+			'priority' => 20
 		) ) );
 		
 		$customize->add_control( new Control_InkblotNumber( $customize, 'sidebar2_width', array(
 			'label'    => __( 'Secondary Sidebar Width (%)', 'inkblot' ),
 			'section'  => 'inkblot_layout',
 			'min'      => 0,
-			'step'     => 5
+			'step'     => 5,
+			'priority' => 20
 		) ) );
 		
 		$customize->add_section( 'inkblot_page_background_image', array( 'title' => __( 'Page Background Image', 'inkblot' ), 'priority' => 90 ) );
