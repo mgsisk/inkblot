@@ -137,7 +137,7 @@ class InkblotTag extends Inkblot {
 		} else {
 			$meta = sprintf( __( 'Published%1$s%2$s%3$s%4$s<span class="post-actions">%5$s</span>', 'inkblot' ),
 				get_the_term_list( $post->ID, 'category', __( ' in ', 'inkblot' ), __( ', ', 'inkblot' ) ),
-				get_the_tag_list( __( ' and tagged ', 'inkblot' ), _( ', ', 'inkblot' ) ),
+				get_the_tag_list( __( ' and tagged ', 'inkblot' ), __( ', ', 'inkblot' ) ),
 				$date,
 				$author,
 				$edit
