@@ -3,6 +3,7 @@
  * @package Inkblot
  */
 jQuery( function( $ ) {
+	/** Sideload subtlepatterns.com background images to prevent hotlinking. */
 	$( document ).ajaxComplete( function() {
 		if ( 'none' !== $( '#customize-section-background_image .preview-thumbnail img' ).css( 'display' ) && $( '#customize-section-background_image .preview-thumbnail img' ).attr( 'src' ) && -1 < $( '#customize-section-background_image .preview-thumbnail img' ).attr( 'src' ).indexOf( 'raw.github.com/subtlepatterns/SubtlePatterns/master' ) ) {
 			sideload_image( $( '#customize-section-background_image .preview-thumbnail img' ), 'background_image', 'custom-background' );
@@ -13,6 +14,7 @@ jQuery( function( $ ) {
 		}
 	} );
 	
+	/** Toggle page background controls. */
 	if ( !$( '#customize-section-inkblot_page_background_image .preview-thumbnail img' ).attr( 'src' ) ) {
 		page_bg_controls( false );
 	}
