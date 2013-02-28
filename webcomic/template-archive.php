@@ -22,7 +22,6 @@ $webcomic_collection = get_post_meta( get_the_ID(), 'webcomic_collection', true 
 <main role="main">
 	<?php while ( have_posts() ) : the_post(); ?>
 		<?php get_template_part( 'content', 'page' ); ?>
-		<?php comments_template( '', true ); ?>
 	<?php endwhile;?>
 	<?php if ( 'character' === $webcomic_group ) : ?>
 		<?php webcomic_list_characters( array( 'webcomics' => true, 'target' => 'first', 'webcomic_image' => $webcomic_image, 'collection' => $webcomic_collection ) ); ?>
@@ -31,6 +30,7 @@ $webcomic_collection = get_post_meta( get_the_ID(), 'webcomic_collection', true 
 	<?php else : ?>
 		<?php webcomic_list_collections( array( 'webcomics' => true, 'target' => 'first', 'webcomic_image' => $webcomic_image, 'collection' => $webcomic_collection ) ); ?>
 	<?php endif; ?>
+	<?php comments_template( '', true ); ?>
 </main>
 
 <?php get_sidebar(); ?>
