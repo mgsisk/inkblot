@@ -26,7 +26,7 @@ get_header(); $object = get_queried_object(); $taxonomy = empty( $object->taxono
 			<?php elseif ( is_year() ) : ?>
 				<hgroup>
 					<h1><?php _e( 'Yearly Archives', 'inkblot' ); ?></h1>
-					<h2><?php the_date( _( 'Y', 'inkblot' ) ); ?></h2>
+					<h2><?php the_date( __( 'Y', 'inkblot' ) ); ?></h2>
 				</hgroup>
 			<?php elseif ( is_category() ) : ?>
 				<hgroup>
