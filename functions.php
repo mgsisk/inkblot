@@ -235,7 +235,7 @@ class Inkblot {
 	 * @hook after_setup_theme
 	 */
 	public function after_setup_theme() {
-		load_theme_textdomain( 'inkblot', self::$dir . '-/locale' );
+		load_theme_textdomain( 'inkblot', self::$dir . '-/i18n' );
 		
 		add_editor_style();
 		
