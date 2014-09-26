@@ -1,6 +1,6 @@
 <?php
 /**
- * Generic archive template.
+ * Author archive template.
  * 
  * For Webcomic-specific archives, see `webcomic/archive.php`.
  * 
@@ -11,21 +11,19 @@
 get_header(); ?>
 
 <main role="main">
-	
+
 	<?php if (have_posts()) : ?>
-		
+
 		<header class="page-header">
-			<h1>
-				<?php
-					is_post_type_archive()
-					? post_type_archive_title()
-					: _e('Archive', 'inkblot');
-				?>
-			</h1>
+			<h1><?php print apply_filters('the_author', get_the_author_meta('display_name')); ?></h1>
 		</header><!-- .page-header -->
 		
-		<?php if (is_post_type_archive() and $post_type = get_queried_object() and $post_type->description) : ?>
-			<div class="page-content"><?php print wpautop($post_type->description); ?></div><!-- .page-content -->
+		<?php if (get_avatar(get_the_author_meta('user_email'))) : ?>
+			<div class="page-image"><?php print get_avatar(get_the_author_meta('user_email'), 128); ?></div><!-- .page-image -->
+		<?php endif; ?>
+		
+		<?php if (get_the_author_meta('description')) : ?>
+			<div class="page-content"><?php the_author_meta('description'); ?></div><!-- .page-content -->
 		<?php endif; ?>
 		
 		<?php

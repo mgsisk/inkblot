@@ -1,6 +1,6 @@
 <?php
 /**
- * Generic archive template.
+ * Tag archive template.
  * 
  * For Webcomic-specific archives, see `webcomic/archive.php`.
  * 
@@ -15,17 +15,11 @@ get_header(); ?>
 	<?php if (have_posts()) : ?>
 		
 		<header class="page-header">
-			<h1>
-				<?php
-					is_post_type_archive()
-					? post_type_archive_title()
-					: _e('Archive', 'inkblot');
-				?>
-			</h1>
+			<h1><?php single_tag_title(); ?></h1>
 		</header><!-- .page-header -->
 		
-		<?php if (is_post_type_archive() and $post_type = get_queried_object() and $post_type->description) : ?>
-			<div class="page-content"><?php print wpautop($post_type->description); ?></div><!-- .page-content -->
+		<?php if (tag_description()) : ?>
+			<div class="page-content"><?php print tag_description(); ?></div><!-- .page-content -->
 		<?php endif; ?>
 		
 		<?php
