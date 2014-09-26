@@ -1,0 +1,35 @@
+/*!
+Theme Name: Inkblot
+Theme URI: http://github.com/mgsisk/inkblot
+Author: Michael Sisk
+Author URI: http://mgsisk.com
+License: GPL2
+License URI: http://gnu.org/licenses/gpl-2.0.html
+Version: 4.1
+Description: Elegant, fully responsive, highly customizable <a href="http://wordpress.org/plugins/webcomic" target="_blank">Webcomic</a>-ready theme named in honor of Rorschach from the Watchmen graphic novel.
+Tags: dark, light, white, black, gray, one-column, two-columns, three-columns, left-sidebar, right-sidebar, fixed-layout, fluid-layout, responsive-layout, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, microformats, post-formats, rtl-language-support, sticky-post, theme-options, translation-ready
+Webcomic: 4.0.7
+*/
+
+// Unless you know how to use SASS you probably don't want to modify any of
+// the files in this directory; making changes to the styles here will have
+// no effect on your site unless you generate a new `style.css` file with SASS.
+// For more information about SASS, see sass-lang.com
+
+/*!
+===== PLEASE READ THIS ========================================================
+You can make a lot of common style modifications using the WordPress Theme
+Customizer. If you really want to tweak the CSS directly, you should do so in
+the `custom.css` file. Modificaitons made with the Theme Customizer may
+override changes you make in the `style.css` file.
+===============================================================================
+*/
+
+@import 'helpers';
+@import 'normalize';
+@import 'basics';
+@import 'layout';
+@import 'posts';
+@import 'pages';
+@import 'comments';
+@import 'wordpress';

@@ -1,0 +1,435 @@
+/** 
+ * This stylesheet is used in addition to the `style.css` file for
+ * right-to-left languages.
+ */
+
+@import 'helpers';
+
+html .rtl {
+	direction: rtl;
+	unicode-bidi: embed;
+}
+
+body {
+	direction: rtl;
+	unicode-bidi: embed;
+}
+
+#header {
+	nav {
+		&:before {
+			left: 1rem;
+			right: auto;
+		}
+	}
+	
+	ul {
+		ul {
+			ul {
+				left: auto;
+				right: 100%;
+			}
+		}
+	}
+	
+	li {
+		float: right;
+	}
+	
+	.page_item_has_children {
+		> a {
+			&:after {
+				content: '';
+				margin: 0;
+			}
+			
+			&:before {
+				content: '\f13a';
+				font: $awesome;
+				margin: 0 .5rem 0 0;
+			}
+		}
+		
+		.page_item_has_children > a {
+			&:after {
+				content: '';
+				margin: 0;
+			}
+			
+			&:before {
+				content: '\f137';
+				font: $awesome;
+				margin: 0 .5rem 0 0;
+			}
+		}
+	}
+}
+
+.widgets {
+	aside {
+		float: right;
+	}
+}
+
+.post {
+	&-image {
+		float: left;
+		margin: 0 1rem 1rem 0;
+	}
+	
+	&-header {
+		h1 {
+			a {
+				&:before {
+					padding: 0;
+					
+					.format-audio &,
+					.format-image &,
+					.format-gallery &,
+					.format-video &,
+					.format-aside &,
+					.format-status &,
+					.format-link &,
+					.format-quote &,
+					.format-chat &,
+					.sticky & {
+						content: '';
+					}
+				}
+				
+				&:after {
+					font: $awesome;
+					padding: 0 0 0 .5rem;
+					vertical-align: baseline;
+					
+					.format-audio & {
+						content: '\f025';
+					}
+					
+					.format-image &,
+					.format-gallery & {
+						content: '\f03e';
+					}
+					
+					.format-video & {
+						content: '\f03d';
+					}
+					
+					.format-aside & {
+						content: '\f036';
+					}
+					
+					.format-status & {
+						content: '\f141';
+					}
+					
+					.format-link & {
+						content: '\f08e';
+					}
+					
+					.format-quote & {
+						content: '\f10d';
+					}
+					
+					.format-chat & {
+						content: '\f0e6';
+					}
+					
+					.sticky & {
+						content: '\f192';
+					}
+				}
+			}
+		}
+	}
+	
+	&-details {
+		@include clear;
+		
+		a {
+			float: right;
+			
+			&:before {
+				padding: 0;
+			}
+			
+			&:first-child:before,
+			&[rel="author"]:before,
+			&[rel="bookmark"]:before,
+			&[rel="gallery"]:before,
+			&[href*="/#comments"]:before,
+			&[href*="#respond"]:before,
+			&.image:before,
+			&.post-edit-link:before {
+				content: '';
+			}
+			
+			&:after {
+				font: $awesome;
+				padding: 0 1rem 0 .25rem;
+			}
+			
+			&:first-child:after {
+				padding: 0 0 0 .25rem;
+			}
+			
+			&[rel="author"]:after {
+				content: '\f007';
+			}
+			
+			&[rel="bookmark"]:after {
+				content: '\f133';
+			}
+			
+			&[rel="gallery"]:after {
+				content: '\f00a';
+			}
+			
+			&[href*="/#comments-"]:after,
+			&[href*="#respond-"]:after {
+				content: '\f086';
+			}
+			
+			&.image:after {
+				content: '\f03e';
+			}
+			
+			&.post-edit-link:after {
+				content: '\f044';
+			}
+		}
+	}
+	
+	&-footer {
+		span {
+			&:before,
+			&:first-child:before {
+				padding: 0;
+			}
+			
+			&:after {
+				padding: 0 1rem 0 .5rem;
+			}
+			
+			&:last-child:after {
+				padding: 0 0 0 .25rem;
+			}
+		}
+		
+		.post {
+			&-categories:before,
+			&-tags:before {
+				content: '';
+			}
+			
+			&-categories:after {
+				content: '\f07c';
+			}
+			
+			&-tags:after {
+				content: '\f02b';
+			}
+		}
+		
+		.webcomic {
+			&-collections:before,
+			&-storylines:before,
+			&-characters:before {
+				content: '';
+			}
+			
+			&-collections:after {
+				content: '\f1c5';
+			}
+			
+			&-storylines:after {
+				content: '\f02d';
+			}
+			
+			&-characters:after {
+				content: '\f0c0';
+			}
+		}
+	}
+}
+
+.more-link {
+	&:before {
+		content: '\f137';
+	}
+}
+
+nav {
+	&.posts,
+	&.comments-paged {
+		a {
+			&:last-child {
+				float: left;
+				margin: 0 1rem 0 0;
+			}
+			
+			&:first-child {
+				float: right;
+				margin: 0 0 0 1rem;
+			}
+		}
+	}
+}
+
+.page {
+	&-header h1 {
+		&:before {
+			.search &,
+			.archive &,
+			.archive.author &,
+			.archive.category &,
+			.archive.date &,
+			.archive.tag &,
+			.archive.taxonomy &,
+			.archive.post-type-archive-webcomic &,
+			.archive.tax-webcomic_storyline &,
+			.archive.tax-webcomic_character & {
+				content: '';
+				padding: 0;
+			}
+		}
+		
+		&:after {
+			.search &,
+			.archive & {
+				content: '\f187';
+				font: $awesome;
+				padding: 0 0 0 .5rem;
+			}
+			
+			.search & {
+				content: '\f002';
+			}
+			
+			.archive.author & {
+				content: '\f007';
+			}
+			
+			.archive.category & {
+				content: '\f07c';
+			}
+			
+			.archive.date & {
+				content: '\f133';
+			}
+			
+			.archive.tag &,
+			.archive.taxonomy & {
+				content: '\f02b';
+			}
+			
+			.archive.post-type-archive-webcomic & {
+				content: '\f1c5';
+			}
+			
+			.archive.tax-webcomic_storyline & {
+				content: '\f02d';
+			}
+			
+			.archive.tax-webcomic_character & {
+				content: '\f0c0';
+			}
+		}
+	}
+	
+	&-image {
+		float: right;
+		margin: 0 0 1rem 1rem;
+	}
+}
+
+.contributor {
+	&-image {
+		float: right;
+		margin: 0 0 1rem 1rem;
+	}
+}
+
+.comment {
+	&-reply-link {
+		&:before {
+			content: '';
+		}
+		
+		&:after {
+			content: '\f112';
+		}
+	}
+	
+	&-edit-link {
+		&:before {
+			content: '';
+		}
+		
+		&:after {
+			content: '\f044';
+		}
+	}
+	
+	&-reply-title a {
+		&:before {
+			content: '';
+			padding: 0;
+		}
+	
+		&:after {
+			content: '\f057';
+			font: $awesome;
+			padding: 0 0 0 .25rem;
+		}
+	}
+	
+	.comment {
+		border: 0;
+		border-right: $border;
+	}
+	
+	footer {
+		@include clear;
+		
+		img {
+			float: right;
+			margin: 0 0 0 1rem;
+		}
+		
+		a {
+			float: right;
+			vertical-align: middle;
+			
+			&:before {
+				padding: 0;
+			}
+			
+			&:after {
+				font: $awesome;
+				padding: 0 1rem 0 .25rem;
+			}
+		}
+		
+		.time {
+			&:before {
+				content: '';
+			}
+			
+			&:after {
+				content: '\f133';
+			}
+		}
+	}
+}
+
+.pingback,
+.trackback {
+	@extend .comment;
+}
+
+.gallery {
+	&-item {
+		float: right;
+	}
+}

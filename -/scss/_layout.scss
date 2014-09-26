@@ -1,0 +1,263 @@
+#document > a[href="#content"]:first-child {
+	@include read-focus;
+}
+
+#document > .document-header,
+#document > .document-footer {
+	margin: auto;
+}
+
+#page {
+	background: $background-color;
+	box-shadow: 0 0 1rem rgba(0, 0, 0, $opacity / 4);
+	margin: auto;
+	padding: 1px;
+	position: relative;
+	
+	a {
+		color: $anchor-color;
+		
+		&:focus,
+		&:hover {
+			color: $text-color;
+		}
+	}
+}
+
+main,
+#sidebar1,
+#sidebar2 {
+	padding: 1rem;
+}
+
+.one-column #sidebar1,
+.one-column #sidebar2 {
+	display: none;
+}
+
+.two-column {
+	&-left main,
+	&-right #sidebar1 {
+		float: left;
+	}
+	
+	&-right main,
+	&-left #sidebar1 {
+		float: right;
+	}
+	
+	&-left #sidebar2,
+	&-right #sidebar2 {
+		display: none;
+	}
+}
+
+.three-column {
+	&-left main,
+	&-right #sidebar1,
+	&-right #sidebar2,
+	&-center main,
+	&-center #sidebar1,
+	&-center #sidebar2 {
+		float: left;
+	}
+	
+	&-right main,
+	&-left #sidebar1,
+	&-left #sidebar2 {
+	float: right;
+	}
+	
+	&-center main,
+	&-center #sidebar1 {
+		position: relative;
+	}
+}
+
+#header {
+	position: relative;
+	
+	> a {
+		color: $text-color;
+		display: block;
+		line-height: 1.4;
+		padding: 0;
+		white-space: normal;
+		
+		&:focus,
+		&:hover {
+			color: $text-color;
+			opacity: $opacity;
+		}
+		
+		&:active {
+			opacity: $opacity / 2;
+		}
+	}
+	
+	h1 {
+		line-height: 1;
+		margin: 0;
+		padding: 1rem 1rem 0 1rem;
+	}
+	
+	p {
+		line-height: 2;
+		margin: 0;
+		padding: 0 1rem 1rem 1rem;
+	}
+	
+	nav {
+		@include clear;
+		
+		background: $text-color;
+		color: $background-color;
+		position: relative;
+		
+		&:before {
+			@include hide;
+			
+			content: '\f0c9';
+			font: $awesome;
+			line-height: 2.4;
+			pointer-events: none;
+			position: absolute;
+			right: 1rem;
+			top: 0;
+		}
+		
+		a {
+			color: $anchor-color;
+			display: block;
+			line-height: 2.4;
+			padding: 0 1rem;
+			white-space: pre;
+			
+			&:focus,
+			&:hover {
+				color: $background-color;
+			}
+		}
+	}
+	
+	ul {
+		list-style: none;
+		transition: opacity .2s,
+			visibility .2s;
+		
+		ul {
+			background: $text-color;
+			box-shadow: 0 0 1rem rgba(0, 0, 0, $opacity / 4);
+			color: $background-color;
+			opacity: 0;
+			position: absolute;
+			visibility: hidden;
+			z-index: 99;
+			
+			ul {
+				left: 100%;
+				top: 0;
+			}
+		}
+	}
+	
+	li {
+		float: left;
+		position: relative;
+		
+		&:hover > ul {
+			opacity: 1;
+			visibility: visible;
+		}
+		
+		&:focus > a,
+		&:hover > a,
+		&.current_page_item > a,
+		&.current_page_ancestor > a {
+			color: $background-color;
+		}
+	}
+	
+	.page_item_has_children {
+		> a:after {
+			content: '\f13a';
+			font: $awesome;
+			margin: 0 0 0 .5rem;
+		}
+		
+		.page_item_has_children > a:after {
+			content: '\f138';
+		}
+	}
+	
+	select {
+		@include hide;
+		
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		appearance: none;
+		background: $text-color;
+		border: 0;
+		border-radius: 0;
+		color: $background-color;
+		cursor: pointer;
+		line-height: 2.4;
+		padding: 0 1rem;
+	}
+}
+
+#content {
+	@include clear;
+}
+
+#footer {
+	background: $text-color;
+	color: $background-color;
+	line-height: 1;
+	padding: 1rem;
+	
+	a {
+		color: $anchor-color;
+		
+		&:focus,
+		&:hover {
+			color: $background-color;
+		}
+	}
+}
+
+form.search {
+	label {
+		@include read-focus;
+	}
+	
+	input {
+		width: 100%;
+	}
+}
+
+.widgets {
+	@include clear;
+	
+	aside {
+		float: left;
+		word-wrap: break-word;
+		
+		h1 {
+			font-size: 100%;
+			margin: 1rem 0;
+		}
+	}
+	
+	&.columns {
+		&-1 aside {
+			float: none;
+		}
+		
+		@for $i from 2 through 10 {
+			&-#{$i} aside {
+				width: floor(percentage(1 / $i));
+			}
+		}
+	}
+}

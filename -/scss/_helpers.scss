@@ -1,0 +1,49 @@
+$background-color: #fff;
+$text-color: #222;
+$anchor-color: #999;
+$opacity: .8;
+
+$awesome: 100%/1 awesome;
+$border: thin solid $anchor-color;
+
+@mixin clear {
+	&:before,
+	&:after {
+		content: ' ';
+		display: table;
+	}
+
+	&:after {
+		clear: both;
+	}
+}
+
+@mixin hide {
+	display: none;
+	visibility: hidden;
+}
+
+@mixin read {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+
+@mixin read-focus {
+	@include read;
+	
+	&:focus,
+	&:active {
+		clip: auto;
+		height: auto;
+		margin: 0;
+		overflow: visible;
+		position: static;
+		width: auto;
+	}
+}

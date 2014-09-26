@@ -1,0 +1,290 @@
+.first-post {
+	display: block;
+	font-size: larger;
+	margin: 1rem;
+	text-align: center;
+	
+	&:after,
+	&:before {
+		content: '';
+		font: $awesome;
+		padding: 0 1rem;
+	}
+}
+
+.post {
+	&-webcomic {
+		nav {
+			background: $text-color;
+			color: $background-color;
+			
+			&.above {
+				margin: 1px 0 0;
+			}
+			
+			a {
+				color: $anchor-color;
+				font-size: 200%;
+				float: left;
+				text-align: center;
+				width: 20%;
+				
+				&:focus,
+				&:hover {
+					color: $background-color;
+				}
+				
+				&.current-webcomic {
+					opacity: $opacity / 4;
+				}
+			}
+		}
+	
+		.webcomic-image {
+			overflow: auto;
+			text-align: center;
+	
+			&.scroll img {
+				max-width: none;
+			}
+		}
+	}
+	
+	&-image {
+		float: right;
+		margin: 0 0 1rem 1rem;
+		
+		img {
+			border-radius: .3rem;
+		}
+	}
+	
+	&-header {
+		h1 {
+			margin: 0;
+			word-wrap: break-word;
+			
+			a:before {
+				font: $awesome;
+				padding: 0 .5rem 0 0;
+				vertical-align: baseline;
+				
+				.format-audio & {
+					content: '\f025';
+				}
+				
+				.format-image &,
+				.format-gallery & {
+					content: '\f03e';
+				}
+				
+				.format-video & {
+					content: '\f03d';
+				}
+				
+				.format-aside & {
+					content: '\f036';
+				}
+				
+				.format-status & {
+					content: '\f141';
+				}
+				
+				.format-link & {
+					content: '\f08e';
+				}
+				
+				.format-quote & {
+					content: '\f10d';
+				}
+				
+				.format-chat & {
+					content: '\f0e6';
+				}
+				
+				.sticky & {
+					content: '\f192';
+				}
+			}
+		}
+	}
+	
+	&-details {
+		font-size: smaller;
+		
+		a {
+			&:before {
+				font: $awesome;
+				padding: 0 .25rem 0 1rem;
+			}
+			
+			&:first-child:before {
+				padding: 0 .25rem 0 0;
+			}
+			
+			&[rel="author"]:before {
+				content: '\f007';
+			}
+			
+			&[rel="bookmark"]:before {
+				content: '\f133';
+			}
+			
+			&[rel="gallery"]:before {
+				content: '\f00a';
+			}
+			
+			&[href*="#comments"]:before,
+			&[href*="#respond"]:before {
+				content: '\f086';
+			}
+			
+			&.image:before {
+				content: '\f03e';
+			}
+			
+			&.post-edit-link:before {
+				content: '\f044';
+			}
+		}
+	}
+	
+	&-content {
+		word-wrap: break-word;
+		
+		img {
+			border-radius: .3rem;
+		}
+	}
+	
+	&-footer {
+		border-bottom: $border;
+		clear: both;
+		font: $awesome;
+		font-size: smaller;
+		margin: 0 0 1rem;
+		padding: 0 0 1rem;
+		
+		span {
+			color: $anchor-color;
+			
+			&:before {
+				padding: 0 .25rem 0 1rem;
+			}
+			
+			&:first-child:before {
+				padding: 0 .25rem 0 0;
+			}
+		}
+		
+		.post {
+			&-categories:before {
+				content: '\f07c';
+			}
+			
+			&-tags:before {
+				content: '\f02b';
+			}
+		}
+		
+		.webcomic {
+			&-collections:before {
+				content: '\f1c5';
+			}
+			
+			&-storylines:before {
+				content: '\f02d';
+			}
+			
+			&-characters:before {
+				content: '\f0c0';
+			}
+		}
+	}
+}
+
+.attachment {
+	.post {
+		&-image {
+			float: none;
+			margin: 0;
+			text-align: center;
+			
+			img {
+				border-radius: .3rem;
+			}
+		}
+		
+		&-excerpt {
+			font-size: smaller;
+			text-align: center;
+		}
+	}
+}
+
+.more-link {
+	font-size: smaller;
+	
+	&:before {
+		content: '\f138';
+		font: $awesome;
+		padding: 0 .25rem 0 0;
+	}
+}
+
+nav {
+	&.posts,
+	&.post-pages,
+	&.posts-paged,
+	&.comments-paged {
+		clear: both;
+		color: $anchor-color;
+		margin: 1rem 0;
+		text-align: center;
+		
+		a,
+		.current {
+			display: inline-block;
+			padding: 0 .25rem;
+			
+			&:focus,
+			&:hover {
+				img {
+					opacity: $opacity;
+				}
+			}
+			
+			img {
+				margin: 0 0 1rem;
+				transition: opacity .2s;
+			}
+		}
+	}
+	
+	&.posts,
+	&.comments-paged {
+		@include clear;
+		
+		a {
+			&:last-child {
+				float: right;
+				margin: 0 0 0 1rem;
+			}
+			
+			&:first-child {
+				float: left;
+				margin: 0 1rem 0 0;
+			}
+		}
+	}
+	
+	&.post-pages:before {
+		content: '\f0c5';
+		font: $awesome;
+		padding: 0 .25rem 0 0;
+	}
+}
+
+.webcomic-prints div {
+	margin: 0 0 1rem;
+}

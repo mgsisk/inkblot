@@ -1,0 +1,89 @@
+.comment {
+	border-bottom: $border;
+	margin: 0 0 1rem;
+	padding: 1rem;
+	
+	&-reply-link:before {
+		content: '\f112';
+	}
+	
+	&-edit-link:before {
+		content: '\f044';
+	}
+	
+	&-reply-title a {
+		font-weight: normal;
+		
+		&:before {
+			content: '\f057';
+			font: $awesome;
+			padding: 0 .25rem 0 0;
+		}
+	}
+	
+	&-form {
+		label {
+			display: block;
+		}
+		
+		.required {
+			visibility: hidden;
+			
+			&:before {
+				content: '\f071';
+				font: $awesome;
+				visibility: visible;
+			}
+		}
+	}
+	
+	.comment {
+		border: 0;
+		border-left: $border;
+		margin: 0 0 0 1rem;
+		padding: 1rem;
+	}
+	
+	footer {
+		img {
+			border-radius: 100rem;
+			margin: 0 1rem 0 0;
+		}
+		
+		a:before {
+			font: $awesome;
+			padding: 0 .25rem 0 1rem;
+		}
+		
+		.time:before {
+			content: '\f133';
+		}
+	}
+}
+
+.moderating-comment {
+	font: {
+		size: smaller;
+		style: italic;
+	}
+	
+	margin: 1rem 0;
+}
+
+.pingback,
+.trackback {
+	@extend .comment;
+}
+
+.webcomic-transcribe-form {
+	@extend .comment-form;
+}
+
+.webcomic-transcript { // @todo
+	&-error,
+	&-success {
+		font-size: smaller;
+		font-style: italic;
+		margin: 1rem 0 0;
+	}
+}
