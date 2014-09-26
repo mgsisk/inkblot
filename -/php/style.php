@@ -1,159 +1,393 @@
 <?php
-/** Theme stylesheet generator.
+/**
+ * Theme stylesheet generator.
  * 
- * To keep a lot of embedded styles and `<link>` tags out of our
- * `<head>` we use this file to generate a custom stylesheet based
- * on `normalize.css`, `style.css`, theme modifications, and
- * `custom.css` (in that order). For convenience, the styles are
- * loaded directly into the site `<head>` while actually customizing
- * the theme to ensure that live modification previews work
- * correctly.
+ * To keep a lot of embedded styles and `<link>` tags out of our `<head>` we
+ * use this file to generate a custom stylesheet based on `style.css`, theme
+ * modifications, and `custom.css` (in that order).
  * 
  * @package Inkblot
  */
 
-if ( !function_exists( 'get_theme_mod' ) ) {
+if ( ! function_exists('locate_template')) {
 	return;
 }
 
-locate_template( array( '-/css/normalize.css' ), true, true );
-locate_template( array( 'style.css' ), true, true );
+locate_template(array('style.css'), isset($_GET['inkblot-styles']));
 
-$css = array();
-$sidebar1_width = get_theme_mod( 'sidebar1_width', 25 );
-$sidebar2_width = get_theme_mod( 'sidebar2_width', 25 );
+if (isset($_GET['inkblot-styles'])) :
+print "\n\n";
 
-$css[ '#sidebar1' ][] = sprintf( 'width:%s%%', $sidebar1_width );
-$css[ '#sidebar2' ][] = sprintf( 'width:%s%%', $sidebar2_width );
+printf('
+@font-face {
+	font-family: awesome;
+	src: url("%1$s/-/font/fontawesome-webfont.eot");
+	src: url("%1$s/-/font/fontawesome-webfont.eot") format("embedded-opentype"),
+		url("%1$s/-/font/fontawesome-webfont.woff") format("woff"),
+		url("%1$s/-/font/fontawesome-webfont.ttf") format("truetype"),
+		url("%1$s/-/font/fontawesome-webfont.svg") format("svg");
+	font-style: normal;
+	font-weight: normal;
+}',
+get_template_directory_uri()
+);
+endif;
 
-if ( $content = get_theme_mod( 'content' ) and 'one-column' !== $content ) {
-	$content_width = floor( 100 - $sidebar1_width );
-	
-	if ( false !== strpos( $content, 'three-column' ) ) {
-		$content_width = floor( $content_width - $sidebar2_width );
+if ($mod = require get_template_directory() . '/-/php/mods.php') :
+	foreach ($mod as $key => $default) {
+		$mod[$key] = get_theme_mod($key, $default);
 	}
 	
-	if ( 'three-column-center' === $content ) {
-		$css[ '#sidebar1' ][] = sprintf( 'left:-%s%%', $content_width );
-		$css[ 'main ' ][] = sprintf( 'left:%s%%', $sidebar1_width );
+	if ('one-column' !== $mod['content']) {
+		$main_width = 100 - $mod['sidebar1_width'];
+		
+		inkblot_css('#sidebar1', 'width', "{$mod['sidebar1_width']}%");
+		
+		if (false !== strpos($mod['content'], 'three-column')) {
+			$main_width -= $mod['sidebar2_width'];
+			
+			inkblot_css('#sidebar2', 'width', "{$mod['sidebar2_width']}%");
+			
+			if ('three-column-center' === $mod['content']) {
+				inkblot_css('main', 'left', "{$mod['sidebar1_width']}%");
+				inkblot_css('#sidebar1', 'left', "-{$main_width}%");
+			}
+		}
+		
+		inkblot_css('main', 'width', "{$main_width}%");
 	}
 	
-	$css[ 'main ' ][] = sprintf( 'width:%s%%', $content_width );
-}
-
-if ( $min_width = get_theme_mod( 'min_width', 0 ) ) {
-	$css[ '#page' ][] = sprintf( 'min-width:%spx', $min_width );
-}
-
-if ( $max_width = get_theme_mod( 'max_width', 0 ) ) {
-	$css[ '#page' ][] = sprintf( 'max-width:%spx', $max_width );
-}
-
-if ( $min_width and $max_width and $min_width === $max_width ) {
-	$css[ '#page' ][] = sprintf( 'width:%spx', $min_width );
-}
-
-if ( $page_font = get_theme_mod( 'page_font' ) ) {
-	$css[ 'html' ][] = sprintf( 'font-family:"%s"', str_replace( '+', ' ', substr( $page_font, 0, strpos( $page_font, ':' ) ) ) );
-}
-
-if ( $title_font = get_theme_mod( 'title_font' ) ) {
-	$css[ 'h1,h2,h3,h4,h5,h6' ][] = sprintf( 'font-family:"%s"', str_replace( '+', ' ', substr( $title_font, 0, strpos( $title_font, ':' ) ) ) );
-}
-
-if ( $trim_font = get_theme_mod( 'trim_font' ) ) {
-	$css[ '#header nav,#header nav select,#footer,nav.webcomics' ][] = sprintf( 'font-family:"%s"', str_replace( '+', ' ', substr( $trim_font, 0, strpos( $trim_font, ':' ) ) ) );
-}
-
-if ( $font_size = get_theme_mod( 'font_size' ) and 100 !== $font_size ) {
-	$css[ 'html' ][] = sprintf( 'font-size:%s%%', $font_size );
-}
-
-if ( $header_textcolor = get_header_textcolor() ) {
-	if ( 'blank' === $header_textcolor ) {
-		$css[ '#header hgroup' ][] = 'display:none';
+	if ($mod['min_width']) {
+		inkblot_css(array(
+			'#page',
+			'#document > .document-header',
+			'#document > .document-footer'
+		), 'min-width', "{$mod['min_width']}px");
+	}
+	
+	if ($mod['max_width']) {
+		inkblot_css(array(
+			'#page',
+			'#document > .document-header',
+			'#document > .document-footer'
+		), 'max-width', "{$mod['max_width']}px");
+	}
+	
+	if ($mod['min_width'] and $mod['max_width'] and $mod['min_width'] === $mod['max_width']) {
+		inkblot_css(array(
+			'#page',
+			'#document > .document-header',
+			'#document > .document-footer'
+		), 'width', "{$mod['min_width']}px");
+	}
+	
+	if ($mod['font_size']) {
+		inkblot_css('body', 'font-size', "{$mod['font_size']}%");
+	}
+	
+	if ($mod['font']) {
+		inkblot_css('body', 'font-family', $mod['font']);
+	}
+	
+	if ($mod['page_font']) {
+		inkblot_css('#page', 'font-family', $mod['page_font']);
+		
+		if (isset($_GET['inkblot-styles']) and 'editor' === $_GET['inkblot-styles']) {
+			inkblot_css(array(
+				'.wp-editor',
+				'.wp-editor caption',
+				'.wp-editor th',
+				'.wp-editor td',
+			), 'font-family', $mod['page_font']);
+		}
+	}
+	
+	if ($mod['title_font']) {
+		inkblot_css(array(
+			'h1',
+			'h2',
+			'h3',
+			'h4',
+			'h5',
+			'h6'
+		), 'font-family', $mod['title_font']);
+	}
+	
+	if ($mod['trim_font']) {
+		inkblot_css(array(
+			'#header nav',
+			'#header select',
+			'.post-webcomic nav'
+		), 'font-family', $mod['trim_font']);
+	}
+	
+	if ($mod['background_color']) {
+		inkblot_css('body', 'background-color', array($mod['background_color'], $mod['background_opacity']));
+	}
+	
+	if ($mod['page_color']) {
+		inkblot_css(array(
+			'#page',
+			'input',
+			'textarea'
+		), 'background-color', array($mod['page_color'], $mod['page_opacity']));
+		
+		if (isset($_GET['inkblot-styles']) and 'editor' === $_GET['inkblot-styles']) {
+			inkblot_css('.wp-editor', 'background-color', array($mod['page_color'], $mod['page_opacity']));
+		}
+	}
+	
+	if ($mod['trim_color']) {
+		inkblot_css(array(
+			'#header nav',
+			'#header ul ul',
+			'#header select',
+			'#footer',
+			'.post-webcomic nav',
+			'button',
+			'input[type="submit"]',
+			'input[type="reset"]',
+			'input[type="button"]'
+		), 'background-color', array($mod['trim_color'], $mod['trim_opacity']));
+	}
+	
+	if ($mod['text_color']) {
+		inkblot_css('body', 'color', array($mod['text_color'], $mod['text_opacity']));
+	}
+	
+	if ($mod['page_text_color']) {
+		inkblot_css(array(
+			'#page',
+			'input',
+			'textarea'
+		), 'color', array($mod['page_text_color'], $mod['page_text_opacity']));
+		
+		if (isset($_GET['inkblot-styles']) and 'editor' === $_GET['inkblot-styles']) {
+			inkblot_css('.wp-editor', 'color', array($mod['page_text_color'], $mod['page_text_opacity']));
+		}
+	}
+	
+	if ($mod['trim_text_color']) {
+		inkblot_css(array(
+			'#header nav',
+			'#header ul ul',
+			'#footer',
+			'.post-webcomic nav',
+			'button',
+			'input[type="submit"]',
+			'input[type="reset"]',
+			'input[type="button"]'
+		), 'color', array($mod['trim_text_color'], $mod['trim_text_opacity']));
+	}
+	
+	if ($mod['link_color']) {
+		inkblot_css('a', 'color', array($mod['link_color'], $mod['link_opacity']));
+	}
+	
+	if ($mod['link_hover_color']) {
+		inkblot_css(array(
+			'a:focus',
+			'a:hover'
+		), 'color', array($mod['link_hover_color'], $mod['link_hover_opacity']));
+	}
+	
+	if ($mod['page_link_color']) {
+		inkblot_css(array(
+			'#page a',
+			'.post-footer span',
+			'nav.posts',
+			'nav.post-pages',
+			'nav.posts-paged',
+			'nav.comments-paged'
+		), 'color', array($mod['page_link_color'], $mod['page_link_opacity']));
+		
+		inkblot_css(array(
+			'blockquote',
+			'hr',
+			'pre',
+			'th',
+			'td',
+			'fieldset',
+			'input',
+			'textarea',
+			'.post-footer',
+			'.comment',
+			'.comment .comment',
+			'.pingback',
+			'.trackback',
+			'.bypostauthor'
+		), 'border-color', array($mod['page_link_color'], $mod['page_link_opacity']));
+		
+		if (isset($_GET['inkblot-styles']) and 'editor' === $_GET['inkblot-styles']) {
+			inkblot_css('.wp-editor a', 'color', array($mod['page_link_color'], $mod['page_link_opacity']));
+			
+			inkblot_css(array(
+				'.wp-editor .mce-item-table',
+				'.wp-editor .mce-item-table th',
+				'.wp-editor .mce-item-table td'
+			), 'border-color', array($mod['page_link_color'], $mod['page_link_opacity']));
+			
+			inkblot_css(array(
+				'.wp-editor .mce-item-table',
+				'.wp-editor .mce-item-table th',
+				'.wp-editor .mce-item-table td'
+			), 'border-style', 'solid');
+		}
+	}
+	
+	if ($mod['page_link_hover_color']) {
+		inkblot_css(array(
+			'#page a:focus',
+			'#page a:hover'
+		), 'color', array($mod['page_link_hover_color'], $mod['page_link_hover_opacity']));
+		
+		inkblot_css(array(
+			'input:focus',
+			'input:hover',
+			'textarea:focus',
+			'textarea:hover'
+		), 'border-color', array($mod['page_link_hover_color'], $mod['page_link_hover_opacity']));
+		
+		if (isset($_GET['inkblot-styles']) and 'editor' === $_GET['inkblot-styles']) {
+			inkblot_css(array(
+				'.wp-editor a:focus',
+				'.wp-editor a:hover'
+			), 'color', array($mod['page_link_hover_color'], $mod['page_link_hover_opacity']));
+		}
+	}
+	
+	if ($mod['trim_link_color']) {
+		inkblot_css(array(
+			'#header nav:before',
+			'#header nav a',
+			'#header select',
+			'#footer a',
+			'.post-webcomic nav a'
+		), 'color', array($mod['trim_link_color'], $mod['trim_link_opacity']));
+	}
+	
+	if ($mod['trim_link_hover_color']) {
+		inkblot_css(array(
+			'#header nav:focus:before',
+			'#header nav:hover:before',
+			'#header nav a:focus',
+			'#header nav a:hover',
+			'#header select:focus',
+			'#header select:hover',
+			'#header li:focus > a',
+			'#header li:hover > a',
+			'#header li.current_page_item > a',
+			'#header li.current_page_ancestor > a',
+			'#footer a:focus',
+			'#footer a:hover',
+			'.post-webcomic nav a:focus',
+			'.post-webcomic nav a:hover'
+		), 'color', array($mod['trim_link_hover_color'], $mod['trim_link_hover_opacity']));
+	}
+	
+	if ($mod['header_font']) {
+		inkblot_css(array(
+			'#header > a'
+		), 'font-family', $mod['header_font']);
+	}
+	
+	if ($mod['header_textcolor']) {
+		inkblot_css(array(
+			'#header > a',
+			'#header > a:focus',
+			'#header > a:hover'
+		), 'color', array($mod['header_textcolor'], $mod['header_textopacity']));
 	} else {
-		$css[ '#header hgroup,#header hgroup a' ][] = sprintf( 'color:#%s', $header_textcolor );
+		inkblot_css(array(
+			'#header h1',
+			'#header p'
+		), 'display', 'none');
+		
+		inkblot_css(array(
+			'#header h1',
+			'#header p'
+		), 'visibility', 'hidden');
 	}
-}
-
-if ( $background_color = get_background_color() ) {
-	$css[ 'body' ][] = sprintf( 'background-color:#%s', $background_color );
-}
-
-if ( $text_color = get_theme_mod( 'text_color' ) ) {
-	$css[ '#page' ][] = sprintf( 'color:%s', $text_color );
-}
-
-if ( $link_color = get_theme_mod( 'link_color' ) ) {
-	$css[ 'a' ][] = sprintf( 'color:%s', $link_color );
-	$css[ '.post-actions a:hover,.post-comments-link a:hover,.comment-actions a:hover' ][] = sprintf( 'background-color:%s', $link_color );
-}
-
-if ( $link_hover_color = get_theme_mod( 'link_hover_color' ) ) {
-	$css[ 'a:hover' ][] = sprintf( 'color:%s', $link_hover_color );
-}
-
-if ( $page_color = get_theme_mod( 'page_color' ) ) {
-	$css[ '#page' ][] = sprintf( 'background-color:%s', $page_color );
-	$css[ '.post-webcomic nav.above' ][] = sprintf( 'border-color:%s', $page_color );
-}
-
-if ( $trim_color = get_theme_mod( 'trim_color' ) ) {
-	$css[ '::-moz-selection' ][] = sprintf( 'background-color:%s', $trim_color );
-	$css[ '::selection' ][] = sprintf( 'background-color:%s', $trim_color );
-	$css[ '#page,blockquote,pre,td,nav.posts,nav.posts-paged,nav.comments-paged,.post-footer,.comment,.trackback,.comment .comment' ][] = sprintf( 'border-color:%s', $trim_color );
-	$css[ '#header nav,#header nav select,#header nav ul ul,#footer,.post-comments-link a,.post-actions a,.comment-actions a,#commentform .required,.webcomic-transcribe-form .required,.post-webcomic nav' ][] = sprintf( 'background-color:%s', $trim_color );
-}
-
-if ( $trim_text_color = get_theme_mod( 'trim_text_color' ) ) {
-	$css[ '::-moz-selection' ][] = sprintf( 'color:%s', $trim_text_color );
-	$css[ '::selection' ][] = sprintf( 'color:%s', $trim_text_color );
-	$css[ '#header nav,#header nav select,#footer,.post-comments-link a,.post-comments-link a:focus,.post-comments-link a:hover,.post-actions a,.post-actions a:focus,.post-actions a:hover,.comment-actions a,.comment-actions a:focus,.comment-actions a:hover,#commentform .required,.webcomic-transcribe-form .required,.post-webcomic nav' ][] = sprintf( 'color:%s', $trim_text_color );
-}
-
-if ( $trim_link_color = get_theme_mod( 'trim_link_color' ) ) {
-	$css[ '#header nav a,#footer a,.post-webcomic nav a' ][] = sprintf( 'color:%s', $trim_link_color );
-}
-
-if ( $trim_link_hover_color = get_theme_mod( 'trim_link_hover_color' ) ) {
-	$css[ '#header nav a:focus,#header nav a:hover,#header li:hover > a,#header .current_page_item a,#header .current_page_ancestor a,#footer a:focus,#footer a:hover,.post-webcomic nav a:focus,.post-webcomic nav a:hover' ][] = sprintf( 'color:%s', $trim_link_hover_color );
-}
-
-if ( $background_image = get_background_image() ) {
-	$css[ 'body' ][] = sprintf( 'background-image:url(%s)', $background_image );
-	$css[ 'body' ][] = sprintf( 'background-repeat:%s', get_theme_mod( 'background_repeat', 'repeat' ) );
-	$css[ 'body' ][] = sprintf( 'background-position:top %s', get_theme_mod( 'background_position_x', 'left' ) );
-	$css[ 'body' ][] = sprintf( 'background-attachment:%s', get_theme_mod( 'background_attachment', 'scroll' ) );
-}
-
-if ( $page_background_image = get_theme_mod( 'page_background_image' ) ) {
-	$css[ '#page' ][] = sprintf( 'background-image:url(%s)', $page_background_image );
-	$css[ '#page' ][] = sprintf( 'background-repeat:%s', get_theme_mod( 'page_background_repeat', 'repeat' ) );
-	$css[ '#page' ][] = sprintf( 'background-position:top %s', get_theme_mod( 'background_position_x', 'left' ) );
-	$css[ '#page' ][] = sprintf( 'background-attachment:%s', get_theme_mod( 'background_attachment', 'scroll' ) );
-}
-
-if ( !get_theme_mod( 'webcomic_resize', true ) ) {
-	$css[ '.post-webcomic .webcomic-image img' ][] = 'max-width:none';
-}
-
-if ( !get_theme_mod( 'webcomic_nav_above', true ) ) {
-	$css[ 'nav.webcomics.above' ][] = 'display:none';
-}
-
-if ( !get_theme_mod( 'webcomic_nav_below', true ) ) {
-	$css[ 'nav.webcomics.below' ][] = 'display:none';
-}
-
-if ( $css = apply_filters( 'inkblot_custom_styles', $css ) ) {
-	foreach ( $css as $k => $v ) {
-		printf( '%s{%s}', $k, join( ';', ( array ) $v ) );
+	
+	if ($mod['background_image']) {
+		inkblot_css('body', 'background-image', $mod['background_image']);
+		inkblot_css('body', 'background-repeat', $mod['background_repeat']);
+		inkblot_css('body', 'background-position', $mod['background_position_x']);
+		inkblot_css('body', 'background-attachment', $mod['background_attachment']);
 	}
+	
+	if ($mod['page_background_image']) {
+		inkblot_css('#page', 'background-image', $mod['page_background_image']);
+		inkblot_css('#page', 'background-repeat', $mod['page_background_repeat']);
+		inkblot_css('#page', 'background-position', $mod['page_background_position_x']);
+		inkblot_css('#page', 'background-attachment', $mod['page_background_attachment']);
+		
+		if (isset($_GET['inkblot-styles']) and 'editor' === $_GET['inkblot-styles']) {
+			inkblot_css('.wp-editor', 'background-image', $mod['page_background_image']);
+			inkblot_css('.wp-editor', 'background-repeat', $mod['page_background_repeat']);
+			inkblot_css('.wp-editor', 'background-position', $mod['page_background_position_x']);
+			inkblot_css('.wp-editor', 'background-attachment', $mod['page_background_attachment']);
+		}
+	}
+	
+	if ($mod['trim_background_image']) {
+		inkblot_css(array(
+			'#header nav',
+			'#header ul ul',
+			'#footer',
+			'.post-webcomic nav'
+		), 'background-image', $mod['trim_background_image']);
+		
+		inkblot_css(array(
+			'#header nav',
+			'#header ul ul',
+			'#footer',
+			'.post-webcomic nav'
+		), 'background-repeat', $mod['trim_background_repeat']);
+		
+		inkblot_css(array(
+			'#header nav',
+			'#header ul ul',
+			'#footer',
+			'.post-webcomic nav'
+		), 'background-position', $mod['trim_background_position_x']);
+		
+		inkblot_css(array(
+			'#header nav',
+			'#header ul ul',
+			'#footer',
+			'.post-webcomic nav'
+		), 'background-attachment', $mod['trim_background_attachment']);
+	}
+	
+	if (isset($_GET['inkblot-styles']) and 'editor' === $_GET['inkblot-styles']) {
+		inkblot_css('.wp-editor', 'margin', '0 1rem');
+		inkblot_css('.wp-editor img', 'border-radius', '.3rem');
+		inkblot_css('.wp-editor .alignnone', 'margin', '1rem');
+		inkblot_css('.wp-editor .aligncenter', 'margin', '1rem auto');
+		inkblot_css('.wp-editor .alignright', 'margin', '0 0 1rem 1rem');
+		inkblot_css('.wp-editor .alignleft', 'margin', '0 1rem 1rem 0');
+		inkblot_css('.wp-editor .wp-caption', 'padding', '.25rem');
+		inkblot_css('.wp-editor .wp-caption-dd', 'font-size', 'smaller');
+		inkblot_css('.wp-editor .wp-caption-dd', 'margin', '.5rem 0 0');
+	}
+	
+	inkblot_css();
+	
+	if ($responsive_width = get_theme_mod('responsive_width', 0)) {
+		$responsive = <<<RESPONSIVE
+@media only screen and (max-width: {$responsive_width}px) {
+	main, #sidebar1, #sidebar2 {float: none; left: 0; width: 100%}
+	#header nav {background: none}
+	#header nav:before {display: block; visibility: visible}
+	#header nav ul {display: none; visibility: hidden}
+	#header nav select {display: block; visibility: visible; width: 100%}
 }
+RESPONSIVE;
+		print apply_filters('inkblot_responsive_styles', $responsive, $responsive_width);
+	}
+endif;
 
-if ( get_theme_mod( 'responsive', true ) ) {
-	echo apply_filters( 'inkblot_responsive_styles', sprintf( '@media only screen and (max-width:%spx){main,#sidebar1,#sidebar2{float:none;left:0;width:100%%;}#header nav ul{display:none}#header nav select{display:block;width:100%%}}', get_theme_mod( 'responsive_width', 640 ) ) );
-}
+print "\n\n";
 
-locate_template( array( 'custom.css' ), true, true );
+locate_template(array('custom.css'), isset($_GET['inkblot-styles']));

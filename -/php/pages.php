@@ -1,172 +1,221 @@
 <?php
-/** Contains the InkblotPages class.
+/**
+ * Contains page-related functions specific to Inkblot.
  * 
  * @package Inkblot
  */
 
-/** Handle page-related tasks.
+add_action('add_meta_boxes', 'inkblot_add_meta_boxes');
+add_action('wp_insert_post', 'inkblot_insert_page', 10, 2);
+
+if ( ! function_exists('inkblot_add_meta_boxes')) :
+/**
+ * Add page meta boxes.
  * 
- * @package Inkblot
+ * @return void
+ * @hook add_meta_boxes
  */
-class InkblotPages extends Inkblot {
-	/** Register hooks.
-	 * 
-	 * @uses InkblotPages::add_meta_boxes()
-	 * @uses InkblotPages::save_page()
-	 * @uses InkblotPages::admin_enqueue_scripts()
-	 */
-	public function __construct() {
-		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
-		add_action( 'wp_insert_post', array( $this, 'save_page' ), 10, 2 );
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
-	}
-	
-	/** Add page meta boxes.
-	 * 
-	 * @hook add_meta_boxes
-	 */
-	public function add_meta_boxes() {
-		add_meta_box( 'inkblot-options', __( 'Inkblot Options', 'webcomic' ), array( $this, 'inkblot_options' ), 'page', 'normal', 'high' );
-	}
-	
-	/** Register and enqueue meta box scripts.
-	 * 
-	 * @uses Inkblot::$url
-	 * @hook admin_enqueue_scripts
-	 */
-	public function admin_enqueue_scripts() {
-		$screen = get_current_screen();
+function inkblot_add_meta_boxes() {
+	add_meta_box('inkblot-template-options', __('Template Options', 'webcomic'), 'inkblot_template_options', 'page', 'normal', 'high');
+}
+endif;
+
+if ( ! function_exists('inkblot_insert_page')) :
+/**
+ * Save metadata with pages.
+ * 
+ * @param integer $id ID of the page to update.
+ * @param object $post Post object to update.
+ * @return void
+ * @hook wp_insert_post
+ */
+function inkblot_insert_page($id, $post) {
+	if (
+		isset($_POST['inkblot_template_options'])
+		and 'page' === $post->post_type
+		and ( ! defined('DOING_AUTOSAVE') or ! DOING_AUTOSAVE)
+		and wp_verify_nonce($_POST['inkblot_template_options'], 'inkblot_template_options')
+		and current_user_can('edit_page', $id)
+	) {
+		if ($post_id = wp_is_post_revision($id)) {
+			$id = $post_id;
+		}
 		
-		if ( 'page' === $screen->id ) {
-			wp_enqueue_script( 'inkblot-admin-pages', self::$url . '-/js/admin-pages.js', array( 'jquery' ) );
-		}
-	}
-	
-	/** Save metadata with pages.
-	 * 
-	 * @param integer $id The page ID to update.
-	 * @param object $post Post object to update.
-	 * @hook wp_insert_post
-	 */
-	public function save_page( $id, $post ) {
-		if (
-			isset( $_POST[ 'inkblot_meta_template' ] )
-			and 'page' === $post->post_type
-			and ( !defined( 'DOING_AUTOSAVE' ) or !DOING_AUTOSAVE )
-			and wp_verify_nonce( $_POST[ 'inkblot_meta_template' ], 'inkblot_meta_template' )
-			and current_user_can( 'edit_page', $id )
-		) {
-			if ( $post_id = wp_is_post_revision( $id ) ) {
-				$id = $post_id;
+		$keys = array(
+			'inkblot_avatar',
+			'inkblot_sidebars',
+			'inkblot_webcomic_group',
+			'inkblot_webcomic_image',
+			'inkblot_webcomic_order',
+			'inkblot_webcomic_term_image'
+		);
+		
+		if (in_array($post->page_template, array(
+			'page-templates/contributors.php',
+			'page-templates/full-width.php',
+			'page-templates/webcomic-archive.php',
+			'page-templates/webcomic-homepage.php'
+		))) {
+			foreach ($keys as $key) {
+				update_post_meta($id, $key, $_POST[$key]);
 			}
-			
-			if ( false !== strpos( $post->page_template, 'webcomic/' ) ) {
-				update_post_meta( $id, 'inkblot_webcomic_group', $_POST[ 'inkblot_webcomic_group' ] );
-				update_post_meta( $id, 'inkblot_webcomic_image', $_POST[ 'inkblot_webcomic_image' ] );
-				update_post_meta( $id, 'inkblot_webcomic_order', $_POST[ 'inkblot_webcomic_order' ] );
-			} else {
-				delete_post_meta( $id, 'inkblot_webcomic_group' );
-				delete_post_meta( $id, 'inkblot_webcomic_image' );
-				delete_post_meta( $id, 'inkblot_webcomic_order' );
+		} else {
+			foreach ($keys as $key) {
+				delete_post_meta($id, $key);
 			}
 		}
 	}
+}
+endif;
+
+if ( ! function_exists('inkblot_template_options')) :
+/**
+ * Render the webcomic template meta box.
+ * 
+ * @param object $page Current page object.
+ * @uses webcomic()
+ * @uses get_webcomic_collections()
+ */
+function inkblot_template_options($page) {
+	wp_nonce_field('inkblot_template_options', 'inkblot_template_options');
 	
-	/** Render the webcomic template meta box.
-	 * 
-	 * @param object $page Current page object.
-	 * @uses webcomic()
-	 * @uses get_webcomic_collections()
-	 */
-	public function inkblot_options( $page ) {
-		if ( webcomic() ) {
-			wp_nonce_field( 'inkblot_meta_template', 'inkblot_meta_template' );
-			
-			$collections    = get_webcomic_collections( true );
-			$webcomic_group = get_post_meta( $page->ID, 'inkblot_webcomic_group', true );
-			$webcomic_image = get_post_meta( $page->ID, 'inkblot_webcomic_image', true );
-			$webcomic_order = get_post_meta( $page->ID, 'inkblot_webcomic_order', true );
+	$inkblot_avatar = get_post_meta($page->ID, 'inkblot_avatar', true);
+	$inkblot_sidebars = get_post_meta($page->ID, 'inkblot_sidebars', true);
+	
+	$webcomic_group = get_post_meta($page->ID, 'inkblot_webcomic_group', true);
+	$webcomic_image = get_post_meta($page->ID, 'inkblot_webcomic_image', true);
+	$webcomic_order = get_post_meta($page->ID, 'inkblot_webcomic_order', true);
+	$webcomic_term_image = get_post_meta($page->ID, 'inkblot_webcomic_term_image', true); ?>
+	<div data-inkblot-template-options="none">
+		<p><strong><?php _e('Select one of the following templates to modify template-specific options:', 'inkblot'); ?></strong></p>
+		<ul>
+			<?php
+				foreach (get_page_templates() as $k => $v) {
+					if (in_array($v, array(
+						'page-templates/contributors.php',
+						'page-templates/full-width.php',
+						'page-templates/webcomic-archive.php',
+						'page-templates/webcomic-homepage.php'
+					))) {
+						printf('<li>%s</li>', $k);
+					}
+				}
 			?>
-			<div data-inkblot-options="none">
-				<p><strong><?php _e( 'Select one of the following templates to modify template-specific options:', 'inkblot' ); ?></strong></p>
-				<ul>
-					<?php
-						foreach ( get_page_templates() as $k => $v ) {
-							if ( false !== strpos( $v, 'webcomic/' ) ) {
-								printf( '<li>%s</li>', $k );
-							}
-						}
-					?>
-				</ul>
-			</div>
-			<div data-inkblot-options="webcomic/template-archive.php">
-				<h4><?php _e( 'Webcomic Archive Options', 'inkblot' ); ?></h4>
+		</ul>
+	</div>
+	<div data-inkblot-template-options="page-templates/contributors.php">
+		<h4><?php _e('Contributors', 'inkblot'); ?></h4>
+		<p>
+			<input id="inkblot_avatar" name="inkblot_avatar" type="number" min="0" step="8" class="small-text" value="<?php print (int) $inkblot_avatar; ?>">
+			<label for="inkblot_avatar"><?php _e('Avatar size', 'inkblot'); ?></label>
+		</p>
+	</div>
+	
+	<div data-inkblot-template-options="page-templates/full-width.php">
+		<h4><?php _e('Full Width', 'inkblot'); ?></h4>
+		<p>
+			<input id="inkblot_sidebars" name="inkblot_sidebars" type="checkbox" value="1"<?php print $inkblot_sidebars ? ' checked' : ''; ?>>
+			<label for="inkblot_sidebars"><?php _e('Show sidebars below the page content', 'inkblot'); ?></label>
+		</p>
+	</div>
+	
+	<div data-inkblot-template-options="page-templates/webcomic-archive.php">
+		<h4><?php _e('Webcomic Archive', 'inkblot'); ?></h4>
+		<?php if (webcomic()) : ?>
+			
+			<p>
+				
 				<?php
-					$select = '';
+					$select_img = $select_term_img = '';
 					
-					foreach ( get_intermediate_image_sizes() as $size ) {
-						$select .= sprintf( '<option value="%s"%s>%s</option>',
+					foreach (get_intermediate_image_sizes() as $size) {
+						$select_img .= sprintf('<option value="%s"%s>%s</option>',
 							$size,
-							selected( $size, $webcomic_image, false ),
+							selected($size, $webcomic_image, false),
 							$size
 						);
+						
+						$select_term_img .= sprintf('<option value="%s"%s>%s</option>',
+						 	$size,
+						 	selected($size, $webcomic_term_image, false),
+						 	$size
+						 );
 					}
 					
-					printf( __( '<label>Show webcomics as %1$s grouped by %2$s</label>', 'inkblot' ),
-						sprintf( '
+					printf(__('<label>Show webcomic links as %1$s grouped by %2$s with %3$s term links</label>', 'inkblot'),
+						sprintf('
 							<select name="inkblot_webcomic_image">
 								<option value="">%s</option>
 								%s
 							</select>',
-							__( 'text links', 'inkblot' ),
-							$select
+							__('text', 'inkblot'),
+							$select_img
 						),
-						sprintf( '
+						sprintf('
 							<select name="inkblot_webcomic_group">
 								<option value="">%s</option>
 								<option value="storyline"%s>%s</option>
 								<option value="character"%s>%s</option>
 							</select>',
-							__( 'collection', 'inkblot' ),
-							selected( 'storyline', $webcomic_group, false ),
-							__( 'storyline', 'inkblot' ),
-							selected( 'character', $webcomic_group, false ),
-							__( 'character', 'inkblot' )
+							__('collection', 'inkblot'),
+							selected('storyline', $webcomic_group, false),
+							__('storyline', 'inkblot'),
+							selected('character', $webcomic_group, false),
+							__('character', 'inkblot')
+						),
+						sprintf('
+							<select name="inkblot_webcomic_term_image">
+								<option value="">%s</option>
+								%s
+							</select>',
+							__('text', 'inkblot'),
+							$select_term_img
 						)
 					);
 				?>
-			</div>
-			<div data-inkblot-options="webcomic/template-home.php">
-				<h4><?php _e( 'Webcomic Homepage Options', 'inkblot' ); ?></h4>
+				
+			</p>
+			
+		<?php else : ?>
+			
+			<p><?php printf(__('It looks like %s is not installed or activated. This template will not affect the appearance of this page.', 'inkblot'), '<a href="http://wordpress.org/plugins/webcomic" target="_blank">Webcomic</a>'); ?></p>
+			
+		<?php endif; ?>
+	</div>
+	
+	<div data-inkblot-template-options="page-templates/webcomic-homepage.php">
+		<h4><?php _e('Webcomic Homepage', 'inkblot'); ?></h4>
+		
+		<?php if (webcomic()) : ?>
+			<p>
+				
 				<?php
-					printf( __( '<label>Show the %1$s webcomic</label>', 'inkblot' ),
-						sprintf( '
+					printf(__('<label>Show the %1$s webcomic</label>', 'inkblot'),
+						sprintf('
 							<select name="inkblot_webcomic_order">
 								<option value="ASC"%s>%s</option>
 								<option value="DESC"%s>%s</option>
 							</select>',
-							selected( 'ASC', $webcomic_order, false ),
-							__( 'chronologically first', 'inkblot' ),
-							selected( 'DESC', $webcomic_order, false ),
-							__( 'most recently published', 'inkblot' )
+							selected('ASC', $webcomic_order, false),
+							__('first', 'inkblot'),
+							selected('DESC', $webcomic_order, false),
+							__('latest', 'inkblot')
 						)
 					);
 				?>
-			</div>
-			<?php
-		} else {
-			?>
-			<p><strong><?php printf( __( '<a href="%s" target="_blank">Webcomic</a> is not installed. Selecting the following templates will not change the appearance of this page:', 'inkblot' ), 'http://webcomic.nu' ); ?></strong></p>
-			<ul>
-				<?php
-					foreach ( get_page_templates() as $k => $v ) {
-						if ( false !== strpos( $v, 'webcomic/' ) ) {
-							printf( '<li>%s</li>', $k );
-						}
-					}
-				?>
-			</ul>
-			<?php
-		}
-	}
+				
+			</p>
+			
+		<?php else : ?>
+			
+			<p><?php printf(__('It looks like %s is not installed or activated. This template will not affect the appearance of this page.', 'inkblot'), '<a href="http://wordpress.org/plugins/webcomic" target="_blank">Webcomic</a>'); ?></p>
+			<input type="hidden" name="inkblot_webcomic_group" value="<?php print get_post_meta($page->ID, 'inkblot_webcomic_group', true); ?>">
+			<input type="hidden" name="inkblot_webcomic_image" value="<?php print get_post_meta($page->ID, 'inkblot_webcomic_image', true); ?>">
+			<input type="hidden" name="inkblot_webcomic_order" value="<?php print get_post_meta($page->ID, 'inkblot_webcomic_order', true); ?>">
+			<input type="hidden" name="inkblot_webcomic_term_image" value="<?php print get_post_meta($page->ID, 'inkblot_webcomic_term_image', true); ?>">
+			
+		<?php endif; ?>
+	</div>
+	<?php
 }
+endif;
