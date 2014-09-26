@@ -1,13 +1,12 @@
-/** Responsive menu script.
+/**
+ * Responsive menu support.
  * 
  * @package Inkblot
  */
-jQuery( function( $ ) {
-	$( '#header nav select' ).on( 'change', function() {
-		var url = $( this ).find( 'option:selected' ).val();
-		
-		if ( url ) {
-			window.location.href = url;
+jQuery(function($) {
+	$('#header select').on('change', function() {
+		if ($(this).val()) {
+			window.location.href = $(this).val();
 		}
-	} );
-} );
+	});
+});
