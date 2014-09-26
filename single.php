@@ -1,23 +1,29 @@
 <?php
-/** Single post template.
+/**
+ * Single post template.
  * 
- * For single Webcomic posts, see /webcomic/single.php
+ * For single Webcomic posts, see `webcomic/single.php`.
  * 
  * @package Inkblot
+ * @see http://codex.wordpress.org/Template_Hierarchy
  */
 
 get_header(); ?>
 
 <main role="main">
-	<?php while ( have_posts() ) : the_post(); ?>
-		<?php get_template_part( 'content', get_post_type() ); ?>
-		<nav class="posts">
-			<?php previous_post_link(); ?>
-			<?php next_post_link(); ?>
-		</nav>
-		<?php comments_template( '', true ); ?>
-	<?php endwhile; ?>
+	
+	<?php
+		while (have_posts()) :
+			the_post();
+			
+			get_template_part('content', get_post_type());
+			
+			print inkblot_post_nav();
+			
+			comments_template();
+		endwhile;
+	?>
+	
 </main>
 
-<?php get_sidebar(); ?>
-<?php get_footer(); ?>
+<?php get_sidebar(); get_footer();
