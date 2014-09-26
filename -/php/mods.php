@@ -1,0 +1,60 @@
+<?php
+/**
+ * Returns a list of theme modification settings used by `style.php` and the
+ * theme customizer.
+ * 
+ * @return array
+ */
+
+return array(
+	'header_textcolor' => 'blank',
+	'background_color' => null,
+	'background_image' => null,
+	'background_repeat' => null,
+	'background_position_x' => null,
+	'background_attachment' => null,
+	'content' => 'one-column',
+	'sidebar1_width' => 25,
+	'sidebar2_width' => 25,
+	'min_width' => 0,
+	'max_width' => 0,
+	'responsive_width' => 0,
+	'font_size' => 100,
+	'font' => null,
+	'header_font' => null,
+	'page_font' => null,
+	'title_font' => null,
+	'trim_font' => null,
+	'background_opacity' => null,
+	'page_color' => null,
+	'page_opacity' => null,
+	'trim_color' => null,
+	'trim_opacity' => null,
+	'text_color' => null,
+	'text_opacity' => null,
+	'header_textopacity' => null,
+	'page_text_color' => null,
+	'page_text_opacity' => null,
+	'trim_text_color' => null,
+	'trim_text_opacity' => null,
+	'link_color' => null,
+	'link_opacity' => null,
+	'link_hover_color' => null,
+	'link_hover_opacity' => null,
+	'page_link_color' => null,
+	'page_link_opacity' => null,
+	'page_link_hover_color' => null,
+	'page_link_hover_opacity' => null,
+	'trim_link_color' => null,
+	'trim_link_opacity' => null,
+	'trim_link_hover_color' => null,
+	'trim_link_hover_opacity' => null,
+	'page_background_image' => null,
+	'page_background_repeat' => null,
+	'page_background_position_x' => null,
+	'page_background_attachment' => null,
+	'trim_background_image' => null,
+	'trim_background_repeat' => null,
+	'trim_background_position_x' => null,
+	'trim_background_attachment' => null
+);
