@@ -132,7 +132,7 @@ function inkblot_wp_loaded() {
 		
 		require_once get_template_directory() . '/-/php/style.php';
 		
-		die;
+		exit;
 	}
 }
 endif;
@@ -212,7 +212,13 @@ if ( ! function_exists('inkblot_wp_enqueue_scripts')) :
 function inkblot_wp_enqueue_scripts() {
 	wp_enqueue_style('inkblot-theme', add_query_arg(array('inkblot-styles' => ''), home_url('/')));
 	
-	if (get_theme_mod('font') or get_theme_mod('header_font') or get_theme_mod('page_font') or get_theme_mod('title_font') or get_theme_mod('trim_font')) {
+	if (
+		get_theme_mod('font')
+		or get_theme_mod('header_font')
+		or get_theme_mod('page_font')
+		or get_theme_mod('title_font')
+		or get_theme_mod('trim_font')
+	) {
 		$proto = is_ssl() ? 'https' : 'http';
 		$fonts = array_filter(array(
 			get_theme_mod('font'),
