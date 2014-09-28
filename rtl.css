@@ -22,15 +22,15 @@ body {
   content: '';
   margin: 0; }
 #header .page_item_has_children > a:before {
-  content: '\f13a';
   font: 100%/1 awesome;
+  content: '\f13a';
   margin: 0 .5rem 0 0; }
 #header .page_item_has_children .page_item_has_children > a:after {
   content: '';
   margin: 0; }
 #header .page_item_has_children .page_item_has_children > a:before {
-  content: '\f137';
   font: 100%/1 awesome;
+  content: '\f137';
   margin: 0 .5rem 0 0; }
 
 .widgets aside {
@@ -128,8 +128,8 @@ nav.posts a:first-child, nav.comments-paged a:first-child {
   content: '';
   padding: 0; }
 .search .page-header h1:after, .archive .page-header h1:after {
-  content: '\f187';
   font: 100%/1 awesome;
+  content: '\f187';
   padding: 0 0 0 .5rem; }
 .search .page-header h1:after {
   content: '\f002'; }
@@ -167,8 +167,8 @@ nav.posts a:first-child, nav.comments-paged a:first-child {
   content: '';
   padding: 0; }
 .comment-reply-title a:after {
-  content: '\f057';
   font: 100%/1 awesome;
+  content: '\f057';
   padding: 0 0 0 .25rem; }
 .comment .comment, .pingback .comment,
 .trackback .comment, .comment .pingback, .pingback .pingback,

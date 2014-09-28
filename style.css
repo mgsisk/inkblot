@@ -5,7 +5,7 @@ Author: Michael Sisk
 Author URI: http://mgsisk.com
 License: GPL2
 License URI: http://gnu.org/licenses/gpl-2.0.html
-Version: 4
+Version: 4.1
 Description: Elegant, fully responsive, highly customizable <a href="http://wordpress.org/plugins/webcomic" target="_blank">Webcomic</a>-ready theme named in honor of Rorschach from the Watchmen graphic novel.
 Tags: dark, light, white, black, gray, one-column, two-columns, three-columns, left-sidebar, right-sidebar, fixed-layout, fluid-layout, responsive-layout, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, microformats, post-formats, rtl-language-support, sticky-post, theme-options, translation-ready
 Webcomic: 4.0.7
@@ -672,8 +672,8 @@ main,
     #header nav:before {
       display: none;
       visibility: hidden;
-      content: '\f0c9';
       font: 100%/1 awesome;
+      content: '\f0c9';
       line-height: 2.4;
       pointer-events: none;
       position: absolute;
@@ -710,8 +710,8 @@ main,
     #header li:focus > a, #header li:hover > a, #header li.current_page_item > a, #header li.current_page_ancestor > a {
       color: #fff; }
   #header .page_item_has_children > a:after {
-    content: '\f13a';
     font: 100%/1 awesome;
+    content: '\f13a';
     margin: 0 0 0 .5rem; }
   #header .page_item_has_children .page_item_has_children > a:after {
     content: '\f138'; }
@@ -802,8 +802,8 @@ form.search input {
   margin: 1rem;
   text-align: center; }
   .first-post:after, .first-post:before {
-    content: '';
     font: 100%/1 awesome;
+    content: '';
     padding: 0 1rem; }
 
 .post-webcomic nav {
@@ -880,9 +880,9 @@ form.search input {
   .post-content img {
     border-radius: .3rem; }
 .post-footer {
+  font: 100%/1 awesome;
   border-bottom: thin solid #999;
   clear: both;
-  font: 100%/1 awesome;
   font-size: smaller;
   margin: 0 0 1rem;
   padding: 0 0 1rem; }
@@ -916,8 +916,8 @@ form.search input {
 .more-link {
   font-size: smaller; }
   .more-link:before {
-    content: '\f138';
     font: 100%/1 awesome;
+    content: '\f138';
     padding: 0 .25rem 0 0; }
 
 nav.posts, nav.post-pages, nav.posts-paged, nav.comments-paged {
@@ -961,16 +961,16 @@ nav.posts a:first-child, nav.comments-paged a:first-child {
   float: left;
   margin: 0 1rem 0 0; }
 nav.post-pages:before {
-  content: '\f0c5';
   font: 100%/1 awesome;
+  content: '\f0c5';
   padding: 0 .25rem 0 0; }
 
 .webcomic-prints div {
   margin: 0 0 1rem; }
 
 .search .page-header h1:before, .archive .page-header h1:before {
-  content: '\f187';
   font: 100%/1 awesome;
+  content: '\f187';
   padding: 0 .5rem 0 0; }
 .search .page-header h1:before {
   content: '\f002'; }
@@ -1029,16 +1029,16 @@ nav.post-pages:before {
   .comment-reply-title a {
     font-weight: normal; }
     .comment-reply-title a:before {
-      content: '\f057';
       font: 100%/1 awesome;
+      content: '\f057';
       padding: 0 .25rem 0 0; }
   .comment-form label, .webcomic-transcribe-form label {
     display: block; }
   .comment-form .required, .webcomic-transcribe-form .required {
     visibility: hidden; }
     .comment-form .required:before, .webcomic-transcribe-form .required:before {
-      content: '\f071';
       font: 100%/1 awesome;
+      content: '\f071';
       visibility: visible; }
   .comment .comment, .pingback .comment,
   .trackback .comment, .comment .pingback, .pingback .pingback,
