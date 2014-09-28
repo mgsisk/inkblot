@@ -15,8 +15,9 @@
 		font-weight: normal;
 		
 		&:before {
+			@include font-awesome;
+			
 			content: '\f057';
-			font: $awesome;
 			padding: 0 .25rem 0 0;
 		}
 	}
@@ -30,8 +31,9 @@
 			visibility: hidden;
 			
 			&:before {
+				@include font-awesome;
+				
 				content: '\f071';
-				font: $awesome;
 				visibility: visible;
 			}
 		}
@@ -51,7 +53,8 @@
 		}
 		
 		a:before {
-			font: $awesome;
+			@include font-awesome;
+			
 			padding: 0 .25rem 0 1rem;
 		}
 		

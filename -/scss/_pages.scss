@@ -2,8 +2,9 @@
 	&-header h1:before {
 		.search &,
 		.archive & {
+			@include font-awesome;
+			
 			content: '\f187';
-			font: $awesome;
 			padding: 0 .5rem 0 0;
 		}
 		

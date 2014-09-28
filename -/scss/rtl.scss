@@ -3,7 +3,7 @@
  * right-to-left languages.
  */
 
-@import 'helpers';
+@import 'utility';
 
 html .rtl {
 	direction: rtl;
@@ -44,8 +44,9 @@ body {
 			}
 			
 			&:before {
+				@include font-awesome;
+				
 				content: '\f13a';
-				font: $awesome;
 				margin: 0 .5rem 0 0;
 			}
 		}
@@ -57,8 +58,9 @@ body {
 			}
 			
 			&:before {
+				@include font-awesome;
+				
 				content: '\f137';
-				font: $awesome;
 				margin: 0 .5rem 0 0;
 			}
 		}
@@ -98,7 +100,8 @@ body {
 				}
 				
 				&:after {
-					font: $awesome;
+					@include font-awesome;
+					
 					padding: 0 0 0 .5rem;
 					vertical-align: baseline;
 					
@@ -165,7 +168,8 @@ body {
 			}
 			
 			&:after {
-				font: $awesome;
+				@include font-awesome;
+				
 				padding: 0 1rem 0 .25rem;
 			}
 			
@@ -297,8 +301,9 @@ nav {
 		&:after {
 			.search &,
 			.archive & {
+				@include font-awesome;
+				
 				content: '\f187';
-				font: $awesome;
 				padding: 0 0 0 .5rem;
 			}
 			
@@ -378,8 +383,9 @@ nav {
 		}
 	
 		&:after {
+			@include font-awesome;
+			
 			content: '\f057';
-			font: $awesome;
 			padding: 0 0 0 .25rem;
 		}
 	}
@@ -406,7 +412,8 @@ nav {
 			}
 			
 			&:after {
-				font: $awesome;
+				@include font-awesome;
+				
 				padding: 0 1rem 0 .25rem;
 			}
 		}

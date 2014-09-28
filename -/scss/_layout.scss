@@ -116,9 +116,9 @@ main,
 		
 		&:before {
 			@include hide;
+			@include font-awesome;
 			
 			content: '\f0c9';
-			font: $awesome;
 			line-height: 2.4;
 			pointer-events: none;
 			position: absolute;
@@ -180,8 +180,9 @@ main,
 	
 	.page_item_has_children {
 		> a:after {
+			@include font-awesome;
+			
 			content: '\f13a';
-			font: $awesome;
 			margin: 0 0 0 .5rem;
 		}
 		

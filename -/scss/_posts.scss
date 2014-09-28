@@ -6,8 +6,9 @@
 	
 	&:after,
 	&:before {
+		@include font-awesome;
+		
 		content: '';
-		font: $awesome;
 		padding: 0 1rem;
 	}
 }
@@ -65,7 +66,8 @@
 			word-wrap: break-word;
 			
 			a:before {
-				font: $awesome;
+				@include font-awesome;
+				
 				padding: 0 .5rem 0 0;
 				vertical-align: baseline;
 				
@@ -114,7 +116,8 @@
 		
 		a {
 			&:before {
-				font: $awesome;
+				@include font-awesome;
+				
 				padding: 0 .25rem 0 1rem;
 			}
 			
@@ -158,9 +161,10 @@
 	}
 	
 	&-footer {
+		@include font-awesome;
+		
 		border-bottom: $border;
 		clear: both;
-		font: $awesome;
 		font-size: smaller;
 		margin: 0 0 1rem;
 		padding: 0 0 1rem;
@@ -226,8 +230,9 @@
 	font-size: smaller;
 	
 	&:before {
+		@include font-awesome;
+		
 		content: '\f138';
-		font: $awesome;
 		padding: 0 .25rem 0 0;
 	}
 }
@@ -279,8 +284,9 @@ nav {
 	}
 	
 	&.post-pages:before {
+		@include font-awesome;
+		
 		content: '\f0c5';
-		font: $awesome;
 		padding: 0 .25rem 0 0;
 	}
 }
