@@ -3,8 +3,11 @@ $text-color: #222;
 $anchor-color: #999;
 $opacity: .8;
 
-$awesome: 100%/1 awesome;
 $border: thin solid $anchor-color;
+
+@mixin font-awesome {
+	font: 100%/1 awesome;
+}
 
 @mixin clear {
 	&:before,
