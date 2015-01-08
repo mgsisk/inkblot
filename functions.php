@@ -12,7 +12,7 @@
  * @var integer
  */
 if ( ! isset($content_width)) {
-	$content_width = get_theme_mod('content_width', 480);
+	$content_width = get_theme_mod('content_width', 640);
 }
 
 require_once get_template_directory() . '/-/php/tags.php';
@@ -28,7 +28,6 @@ if (is_admin() or is_customize_preview()) {
 
 add_action('customize_preview_init', 'inkblot_customize_preview_init');
 add_action('wp_head', 'inkblot_wp_head', 0);
-add_action('wp_title', 'inkblot_wp_title', 10, 3);
 add_action('wp_loaded', 'inkblot_wp_loaded');
 add_action('widgets_init', 'inkblot_widgets_init');
 add_action('wp_head', 'inkblot_wp_head_customize');
@@ -65,50 +64,8 @@ function inkblot_wp_head() { ?>
 	<meta charset="<?php bloginfo('charset'); ?>">
 	<meta name="description" content="<?php inkblot_page_description(); ?>">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1">
-	<title><?php wp_title('|'); ?></title>
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 	<?php
-}
-endif;
-
-if ( ! function_exists('inkblot_wp_title')) :
-/**
- * Add additional information to page titles.
- * 
- * @param string $title The original title.
- * @param string $sep Separator to place between title elements.
- * @param string $location Where to place the separator.
- * @return string
- * @hook wp_title
- */
-function inkblot_wp_title($title, $sep, $location) {
-	global $page, $paged;
-	
-	if (is_feed()) {
-		return $title;
-	}
-	
-	$name = get_bloginfo('name');
-	$title = explode(" {$sep} ", $title);
-	$pages = $description = '';
-	
-	if (2 <= max($page, $paged)) {
-		$pages =  sprintf(__('Page %s', 'inkblot'), max($paged, $page));
-	}
-	
-	if (is_home() or is_front_page()) {
-		$description = get_bloginfo('description', 'display');
-	}
-	
-	if ('right' === $location) {
-		array_unshift($title, $description, $name, $pages);
-	} else {
-		array_push($title, $pages, $name, $description);
-	}
-	
-	$title = array_filter($title);
-	
-	return implode(" {$sep} ", $title);
 }
 endif;
 
@@ -262,6 +219,7 @@ function inkblot_after_setup_theme() {
 	add_filter('show_recent_comments_widget_style', '__return_false');
 	
 	add_theme_support('menus');
+	add_theme_support('title-tag');
 	add_theme_support('post-thumbnails');
 	add_theme_support('automatic-feed-links');
 	add_theme_support('html5', array('caption', 'comment-list', 'comment-form', 'gallery', 'search-form'));
@@ -325,6 +283,10 @@ if ( ! function_exists('inkblot_body_class')) :
  */
 function inkblot_body_class($classes, $class) {
 	$classes[] = get_theme_mod('content', 'one-column');
+	
+	if (get_theme_mod('responsive_width', 0) or is_customize_preview()) {
+		$classes[] = 'responsive';
+	}
 	
 	if (webcomic()) {
 		if (is_webcomic_archive()) {
