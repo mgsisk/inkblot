@@ -164,7 +164,7 @@ function inkblot_customize_register($customize) {
 		)
 	));
 	
-	if ($google_fonts = inkblot_google_fonts()) {
+	if ($google_fonts = inkblot_get_fonts()) {
 		$fonts = array('' => __('(inherit)', 'inkblot'));
 		
 		foreach ($google_fonts->items as $font) {

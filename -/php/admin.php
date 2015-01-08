@@ -64,7 +64,7 @@ function inkblot_custom_header_options() { ?>
 			</th>
 			<td>
 				<?php
-					if ($fonts = inkblot_google_fonts()) {
+					if ($fonts = inkblot_get_fonts()) {
 						$header_font = get_theme_mod('header_font');
 						
 						print '<select id="inkblot_header_font" name="header_font">';
@@ -264,20 +264,20 @@ function inkblot_admin_head_preview() { ?>
 }
 endif;
 
-if ( ! function_exists('inkblot_google_fonts')) :
+if ( ! function_exists('inkblot_get_fonts')) :
 /**
  * Return Google Font data.
  * 
  * @return object
  */
-function inkblot_google_fonts() {
+function inkblot_get_fonts() {
 	$fonts = array();
 	
 	if ($fonts = wp_remote_get('https://www.googleapis.com/webfonts/v1/webfonts?sort=alpha&key=AIzaSyDGeJxu3MGJVi5RiUw4rQ3Jt_Q4VtSOnyE') and !is_wp_error($fonts)) {
 		$fonts = json_decode($fonts['body']);
 	}
 	
-	return $fonts;
+	return is_wp_error($fonts) ? false : $fonts;
 }
 endif;
 
