@@ -7,7 +7,7 @@
  */
 ?>
 
-<?php if ( ! is_page_template('page-templates/full-width.php') or get_post_meta(get_the_ID(), 'inkblot_sidebars', true)) : ?>
+<?php if ( ! is_page_template('template/full-width.php') or get_post_meta(get_the_ID(), 'inkblot_sidebars', true)) : ?>
 
 	<?php if ('one-column' !== get_theme_mod('content', 'one-column') or is_customize_preview()) : ?>
 		
