@@ -25,7 +25,7 @@
 				);
 			elseif (is_search()) :
 				_e('Sorry, but nothing matched your search terms. Please try again with different keywords.', 'inkblot');
-			elseif (!is_home()) :
+			elseif ( ! is_home()) :
 				_e("Apologies, but we can't seem to find what you're looking for. Perhaps searching will help.", 'inkblot');
 			endif;
 		?>

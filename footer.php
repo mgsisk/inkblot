@@ -17,7 +17,7 @@
 					);
 				?>
 				
-			</footer><!-- #contentinfo -->
+			</footer><!-- #footer -->
 			<?php print inkblot_widgetized('page-footer'); ?>
 		</div><!-- #page -->
 		

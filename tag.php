@@ -23,9 +23,7 @@ get_header(); ?>
 		<?php endif; ?>
 		
 		<?php
-			while (have_posts()) :
-				the_post();
-				
+			while (have_posts()) : the_post();
 				(webcomic() and is_a_webcomic())
 				? get_template_part('webcomic/content', get_post_type())
 				: get_template_part('content', get_post_format());
