@@ -47,13 +47,8 @@ if ( ! function_exists('inkblot_customize_preview_init')) :
  * @hook customize_preview_init
  */
 function inkblot_customize_preview_init() {
-	foreach (array('title', 'layout', 'fonts', 'colors', 'backgrounds', 'webcomic') as $section) {
-		if ('webcomic' === $section and !webcomic()) {
-			continue;
-		}
-		
-		wp_enqueue_script("inkblot-customize-{$section}", get_template_directory_uri() . "/-/js/admin-customize-{$section}.js", array('jquery', 'customize-preview', 'underscore'), '', true);
-	}
+	wp_register_script('automattic-color', get_template_directory_uri() . '/-/js/color.js');
+	wp_enqueue_script('inkblot-customize-script', get_template_directory_uri() . '/-/js/customize.js', array('jquery', 'customize-preview', 'underscore', 'automattic-color'), '', true);
 }
 endif;
 

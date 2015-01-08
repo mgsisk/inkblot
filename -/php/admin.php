@@ -123,7 +123,7 @@ function inkblot_admin_enqueue_scripts($page) {
 	global $post;
 	
 	if ('post.php' === $page and $post and 'page' === $post->post_type) {
-		wp_enqueue_script('inkblot-admin-pages', get_template_directory_uri() . '/-/js/admin-pages.js', array('jquery'));
+		wp_enqueue_script('inkblot-templates-script', get_template_directory_uri() . '/-/js/templates.js', array('jquery'));
 	} else if ('appearance_page_custom-header' === $page) {
 		if (get_theme_mod('font') or get_theme_mod('page_font')) {
 			$proto = is_ssl() ? 'https' : 'http';

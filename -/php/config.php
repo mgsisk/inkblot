@@ -938,7 +938,6 @@ if ( ! function_exists('inkblot_customize_controls_enqueue_scripts')) :
  * @hook customize_controls_enqueue_scripts
  */
 function inkblot_customize_controls_enqueue_scripts() {
-	wp_enqueue_script('inkblot-customize-controls', get_template_directory_uri() . '/-/js/admin-customize-controls.js', array('jquery', 'customize-controls'), '', true);
 }
 endif;
 
@@ -979,6 +978,7 @@ function inkblot_tab_subtlepatterns() {
 	} else {
 		printf('<blockquote><p><small>%s</small></p></blockquote>', sprintf(__("Sorry, we couldn't connect to %s", 'inkblot'), '<a href="http://subtlepatterns.com" target="_blank">subtlepatterns.com</a>'));
 	}
+	wp_enqueue_script('inkblot-customize-controls', get_template_directory_uri() . '/-/js/customize-controls.js', array('jquery', 'customize-controls'), '', true);
 }
 endif;
 
