@@ -51,10 +51,10 @@ function inkblot_insert_page($id, $post) {
 		);
 		
 		if (in_array($post->page_template, array(
-			'page-templates/contributors.php',
-			'page-templates/full-width.php',
-			'page-templates/webcomic-archive.php',
-			'page-templates/webcomic-homepage.php'
+			'template/contributors.php',
+			'template/full-width.php',
+			'template/webcomic-archive.php',
+			'template/webcomic-homepage.php'
 		))) {
 			foreach ($keys as $key) {
 				update_post_meta($id, $key, $_POST[$key]);
@@ -92,10 +92,10 @@ function inkblot_template_options($page) {
 			<?php
 				foreach (get_page_templates() as $k => $v) {
 					if (in_array($v, array(
-						'page-templates/contributors.php',
-						'page-templates/full-width.php',
-						'page-templates/webcomic-archive.php',
-						'page-templates/webcomic-homepage.php'
+						'template/contributors.php',
+						'template/full-width.php',
+						'template/webcomic-archive.php',
+						'template/webcomic-homepage.php'
 					))) {
 						printf('<li>%s</li>', $k);
 					}
@@ -103,7 +103,7 @@ function inkblot_template_options($page) {
 			?>
 		</ul>
 	</div>
-	<div data-inkblot-template-options="page-templates/contributors.php">
+	<div data-inkblot-template-options="template/contributors.php">
 		<h4><?php _e('Contributors', 'inkblot'); ?></h4>
 		<p>
 			<input id="inkblot_avatar" name="inkblot_avatar" type="number" min="0" step="8" class="small-text" value="<?php print (int) $inkblot_avatar; ?>">
@@ -111,7 +111,7 @@ function inkblot_template_options($page) {
 		</p>
 	</div>
 	
-	<div data-inkblot-template-options="page-templates/full-width.php">
+	<div data-inkblot-template-options="template/full-width.php">
 		<h4><?php _e('Full Width', 'inkblot'); ?></h4>
 		<p>
 			<input id="inkblot_sidebars" name="inkblot_sidebars" type="checkbox" value="1"<?php print $inkblot_sidebars ? ' checked' : ''; ?>>
@@ -119,7 +119,7 @@ function inkblot_template_options($page) {
 		</p>
 	</div>
 	
-	<div data-inkblot-template-options="page-templates/webcomic-archive.php">
+	<div data-inkblot-template-options="template/webcomic-archive.php">
 		<h4><?php _e('Webcomic Archive', 'inkblot'); ?></h4>
 		<?php if (webcomic()) : ?>
 			
@@ -183,7 +183,7 @@ function inkblot_template_options($page) {
 		<?php endif; ?>
 	</div>
 	
-	<div data-inkblot-template-options="page-templates/webcomic-homepage.php">
+	<div data-inkblot-template-options="template/webcomic-homepage.php">
 		<h4><?php _e('Webcomic Homepage', 'inkblot'); ?></h4>
 		
 		<?php if (webcomic()) : ?>
