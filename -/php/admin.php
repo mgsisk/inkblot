@@ -9,7 +9,6 @@ add_action('admin_notices', 'inkblot_admin_notices');
 add_action('after_switch_theme', 'inkblot_after_switch_theme');
 add_action('custom_header_options', 'inkblot_custom_header_options');
 add_action('admin_enqueue_scripts', 'inkblot_admin_enqueue_scripts', 10, 1);
-add_action('admin_head-appearance_page_custom-header', 'inkblot_admin_head_appearance_page_custom_header');
 
 if ( ! function_exists('inkblot_admin_notices')) :
 function inkblot_admin_notices() {
@@ -137,130 +136,6 @@ function inkblot_admin_enqueue_scripts($page) {
 		
 		wp_enqueue_script('inkblot-custom-header', get_template_directory_uri() . '/-/js/admin-custom-header.js', array('jquery'), '', true);
 	}
-}
-endif;
-
-if ( ! function_exists('inkblot_admin_head_appearance_page_custom_header')) :
-/**
- * Save Inkblot-specific header modifications.
- * 
- * @return void
- */
-function inkblot_admin_head_appearance_page_custom_header() {
-	if ( ! current_user_can('edit_theme_options') or empty($_POST)) {
-		return;
-	}
-	
-	check_admin_referer('custom-header-options', '_wpnonce-custom-header-options');
-	
-	set_theme_mod('header_textopacity', $_POST['header_textopacity']);
-	set_theme_mod('header_font', $_POST['header_font']);
-	set_theme_mod('header_width', $_POST['header_width']);
-	set_theme_mod('header_height', $_POST['header_height']);
-	
-	return;
-}
-endif;
-
-if ( ! function_exists('inkblot_admin_head')) :
-/**
- * Render custom header preview CSS.
- * 
- * @return void
- */
-function inkblot_admin_head() { ?>
-	<style>
-		#headimg {
-			background-color: <?php print get_theme_mod('page_color', '#fff'); ?>;
-			background-image: <?php print get_theme_mod('page_background_image', 'none'); ?>;
-			background-repeat: <?php print get_theme_mod('page_background_repeat', 'repeat'); ?>;
-			background-position: <?php print get_theme_mod('page_background_position', 'top left'); ?>;
-			background-attachment: <?php print get_theme_mod('page_background_attachment', 'fixed'); ?>;
-			cursor: pointer;
-			font-family: <?php print get_theme_mod('font') ? str_replace('+', ' ', substr(get_theme_mod('font'), 0, strpos(get_theme_mod('font'), ':'))) : 'helvetica neue, helvetica'; ?>, sans-serif;
-			line-height: 1.4;
-			padding: 1px 1px 0;
-			text-decoration: none;
-			transition: opacity .2s;
-			white-space: normal;
-		}
-		
-		#headimg .displaying-header-text {
-			font-family: <?php print get_theme_mod('page_font') ? str_replace('+', ' ', substr(get_theme_mod('page_font'), 0, strpos(get_theme_mod('page_font'), ':'))) : 'helvetica neue, helvetica'; ?>, sans-serif;
-		}
-		
-		#headimg:focus,
-		#headimg:hover {
-			opacity: 0.8;
-		}
-		
-		#headimg:active {
-			opacity: 0.4;
-		}
-		
-		#name {
-			cursor: pointer;
-			font-family: <?php print get_theme_mod('header_font') ? str_replace('+', ' ', substr(get_theme_mod('header_font'), 0, strpos(get_theme_mod('header_font'), ':'))) : 'helvetica neue, helvetica'; ?>, sans-serif;
-			line-height: 1;
-			margin: 0;
-			padding: 1rem 1rem 0 1rem;
-		}
-		
-		#desc {
-			cursor: pointer;
-			font-family: <?php print get_theme_mod('header_font') ? str_replace('+', ' ', substr(get_theme_mod('header_font'), 0, strpos(get_theme_mod('header_font'), ':'))) : 'helvetica neue, helvetica'; ?>, sans-serif;
-			line-height: 2;
-			margin: 0;
-			padding: 0 1rem 1rem 1rem;
-		}
-		
-		#headimg img {
-			cursor: pointer;
-			height: auto;
-			max-width: 100%;
-			vertical-align: middle;
-		}
-		
-		<?php
-			if ('blank' === get_header_textcolor()) {
-				print '.displaying-header-text {display: none;}';
-			} else if (get_header_textcolor()) {
-				inkblot_css(array(
-					'#name',
-					'#desc',
-				), 'color', array(get_theme_mod('header_textcolor'), get_theme_mod('header_textopacity')));
-			} else {
-				inkblot_css(array(
-					'#name',
-					'#desc'
-				), 'color', '#222');
-			}
-			
-			inkblot_css();
-		?>
-	</style>
-	<?php
-}
-endif;
-
-if ( ! function_exists('inkblot_admin_head_preview')) :
-/**
- * Render custom header preview HTML.
- * 
- * @return void
- */
-function inkblot_admin_head_preview() { ?>
-	<div id="headimg">
-		<div class="displaying-header-text">
-			<h1 id="name"><?php bloginfo('name'); ?></h1>
-			<p id="desc"><?php bloginfo('description'); ?></p>
-		</div>
-		
-		<?php if (get_header_image()) : ?>
-			<img src="<?php header_image(); ?>" alt="">
-		<?php endif; ?>
-	</div>
-	<?php
 }
 endif;
 
