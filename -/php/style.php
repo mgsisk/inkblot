@@ -13,9 +13,9 @@ if ( ! function_exists('locate_template')) {
 	return;
 }
 
-locate_template(array('style.css'), isset($_GET['inkblot-styles']));
+locate_template(array('style.css'), isset($_GET['inkblot-style']));
 
-if (isset($_GET['inkblot-styles'])) :
+if (isset($_GET['inkblot-style'])) :
 print "\n\n";
 
 printf('
@@ -92,7 +92,7 @@ if ($mod = require get_template_directory() . '/-/php/mods.php') :
 	if ($mod['page_font']) {
 		inkblot_css('#page', 'font-family', $mod['page_font']);
 		
-		if (isset($_GET['inkblot-styles']) and 'editor' === $_GET['inkblot-styles']) {
+		if (isset($_GET['inkblot-style']) and 'editor' === $_GET['inkblot-style']) {
 			inkblot_css(array(
 				'.wp-editor',
 				'.wp-editor caption',
@@ -132,7 +132,7 @@ if ($mod = require get_template_directory() . '/-/php/mods.php') :
 			'textarea'
 		), 'background-color', array($mod['page_color'], $mod['page_opacity']));
 		
-		if (isset($_GET['inkblot-styles']) and 'editor' === $_GET['inkblot-styles']) {
+		if (isset($_GET['inkblot-style']) and 'editor' === $_GET['inkblot-style']) {
 			inkblot_css('.wp-editor', 'background-color', array($mod['page_color'], $mod['page_opacity']));
 		}
 	}
@@ -162,7 +162,7 @@ if ($mod = require get_template_directory() . '/-/php/mods.php') :
 			'textarea'
 		), 'color', array($mod['page_text_color'], $mod['page_text_opacity']));
 		
-		if (isset($_GET['inkblot-styles']) and 'editor' === $_GET['inkblot-styles']) {
+		if (isset($_GET['inkblot-style']) and 'editor' === $_GET['inkblot-style']) {
 			inkblot_css('.wp-editor', 'color', array($mod['page_text_color'], $mod['page_text_opacity']));
 		}
 	}
@@ -218,7 +218,7 @@ if ($mod = require get_template_directory() . '/-/php/mods.php') :
 			'.bypostauthor'
 		), 'border-color', array($mod['page_link_color'], $mod['page_link_opacity']));
 		
-		if (isset($_GET['inkblot-styles']) and 'editor' === $_GET['inkblot-styles']) {
+		if (isset($_GET['inkblot-style']) and 'editor' === $_GET['inkblot-style']) {
 			inkblot_css('.wp-editor a', 'color', array($mod['page_link_color'], $mod['page_link_opacity']));
 			
 			inkblot_css(array(
@@ -248,7 +248,7 @@ if ($mod = require get_template_directory() . '/-/php/mods.php') :
 			'textarea:hover'
 		), 'border-color', array($mod['page_link_hover_color'], $mod['page_link_hover_opacity']));
 		
-		if (isset($_GET['inkblot-styles']) and 'editor' === $_GET['inkblot-styles']) {
+		if (isset($_GET['inkblot-style']) and 'editor' === $_GET['inkblot-style']) {
 			inkblot_css(array(
 				'.wp-editor a:focus',
 				'.wp-editor a:hover'
@@ -322,7 +322,7 @@ if ($mod = require get_template_directory() . '/-/php/mods.php') :
 		inkblot_css('#page', 'background-position', $mod['page_background_position_x']);
 		inkblot_css('#page', 'background-attachment', $mod['page_background_attachment']);
 		
-		if (isset($_GET['inkblot-styles']) and 'editor' === $_GET['inkblot-styles']) {
+		if (isset($_GET['inkblot-style']) and 'editor' === $_GET['inkblot-style']) {
 			inkblot_css('.wp-editor', 'background-image', $mod['page_background_image']);
 			inkblot_css('.wp-editor', 'background-repeat', $mod['page_background_repeat']);
 			inkblot_css('.wp-editor', 'background-position', $mod['page_background_position_x']);
@@ -360,7 +360,7 @@ if ($mod = require get_template_directory() . '/-/php/mods.php') :
 		), 'background-attachment', $mod['trim_background_attachment']);
 	}
 	
-	if (isset($_GET['inkblot-styles']) and 'editor' === $_GET['inkblot-styles']) {
+	if (isset($_GET['inkblot-style']) and 'editor' === $_GET['inkblot-style']) {
 		inkblot_css('.wp-editor', 'margin', '0 1rem');
 		inkblot_css('.wp-editor img', 'border-radius', '.3rem');
 		inkblot_css('.wp-editor .alignnone', 'margin', '1rem');
@@ -390,4 +390,4 @@ endif;
 
 print "\n\n";
 
-locate_template(array('custom.css'), isset($_GET['inkblot-styles']));
+locate_template(array('custom.css'), isset($_GET['inkblot-style']));

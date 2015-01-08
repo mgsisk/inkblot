@@ -1,13 +1,14 @@
 <?php
 /**
  * Inkblot theme functions.
- * 
+ *
+ * @todo copyright widget; widgetized footer
  * @package Inkblot
  */
 
 /**
  * Set the content width.
- * 
+ *
  * @var integer
  */
 if ( ! isset($content_width)) {
@@ -42,7 +43,7 @@ add_filter('the_content_more_link', 'inkblot_the_content_more_link');
 if ( ! function_exists('inkblot_customize_preview_init')) :
 /**
  * Enqueue dynamic preview script.
- * 
+ *
  * @return void
  * @hook customize_preview_init
  */
@@ -55,7 +56,7 @@ endif;
 if ( ! function_exists('inkblot_wp_head')) :
 /**
  * Render the <head> portion of the page.
- * 
+ *
  * @return void
  * @uses inkblot_page_description()
  * @hook wp_head
@@ -114,15 +115,15 @@ endif;
 if ( ! function_exists('inkblot_wp_loaded')) :
 /**
  * Generate custom stylesheet.
- * 
+ *
  * It would be better to handle this with an `init` hook, but we need
  * `get_theme_mod` to function properly for the theme customizer.
- * 
+ *
  * @return void
  * @action wp_loaded
  */
 function inkblot_wp_loaded() {
-	if (isset($_GET['inkblot-styles'])) {
+	if (isset($_GET['inkblot-style'])) {
 		header('Content-Type: text/css');
 		
 		require_once get_template_directory() . '/-/php/style.php';
@@ -135,7 +136,7 @@ endif;
 if ( ! function_exists('inkblot_widgets_init')) :
 /**
  * Register widgetized areas.
- * 
+ *
  * @return void
  * @hook widgets_init
  */
@@ -179,10 +180,10 @@ endif;
 if ( ! function_exists('inkblot_wp_head_customize')) :
 /**
  * Include customized styles inline.
- * 
+ *
  * We need to do this while previewing to ensure customizations show up
  * properly if the user navigates through the theme preview.
- * 
+ *
  * @return void
  * @hook wp_head
  */
@@ -200,12 +201,12 @@ endif;
 if ( ! function_exists('inkblot_wp_enqueue_scripts')) :
 /**
  * Enqueue scripts and stylesheets.
- * 
+ *
  * @return void
  * @hook wp_enqueue_scripts
  */
 function inkblot_wp_enqueue_scripts() {
-	wp_enqueue_style('inkblot-theme', add_query_arg(array('inkblot-styles' => ''), home_url('/')));
+	wp_enqueue_style('inkblot-theme', add_query_arg(array('inkblot-style' => ''), home_url('/')));
 	
 	if (
 		get_theme_mod('font')
@@ -226,9 +227,7 @@ function inkblot_wp_enqueue_scripts() {
 		wp_enqueue_style('inkblot-fonts', add_query_arg(array('family' => implode('|', $fonts)), "{$proto}://fonts.googleapis.com/css"));
 	}
 	
-	if (get_theme_mod('responsive_width', 0)) {
-		wp_enqueue_script('inkblot-responsive', get_template_directory_uri() . '/-/js/responsive.js', array('jquery'), '', true);
-	}
+	wp_enqueue_script('inkblot-script', get_template_directory_uri() . '/-/js/script.js', array('jquery'), '', true);
 	
 	if (is_singular() and comments_open() and get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');
@@ -239,7 +238,7 @@ endif;
 if ( ! function_exists('inkblot_after_setup_theme')) :
 /**
  * Setup theme features.
- * 
+ *
  * @uses Inkblot::$dir
  * @hook after_setup_theme
  */
@@ -257,7 +256,7 @@ function inkblot_after_setup_theme() {
 		}
 	}
 	
-	add_editor_style(add_query_arg(array('inkblot-styles' => 'editor'), home_url('/')));
+	add_editor_style(add_query_arg(array('inkblot-style' => 'editor'), home_url('/')));
 	
 	add_filter('use_default_gallery_style', '__return_false');
 	add_filter('show_recent_comments_widget_style', '__return_false');
@@ -288,13 +287,13 @@ function inkblot_after_setup_theme() {
 }
 endif;
 
-if (!function_exists('inkblot_wp_footer')) :
+if ( ! function_exists('inkblot_wp_footer')) :
 /**
  * Add a customization element to the bottom of the page.
- * 
+ *
  * This element has a number of data attributes that are used to keep things
  * consistent while customizing the theme.
- * 
+ *
  * @return void
  */
 function inkblot_wp_footer() {
@@ -307,28 +306,18 @@ function inkblot_wp_footer() {
 				data-<?php print str_replace('_', '-', $key); ?>="<?php print get_theme_mod($key, $default); ?>"
 				
 			<?php endforeach; ?>
-			
+
 		>
 	<?php }
-	
-	/*
-		data-content="<?php print get_theme_mod('content', 'one-column'); ?>"
-		data-sidebar1-width="<?php print get_theme_mod('sidebar1_width', 25); ?>"
-		data-sidebar2-width="<?php print get_theme_mod('sidebar2_width', 25); ?>"
-		data-link-hover="<?php print get_theme_mod('link_hover_color', '#222222'); ?>"
-		data-page-link-hover="<?php print get_theme_mod('page_link_hover_color', '#222222'); ?>"
-		data-trim-link-hover="<?php print get_theme_mod('trim_link_hover_color', '#ffffff'); ?>"
-		data-
-	*/
 }
 endif;
 
 if ( ! function_exists('inkblot_body_class')) :
 /**
  * Add the content class to the body tag.
- * 
+ *
  * Also adds Webcomic-specific classes for easier styling.
- * 
+ *
  * @param array $classes Array of body classes.
  * @param mixed $class Additional classes passed to `body_class()`.
  * @return array
@@ -358,7 +347,7 @@ endif;
 if ( ! function_exists('inkblot_excerpt_more')) :
 /**
  * Return a more accessible read more link.
- * 
+ *
  * @return string
  * @hook excerpt_more
  */
@@ -370,7 +359,7 @@ endif;
 if ( ! function_exists('inkblot_the_content_more_link')) :
 /**
  * Return a more accessible read more link.
- * 
+ *
  * @return string
  * @hook the_content_more_link
  */
@@ -382,7 +371,7 @@ endif;
 if ( ! function_exists('inkblot_css')) :
 /**
  * Save and output theme customizer CSS.
- * 
+ *
  * @param string $value Color value to retrieve.
  * @return string
  */
@@ -436,7 +425,7 @@ function inkblot_css($selectors = '', $property = '', $value = '') {
 			
 			$css[$selector][] = "{$property}: {$value}";
 		}
-	} else if (!$selectors) {
+	} else if ( ! $selectors) {
 		print "\n\n";
 		
 		foreach ($css as $selector => $properties) {
