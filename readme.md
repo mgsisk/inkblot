@@ -1,6 +1,6 @@
 # Inkblot - The original Webcomic theme.
 
-Inkblot is an elegant, fully responsive, highly customizable [Webcomic](http://webcomic.nu)-ready [WordPress](//wordpress.org) theme named in honor of Rorschach from the Watchmen graphic novel.
+Inkblot is an elegant, fully responsive, highly customizable [Webcomic](//github.com/mgsisk/webcomic)-ready [WordPress](//wordpress.org) theme named in honor of Rorschach from the Watchmen graphic novel.
 
 ## Installation
 
@@ -12,16 +12,13 @@ Inkblot is an elegant, fully responsive, highly customizable [Webcomic](http://w
 
 ### Where can I get help with Webcomic (and Inkblot)?
 
-- [Support Forum](//groups.google.com/d/forum/webcomicnu)
-- [Inkblot Issue Tracker](//github.com/mgsisk/inkblot/issues)
-- [Beginner's Guide to Webcomic](//github.com/mgsisk/webcomic/wiki)
-- [Webcomic Video Tutorials](//vimeo.com/channels/webcomic)
-- [Webcomic Issue Tracker](//github.com/mgsisk/webcomic/issues)
-- [Email Support](mailto:support@webcomic.nu)
+- [Issue Tracker](http://github.com/mgsisk/inkblot/issues)
+- [Support Forum](http://wordpress.org/support/theme/inkblot)
+- [Email Support](mailto:help@mgsisk.com)
 
 ---
 
-Copyright 2008 - 2013 Michael Sisk (contact@mgsisk.com)
+Copyright 2008 - 2015 Michael Sisk (me@mgsisk.com)
 
 This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 

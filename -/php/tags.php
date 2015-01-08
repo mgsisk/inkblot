@@ -390,3 +390,27 @@ function inkblot_contributor($user, $avatar = 96) {
 	return $contributor;
 }
 endif;
+
+if ( ! function_exists('inkblot_start_webcomic')) :
+/**
+ * Render the primary webcomic display opening content.
+ * 
+ * @return void
+ */
+function inkblot_start_webcomic() { ?>
+	<div id="webcomic-<?php the_ID(); ?>" class="post-webcomic" data-webcomic-shortcuts data-webcomic-gestures data-webcomic-container>
+	<?php
+}
+endif;
+
+if ( ! function_exists('inkblot_end_webcomic')) :
+/**
+ * Render the primary webcomic display closing content.
+ * 
+ * @return void
+ */
+function inkblot_end_webcomic() { ?>
+	</div><!-- #webcomic -->
+	<?php
+}
+endif;
