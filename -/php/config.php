@@ -5,30 +5,8 @@
  * @package Inkblot
  */
 
-add_action('customize_save_after', 'inkblot_customize_save_after');
 add_action('customize_register', 'inkblot_customize_register');
 add_action('customize_controls_enqueue_scripts', 'inkblot_customize_controls_enqueue_scripts');
-
-if ( ! function_exists('inkblot_switch_theme')) :
-/**
- * Sideload external background images.
- * 
- * @param object $customize WordPress theme customization object.
- * @return void
- * @hook customize_save_after
- */
-function inkblot_customize_save_after($customize) {
-	foreach (array(
-		'background_image' => 'custom-background',
-		'page_background_image' => 'inkblot-page-background',
-		'trim_background_image' => 'inkblot-trim-background'
-	) as $mod => $context) {
-		if (false !== strpos(get_theme_mod($mod), 'subtlepatterns')) {
-			set_theme_mod($mod, inkblot_sideload_image(get_theme_mod($mod), $context));
-		}
-	}
-}
-endif;
 
 if ( ! function_exists('inkblot_customize_register')) :
 /**
@@ -46,7 +24,6 @@ function inkblot_customize_register($customize) {
 			$customize->get_section($setting)->title = __('Site', 'inkblot');
 			$customize->get_section($setting)->panel = 'inkblot_background_images';
 			$customize->get_section($setting)->priority = 5;
-			$customize->get_control($setting)->add_tab('inkblot_tab_subtlepatterns', '=', 'inkblot_tab_subtlepatterns');
 		}
 	}
 	
@@ -589,8 +566,7 @@ function inkblot_customize_register($customize) {
 		'label' => __('Background Image', 'inkblot'),
 		'section' => 'inkblot_page_background_image',
 		'context' => 'inkblot-page-background'
-	)); $page_background->add_tab('inkblot_pagebg_more', '=', 'inkblot_tab_subtlepatterns');
-		$customize->add_control($page_background);
+	)); $customize->add_control($page_background);
 	
 	$customize->add_setting('page_background_repeat', array(
 		'default' => 'repeat',
@@ -647,8 +623,7 @@ function inkblot_customize_register($customize) {
 		'label' => __('Background Image', 'inkblot'),
 		'section' => 'inkblot_trim_background_image',
 		'context' => 'inkblot-trim-background'
-	)); $trim_background->add_tab('inkblot_trim_background_more', '=', 'inkblot_tab_subtlepatterns');
-		$customize->add_control($trim_background);
+	)); $customize->add_control($trim_background);
 	
 	$customize->add_setting('trim_background_repeat', array(
 		'default' => 'repeat',
@@ -938,76 +913,6 @@ if ( ! function_exists('inkblot_customize_controls_enqueue_scripts')) :
  * @hook customize_controls_enqueue_scripts
  */
 function inkblot_customize_controls_enqueue_scripts() {
-}
-endif;
-
-if ( ! function_exists('inkblot_tab_subtlepatterns')) :
-/**
- * Render the SubtlePatterns.com background image tab.
- * 
- * @return void
- */
-function inkblot_tab_subtlepatterns() {
-	static $patterns = null;
-	
-	if (null === $patterns) {
-		if ($patterns = wp_remote_get('https://api.github.com/repos/subtlepatterns/SubtlePatterns/git/trees/master') and !is_wp_error($patterns)) {
-			$patterns = json_decode($patterns['body']);
-		} else {
-			$patterns = false;
-		}
-	}
-	
-	if ($patterns) {
-		printf('<blockquote><p><small>%s</small></p></blockquote>',
-			sprintf(__('%1$s is curated by %2$s.', 'inkblot'),
-				'<a href="http://subtlepatterns.com" target="_blank">Subtle Patterns</a>',
-				'<a href="http://atle.co" target="_blank">Atle Mo</a>'
-			)
-		);
-		
-		foreach ($patterns->tree as $pattern) {
-			if ('png' === substr($pattern->path, -3)) {
-				printf('<a href="#" class="thumbnail" data-customize-image-value="https://raw.github.com/subtlepatterns/SubtlePatterns/master/%1$s"><img src="%2$s/-/img/subtlepattern.png" title="%3$s" style="background:url(https://raw.github.com/subtlepatterns/SubtlePatterns/master/%1$s)"></a>',
-					$pattern->path,
-					get_template_directory_uri(),
-					str_replace(array('.png', '_'), array('', ' '), $pattern->path)
-				);
-			}
-		}
-	} else {
-		printf('<blockquote><p><small>%s</small></p></blockquote>', sprintf(__("Sorry, we couldn't connect to %s", 'inkblot'), '<a href="http://subtlepatterns.com" target="_blank">subtlepatterns.com</a>'));
-	}
 	wp_enqueue_script('inkblot-customize-controls', get_template_directory_uri() . '/-/js/customize-controls.js', array('jquery', 'customize-controls'), '', true);
-}
-endif;
-
-if ( ! function_exists('inkblot_sideload_image')) :
-/**
- * Import external background images.
- * 
- * @return void
- */
-function inkblot_sideload_image($src, $context) {
-	$url = false;
-	
-	if ($tmp = download_url($src) and !is_wp_error($tmp)) {
-		$file = array(
-			'name' => pathinfo(parse_url($src, PHP_URL_PATH), PATHINFO_BASENAME),
-			'tmp_name' => $tmp
-		);
-		
-		if ($id = media_handle_sideload($file, 0, $file['name']) and !is_wp_error($id)) {
-			$url = wp_get_attachment_url($id);
-			
-			update_post_meta($id, '_wp_attachment_context', $context);
-			
-			if ('custom-background' === $context) {
-				update_post_meta($id, '_wp_attachment_is_custom_background', 'inkblot');
-			}
-		}
-	}
-	
-	return $url;
 }
 endif;
