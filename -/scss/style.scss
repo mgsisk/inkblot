@@ -25,11 +25,12 @@ override changes you make in the `style.css` file.
 ===============================================================================
 */
 
-@import 'utility';
-@import 'normalize';
-@import 'base';
-@import 'layout';
-@import 'posts';
-@import 'pages';
-@import 'comments';
-@import 'wordpress';
+@import
+	'utility',
+	'normalize',
+	'base',
+	'layout',
+	'posts',
+	'pages',
+	'comments',
+	'wordpress';
