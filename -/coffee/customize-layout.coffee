@@ -27,7 +27,7 @@
 				position: 'relative'
 			)
 			
-			$('#sidebar1').css(
+			$('.sidebar1').css(
 				left: '-' + $width + '%'
 				position: 'relative'
 			)
@@ -37,14 +37,14 @@
 				position: 'static'
 			)
 			
-			$('#sidebar1').css(
+			$('.sidebar1').css(
 				left: '-' + $width + '%'
 				position: 'static'
 			)
 		
 		$('main').css('width', $width + '%')
-		$('#sidebar1').css('width', $sidebar1 + '%')
-		$('#sidebar2').css('width', $sidebar2 + '%')
+		$('.sidebar1').css('width', $sidebar1 + '%')
+		$('.sidebar2').css('width', $sidebar2 + '%')
 		
 		$('body').removeClass('one-column two-column-left two-column-right three-column-left three-column-right three-column-center').addClass($content)
 	
@@ -74,13 +74,13 @@
 	
 	wp.customize('min_width', ($value)->
 		$value.bind(($to)->
-			$('#page, #document > .document-header, #document > .document-footer').css('min-width', if 0 < Number($to) then $to + 'px' else '')
+			$('.wrapper, .document-header, .document-footer').css('min-width', if 0 < Number($to) then $to + 'px' else '')
 		)
 	)
 	
 	wp.customize('max_width', ($value)->
 		$value.bind(($to)->
-			$('#page, #document > .document-header, #document > .document-footer').css('max-width', if 0 < Number($to) then $to + 'px' else '')
+			$('.wrapper, .document-header, .document-footer').css('max-width', if 0 < Number($to) then $to + 'px' else '')
 		)
 	)
 )(jQuery)

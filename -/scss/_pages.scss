@@ -61,12 +61,10 @@
 	
 	&-template-templatefull-width-php {
 		main,
-		#sidebar1,
-		#sidebar2 {
+		.sidebar1,
+		.sidebar2 {
 			width: 100%;
 		}
-		
-		// @todo widget layout?
 	}
 }
 

@@ -149,6 +149,10 @@
 			&.post-edit-link:before {
 				content: '\f044';
 			}
+			
+			&[href*="?prints"]:before {
+				content: '\f0d6';
+			}
 		}
 	}
 	
@@ -207,7 +211,8 @@
 	}
 }
 
-.attachment {
+.attachment,
+.webcomic-prints {
 	.post {
 		&-image {
 			float: none;
@@ -223,6 +228,11 @@
 			font-size: smaller;
 			text-align: center;
 		}
+	}
+	
+	.webcomic-print-form {
+		display: inline-block;
+		margin: 0 1rem 1rem 0;
 	}
 }
 

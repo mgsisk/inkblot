@@ -3,7 +3,7 @@
   document.documentElement.className = document.documentElement.className.replace(/no-js/, 'js');
 
   jQuery(function($) {
-    return $('.responsive #header select').on('change', function($e) {
+    return $('.responsive .banner select').on('change', function($e) {
       if ($(this).val()) {
         return window.location.href = $(this).val();
       }

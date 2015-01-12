@@ -82,11 +82,21 @@
 	@extend .comment-form;
 }
 
-.webcomic-transcript { // @todo
-	&-error,
-	&-success {
-		font-size: smaller;
-		font-style: italic;
-		margin: 1rem 0 0;
-	}
+.webcomic-transcript-error,
+.webcomic-transcript-success {
+	font-size: smaller;
+	font-style: italic;
+	margin: 1rem 0 0;
+}
+
+.webcomic-transcript-authors:before {
+	@include font-awesome;
+	content: '\f007';
+	padding: 0 .25rem 0 1rem;
+}
+
+.webcomic-transcript-languages:before {
+	@include font-awesome;
+	content: '\f1ab';
+	padding: 0 .25rem 0 1rem;
 }

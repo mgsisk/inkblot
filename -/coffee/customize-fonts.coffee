@@ -33,25 +33,25 @@
 
 	wp.customize('header_font', ($value)->
 		$value.bind(($to)->
-			inkblot_font($to, '#header > a')
+			inkblot_font($to, '.banner > a')
 		)
 	)
 
 	wp.customize('page_font', ($value)->
 		$value.bind(($to)->
-			inkblot_font($to, '#page')
+			inkblot_font($to, '.wrapper')
 		)
 	)
 
 	wp.customize('title_font', ($value)->
 		$value.bind(($to)->
-			inkblot_font($to, 'h1:not(#header h1), h2, h3, h4, h5, h6')
+			inkblot_font($to, 'h1:not(.banner h1), h2, h3, h4, h5, h6')
 		)
 	)
 
 	wp.customize('trim_font', ($value)->
 		$value.bind(($to)->
-			inkblot_font($to, '#header nav, #header select, #footer, .post-webcomic nav')
+			inkblot_font($to, '.banner nav, .banner select, .contentinfo, .post-webcomic nav')
 		)
 	)
 )(jQuery)

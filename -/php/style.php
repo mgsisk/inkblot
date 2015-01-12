@@ -41,16 +41,16 @@ if ($mod = require get_template_directory() . '/-/php/mods.php') :
 	if ('one-column' !== $mod['content']) {
 		$main_width = 100 - $mod['sidebar1_width'];
 		
-		inkblot_css('#sidebar1', 'width', "{$mod['sidebar1_width']}%");
+		inkblot_css('.sidebar1', 'width', "{$mod['sidebar1_width']}%");
 		
 		if (false !== strpos($mod['content'], 'three-column')) {
 			$main_width -= $mod['sidebar2_width'];
 			
-			inkblot_css('#sidebar2', 'width', "{$mod['sidebar2_width']}%");
+			inkblot_css('.sidebar2', 'width', "{$mod['sidebar2_width']}%");
 			
 			if ('three-column-center' === $mod['content']) {
 				inkblot_css('main', 'left', "{$mod['sidebar1_width']}%");
-				inkblot_css('#sidebar1', 'left', "-{$main_width}%");
+				inkblot_css('.sidebar1', 'left', "-{$main_width}%");
 			}
 		}
 		
@@ -59,25 +59,25 @@ if ($mod = require get_template_directory() . '/-/php/mods.php') :
 	
 	if ($mod['min_width']) {
 		inkblot_css(array(
-			'#page',
-			'#document > .document-header',
-			'#document > .document-footer'
+			'.wrapper',
+			'.document-header',
+			'.document-footer'
 		), 'min-width', "{$mod['min_width']}px");
 	}
 	
 	if ($mod['max_width']) {
 		inkblot_css(array(
-			'#page',
-			'#document > .document-header',
-			'#document > .document-footer'
+			'.wrapper',
+			'.document-header',
+			'.document-footer'
 		), 'max-width', "{$mod['max_width']}px");
 	}
 	
 	if ($mod['min_width'] and $mod['max_width'] and $mod['min_width'] === $mod['max_width']) {
 		inkblot_css(array(
-			'#page',
-			'#document > .document-header',
-			'#document > .document-footer'
+			'.wrapper',
+			'.document-header',
+			'.document-footer'
 		), 'width', "{$mod['min_width']}px");
 	}
 	
@@ -90,7 +90,7 @@ if ($mod = require get_template_directory() . '/-/php/mods.php') :
 	}
 	
 	if ($mod['page_font']) {
-		inkblot_css('#page', 'font-family', $mod['page_font']);
+		inkblot_css('.wrapper', 'font-family', $mod['page_font']);
 		
 		if (isset($_GET['inkblot-style']) and 'editor' === $_GET['inkblot-style']) {
 			inkblot_css(array(
@@ -115,8 +115,8 @@ if ($mod = require get_template_directory() . '/-/php/mods.php') :
 	
 	if ($mod['trim_font']) {
 		inkblot_css(array(
-			'#header nav',
-			'#header select',
+			'.banner nav',
+			'.banner select',
 			'.post-webcomic nav'
 		), 'font-family', $mod['trim_font']);
 	}
@@ -127,7 +127,7 @@ if ($mod = require get_template_directory() . '/-/php/mods.php') :
 	
 	if ($mod['page_color']) {
 		inkblot_css(array(
-			'#page',
+			'.wrapper',
 			'input',
 			'textarea'
 		), 'background-color', array($mod['page_color'], $mod['page_opacity']));
@@ -139,10 +139,10 @@ if ($mod = require get_template_directory() . '/-/php/mods.php') :
 	
 	if ($mod['trim_color']) {
 		inkblot_css(array(
-			'#header nav',
-			'#header ul ul',
-			'#header select',
-			'#footer',
+			'.banner nav',
+			'.banner ul ul',
+			'.banner select',
+			'.contentinfo',
 			'.post-webcomic nav',
 			'button',
 			'input[type="submit"]',
@@ -157,7 +157,7 @@ if ($mod = require get_template_directory() . '/-/php/mods.php') :
 	
 	if ($mod['page_text_color']) {
 		inkblot_css(array(
-			'#page',
+			'.wrapper',
 			'input',
 			'textarea'
 		), 'color', array($mod['page_text_color'], $mod['page_text_opacity']));
@@ -169,9 +169,9 @@ if ($mod = require get_template_directory() . '/-/php/mods.php') :
 	
 	if ($mod['trim_text_color']) {
 		inkblot_css(array(
-			'#header nav',
-			'#header ul ul',
-			'#footer',
+			'.banner nav',
+			'.banner ul ul',
+			'.contentinfo',
 			'.post-webcomic nav',
 			'button',
 			'input[type="submit"]',
@@ -193,7 +193,7 @@ if ($mod = require get_template_directory() . '/-/php/mods.php') :
 	
 	if ($mod['page_link_color']) {
 		inkblot_css(array(
-			'#page a',
+			'.wrapper a',
 			'.post-footer span',
 			'nav.posts',
 			'nav.post-pages',
@@ -237,8 +237,8 @@ if ($mod = require get_template_directory() . '/-/php/mods.php') :
 	
 	if ($mod['page_link_hover_color']) {
 		inkblot_css(array(
-			'#page a:focus',
-			'#page a:hover'
+			'.wrapper a:focus',
+			'.wrapper a:hover'
 		), 'color', array($mod['page_link_hover_color'], $mod['page_link_hover_opacity']));
 		
 		inkblot_css(array(
@@ -258,28 +258,28 @@ if ($mod = require get_template_directory() . '/-/php/mods.php') :
 	
 	if ($mod['trim_link_color']) {
 		inkblot_css(array(
-			'#header nav:before',
-			'#header nav a',
-			'#header select',
-			'#footer a',
+			'.banner nav:before',
+			'.banner nav a',
+			'.banner select',
+			'.contentinfo a',
 			'.post-webcomic nav a'
 		), 'color', array($mod['trim_link_color'], $mod['trim_link_opacity']));
 	}
 	
 	if ($mod['trim_link_hover_color']) {
 		inkblot_css(array(
-			'#header nav:focus:before',
-			'#header nav:hover:before',
-			'#header nav a:focus',
-			'#header nav a:hover',
-			'#header select:focus',
-			'#header select:hover',
-			'#header li:focus > a',
-			'#header li:hover > a',
-			'#header li.current_page_item > a',
-			'#header li.current_page_ancestor > a',
-			'#footer a:focus',
-			'#footer a:hover',
+			'.banner nav:focus:before',
+			'.banner nav:hover:before',
+			'.banner nav a:focus',
+			'.banner nav a:hover',
+			'.banner select:focus',
+			'.banner select:hover',
+			'.banner li:focus > a',
+			'.banner li:hover > a',
+			'.banner li.current_page_item > a',
+			'.banner li.current_page_ancestor > a',
+			'.contentinfo a:focus',
+			'.contentinfo a:hover',
 			'.post-webcomic nav a:focus',
 			'.post-webcomic nav a:hover'
 		), 'color', array($mod['trim_link_hover_color'], $mod['trim_link_hover_opacity']));
@@ -287,25 +287,25 @@ if ($mod = require get_template_directory() . '/-/php/mods.php') :
 	
 	if ($mod['header_font']) {
 		inkblot_css(array(
-			'#header > a'
+			'.banner > a'
 		), 'font-family', $mod['header_font']);
 	}
 	
 	if ($mod['header_textcolor']) {
 		inkblot_css(array(
-			'#header > a',
-			'#header > a:focus',
-			'#header > a:hover'
+			'.banner > a',
+			'.banner > a:focus',
+			'.banner > a:hover'
 		), 'color', array($mod['header_textcolor'], $mod['header_textopacity']));
 	} else {
 		inkblot_css(array(
-			'#header h1',
-			'#header p'
+			'.banner h1',
+			'.banner p'
 		), 'display', 'none');
 		
 		inkblot_css(array(
-			'#header h1',
-			'#header p'
+			'.banner h1',
+			'.banner p'
 		), 'visibility', 'hidden');
 	}
 	
@@ -317,10 +317,10 @@ if ($mod = require get_template_directory() . '/-/php/mods.php') :
 	}
 	
 	if ($mod['page_background_image']) {
-		inkblot_css('#page', 'background-image', $mod['page_background_image']);
-		inkblot_css('#page', 'background-repeat', $mod['page_background_repeat']);
-		inkblot_css('#page', 'background-position', $mod['page_background_position_x']);
-		inkblot_css('#page', 'background-attachment', $mod['page_background_attachment']);
+		inkblot_css('.wrapper', 'background-image', $mod['page_background_image']);
+		inkblot_css('.wrapper', 'background-repeat', $mod['page_background_repeat']);
+		inkblot_css('.wrapper', 'background-position', $mod['page_background_position_x']);
+		inkblot_css('.wrapper', 'background-attachment', $mod['page_background_attachment']);
 		
 		if (isset($_GET['inkblot-style']) and 'editor' === $_GET['inkblot-style']) {
 			inkblot_css('.wp-editor', 'background-image', $mod['page_background_image']);
@@ -332,30 +332,30 @@ if ($mod = require get_template_directory() . '/-/php/mods.php') :
 	
 	if ($mod['trim_background_image']) {
 		inkblot_css(array(
-			'#header nav',
-			'#header ul ul',
-			'#footer',
+			'.banner nav',
+			'.banner ul ul',
+			'.contentinfo',
 			'.post-webcomic nav'
 		), 'background-image', $mod['trim_background_image']);
 		
 		inkblot_css(array(
-			'#header nav',
-			'#header ul ul',
-			'#footer',
+			'.banner nav',
+			'.banner ul ul',
+			'.contentinfo',
 			'.post-webcomic nav'
 		), 'background-repeat', $mod['trim_background_repeat']);
 		
 		inkblot_css(array(
-			'#header nav',
-			'#header ul ul',
-			'#footer',
+			'.banner nav',
+			'.banner ul ul',
+			'.contentinfo',
 			'.post-webcomic nav'
 		), 'background-position', $mod['trim_background_position_x']);
 		
 		inkblot_css(array(
-			'#header nav',
-			'#header ul ul',
-			'#footer',
+			'.banner nav',
+			'.banner ul ul',
+			'.contentinfo',
 			'.post-webcomic nav'
 		), 'background-attachment', $mod['trim_background_attachment']);
 	}
@@ -375,16 +375,15 @@ if ($mod = require get_template_directory() . '/-/php/mods.php') :
 	inkblot_css();
 	
 	if ($responsive_width = get_theme_mod('responsive_width', 0)) {
-		$responsive = <<<RESPONSIVE
+		print <<<RESPONSIVE
 @media only screen and (max-width: {$responsive_width}px) {
-	main, #sidebar1, #sidebar2 {float: none; left: 0; width: 100%}
-	#header nav {background: none}
-	#header nav:before {display: block; visibility: visible}
-	#header nav ul {display: none; visibility: hidden}
-	#header nav select {display: block; visibility: visible; width: 100%}
+	main, .sidebar1, .sidebar2 {float: none; left: 0; width: 100%}
+	.banner nav {background: none}
+	.banner nav:before {display: block; visibility: visible}
+	.banner nav ul {display: none; visibility: hidden}
+	.banner nav select {display: block; visibility: visible; width: 100%}
 }
 RESPONSIVE;
-		print apply_filters('inkblot_responsive_styles', $responsive, $responsive_width);
 	}
 endif;
 

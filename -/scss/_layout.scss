@@ -1,20 +1,20 @@
-#document > a[href="#content"]:first-child {
+body > a[href="#content"]:first-child {
 	@include read-focus;
 }
 
-#document > .document-header,
-#document > .document-footer {
+.document-header,
+.document-footer {
 	margin: auto;
 }
 
-#page {
+.wrapper {
 	background: $background-color;
 	box-shadow: 0 0 1rem rgba(0, 0, 0, $opacity / 4);
 	margin: auto;
 	padding: 1px;
 	position: relative;
 	
-	a {
+	& a {
 		color: $anchor-color;
 		
 		&:focus,
@@ -25,56 +25,56 @@
 }
 
 main,
-#sidebar1,
-#sidebar2 {
+.sidebar1,
+.sidebar2 {
 	padding: 1rem;
 }
 
-.one-column #sidebar1,
-.one-column #sidebar2 {
+.one-column .sidebar1,
+.one-column .sidebar2 {
 	display: none;
 }
 
 .two-column {
 	&-left main,
-	&-right #sidebar1 {
+	&-right .sidebar1 {
 		float: left;
 	}
 	
 	&-right main,
-	&-left #sidebar1 {
+	&-left .sidebar1 {
 		float: right;
 	}
 	
-	&-left #sidebar2,
-	&-right #sidebar2 {
+	&-left .sidebar2,
+	&-right .sidebar2 {
 		display: none;
 	}
 }
 
 .three-column {
 	&-left main,
-	&-right #sidebar1,
-	&-right #sidebar2,
+	&-right .sidebar1,
+	&-right .sidebar2,
 	&-center main,
-	&-center #sidebar1,
-	&-center #sidebar2 {
+	&-center .sidebar1,
+	&-center .sidebar2 {
 		float: left;
 	}
 	
 	&-right main,
-	&-left #sidebar1,
-	&-left #sidebar2 {
+	&-left .sidebar1,
+	&-left .sidebar2 {
 	float: right;
 	}
 	
 	&-center main,
-	&-center #sidebar1 {
+	&-center .sidebar1 {
 		position: relative;
 	}
 }
 
-#header {
+.banner {
 	position: relative;
 	
 	> a {
@@ -207,11 +207,11 @@ main,
 	}
 }
 
-#content {
+.content {
 	@include clear;
 }
 
-#footer {
+.contentinfo {
 	background: $text-color;
 	color: $background-color;
 	line-height: 1;

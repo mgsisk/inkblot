@@ -10,25 +10,25 @@ body {
   direction: rtl;
   unicode-bidi: embed; }
 
-#header nav:before {
+.banner nav:before {
   left: 1rem;
   right: auto; }
-#header ul ul ul {
+.banner ul ul ul {
   left: auto;
   right: 100%; }
-#header li {
+.banner li {
   float: right; }
-#header .page_item_has_children > a:after {
+.banner .page_item_has_children > a:after {
   content: '';
   margin: 0; }
-#header .page_item_has_children > a:before {
+.banner .page_item_has_children > a:before {
   font: 100%/1 awesome;
   content: '\f13a';
   margin: 0 .5rem 0 0; }
-#header .page_item_has_children .page_item_has_children > a:after {
+.banner .page_item_has_children .page_item_has_children > a:after {
   content: '';
   margin: 0; }
-#header .page_item_has_children .page_item_has_children > a:before {
+.banner .page_item_has_children .page_item_has_children > a:before {
   font: 100%/1 awesome;
   content: '\f137';
   margin: 0 .5rem 0 0; }
@@ -210,3 +210,5 @@ nav.posts a:first-child, nav.comments-paged a:first-child {
 
 .gallery-item {
   float: right; }
+
+/*# sourceMappingURL=rtl.css.map */
