@@ -32,3 +32,7 @@ You can install Inkblot from the **Appearance > Install Themes** page in the adm
 - [Issue Tracker](http://github.com/mgsisk/inkblot/issues)
 - [Support Forum](http://wordpress.org/support/theme/inkblot)
 - [Email Support](mailto:help@mgsisk.com)
+
+== Changelog ==
+
+You can follow changes as they happen at [the master repository on GitHub](https://github.com/mgsisk/inkblot/commits/master).
