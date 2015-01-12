@@ -11,7 +11,7 @@
 
 	<?php if ('one-column' !== get_theme_mod('content', 'one-column') or is_customize_preview()) : ?>
 		
-		<div id="sidebar1" role="complementary" class="widgets columns-1">
+		<div role="complementary" class="sidebar1 widgets columns-1">
 			
 			<?php if ( ! dynamic_sidebar('primary-sidebar') and current_user_can('edit_theme_options')) : ?>
 				
@@ -22,13 +22,13 @@
 				
 			<?php endif; ?>	
 			
-		</div><!-- #sidebar1 -->
+		</div><!-- .sidebar1 -->
 		
 	<?php endif; ?>
 	
 	<?php if (false !== strpos(get_theme_mod('content', 'one-column'), 'three-column') or is_customize_preview()) : ?>
 		
-		<div id="sidebar2" role="complementary" class="widgets columns-1">
+		<div role="complementary" class="sidebar2 widgets columns-1">
 			
 			<?php if ( ! dynamic_sidebar('secondary-sidebar') and current_user_can('edit_theme_options')) : ?>
 				
@@ -39,7 +39,7 @@
 				
 			<?php endif; ?>	
 			
-		</div><!-- #sidebar2 -->
+		</div><!-- .sidebar2 -->
 		
 	<?php endif; ?>
 	

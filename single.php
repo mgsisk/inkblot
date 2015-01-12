@@ -14,7 +14,7 @@ get_header(); ?>
 	
 	<?php
 		while (have_posts()) : the_post();
-			get_template_part('content', get_post_type());
+			get_template_part('content', get_post_format());
 			
 			print inkblot_post_nav();
 			

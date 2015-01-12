@@ -191,6 +191,7 @@ function inkblot_start_comment($comment, $args, $depth) {
 	
 	<article id="comment-<?php comment_ID(); ?>" <?php comment_class(); ?>>
 		<footer class="comment-footer">
+			
 			<?php
 				print empty($args['avatar_size']) ? '' : get_avatar($comment, $args['avatar_size']);
 				
@@ -210,6 +211,7 @@ function inkblot_start_comment($comment, $args, $depth) {
 				
 				edit_comment_link();
 			?>
+			
 		</footer><!-- .comment-footer -->
 		
 		<?php if ( ! $comment->comment_approved) : ?>
@@ -362,7 +364,7 @@ function inkblot_contributor($user, $avatar = 96) {
 	
 	<div class="contributor">
 		
-		<?php if ((int) $avatar) : ?>
+		<?php if ($avatar) : ?>
 			
 			<div class="contributor-image">
 				<?php echo get_avatar($user, (int) $avatar); ?>
@@ -391,26 +393,20 @@ function inkblot_contributor($user, $avatar = 96) {
 }
 endif;
 
-if ( ! function_exists('inkblot_start_webcomic')) :
-/**
- * Render the primary webcomic display opening content.
- * 
- * @return void
- */
-function inkblot_start_webcomic() { ?>
-	<div id="webcomic-<?php the_ID(); ?>" class="post-webcomic" data-webcomic-shortcuts data-webcomic-gestures data-webcomic-container>
-	<?php
-}
-endif;
-
-if ( ! function_exists('inkblot_end_webcomic')) :
-/**
- * Render the primary webcomic display closing content.
- * 
- * @return void
- */
-function inkblot_end_webcomic() { ?>
-	</div><!-- #webcomic -->
+if ( ! function_exists('inkblot_webcomic_transcript')) :
+function inkblot_webcomic_transcript() { ?>
+	<article id="webcomic_transcript-<?php the_ID(); ?>" <?php post_class(); ?>>
+		<div class="post-content"><?php the_content(); ?></div><!-- .post-content -->
+		<footer class="post-footer">
+			
+			<?php
+				the_webcomic_transcript_authors(true, '<span class="webcomic-transcript-authors">', ', ', '</span>');
+				
+				the_webcomic_transcript_languages('<span class="webcomic-transcript-languages">', ', ', '</span>');
+			?>
+			
+		</footer><!-- .post-footer -->
+	</article><!-- #webcomic-transcript-<?php the_ID(); ?> -->
 	<?php
 }
 endif;

@@ -26,10 +26,12 @@ get_header(); ?>
 			<div class="page-content"><?php the_author_meta('description'); ?></div><!-- .page-content -->
 		<?php endif; ?>
 		
+		<hr>
+		
 		<?php
 			while (have_posts()) : the_post();
 				(webcomic() and is_a_webcomic())
-				? get_template_part('webcomic/content', get_post_type())
+				? get_template_part('webcomic/image', get_post_type())
 				: get_template_part('content', get_post_format());
 			endwhile;
 			

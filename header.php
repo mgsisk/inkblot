@@ -5,16 +5,15 @@
  * @package Inkblot
  * @see http://codex.wordpress.org/Template_Hierarchy
  */
-?>
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html <?php language_attributes(); ?> class="no-js">
 	<head><?php wp_head(); /* @see `inkblot_wp_head()` in `functions.php` */ ?></head>
 	<body id="document" <?php body_class(); ?>>
 		<a href="#content">Skip to content</a>
 		<?php print inkblot_widgetized('document-header'); ?>
-		<div id="page">
+		<div class="wrapper">
 			<?php print inkblot_widgetized('page-header'); ?>
-			<header id="header" role="banner">
+			<header role="banner" class="banner">
 				<a href="<?php print esc_url(home_url()); ?>" rel="home">
 					<h1><?php bloginfo('name'); ?></h1>
 					<p><?php bloginfo('description'); ?></p>
@@ -56,6 +55,6 @@
 					?>
 					
 				</nav>
-			</header><!-- #header -->
-			<div id="content">
+			</header><!-- .banner -->
+			<div id="content" class="content">
 				<?php print inkblot_widgetized('content-header'); ?>
