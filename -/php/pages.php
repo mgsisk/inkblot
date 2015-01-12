@@ -47,7 +47,9 @@ function inkblot_insert_page($id, $post) {
 			'inkblot_webcomic_group',
 			'inkblot_webcomic_image',
 			'inkblot_webcomic_order',
-			'inkblot_webcomic_term_image'
+			'inkblot_webcomic_comments',
+			'inkblot_webcomic_term_image',
+			'inkblot_webcomic_transcripts'
 		);
 		
 		if (in_array($post->page_template, array(
@@ -85,7 +87,9 @@ function inkblot_template_options($page) {
 	$webcomic_group = get_post_meta($page->ID, 'inkblot_webcomic_group', true);
 	$webcomic_image = get_post_meta($page->ID, 'inkblot_webcomic_image', true);
 	$webcomic_order = get_post_meta($page->ID, 'inkblot_webcomic_order', true);
-	$webcomic_term_image = get_post_meta($page->ID, 'inkblot_webcomic_term_image', true); ?>
+	$webcomic_comments = get_post_meta($page->ID, 'inkblot_webcomic_comments', true);
+	$webcomic_term_image = get_post_meta($page->ID, 'inkblot_webcomic_term_image', true);
+	$webcomic_transcripts = get_post_meta($page->ID, 'inkblot_webcomic_transcripts', true); ?>
 	<div data-inkblot-template-options="none">
 		<p><strong><?php _e('Select one of the following templates to modify template-specific options:', 'inkblot'); ?></strong></p>
 		<ul>
@@ -205,6 +209,14 @@ function inkblot_template_options($page) {
 				?>
 				
 			</p>
+			<p>
+				<input id="inkblot_webcomic_transcripts" name="inkblot_webcomic_transcripts" type="checkbox" value="1"<?php print $webcomic_transcripts ? ' checked' : ''; ?>>
+				<label for="inkblot_webcomic_transcripts"><?php _e('Show transcripts', 'inkblot'); ?></label>
+			</p>
+			<p>
+				<input id="inkblot_webcomic_comments" name="inkblot_webcomic_comments" type="checkbox" value="1"<?php print $webcomic_comments ? ' checked' : ''; ?>>
+				<label for="inkblot_webcomic_comments"><?php _e('Show comments', 'inkblot'); ?></label>
+			</p>
 			
 		<?php else : ?>
 			
@@ -212,6 +224,7 @@ function inkblot_template_options($page) {
 			<input type="hidden" name="inkblot_webcomic_group" value="<?php print get_post_meta($page->ID, 'inkblot_webcomic_group', true); ?>">
 			<input type="hidden" name="inkblot_webcomic_image" value="<?php print get_post_meta($page->ID, 'inkblot_webcomic_image', true); ?>">
 			<input type="hidden" name="inkblot_webcomic_order" value="<?php print get_post_meta($page->ID, 'inkblot_webcomic_order', true); ?>">
+			<input type="hidden" name="inkblot_webcomic_comments" value="<?php print get_post_meta($page->ID, 'inkblot_webcomic_comments', true); ?>">
 			<input type="hidden" name="inkblot_webcomic_term_image" value="<?php print get_post_meta($page->ID, 'inkblot_webcomic_term_image', true); ?>">
 			
 		<?php endif; ?>
