@@ -10,7 +10,7 @@ Inkblot is an elegant, fully responsive, highly customizable [Webcomic](//github
 
 ## Frequently Asked Questions
 
-### Where can I get help with Webcomic (and Inkblot)?
+### Where can I get help with Inkblot?
 
 - [Issue Tracker](http://github.com/mgsisk/inkblot/issues)
 - [Support Forum](http://wordpress.org/support/theme/inkblot)
