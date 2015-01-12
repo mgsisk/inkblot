@@ -6,20 +6,22 @@
  */
 ?>
 				<?php print inkblot_widgetized('content-footer'); ?>
-			</div><!-- #content -->
-			<footer id="footer" role="contentinfo">
+			</div><!-- #content.content -->
+			<footer role="contentinfo" class="contentinfo widgets columns-<?php print inkblot_count_widgets('site-footer'); ?>">
 				
 				<?php
-					printf(__('%1$s &bull; Powered by %2$s with %3$s', 'inkblot'),
-						'<a href="#document">' . inkblot_copyright() . '</a>',
-						'<a href="//wordpress.org" target="_blank">WordPress</a>',
-						'<a href="//github.com/mgsisk/inkblot" target="_blank">Inkblot</a>'
-					);
+					if ( ! dynamic_sidebar('site-footer')) :
+						printf(__('%1$s &bull; Powered by %2$s with %3$s', 'inkblot'),
+							'<a href="#document">' . inkblot_copyright() . '</a>',
+							'<a href="//wordpress.org" target="_blank">WordPress</a>',
+							'<a href="//github.com/mgsisk/inkblot" target="_blank">Inkblot</a>'
+						);
+					endif;
 				?>
 				
-			</footer><!-- #footer -->
+			</footer><!-- .contentinfo -->
 			<?php print inkblot_widgetized('page-footer'); ?>
-		</div><!-- #page -->
+		</div><!-- .wrapper -->
 		
 		<?php
 			print inkblot_widgetized('document-footer');
