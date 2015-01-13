@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Inkblot 4.1\n"
+"Project-Id-Version: Inkblot 4.1.1\n"
 "POT-Creation-Date: 2015-01-12 14:03-0500\n"
 "PO-Revision-Date: 2015-01-12 14:04-0500\n"
 "Last-Translator: \n"
