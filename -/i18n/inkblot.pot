@@ -663,7 +663,7 @@ msgid "Webcomic Header"
 msgstr ""
 
 #: inkblot/functions.php:116
-msgid "Located above the webcomic, just inside the .psot-webcomic wrapper."
+msgid "Located above the webcomic, just inside the webcomic wrapper."
 msgstr ""
 
 #: inkblot/functions.php:117
@@ -671,7 +671,7 @@ msgid "Webcomic Footer"
 msgstr ""
 
 #: inkblot/functions.php:117
-msgid "Located below the webcomic, just inside the .psot-webcomic wrapper."
+msgid "Located below the webcomic, just inside the webcomic wrapper."
 msgstr ""
 
 #: inkblot/functions.php:118
