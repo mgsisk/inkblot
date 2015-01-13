@@ -113,8 +113,8 @@ function inkblot_widgets_init() {
 	
 	if (webcomic()) {
 		$widgets = array_merge($widgets, array(
-			__('Webcomic Header', 'inkblot') => __('Located above the webcomic, just inside the .psot-webcomic wrapper.', 'inkblot'),
-			__('Webcomic Footer', 'inkblot') => __('Located below the webcomic, just inside the .psot-webcomic wrapper.', 'inkblot'),
+			__('Webcomic Header', 'inkblot') => __('Located above the webcomic, just inside the webcomic wrapper.', 'inkblot'),
+			__('Webcomic Footer', 'inkblot') => __('Located below the webcomic, just inside the webcomic wrapper.', 'inkblot'),
 			__('Webcomic Navigation Header', 'inkblot') => __('Navigation displayed above the webcomic.', 'inkblot'),
 			__('Webcomic Navigation Footer', 'inkblot') => __('Navigation displayed below the webcomic.', 'inkblot')
 		));
