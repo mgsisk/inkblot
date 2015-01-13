@@ -1,16 +1,18 @@
-# Inkblot - The original Webcomic theme.
+Inkblot is an elegant, [fully responsive](//en.wikipedia.org/wiki/Responsive_web_design), [highly customizable](//codex.wordpress.org/Appearance_Customize_Screen) [Webcomic](//github.com/mgsisk/webcomic)-ready [WordPress](//wordpress.org) theme, named in honor of Rorschach from the Watchmen graphic novel.
 
-Inkblot is an elegant, fully responsive, highly customizable [Webcomic](//github.com/mgsisk/webcomic)-ready [WordPress](//wordpress.org) theme named in honor of Rorschach from the Watchmen graphic novel.
+# Installation
 
-## Installation
+You can install Inkblot from the **Themes > Add New** page in the administrative dashboard. Just do a search for `inkblot` and the first result should be the one you're looking for.
 
-1. Download and extract Inkblot from the [master GitHub respository](//github.com/mgsisk/inkblot).
-2. Upload the `inkblot-master` directory to your `wp-content/themes` directory.
+## Manual Installation
+
+1. Download and extract Inkblot from the [WordPress.org theme directory](//wordpress.org/themes/inkblot) (for the most recent stable release) or the [master GitHub reposity](//github.com/mgsisk/inkblot) (for the most up-to-date release).
+2. Upload the `inkblot` directory to your `wp-content/themes` directory.
 3. Activate Inkblot through the **Appearance > Themes** page in the administrative dashboard.
 
-## Frequently Asked Questions
+# Frequently Asked Questions
 
-### Where can I get help with Inkblot?
+## Where can I get help with Inkblot?
 
 - [Issue Tracker](http://github.com/mgsisk/inkblot/issues)
 - [Support Forum](http://wordpress.org/support/theme/inkblot)
