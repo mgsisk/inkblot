@@ -39,7 +39,7 @@
 									'show_home' => true,
 									'container' => false,
 									'items_wrap' => '<select>%3$s</select>',
-									'walker' => new Inkblot_Walker_Menu_Dropdown
+									'walker' => new Inkblot_Walker_Nav_Dropdown
 								));
 							} else {
 								print '<select>';
