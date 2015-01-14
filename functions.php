@@ -102,13 +102,14 @@ function inkblot_widgets_init() {
 		__('Secondary Sidebar', 'inkblot') => __('Used in three-column layouts only. You can change theme layout from the Appearance > Customize page.', 'inkblot'),
 		__('Document Header', 'inkblot') => __('Located at the very top of the page, outside of the page wrapper.', 'inkblot'),
 		__('Document Footer', 'inkblot') => __('Located at the very bottom of the page, outside of the page wrapper.', 'inkblot'),
+		__('Site Header', 'inkblot') => __('Located at the top of the page, where the site title and navigation are usually displayed.', 'inkblot'),
+		__('Site Footer', 'inkblot') => __('Located at the bottom of the page, where copyright information is usually displayed.', 'inkblot'),
 		__('Page Header', 'inkblot') => __('Located near the top of the page, just inside the page wrapper.', 'inkblot'),
 		__('Page Footer', 'inkblot') => __('Located near the bottom of the page, just inside the page wrapper.', 'inkblot'),
 		__('Content Header', 'inkblot') => __('Located near the top of the page, just inside the content wrapper.', 'inkblot'),
 		__('Content Footer', 'inkblot') => __('Located near the bottom of the page, just inside the content wrapper.', 'inkblot'),
 		__('Comment Header', 'inkblot') => __('Located above the comments list for a post, just inside the comments wrapper.', 'inkblot'),
-		__('Comment Footer', 'inkblot') => __('Located below the comments list for a post, just inside the comments wrapper.', 'inkblot'),
-		__('Site Footer', 'inkblot') => __('Located at the bottom of the page, where copyright information is usually displayed.', 'inkblot')
+		__('Comment Footer', 'inkblot') => __('Located below the comments list for a post, just inside the comments wrapper.', 'inkblot')
 	);
 	
 	if (webcomic()) {
