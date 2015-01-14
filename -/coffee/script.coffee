@@ -4,7 +4,7 @@
 # @package Inkblot
 ##
 
-document.documentElement.className=document.documentElement.className.replace(/no-js/, 'js')
+document.documentElement.className = document.documentElement.className.replace(/no-js/, 'js')
 
 jQuery(($)->
 	$('.responsive .banner select').on('change', ($e)->
