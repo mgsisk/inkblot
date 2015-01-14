@@ -31,7 +31,7 @@ class Inkblot_Walker_Nav_Dropdown extends Walker_Nav_Menu {
 		$classes = implode(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args));
 		$selected = false === strpos($classes, 'current-menu-item') ? '' : ' selected';
 		
-		$output = apply_filters('walker_nav_menu_start_el', sprintf('<option value="%s" class="%s" title="%s" data-target="%s"%s>%s%s%s%s',
+		$output .= apply_filters('walker_nav_menu_start_el', sprintf('<option value="%s" class="%s" title="%s" data-target="%s"%s>%s%s%s%s',
 			esc_attr($item->url),
 			esc_attr($classes),
 			esc_attr($item->attr_title),
