@@ -15,10 +15,9 @@ Webcomic: 4.0.7
 /*!
 ===== PLEASE READ THIS ========================================================
 You can make a lot of common style modifications using the WordPress Theme
-Customizer. If you really want to tweak the CSS directly, you should create a
-file called `custom.css` in this directory and put your new CSS rules there.
-Modificaitons made with the Theme Customizer may override changes you make in
-the `style.css` file.
+Customizer. If you really want to tweak the CSS directly, you should do so in
+the `custom.css` file. Modificaitons made with the Theme Customizer may
+override changes you make in the `style.css` file.
 ===============================================================================
 */
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
@@ -713,12 +712,16 @@ main,
     .banner li:hover > ul {
       opacity: 1;
       visibility: visible; }
-    .banner li:focus > a, .banner li:hover > a, .banner li.current_page_item > a, .banner li.current_page_ancestor > a {
+    .banner li:focus > a, .banner li:hover > a, .banner li.current-menu-item > a, .banner li.current_page_item > a, .banner li.current_page_ancestor > a, .banner li.current-menu-ancestor > a {
       color: #fff; }
+  .banner .menu-item-has-children > a:after,
   .banner .page_item_has_children > a:after {
     font: 100%/1 awesome;
     content: '\f13a';
     margin: 0 0 0 .5rem; }
+  .banner .menu-item-has-children .menu-item-has-children > a:after,
+  .banner .menu-item-has-children .page_item_has_children > a:after,
+  .banner .page_item_has_children .menu-item-has-children > a:after,
   .banner .page_item_has_children .page_item_has_children > a:after {
     content: '\f138'; }
   .banner select {

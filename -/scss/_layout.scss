@@ -172,12 +172,15 @@ main,
 		
 		&:focus > a,
 		&:hover > a,
+		&.current-menu-item > a,
 		&.current_page_item > a,
-		&.current_page_ancestor > a {
+		&.current_page_ancestor > a,
+		&.current-menu-ancestor > a {
 			color: $background-color;
 		}
 	}
 	
+	.menu-item-has-children,
 	.page_item_has_children {
 		> a:after {
 			@include font-awesome;
@@ -186,6 +189,7 @@ main,
 			margin: 0 0 0 .5rem;
 		}
 		
+		.menu-item-has-children > a:after,
 		.page_item_has_children > a:after {
 			content: '\f138';
 		}
