@@ -113,7 +113,7 @@ function inkblot_customize_register($customize) {
 	));
 	
 	$customize->add_setting('content_width', array(
-		'default' => 480,
+		'default' => 640,
 		'transport' => 'postMessage'
 	)); $customize->add_control('content_width', array(
 		'type' => 'number',
