@@ -15,9 +15,9 @@ Webcomic: 4.0.7
 /*!
 ===== PLEASE READ THIS ========================================================
 You can make a lot of common style modifications using the WordPress Theme
-Customizer. If you really want to tweak the CSS directly, you should do so in
-the `custom.css` file. Modificaitons made with the Theme Customizer may
-override changes you make in the `style.css` file.
+Customizer. If you really want to tweak the CSS directly, you should create a
+`custom.css` file and do so there. Modificaitons made with the Theme Customizer
+may override changes you make in the `style.css` file.
 ===============================================================================
 */
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
