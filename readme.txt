@@ -4,7 +4,7 @@ Contributors: mgsisk
 Donate link: http://patreon.com/mgsisk
 Requires at least: 4.1
 Tested up to: 4.1
-Stable tag: 4.1.1
+Stable tag: 4.1.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 Tags: dark, light, white, black, gray, one-column, two-columns, three-columns, left-sidebar, right-sidebar, fixed-layout, fluid-layout, responsive-layout, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, microformats, post-formats, rtl-language-support, sticky-post, theme-options, translation-ready
