@@ -291,13 +291,7 @@ if ($mod = require get_template_directory() . '/-/php/mods.php') :
 		), 'font-family', $mod['header_font']);
 	}
 	
-	if ($mod['header_textcolor']) {
-		inkblot_css(array(
-			'.banner > a',
-			'.banner > a:focus',
-			'.banner > a:hover'
-		), 'color', array($mod['header_textcolor'], $mod['header_textopacity']));
-	} else {
+	if ('blank' === $mod['header_textcolor']) {
 		inkblot_css(array(
 			'.banner h1',
 			'.banner p'
@@ -307,6 +301,12 @@ if ($mod = require get_template_directory() . '/-/php/mods.php') :
 			'.banner h1',
 			'.banner p'
 		), 'visibility', 'hidden');
+	} else {
+		inkblot_css(array(
+			'.banner > a',
+			'.banner > a:focus',
+			'.banner > a:hover'
+		), 'color', array($mod['header_textcolor'], $mod['header_textopacity']));
 	}
 	
 	if ($mod['background_image']) {
