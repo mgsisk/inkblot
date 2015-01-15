@@ -37,7 +37,7 @@ get_template_directory_uri()
 );
 endif;
 
-if ($mod = require get_template_directory() . '/-/php/mods.php') :
+if (is_readable(get_template_directory() . '/-/php/mods.php') and $mod = require get_template_directory() . '/-/php/mods.php') :
 	foreach ($mod as $key => $default) {
 		$mod[$key] = get_theme_mod($key, $default);
 	}
