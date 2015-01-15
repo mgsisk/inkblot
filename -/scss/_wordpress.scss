@@ -55,13 +55,14 @@
 	padding: .25rem;
 	
 	&-item {
-		float: left;
+		display: inline-block;
 		margin: 0;
 		padding: .25rem;
 		text-align: center;
+		vertical-align: top;
 		
 		.gallery-columns-1 & {
-			float: none;
+			display: block;
 		}
 		
 		@for $i from 2 through 10 {

@@ -207,6 +207,3 @@ nav.posts a:first-child, nav.comments-paged a:first-child {
 .comment footer .time:after, .pingback footer .time:after,
 .trackback footer .time:after {
   content: '\f133'; }
-
-.gallery-item {
-  float: right; }
