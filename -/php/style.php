@@ -13,6 +13,10 @@ if ( ! function_exists('locate_template')) {
 	return;
 }
 
+if (isset($_GET['inkblot-style']) and is_child_theme() and is_readable(get_template_directory() . '/style.css')) {
+	require get_template_directory() . '/style.css';
+}
+
 locate_template(array('style.css'), isset($_GET['inkblot-style']));
 
 if (isset($_GET['inkblot-style'])) :
@@ -388,5 +392,9 @@ RESPONSIVE;
 endif;
 
 print "\n\n";
+
+if (isset($_GET['inkblot-style']) and is_child_theme() and is_readable(get_template_directory() . '/custom.css')) {
+	require get_template_directory() . '/custom.css';
+}
 
 locate_template(array('custom.css'), isset($_GET['inkblot-style']));
