@@ -457,7 +457,7 @@ hr {
   box-sizing: border-box; }
 
 ol {
-  lsit-style: decimal; }
+  list-style: decimal; }
   ol ol {
     list-style: lower-alpha; }
     ol ol ol {
