@@ -21,11 +21,11 @@ print "\n\n";
 printf('
 @font-face {
 	font-family: awesome;
-	src: url("%1$s/-/font/fontawesome-webfont.eot");
-	src: url("%1$s/-/font/fontawesome-webfont.eot") format("embedded-opentype"),
-		url("%1$s/-/font/fontawesome-webfont.woff") format("woff"),
-		url("%1$s/-/font/fontawesome-webfont.ttf") format("truetype"),
-		url("%1$s/-/font/fontawesome-webfont.svg") format("svg");
+	src: url("%1$s/-/font/fontawesome-webfont.eot?v=4.2.0");
+	src: url("%1$s/-/font/fontawesome-webfont.eot?#iefix&v=4.2.0") format("embedded-opentype"),
+		url("%1$s/-/font/fontawesome-webfont.woff?v=4.2.0") format("woff"),
+		url("%1$s/-/font/fontawesome-webfont.ttf?v=4.2.0") format("truetype"),
+		url("%1$s/-/font/fontawesome-webfont.svg?v=4.2.0#fontawesomeregular") format("svg");
 	font-style: normal;
 	font-weight: normal;
 }',
