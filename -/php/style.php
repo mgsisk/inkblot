@@ -4,20 +4,18 @@
  * 
  * To keep a lot of embedded styles and `<link>` tags out of our `<head>` we
  * use this file to generate a custom stylesheet based on `style.css`, theme
- * modifications, and `custom.css` (in that order).
+ * modifications, and child theme `style.css` (in that order).
  * 
  * @package Inkblot
  */
 
-if ( ! function_exists('locate_template')) {
+if ( ! function_exists('get_template_directory')) {
 	return;
 }
 
-if (isset($_GET['inkblot-style']) and is_child_theme() and is_readable(get_template_directory() . '/style.css')) {
+if (isset($_GET['inkblot-style']) and is_readable(get_template_directory() . '/style.css')) {
 	require get_template_directory() . '/style.css';
 }
-
-locate_template(array('style.css'), isset($_GET['inkblot-style']));
 
 if (isset($_GET['inkblot-style'])) :
 print "\n\n";
@@ -25,11 +23,11 @@ print "\n\n";
 printf('
 @font-face {
 	font-family: awesome;
-	src: url("%1$s/-/font/fontawesome-webfont.eot?v=4.2.0");
-	src: url("%1$s/-/font/fontawesome-webfont.eot?#iefix&v=4.2.0") format("embedded-opentype"),
-		url("%1$s/-/font/fontawesome-webfont.woff?v=4.2.0") format("woff"),
-		url("%1$s/-/font/fontawesome-webfont.ttf?v=4.2.0") format("truetype"),
-		url("%1$s/-/font/fontawesome-webfont.svg?v=4.2.0#fontawesomeregular") format("svg");
+	src: url("%1$s/-/font/fontawesome-webfont.eot");
+	src: url("%1$s/-/font/fontawesome-webfont.eot?#iefix") format("embedded-opentype"),
+		url("%1$s/-/font/fontawesome-webfont.woff") format("woff"),
+		url("%1$s/-/font/fontawesome-webfont.ttf") format("truetype"),
+		url("%1$s/-/font/fontawesome-webfont.svg#fontawesomeregular") format("svg");
 	font-style: normal;
 	font-weight: normal;
 }',
@@ -38,11 +36,14 @@ get_template_directory_uri()
 endif;
 
 if (is_readable(get_template_directory() . '/-/php/mods.php') and $mod = require get_template_directory() . '/-/php/mods.php') :
-	foreach ($mod as $key => $default) {
-		$mod[$key] = get_theme_mod($key, $default);
+	foreach (array_keys($mod) as $key) {
+		$mod[$key] = get_theme_mod($key);
 	}
 	
-	if ('one-column' !== $mod['content']) {
+	if ($mod['content'] and 'one-column' !== $mod['content']) {
+		$mod['sidebar1_width'] = $mod['sidebar1_width'] ? $mod['sidebar1_width'] : 25;
+		$mod['sidebar2_width'] = $mod['sidebar2_width'] ? $mod['sidebar2_width'] : 25;
+		
 		$main_width = 100 - $mod['sidebar1_width'];
 		
 		inkblot_css('.sidebar1', 'width', "{$mod['sidebar1_width']}%");
@@ -305,7 +306,7 @@ if (is_readable(get_template_directory() . '/-/php/mods.php') and $mod = require
 			'.banner h1',
 			'.banner p'
 		), 'visibility', 'hidden');
-	} else {
+	} else if ($mod['header_textcolor']) {
 		inkblot_css(array(
 			'.banner > a',
 			'.banner > a:focus',
@@ -393,8 +394,9 @@ endif;
 
 print "\n\n";
 
-if (isset($_GET['inkblot-style']) and is_child_theme() and is_readable(get_template_directory() . '/custom.css')) {
-	require get_template_directory() . '/custom.css';
-}
-
+// deprecated; use a child theme instead.
 locate_template(array('custom.css'), isset($_GET['inkblot-style']));
+
+if (isset($_GET['inkblot-style']) and is_child_theme() and is_readable(get_template_directory() . '/style.css')) {
+	require get_stylesheet_directory() . '/style.css';
+}
