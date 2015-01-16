@@ -397,6 +397,6 @@ print "\n\n";
 // deprecated; use a child theme instead.
 locate_template(array('custom.css'), isset($_GET['inkblot-style']));
 
-if (isset($_GET['inkblot-style']) and is_child_theme() and is_readable(get_template_directory() . '/style.css')) {
+if (is_child_theme() and is_readable(get_stylesheet_directory() . '/style.css')) {
 	require get_stylesheet_directory() . '/style.css';
 }
