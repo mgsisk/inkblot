@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Inkblot 4.1.3\n"
-"POT-Creation-Date: 2015-01-15 23:22-0500\n"
-"PO-Revision-Date: 2015-01-15 23:22-0500\n"
+"POT-Creation-Date: 2015-01-16 18:19-0500\n"
+"PO-Revision-Date: 2015-01-16 18:20-0500\n"
 "Last-Translator: \n"
 "Language-Team: Michael Sisk <help@mgsisk.com>\n"
 "Language: en_US\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.7.3\n"
-"X-Poedit-Basepath: ../\n"
+"X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n;_x;esc_attr_e\n"
@@ -58,7 +58,7 @@ msgstr ""
 msgid "Site"
 msgstr ""
 
-#: inkblot/-/php/config.php:32 inkblot/-/php/config.php:777
+#: inkblot/-/php/config.php:32 inkblot/-/php/config.php:791
 msgid "Layout"
 msgstr ""
 
@@ -301,106 +301,116 @@ msgid "Remove theme modifications when changing themes"
 msgstr ""
 
 #: inkblot/-/php/config.php:755
-msgid "none"
-msgstr ""
-
-#: inkblot/-/php/config.php:756
-msgid "any collection"
+msgid "Stylesheet"
 msgstr ""
 
 #: inkblot/-/php/config.php:762
-msgid "full"
+msgid ""
+"Enter CSS rules below to further customize your theme. Extensive CSS changes "
+"should be done using a child theme."
 msgstr ""
 
 #: inkblot/-/php/config.php:769
-msgid "Webcomic"
+msgid "none"
 msgstr ""
 
 #: inkblot/-/php/config.php:770
+msgid "any collection"
+msgstr ""
+
+#: inkblot/-/php/config.php:776
+msgid "full"
+msgstr ""
+
+#: inkblot/-/php/config.php:783
+msgid "Webcomic"
+msgstr ""
+
+#: inkblot/-/php/config.php:784
 msgid "These settings affect features related to the Webcomic plugin."
 msgstr ""
 
-#: inkblot/-/php/config.php:785
+#: inkblot/-/php/config.php:799
 msgid "Place webcomic in the content column"
 msgstr ""
 
-#: inkblot/-/php/config.php:793
+#: inkblot/-/php/config.php:807
 msgid "Resize webcomic to fit available space"
 msgstr ""
 
-#: inkblot/-/php/config.php:800
+#: inkblot/-/php/config.php:814
 msgid "Navigation"
 msgstr ""
 
-#: inkblot/-/php/config.php:808
+#: inkblot/-/php/config.php:822
 msgid "Webcomic attachments link to"
 msgstr ""
 
-#: inkblot/-/php/config.php:811 inkblot/-/php/config.php:877
+#: inkblot/-/php/config.php:825 inkblot/-/php/config.php:891
 msgid "Nothing"
 msgstr ""
 
-#: inkblot/-/php/config.php:812
+#: inkblot/-/php/config.php:826
 msgid "Next webcomic"
 msgstr ""
 
-#: inkblot/-/php/config.php:813
+#: inkblot/-/php/config.php:827
 msgid "Previous webcomic"
 msgstr ""
 
-#: inkblot/-/php/config.php:822
+#: inkblot/-/php/config.php:836
 msgid "Show navigation above the webcomic"
 msgstr ""
 
-#: inkblot/-/php/config.php:831
+#: inkblot/-/php/config.php:845
 msgid "Show navigation below the webcomic"
 msgstr ""
 
-#: inkblot/-/php/config.php:838
+#: inkblot/-/php/config.php:852
 msgid "Archives"
 msgstr ""
 
-#: inkblot/-/php/config.php:846
+#: inkblot/-/php/config.php:860
 msgid "Posts are displayed in"
 msgstr ""
 
-#: inkblot/-/php/config.php:849
+#: inkblot/-/php/config.php:863
 msgid "Chronological order"
 msgstr ""
 
-#: inkblot/-/php/config.php:850
+#: inkblot/-/php/config.php:864
 msgid "Reverse chronlogical order"
 msgstr ""
 
-#: inkblot/-/php/config.php:858
+#: inkblot/-/php/config.php:872
 msgid "Show previews of this size "
 msgstr ""
 
-#: inkblot/-/php/config.php:866
+#: inkblot/-/php/config.php:880
 msgid "Front Page"
 msgstr ""
 
-#: inkblot/-/php/config.php:874
+#: inkblot/-/php/config.php:888
 msgid "Front page displays"
 msgstr ""
 
-#: inkblot/-/php/config.php:878
+#: inkblot/-/php/config.php:892
 msgid "Your latest webcomic"
 msgstr ""
 
-#: inkblot/-/php/config.php:879
+#: inkblot/-/php/config.php:893
 msgid "Your first webcomic"
 msgstr ""
 
-#: inkblot/-/php/config.php:886
+#: inkblot/-/php/config.php:900
 msgid "From this collection"
 msgstr ""
 
-#: inkblot/-/php/config.php:894
+#: inkblot/-/php/config.php:908
 msgid "Include comments on the front page"
 msgstr ""
 
-#: inkblot/-/php/config.php:901
+#: inkblot/-/php/config.php:915
 msgid "Include transcripts on the front page"
 msgstr ""
 

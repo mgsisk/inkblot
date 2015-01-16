@@ -41,7 +41,7 @@
 	, ($settingId, $o)->
 		inkblot_toggle_controls($settingId, $o)
 	)
-
+	
 	$.each(
 		content:
 			controls: ['sidebar2_width']

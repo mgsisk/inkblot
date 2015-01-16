@@ -27,7 +27,7 @@ function inkblot_customize_register($customize) {
 		}
 	}
 	
-	/* ----- Layout -------------------------------------------------------- */
+	/* ----- Layout --------------------------------------------------------- */
 	$customize->add_section('inkblot_layout', array(
 		'title' => __('Layout', 'inkblot'),
 		'priority' => 25
@@ -140,7 +140,7 @@ function inkblot_customize_register($customize) {
 		)
 	));
 	
-	/* ----- Fonts --------------------------------------------------------- */
+	/* ----- Fonts ---------------------------------------------------------- */
 	
 	$customize->remove_section('colors');
 	
@@ -227,7 +227,7 @@ function inkblot_customize_register($customize) {
 		));
 	}
 	
-	/* ----- Colors -------------------------------------------------------- */
+	/* ----- Colors --------------------------------------------------------- */
 	
 	$customize->add_panel('inkblot_colors', array(
 		'title' => __('Colors', 'inkblot'),
@@ -667,7 +667,7 @@ function inkblot_customize_register($customize) {
 		)
 	));
 	
-	/* ----- Header Image -------------------------------------------------- */
+	/* ----- Header Image --------------------------------------------------- */
 	
 	$customize->add_setting('header_width', array('default' => 960));
 	$customize->add_control('header_width', array(
@@ -693,7 +693,7 @@ function inkblot_customize_register($customize) {
 		)
 	));
 	
-	/* ----- Navigation ---------------------------------------------------- */
+	/* ----- Navigation ----------------------------------------------------- */
 	
 	$customize->add_setting('paged_navigation', array('default' => true));
 	$customize->add_control('paged_navigation', array(
@@ -711,11 +711,11 @@ function inkblot_customize_register($customize) {
 		'priority' => '150'
 	));
 	
-	/* ----- Miscellanea --------------------------------------------------- */
+	/* ----- Miscellanea ---------------------------------------------------- */
 	
 	$customize->add_section('inkblot_miscellanea', array(
 		'title' => __('Miscellanea', 'inkblot'),
-		'priority' => 999
+		'priority' => 990
 	));
 	
 	$customize->add_setting('post_thumbnail_width', array('default' => 144));
@@ -749,7 +749,21 @@ function inkblot_customize_register($customize) {
 		'section' => 'inkblot_miscellanea'
 	));
 	
-	/* ----- Webcomic ------------------------------------------------------ */
+	/* ----- Stylesheet ----------------------------------------------------- */
+	
+	$customize->add_section('inkblot_css', array(
+		'title' => __('Stylesheet', 'inkblot'),
+		'priority' => 999
+	));
+	
+	$customize->add_setting('css', array('default' => ''));
+	$customize->add_control('css', array(
+		'type' => 'textarea',
+		'description' => __('Enter CSS rules below to further customize your theme. Extensive CSS changes should be done using a child theme.', 'inkblot'),
+		'section' => 'inkblot_css'
+	));
+	
+	/* ----- Webcomic ------------------------------------------------------- */
 	
 	if (webcomic()) {
 		$sizes = array('' => __('none', 'inkblot'));
@@ -768,10 +782,10 @@ function inkblot_customize_register($customize) {
 		$customize->add_panel('webcomic', array(
 			'title' => __('Webcomic', 'inkblot'),
 			'description' => __('These settings affect features related to the Webcomic plugin.', 'inkblot'),
-			'priority' => 990
+			'priority' => 980
 		));
 		
-		/* ----- Webcomic Layout ------------------------------------------- */
+		/* ----- Webcomic Layout -------------------------------------------- */
 		
 		$customize->add_section('webcomic_layout', array(
 			'title' => __('Layout', 'inkblot'),
@@ -794,7 +808,7 @@ function inkblot_customize_register($customize) {
 			'section' => 'webcomic_layout'
 		));
 		
-		/* ----- Webcomic Navigation --------------------------------------- */
+		/* ----- Webcomic Navigation ---------------------------------------- */
 		
 		$customize->add_section('webcomic_nav', array(
 			'title' => __('Navigation', 'inkblot'),
@@ -832,7 +846,7 @@ function inkblot_customize_register($customize) {
 			'section' => 'webcomic_nav'
 		));
 		
-		/* ----- Webcomic Archives ----------------------------------------- */
+		/* ----- Webcomic Archives ------------------------------------------ */
 		
 		$customize->add_section('webcomic_archives', array(
 			'title' => __('Archives', 'inkblot'),
@@ -860,7 +874,7 @@ function inkblot_customize_register($customize) {
 			'choices' => $sizes
 		));
 		
-		/* ----- Webcomic Front Page ----------------------------------------- */
+		/* ----- Webcomic Front Page ---------------------------------------- */
 		
 		$customize->add_section('webcomic_home', array(
 			'title' => __('Front Page', 'inkblot'),
@@ -913,6 +927,7 @@ if ( ! function_exists('inkblot_customize_controls_enqueue_scripts')) :
  * @hook customize_controls_enqueue_scripts
  */
 function inkblot_customize_controls_enqueue_scripts() {
+	wp_enqueue_style('inkblot-customize-controls', get_template_directory_uri() . '/-/css/customize-controls.css');
 	wp_enqueue_script('inkblot-customize-controls', get_template_directory_uri() . '/-/js/customize-controls.js', array('jquery', 'customize-controls'), '', true);
 }
 endif;

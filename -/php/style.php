@@ -390,6 +390,8 @@ if (is_readable(get_template_directory() . '/-/php/mods.php') and $mod = require
 }
 RESPONSIVE;
 	}
+	
+	print get_theme_mod('css', '');
 endif;
 
 print "\n\n";

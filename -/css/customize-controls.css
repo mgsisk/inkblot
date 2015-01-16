@@ -1,0 +1,4 @@
+textarea[data-customize-setting-link="css"] {
+	font: smaller/1.2 monospace;
+	min-height: 10rem;
+}

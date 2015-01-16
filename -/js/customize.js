@@ -209,6 +209,17 @@
   })(jQuery);
 
   (function($) {
+    return wp.customize('css', function($value) {
+      return $value.bind(function($to) {
+        $('head style.inkblot-custom').remove();
+        if ($to) {
+          return $('head').append('<style class="inkblot-custom">' + $to + '</style>');
+        }
+      });
+    });
+  })(jQuery);
+
+  (function($) {
     var inkblot_font;
     inkblot_font = function($to, $selectors) {
       if ('' === $to) {
