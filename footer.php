@@ -14,7 +14,7 @@
 						printf(__('%1$s &bull; Powered by %2$s with %3$s', 'inkblot'),
 							'<a href="#document">' . inkblot_copyright() . '</a>',
 							'<a href="//wordpress.org" target="_blank">WordPress</a>',
-							'<a href="//github.com/mgsisk/inkblot" target="_blank">Inkblot</a>'
+							apply_filters('inkblot_credit_link', '<a href="//github.com/mgsisk/inkblot" target="_blank">Inkblot</a>')
 						);
 					endif;
 				?>
