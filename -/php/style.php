@@ -4,7 +4,7 @@
  * 
  * To keep a lot of embedded styles and `<link>` tags out of our `<head>` we
  * use this file to generate a custom stylesheet based on `style.css`, theme
- * modifications, and child theme `style.css` (in that order).
+ * modifications, and any child theme `style.css` (in that order).
  * 
  * @package Inkblot
  */
@@ -16,24 +16,6 @@ if ( ! function_exists('get_template_directory')) {
 if (isset($_GET['inkblot-style']) and is_readable(get_template_directory() . '/style.css')) {
 	require get_template_directory() . '/style.css';
 }
-
-if (isset($_GET['inkblot-style'])) :
-print "\n\n";
-
-printf('
-@font-face {
-	font-family: awesome;
-	src: url("%1$s/-/font/fontawesome-webfont.eot");
-	src: url("%1$s/-/font/fontawesome-webfont.eot?#iefix") format("embedded-opentype"),
-		url("%1$s/-/font/fontawesome-webfont.woff") format("woff"),
-		url("%1$s/-/font/fontawesome-webfont.ttf") format("truetype"),
-		url("%1$s/-/font/fontawesome-webfont.svg#fontawesomeregular") format("svg");
-	font-style: normal;
-	font-weight: normal;
-}',
-get_template_directory_uri()
-);
-endif;
 
 if (is_readable(get_template_directory() . '/-/php/mods.php') and $mod = require get_template_directory() . '/-/php/mods.php') :
 	foreach (array_keys($mod) as $key) {
