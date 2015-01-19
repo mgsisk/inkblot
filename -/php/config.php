@@ -756,7 +756,10 @@ function inkblot_customize_register($customize) {
 		'priority' => 999
 	));
 	
-	$customize->add_setting('css', array('default' => ''));
+	$customize->add_setting('css', array(
+		'default' => '',
+		'transport' => 'postMessage'
+	));
 	$customize->add_control('css', array(
 		'type' => 'textarea',
 		'description' => __('Enter CSS rules below to further customize your theme. Extensive CSS changes should be done using a child theme.', 'inkblot'),
