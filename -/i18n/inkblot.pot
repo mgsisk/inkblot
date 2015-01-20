@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Inkblot 4.1.3\n"
-"POT-Creation-Date: 2015-01-16 18:19-0500\n"
-"PO-Revision-Date: 2015-01-16 18:20-0500\n"
+"POT-Creation-Date: 2015-01-20 09:46-0500\n"
+"PO-Revision-Date: 2015-01-20 09:46-0500\n"
 "Last-Translator: \n"
 "Language-Team: Michael Sisk <help@mgsisk.com>\n"
 "Language: en_US\n"
@@ -10,10 +10,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.7.3\n"
-"X-Poedit-Basepath: .\n"
+"X-Poedit-Basepath: ../../../\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n;_x;esc_attr_e\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_n_noop:1,2;_x:1,2c;_nx:4c,1,2;"
+"_nx_noop:4c,1,2;_ex:1,2c;_esc_attr__;_esc_attr_e;_esc_attr_x:1,2c;"
+"_esc_html__;_esc_html_e;_esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: inkblot\n"
 
 #: inkblot/-/php/admin.php:38
@@ -58,7 +60,7 @@ msgstr ""
 msgid "Site"
 msgstr ""
 
-#: inkblot/-/php/config.php:32 inkblot/-/php/config.php:791
+#: inkblot/-/php/config.php:32 inkblot/-/php/config.php:794
 msgid "Layout"
 msgstr ""
 
@@ -304,113 +306,113 @@ msgstr ""
 msgid "Stylesheet"
 msgstr ""
 
-#: inkblot/-/php/config.php:762
+#: inkblot/-/php/config.php:765
 msgid ""
 "Enter CSS rules below to further customize your theme. Extensive CSS changes "
 "should be done using a child theme."
 msgstr ""
 
-#: inkblot/-/php/config.php:769
+#: inkblot/-/php/config.php:772
 msgid "none"
 msgstr ""
 
-#: inkblot/-/php/config.php:770
+#: inkblot/-/php/config.php:773
 msgid "any collection"
 msgstr ""
 
-#: inkblot/-/php/config.php:776
+#: inkblot/-/php/config.php:779
 msgid "full"
 msgstr ""
 
-#: inkblot/-/php/config.php:783
+#: inkblot/-/php/config.php:786
 msgid "Webcomic"
 msgstr ""
 
-#: inkblot/-/php/config.php:784
+#: inkblot/-/php/config.php:787
 msgid "These settings affect features related to the Webcomic plugin."
 msgstr ""
 
-#: inkblot/-/php/config.php:799
+#: inkblot/-/php/config.php:802
 msgid "Place webcomic in the content column"
 msgstr ""
 
-#: inkblot/-/php/config.php:807
+#: inkblot/-/php/config.php:810
 msgid "Resize webcomic to fit available space"
 msgstr ""
 
-#: inkblot/-/php/config.php:814
+#: inkblot/-/php/config.php:817
 msgid "Navigation"
 msgstr ""
 
-#: inkblot/-/php/config.php:822
+#: inkblot/-/php/config.php:825
 msgid "Webcomic attachments link to"
 msgstr ""
 
-#: inkblot/-/php/config.php:825 inkblot/-/php/config.php:891
+#: inkblot/-/php/config.php:828 inkblot/-/php/config.php:894
 msgid "Nothing"
 msgstr ""
 
-#: inkblot/-/php/config.php:826
+#: inkblot/-/php/config.php:829
 msgid "Next webcomic"
 msgstr ""
 
-#: inkblot/-/php/config.php:827
+#: inkblot/-/php/config.php:830
 msgid "Previous webcomic"
 msgstr ""
 
-#: inkblot/-/php/config.php:836
+#: inkblot/-/php/config.php:839
 msgid "Show navigation above the webcomic"
 msgstr ""
 
-#: inkblot/-/php/config.php:845
+#: inkblot/-/php/config.php:848
 msgid "Show navigation below the webcomic"
 msgstr ""
 
-#: inkblot/-/php/config.php:852
+#: inkblot/-/php/config.php:855
 msgid "Archives"
 msgstr ""
 
-#: inkblot/-/php/config.php:860
+#: inkblot/-/php/config.php:863
 msgid "Posts are displayed in"
 msgstr ""
 
-#: inkblot/-/php/config.php:863
+#: inkblot/-/php/config.php:866
 msgid "Chronological order"
 msgstr ""
 
-#: inkblot/-/php/config.php:864
+#: inkblot/-/php/config.php:867
 msgid "Reverse chronlogical order"
 msgstr ""
 
-#: inkblot/-/php/config.php:872
+#: inkblot/-/php/config.php:875
 msgid "Show previews of this size "
 msgstr ""
 
-#: inkblot/-/php/config.php:880
+#: inkblot/-/php/config.php:883
 msgid "Front Page"
 msgstr ""
 
-#: inkblot/-/php/config.php:888
+#: inkblot/-/php/config.php:891
 msgid "Front page displays"
 msgstr ""
 
-#: inkblot/-/php/config.php:892
+#: inkblot/-/php/config.php:895
 msgid "Your latest webcomic"
 msgstr ""
 
-#: inkblot/-/php/config.php:893
+#: inkblot/-/php/config.php:896
 msgid "Your first webcomic"
 msgstr ""
 
-#: inkblot/-/php/config.php:900
+#: inkblot/-/php/config.php:903
 msgid "From this collection"
 msgstr ""
 
-#: inkblot/-/php/config.php:908
+#: inkblot/-/php/config.php:911
 msgid "Include comments on the front page"
 msgstr ""
 
-#: inkblot/-/php/config.php:915
+#: inkblot/-/php/config.php:918
 msgid "Include transcripts on the front page"
 msgstr ""
 
@@ -780,18 +782,19 @@ msgid "Age Restricted Content"
 msgstr ""
 
 #: inkblot/webcomic/restricted-age.php:22
-msgid "Please verify your age."
+#, php-format
+msgid "Are you at least %1$s years of age?"
+msgstr ""
+
+#: inkblot/webcomic/restricted-age.php:24
+msgid "Yes"
 msgstr ""
 
 #: inkblot/webcomic/restricted-age.php:25
-msgid "Date of Birth"
+msgid "No"
 msgstr ""
 
-#: inkblot/webcomic/restricted-age.php:27
-msgid "Verify Age"
-msgstr ""
-
-#: inkblot/webcomic/restricted-age.php:32
+#: inkblot/webcomic/restricted-age.php:31
 msgid "Apologies, but you're not old enough to view this content."
 msgstr ""
 
