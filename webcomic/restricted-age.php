@@ -19,12 +19,11 @@ get_header(); ?>
 		<?php if (is_null(verify_webcomic_age())) : ?>
 			
 			<form method="post">
-				<p><?php _e('Please verify your age.', 'inkblot'); ?></p>
+				<p><?php printf(__('Are you at least %1$s years of age?', 'inkblot'), WebcomicTag::get_verify_webcomic_age()); ?></p>
 				<p>
-					<label for="webcomic_birthday">Date of Birth</label>
-					<input type="date" name="webcomic_birthday" id="webcomic_birthday" placeholder="<?php esc_attr_e('Date of Birth', 'inkblot'); ?>">
+					<button type="submit" name="webcomic_birthday" value="1"><?php _e('Yes', 'inkblot'); ?></button>
+					<button type="submit" name="webcomic_birthday" value="0"><?php _e('No', 'inkblot'); ?></button>
 				</p>
-				<p><button type="submit"><?php _e('Verify Age', 'inkblot'); ?></button></p>
 			</form>
 			
 		<?php else : ?>
