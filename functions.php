@@ -27,9 +27,8 @@ if (is_admin() or is_customize_preview()) {
 
 add_action('customize_preview_init', 'inkblot_customize_preview_init');
 add_action('wp_head', 'inkblot_wp_head', 0);
-add_action('wp_loaded', 'inkblot_wp_loaded');
+add_action('wp_loaded', 'inkblot_wp_loaded', 0);
 add_action('widgets_init', 'inkblot_widgets_init');
-add_action('wp_head', 'inkblot_wp_head_customize');
 add_action('wp_enqueue_scripts', 'inkblot_wp_enqueue_scripts');
 add_action('after_setup_theme', 'inkblot_after_setup_theme');
 add_action('wp_footer', 'inkblot_wp_footer');
@@ -70,16 +69,13 @@ endif;
 
 if ( ! function_exists('inkblot_wp_loaded')) :
 /**
- * Generate custom stylesheet.
- *
- * It would be better to handle this with an `init` hook, but we need
- * `get_theme_mod` to function properly for the theme customizer.
- *
+ * Generate theme modification stylesheet.
+ * 
  * @return void
  * @action wp_loaded
  */
 function inkblot_wp_loaded() {
-	if (isset($_GET['inkblot-style'])) {
+	if (isset($_GET['inkblot-mods'])) {
 		header('Content-Type: text/css');
 		
 		require_once get_template_directory() . '/-/php/style.php';
@@ -135,27 +131,6 @@ function inkblot_widgets_init() {
 }
 endif;
 
-if ( ! function_exists('inkblot_wp_head_customize')) :
-/**
- * Include customized styles inline.
- *
- * We need to do this while previewing to ensure customizations show up
- * properly if the user navigates through the theme preview.
- *
- * @return void
- * @hook wp_head
- */
-function inkblot_wp_head_customize() {
-	if (is_customize_preview()) {
-		print '<style class="inkblot">';
-		
-		locate_template('/-/php/style.php', true);
-		
-		print '</style>';
-	}
-}
-endif;
-
 if ( ! function_exists('inkblot_wp_enqueue_scripts')) :
 /**
  * Enqueue scripts and stylesheets.
@@ -164,15 +139,11 @@ if ( ! function_exists('inkblot_wp_enqueue_scripts')) :
  * @hook wp_enqueue_scripts
  */
 function inkblot_wp_enqueue_scripts() {
-	wp_enqueue_style('inkblot-theme', add_query_arg(array('inkblot-style' => ''), home_url('/')));
+	wp_enqueue_style('inkblot-theme', get_stylesheet_uri());
 	
-	if (
-		get_theme_mod('font')
-		or get_theme_mod('header_font')
-		or get_theme_mod('page_font')
-		or get_theme_mod('title_font')
-		or get_theme_mod('trim_font')
-	) {
+	wp_add_inline_style('inkblot-theme', require get_template_directory() . '/-/php/style.php');
+	
+	if (get_theme_mod('font') or get_theme_mod('header_font') or get_theme_mod('page_font') or get_theme_mod('title_font') or get_theme_mod('trim_font')) {
 		$proto = is_ssl() ? 'https' : 'http';
 		$fonts = array_filter(array(
 			get_theme_mod('font'),
@@ -182,7 +153,7 @@ function inkblot_wp_enqueue_scripts() {
 			get_theme_mod('trim_font')
 		));
 		
-		wp_enqueue_style('inkblot-fonts', add_query_arg(array('family' => implode('|', $fonts)), "{$proto}://fonts.googleapis.com/css"));
+		wp_enqueue_style('inkblot-font', add_query_arg(array('family' => implode('|', $fonts)), "{$proto}://fonts.googleapis.com/css"));
 	}
 	
 	wp_enqueue_script('inkblot-script', get_template_directory_uri() . '/-/js/script.js', array('jquery'), '', true);
@@ -196,17 +167,20 @@ endif;
 if ( ! function_exists('inkblot_after_setup_theme')) :
 /**
  * Setup theme features.
- *
+ * 
  * @uses Inkblot::$dir
  * @hook after_setup_theme
  */
 function inkblot_after_setup_theme() {
 	load_theme_textdomain('inkblot', get_template_directory() . '/-/i18n');
 	
-	if (get_theme_mod('page_font') or get_theme_mod('title_font')) {
+	add_editor_style(get_stylesheet_uri());
+	
+	if (get_theme_mod('font') or get_theme_mod('page_font') or get_theme_mod('title_font')) {
 		$proto = is_ssl() ? 'https' : 'http';
 		
 		foreach (array_filter(array(
+			get_theme_mod('font'),
 			get_theme_mod('page_font'),
 			get_theme_mod('title_font')
 		)) as $font) {
@@ -214,7 +188,7 @@ function inkblot_after_setup_theme() {
 		}
 	}
 	
-	add_editor_style(add_query_arg(array('inkblot-style' => 'editor'), home_url('/')));
+	add_editor_style(add_query_arg(array('inkblot-mods' => 'editor'), home_url('/')));
 	
 	add_filter('use_default_gallery_style', '__return_false');
 	add_filter('show_recent_comments_widget_style', '__return_false');
@@ -365,11 +339,11 @@ function inkblot_css($selectors = '', $property = '', $value = '') {
 				}
 				
 				$value[0] = hexdec($value[0]);
-				$value[0] = 'rgba(' . implode(', ', array(
+				$value[0] = 'rgba(' . implode(',', array(
 					0xFF & ($value[0] >> 0x10),
 					0xFF & ($value[0] >> 0x8),
 					0xFF & $value[0]
-				)) . ", {$value[1]})";
+				)) . ",{$value[1]})";
 			} else {
 				$value = "#{$value[0]}";
 			}
@@ -383,19 +357,19 @@ function inkblot_css($selectors = '', $property = '', $value = '') {
 		
 		foreach ((array) $selectors as $selector) {
 			if (isset($hexcolor)) {
-				$css[$selector][] = "{$property}: #{$hexcolor}";
+				$css[$selector][] = "{$property}:#{$hexcolor}";
 			}
 			
-			$css[$selector][] = "{$property}: {$value}";
+			$css[$selector][] = "{$property}:{$value}";
 		}
 	} else if ( ! $selectors) {
-		print "\n\n";
+		$output = '';
 		
 		foreach ($css as $selector => $properties) {
-			print "{$selector} {" . implode('; ', $properties) . "}\n";
+			$output .= "{$selector}{" . implode(';', $properties) . "}";
 		}
 		
-		unset($css);
+		return $output;
 	}
 }
 endif;

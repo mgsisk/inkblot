@@ -3,6 +3,7 @@
  * Returns a list of theme modification settings and their defaults. Used by
  * `style.php` and the theme customizer.
  * 
+ * @package Inkblot
  * @return array
  */
 
