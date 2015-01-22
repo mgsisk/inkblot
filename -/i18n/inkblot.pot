@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Inkblot 4.2\n"
-"POT-Creation-Date: 2015-01-21 19:51-0500\n"
-"PO-Revision-Date: 2015-01-21 19:51-0500\n"
+"Project-Id-Version: Inkblot 4.3\n"
+"POT-Creation-Date: 2015-01-22 14:39-0500\n"
+"PO-Revision-Date: 2015-01-22 14:39-0500\n"
 "Last-Translator: \n"
 "Language-Team: Michael Sisk <help@mgsisk.com>\n"
 "Language: en_US\n"
@@ -18,39 +18,34 @@ msgstr ""
 "_esc_html__;_esc_html_e;_esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: inkblot\n"
 
-#: inkblot/-/php/admin.php:38
-#, php-format
-msgid "Thank you for using %1$s!"
-msgstr ""
-
-#: inkblot/-/php/admin.php:54
+#: inkblot/-/php/admin.php:50
 msgid "Text Opacity"
 msgstr ""
 
-#: inkblot/-/php/admin.php:62
+#: inkblot/-/php/admin.php:58
 msgid "Font"
 msgstr ""
 
-#: inkblot/-/php/admin.php:84
+#: inkblot/-/php/admin.php:80
 #, php-format
 msgid "Sorry, we couldn't connect to %s"
 msgstr ""
 
-#: inkblot/-/php/admin.php:90
+#: inkblot/-/php/admin.php:86
 msgid "Header Dimensions"
 msgstr ""
 
-#: inkblot/-/php/admin.php:91
+#: inkblot/-/php/admin.php:87
 msgid ""
 "Save changes to the width and height before uploading your header image. "
 "Changes will not affect previously uploaded header images."
 msgstr ""
 
-#: inkblot/-/php/admin.php:95 inkblot/-/php/config.php:675
+#: inkblot/-/php/admin.php:91 inkblot/-/php/config.php:675
 msgid "Width"
 msgstr ""
 
-#: inkblot/-/php/admin.php:103 inkblot/-/php/config.php:687
+#: inkblot/-/php/admin.php:99 inkblot/-/php/config.php:687
 msgid "Height"
 msgstr ""
 
@@ -538,10 +533,6 @@ msgstr ""
 msgid "Your comment is awaiting moderation."
 msgstr ""
 
-#: inkblot/-/php/tags.php:428
-msgid "Bookmark"
-msgstr ""
-
 #: inkblot/-/php/walker-page-dropdown.php:33
 msgid "Home"
 msgstr ""
@@ -588,149 +579,149 @@ msgstr ""
 msgid "%1$s &bull; Powered by %2$s with %3$s"
 msgstr ""
 
-#: inkblot/functions.php:122 inkblot/sidebar.php:19
+#: inkblot/functions.php:97 inkblot/sidebar.php:19
 msgid "Primary Sidebar"
 msgstr ""
 
-#: inkblot/functions.php:122
+#: inkblot/functions.php:97
 msgid ""
 "Used in both two and three-column layouts. You can change theme layout from "
 "the Appearance > Customize page."
 msgstr ""
 
-#: inkblot/functions.php:123 inkblot/sidebar.php:36
+#: inkblot/functions.php:98 inkblot/sidebar.php:36
 msgid "Secondary Sidebar"
 msgstr ""
 
-#: inkblot/functions.php:123
+#: inkblot/functions.php:98
 msgid ""
 "Used in three-column layouts only. You can change theme layout from the "
 "Appearance > Customize page."
 msgstr ""
 
-#: inkblot/functions.php:124
+#: inkblot/functions.php:99
 msgid "Document Header"
 msgstr ""
 
-#: inkblot/functions.php:124
+#: inkblot/functions.php:99
 msgid "Located at the very top of the page, outside of the page wrapper."
 msgstr ""
 
-#: inkblot/functions.php:125
+#: inkblot/functions.php:100
 msgid "Document Footer"
 msgstr ""
 
-#: inkblot/functions.php:125
+#: inkblot/functions.php:100
 msgid "Located at the very bottom of the page, outside of the page wrapper."
 msgstr ""
 
-#: inkblot/functions.php:126
+#: inkblot/functions.php:101
 msgid "Site Header"
 msgstr ""
 
-#: inkblot/functions.php:126
+#: inkblot/functions.php:101
 msgid ""
 "Located at the top of the page, where the site title and navigation are "
 "usually displayed."
 msgstr ""
 
-#: inkblot/functions.php:127
+#: inkblot/functions.php:102
 msgid "Site Footer"
 msgstr ""
 
-#: inkblot/functions.php:127
+#: inkblot/functions.php:102
 msgid ""
 "Located at the bottom of the page, where copyright information is usually "
 "displayed."
 msgstr ""
 
-#: inkblot/functions.php:128
+#: inkblot/functions.php:103
 msgid "Page Header"
 msgstr ""
 
-#: inkblot/functions.php:128
+#: inkblot/functions.php:103
 msgid "Located near the top of the page, just inside the page wrapper."
 msgstr ""
 
-#: inkblot/functions.php:129
+#: inkblot/functions.php:104
 msgid "Page Footer"
 msgstr ""
 
-#: inkblot/functions.php:129
+#: inkblot/functions.php:104
 msgid "Located near the bottom of the page, just inside the page wrapper."
 msgstr ""
 
-#: inkblot/functions.php:130
+#: inkblot/functions.php:105
 msgid "Content Header"
 msgstr ""
 
-#: inkblot/functions.php:130
+#: inkblot/functions.php:105
 msgid "Located near the top of the page, just inside the content wrapper."
 msgstr ""
 
-#: inkblot/functions.php:131
+#: inkblot/functions.php:106
 msgid "Content Footer"
 msgstr ""
 
-#: inkblot/functions.php:131
+#: inkblot/functions.php:106
 msgid "Located near the bottom of the page, just inside the content wrapper."
 msgstr ""
 
-#: inkblot/functions.php:132
+#: inkblot/functions.php:107
 msgid "Comment Header"
 msgstr ""
 
-#: inkblot/functions.php:132
+#: inkblot/functions.php:107
 msgid ""
 "Located above the comments list for a post, just inside the comments wrapper."
 msgstr ""
 
-#: inkblot/functions.php:133
+#: inkblot/functions.php:108
 msgid "Comment Footer"
 msgstr ""
 
-#: inkblot/functions.php:133
+#: inkblot/functions.php:108
 msgid ""
 "Located below the comments list for a post, just inside the comments wrapper."
 msgstr ""
 
-#: inkblot/functions.php:138
+#: inkblot/functions.php:113
 msgid "Webcomic Header"
 msgstr ""
 
-#: inkblot/functions.php:138
+#: inkblot/functions.php:113
 msgid "Located above the webcomic, just inside the webcomic wrapper."
 msgstr ""
 
-#: inkblot/functions.php:139
+#: inkblot/functions.php:114
 msgid "Webcomic Footer"
 msgstr ""
 
-#: inkblot/functions.php:139
+#: inkblot/functions.php:114
 msgid "Located below the webcomic, just inside the webcomic wrapper."
 msgstr ""
 
-#: inkblot/functions.php:140
+#: inkblot/functions.php:115
 msgid "Webcomic Navigation Header"
 msgstr ""
 
-#: inkblot/functions.php:140
+#: inkblot/functions.php:115
 msgid "Navigation displayed above the webcomic."
 msgstr ""
 
-#: inkblot/functions.php:141
+#: inkblot/functions.php:116
 msgid "Webcomic Navigation Footer"
 msgstr ""
 
-#: inkblot/functions.php:141
+#: inkblot/functions.php:116
 msgid "Navigation displayed below the webcomic."
 msgstr ""
 
-#: inkblot/functions.php:242
+#: inkblot/functions.php:217
 msgid "Primary Menu"
 msgstr ""
 
-#: inkblot/functions.php:317 inkblot/functions.php:329
+#: inkblot/functions.php:292 inkblot/functions.php:304
 #, php-format
 msgid "Continue reading %s"
 msgstr ""
@@ -755,8 +746,7 @@ msgid ""
 "administrative page</a>."
 msgstr ""
 
-#: inkblot/template/webcomic-infinite-content.php:46
-#: inkblot/webcomic/content.php:53
+#: inkblot/webcomic/content.php:53 inkblot/webcomic/infinite.php:44
 msgid "Purchase"
 msgstr ""
 
