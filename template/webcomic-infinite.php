@@ -22,10 +22,7 @@ get_header(); ?>
 
 <main role="main" data-webcomic-infinite="<?php the_ID(); ?>" data-webcomic-collection="<?php print get_post_meta(get_the_ID(), 'inkblot_webcomic_collection', true); ?>" data-webcomic-order="<?php print get_post_meta(get_the_ID(), 'inkblot_webcomic_order', true) ?>">
 	
-	<!--
-		Don't put anything here! Check `webcomic/infinite-content.php` for the
-		Webcomic display template
-	-->
+	<!-- Don't put anything here! See `webcomic/infinite.php` for the Webcomic display template -->
 	
 </main>
 
