@@ -33,10 +33,6 @@ function inkblot_after_switch_theme() {
 	if (get_theme_mod('uninstall')) {
 		remove_theme_mods();
 	}
-	
-	if ( ! get_theme_mods()) {
-		inkblot_notify(sprintf(__('Thank you for using %1$s!', 'inkblot'), '<a href="//github.com/mgsisk/inkblot" target="_blank">Inkblot</a>'), 'updated');
-	}
 }
 endif;
 
