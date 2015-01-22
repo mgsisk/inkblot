@@ -3,46 +3,11 @@
   document.documentElement.className = document.documentElement.className.replace(/no-js/, 'js');
 
   jQuery(function($) {
-    $('.responsive .banner select').on('change', function($e) {
+    return $('.responsive .banner select').on('change', function($e) {
       if ($(this).val()) {
         return window.location.href = $(this).val();
       }
     });
-    if ($('body').hasClass('page-template-templatewebcomic-infinite-php')) {
-      return $(window).on('scroll', function($e) {
-        var $data, $offset, $request;
-        if ($('[name="inkblot-webcomic-infinite-stop"]').val() || void 0 !== $('main').data('loading')) {
-          return;
-        }
-        if (!$('main').children().length || $('main').children().last().offset().top < $(window).scrollTop() + $(window).height()) {
-          $('main').data('loading', true);
-          $offset = parseInt($('main').children().length + $('main').data('webcomic-offset'));
-          $data = {
-            'inkblot-webcomic-infinite': true,
-            page: $('main').data('page-id'),
-            order: $('main').data('webcomic-order'),
-            offset: $offset,
-            collection: $('main').data('webcomic-collection')
-          };
-          $request = {
-            url: window.location.href,
-            type: 'post',
-            data: $.param($data),
-            success: function($data) {
-              $('main').append($data);
-              return history.replaceState($data, '', window.location.href.split('?')[0] + '?offset=' + $offset);
-            },
-            complete: function($object, $status) {
-              $('main').removeData('loading');
-              if ($('body').height() <= $(window).height()) {
-                return $(window).trigger('scroll');
-              }
-            }
-          };
-          return $.ajax($request);
-        }
-      }).trigger('scroll');
-    }
   });
 
 }).call(this);

@@ -2,11 +2,12 @@
 /**
  * Template Name: Webcomic Infinite
  * 
- * Useful for creating an infinite-scroll archive. There isn't much to this
- * template; most of the heavy lifting happens in `script.js` and
- * `functions.php`. Actual content display is handled by
- * `template/webcomic-infinite-content.php` and
- * `template/webcomic-infinite-end.php`.
+ * Useful for creating an infinite-scroll archive. The actual logic for this is
+ * handled by the Webcomic plugin; you just need an empty container element
+ * with a `data-webcomic-infinite` set to the current page ID and Webcomic takes
+ * care of the rest.
+ * 
+ * To adjust the output for infninte scorll comics, see `webcomic/infinite.php`.
  * 
  * @package Inkblot
  */
@@ -19,11 +20,11 @@ if ( ! webcomic()) {
 
 get_header(); ?>
 
-<main role="main" data-page-id="<?php the_ID(); ?>" data-webcomic-order="<?php print get_post_meta(get_the_ID(), 'inkblot_webcomic_order', true) ?>" data-webcomic-offset="<?php print isset($_GET['offset']) ? $_GET['offset'] : 0 ?>" data-webcomic-collection="<?php print get_post_meta(get_the_ID(), 'inkblot_webcomic_collection', true); ?>">
+<main role="main" data-webcomic-infinite="<?php the_ID(); ?>" data-webcomic-collection="<?php print get_post_meta(get_the_ID(), 'inkblot_webcomic_collection', true); ?>" data-webcomic-order="<?php print get_post_meta(get_the_ID(), 'inkblot_webcomic_order', true) ?>">
 	
 	<!--
-		Don't put anything here! Check `template/webcomic-infinite-content.php`
-		for the Webcomic display template
+		Don't put anything here! Check `webcomic/infinite-content.php` for the
+		Webcomic display template
 	-->
 	
 </main>

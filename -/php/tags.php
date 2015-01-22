@@ -415,17 +415,3 @@ function inkblot_webcomic_transcript() { ?>
 	<?php
 }
 endif;
-
-if ( ! function_exists('inkblot_infinite_link')) :
-/**
- * Return an offset link for the Webcomic Infinite page template.
- * 
- * @return string
- */
-function inkblot_infinite_link() {
-	return sprintf('<a href="%1$s">%2$s</a>',
-		add_query_arg(array('offset' => $_POST['offset']), get_permalink($_POST['page'])),
-		__('Bookmark', 'inkblot')
-	);
-}
-endif;

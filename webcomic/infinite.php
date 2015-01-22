@@ -1,12 +1,10 @@
 <?php
 /**
- * Webcomic display template for Webcomic Infinite template.
+ * Webcomic display template for infinite scrolling.
  * 
- * Webcomic doesn't natively understand this template, but we're keeping it in
- * the `webcomic` directory because it's Webcomic-specific. This template
- * handles comic display for the Webcomic Infinite page template. The contents
- * of this template should always have a single outer-most wrapper (<article>,
- * by default).
+ * Handles Webcomic display on infinite-scroll pages. Refer to
+ * `template/webcomic-infinite.php` to see how to setup a page for infinite
+ * scrolling.
  * 
  * @package Inkblot
  */
@@ -47,7 +45,7 @@
 					);
 				endif;
 				
-				print inkblot_infinite_link();
+				print webcomic_infinite_link();
 				
 				edit_post_link();
 			?>
