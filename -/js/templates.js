@@ -2,7 +2,7 @@
 (function() {
   jQuery(function($) {
     var $templates;
-    $templates = ['template/contributors.php', 'template/full-width.php', 'template/webcomic-archive.php', 'template/webcomic-homepage.php'];
+    $templates = ['template/contributors.php', 'template/full-width.php', 'template/webcomic-archive.php', 'template/webcomic-homepage.php', 'template/webcomic-infinite.php'];
     $('#inkblot-template-options h3').append('<span class="inkblot-template-title"></span>');
     return $('#page_template').on('change', function($e) {
       $('[data-inkblot-template-options], [data-inkblot-template-options] h4').hide();

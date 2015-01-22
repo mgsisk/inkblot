@@ -394,6 +394,11 @@ function inkblot_contributor($user, $avatar = 96) {
 endif;
 
 if ( ! function_exists('inkblot_webcomic_transcript')) :
+/**
+ * Render a Webcomic transcript.
+ * 
+ * @return void
+ */
 function inkblot_webcomic_transcript() { ?>
 	<article id="webcomic_transcript-<?php the_ID(); ?>" <?php post_class(); ?>>
 		<div class="post-content"><?php the_content(); ?></div><!-- .post-content -->
@@ -408,5 +413,19 @@ function inkblot_webcomic_transcript() { ?>
 		</footer><!-- .post-footer -->
 	</article><!-- #webcomic-transcript-<?php the_ID(); ?> -->
 	<?php
+}
+endif;
+
+if ( ! function_exists('inkblot_infinite_link')) :
+/**
+ * Return an offset link for the Webcomic Infinite page template.
+ * 
+ * @return string
+ */
+function inkblot_infinite_link() {
+	return sprintf('<a href="%1$s">%2$s</a>',
+		add_query_arg(array('offset' => $_POST['offset']), get_permalink($_POST['page'])),
+		__('Bookmark', 'inkblot')
+	);
 }
 endif;

@@ -9,7 +9,8 @@ jQuery(($)->
 		'template/contributors.php',
 		'template/full-width.php',
 		'template/webcomic-archive.php',
-		'template/webcomic-homepage.php'
+		'template/webcomic-homepage.php',
+		'template/webcomic-infinite.php'
 	]
 	
 	$('#inkblot-template-options h3').append('<span class="inkblot-template-title"></span>')

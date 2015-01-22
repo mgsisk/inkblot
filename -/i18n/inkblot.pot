@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Inkblot 4.2\n"
-"POT-Creation-Date: 2015-01-20 23:57-0500\n"
-"PO-Revision-Date: 2015-01-20 23:57-0500\n"
+"POT-Creation-Date: 2015-01-21 19:35-0500\n"
+"PO-Revision-Date: 2015-01-21 19:35-0500\n"
 "Last-Translator: \n"
 "Language-Team: Michael Sisk <help@mgsisk.com>\n"
 "Language: en_US\n"
@@ -428,84 +428,94 @@ msgstr ""
 msgid "Template Options"
 msgstr ""
 
-#: inkblot/-/php/pages.php:94
+#: inkblot/-/php/pages.php:95
 msgid ""
 "Select one of the following templates to modify template-specific options:"
 msgstr ""
 
-#: inkblot/-/php/pages.php:111
+#: inkblot/-/php/pages.php:113
 msgid "Contributors"
 msgstr ""
 
-#: inkblot/-/php/pages.php:114
+#: inkblot/-/php/pages.php:116
 msgid "Avatar size"
 msgstr ""
 
-#: inkblot/-/php/pages.php:119
+#: inkblot/-/php/pages.php:121
 msgid "Full Width"
 msgstr ""
 
-#: inkblot/-/php/pages.php:122
+#: inkblot/-/php/pages.php:124
 msgid "Show sidebars below the page content"
 msgstr ""
 
-#: inkblot/-/php/pages.php:127
+#: inkblot/-/php/pages.php:129
 msgid "Webcomic Archive"
 msgstr ""
 
-#: inkblot/-/php/pages.php:149
+#: inkblot/-/php/pages.php:151
 #, php-format
 msgid ""
 "<label>Show webcomic links as %1$s grouped by %2$s with %3$s term links</"
 "label>"
 msgstr ""
 
-#: inkblot/-/php/pages.php:155 inkblot/-/php/pages.php:175
+#: inkblot/-/php/pages.php:157 inkblot/-/php/pages.php:177
 msgid "text"
 msgstr ""
 
-#: inkblot/-/php/pages.php:164
+#: inkblot/-/php/pages.php:166
 msgid "collection"
 msgstr ""
 
-#: inkblot/-/php/pages.php:166
+#: inkblot/-/php/pages.php:168
 msgid "storyline"
 msgstr ""
 
-#: inkblot/-/php/pages.php:168
+#: inkblot/-/php/pages.php:170
 msgid "character"
 msgstr ""
 
-#: inkblot/-/php/pages.php:185 inkblot/-/php/pages.php:223
+#: inkblot/-/php/pages.php:187 inkblot/-/php/pages.php:225
+#: inkblot/-/php/pages.php:255
 #, php-format
 msgid ""
 "It looks like %s is not installed or activated. This template will not "
 "affect the appearance of this page."
 msgstr ""
 
-#: inkblot/-/php/pages.php:191
+#: inkblot/-/php/pages.php:193
 msgid "Webcomic Homepage"
 msgstr ""
 
-#: inkblot/-/php/pages.php:197
+#: inkblot/-/php/pages.php:199
 #, php-format
 msgid "<label>Show the %1$s webcomic</label>"
 msgstr ""
 
-#: inkblot/-/php/pages.php:204
+#: inkblot/-/php/pages.php:206 inkblot/-/php/pages.php:244
 msgid "first"
 msgstr ""
 
-#: inkblot/-/php/pages.php:206
+#: inkblot/-/php/pages.php:208 inkblot/-/php/pages.php:246
 msgid "latest"
 msgstr ""
 
-#: inkblot/-/php/pages.php:214
+#: inkblot/-/php/pages.php:216
 msgid "Show transcripts"
 msgstr ""
 
-#: inkblot/-/php/pages.php:218
+#: inkblot/-/php/pages.php:220
 msgid "Show comments"
+msgstr ""
+
+#: inkblot/-/php/pages.php:231
+msgid "Webcomic Infinite"
+msgstr ""
+
+#: inkblot/-/php/pages.php:237
+#, php-format
+msgid "<label>Start with the %1$s webcomic</label>"
 msgstr ""
 
 #: inkblot/-/php/tags.php:155
@@ -526,6 +536,10 @@ msgstr ""
 
 #: inkblot/-/php/tags.php:218
 msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: inkblot/-/php/tags.php:428
+msgid "Bookmark"
 msgstr ""
 
 #: inkblot/-/php/walker-page-dropdown.php:33
@@ -574,149 +588,149 @@ msgstr ""
 msgid "%1$s &bull; Powered by %2$s with %3$s"
 msgstr ""
 
-#: inkblot/functions.php:78 inkblot/sidebar.php:19
+#: inkblot/functions.php:122 inkblot/sidebar.php:19
 msgid "Primary Sidebar"
 msgstr ""
 
-#: inkblot/functions.php:78
+#: inkblot/functions.php:122
 msgid ""
 "Used in both two and three-column layouts. You can change theme layout from "
 "the Appearance > Customize page."
 msgstr ""
 
-#: inkblot/functions.php:79 inkblot/sidebar.php:36
+#: inkblot/functions.php:123 inkblot/sidebar.php:36
 msgid "Secondary Sidebar"
 msgstr ""
 
-#: inkblot/functions.php:79
+#: inkblot/functions.php:123
 msgid ""
 "Used in three-column layouts only. You can change theme layout from the "
 "Appearance > Customize page."
 msgstr ""
 
-#: inkblot/functions.php:80
+#: inkblot/functions.php:124
 msgid "Document Header"
 msgstr ""
 
-#: inkblot/functions.php:80
+#: inkblot/functions.php:124
 msgid "Located at the very top of the page, outside of the page wrapper."
 msgstr ""
 
-#: inkblot/functions.php:81
+#: inkblot/functions.php:125
 msgid "Document Footer"
 msgstr ""
 
-#: inkblot/functions.php:81
+#: inkblot/functions.php:125
 msgid "Located at the very bottom of the page, outside of the page wrapper."
 msgstr ""
 
-#: inkblot/functions.php:82
+#: inkblot/functions.php:126
 msgid "Site Header"
 msgstr ""
 
-#: inkblot/functions.php:82
+#: inkblot/functions.php:126
 msgid ""
 "Located at the top of the page, where the site title and navigation are "
 "usually displayed."
 msgstr ""
 
-#: inkblot/functions.php:83
+#: inkblot/functions.php:127
 msgid "Site Footer"
 msgstr ""
 
-#: inkblot/functions.php:83
+#: inkblot/functions.php:127
 msgid ""
 "Located at the bottom of the page, where copyright information is usually "
 "displayed."
 msgstr ""
 
-#: inkblot/functions.php:84
+#: inkblot/functions.php:128
 msgid "Page Header"
 msgstr ""
 
-#: inkblot/functions.php:84
+#: inkblot/functions.php:128
 msgid "Located near the top of the page, just inside the page wrapper."
 msgstr ""
 
-#: inkblot/functions.php:85
+#: inkblot/functions.php:129
 msgid "Page Footer"
 msgstr ""
 
-#: inkblot/functions.php:85
+#: inkblot/functions.php:129
 msgid "Located near the bottom of the page, just inside the page wrapper."
 msgstr ""
 
-#: inkblot/functions.php:86
+#: inkblot/functions.php:130
 msgid "Content Header"
 msgstr ""
 
-#: inkblot/functions.php:86
+#: inkblot/functions.php:130
 msgid "Located near the top of the page, just inside the content wrapper."
 msgstr ""
 
-#: inkblot/functions.php:87
+#: inkblot/functions.php:131
 msgid "Content Footer"
 msgstr ""
 
-#: inkblot/functions.php:87
+#: inkblot/functions.php:131
 msgid "Located near the bottom of the page, just inside the content wrapper."
 msgstr ""
 
-#: inkblot/functions.php:88
+#: inkblot/functions.php:132
 msgid "Comment Header"
 msgstr ""
 
-#: inkblot/functions.php:88
+#: inkblot/functions.php:132
 msgid ""
 "Located above the comments list for a post, just inside the comments wrapper."
 msgstr ""
 
-#: inkblot/functions.php:89
+#: inkblot/functions.php:133
 msgid "Comment Footer"
 msgstr ""
 
-#: inkblot/functions.php:89
+#: inkblot/functions.php:133
 msgid ""
 "Located below the comments list for a post, just inside the comments wrapper."
 msgstr ""
 
-#: inkblot/functions.php:94
+#: inkblot/functions.php:138
 msgid "Webcomic Header"
 msgstr ""
 
-#: inkblot/functions.php:94
+#: inkblot/functions.php:138
 msgid "Located above the webcomic, just inside the webcomic wrapper."
 msgstr ""
 
-#: inkblot/functions.php:95
+#: inkblot/functions.php:139
 msgid "Webcomic Footer"
 msgstr ""
 
-#: inkblot/functions.php:95
+#: inkblot/functions.php:139
 msgid "Located below the webcomic, just inside the webcomic wrapper."
 msgstr ""
 
-#: inkblot/functions.php:96
+#: inkblot/functions.php:140
 msgid "Webcomic Navigation Header"
 msgstr ""
 
-#: inkblot/functions.php:96
+#: inkblot/functions.php:140
 msgid "Navigation displayed above the webcomic."
 msgstr ""
 
-#: inkblot/functions.php:97
+#: inkblot/functions.php:141
 msgid "Webcomic Navigation Footer"
 msgstr ""
 
-#: inkblot/functions.php:97
+#: inkblot/functions.php:141
 msgid "Navigation displayed below the webcomic."
 msgstr ""
 
-#: inkblot/functions.php:201
+#: inkblot/functions.php:242
 msgid "Primary Menu"
 msgstr ""
 
-#: inkblot/functions.php:276 inkblot/functions.php:288
+#: inkblot/functions.php:317 inkblot/functions.php:329
 #, php-format
 msgid "Continue reading %s"
 msgstr ""
@@ -741,6 +755,7 @@ msgid ""
 "administrative page</a>."
 msgstr ""
 
+#: inkblot/template/webcomic-infinite-content.php:45
 #: inkblot/webcomic/content.php:53
 msgid "Purchase"
 msgstr ""

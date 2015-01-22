@@ -56,7 +56,8 @@ function inkblot_insert_page($id, $post) {
 			'template/contributors.php',
 			'template/full-width.php',
 			'template/webcomic-archive.php',
-			'template/webcomic-homepage.php'
+			'template/webcomic-homepage.php',
+			'template/webcomic-infinite.php'
 		))) {
 			foreach ($keys as $key) {
 				update_post_meta($id, $key, $_POST[$key]);
@@ -99,7 +100,8 @@ function inkblot_template_options($page) {
 						'template/contributors.php',
 						'template/full-width.php',
 						'template/webcomic-archive.php',
-						'template/webcomic-homepage.php'
+						'template/webcomic-homepage.php',
+						'template/webcomic-infinite.php'
 					))) {
 						printf('<li>%s</li>', $k);
 					}
@@ -216,6 +218,36 @@ function inkblot_template_options($page) {
 			<p>
 				<input id="inkblot_webcomic_comments" name="inkblot_webcomic_comments" type="checkbox" value="1"<?php print $webcomic_comments ? ' checked' : ''; ?>>
 				<label for="inkblot_webcomic_comments"><?php _e('Show comments', 'inkblot'); ?></label>
+			</p>
+			
+		<?php else : ?>
+			
+			<p><?php printf(__('It looks like %s is not installed or activated. This template will not affect the appearance of this page.', 'inkblot'), '<a href="http://wordpress.org/plugins/webcomic" target="_blank">Webcomic</a>'); ?></p>
+			
+		<?php endif; ?>
+	</div>
+	
+	<div data-inkblot-template-options="template/webcomic-infinite.php">
+		<h4><?php _e('Webcomic Infinite', 'inkblot'); ?></h4>
+		
+		<?php if (webcomic()) : ?>
+			<p>
+				
+				<?php
+					printf(__('<label>Start with the %1$s webcomic</label>', 'inkblot'),
+						sprintf('
+							<select name="inkblot_webcomic_order">
+								<option value="ASC"%s>%s</option>
+								<option value="DESC"%s>%s</option>
+							</select>',
+							selected('ASC', $webcomic_order, false),
+							__('first', 'inkblot'),
+							selected('DESC', $webcomic_order, false),
+							__('latest', 'inkblot')
+						)
+					);
+				?>
+				
 			</p>
 			
 		<?php else : ?>

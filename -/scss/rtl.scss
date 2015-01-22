@@ -163,7 +163,9 @@ body {
 			&[href*="/#comments"]:before,
 			&[href*="#respond"]:before,
 			&.image:before,
-			&.post-edit-link:before {
+			&.post-edit-link:before,
+			&[href*="?prints"]:before,
+			&[href*="?offset="]:before {
 				content: '';
 			}
 			
@@ -189,8 +191,8 @@ body {
 				content: '\f00a';
 			}
 			
-			&[href*="/#comments-"]:after,
-			&[href*="#respond-"]:after {
+			&[href*="/#comments"]:after,
+			&[href*="#respond"]:after {
 				content: '\f086';
 			}
 			
@@ -200,6 +202,14 @@ body {
 			
 			&.post-edit-link:after {
 				content: '\f044';
+			}
+			
+			&[href*="?prints"]:after {
+				content: '\f0d6';
+			}
+			
+			&[href*="?offset="]:after {
+				content: '\f02e';
 			}
 		}
 	}

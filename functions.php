@@ -71,6 +71,8 @@ if ( ! function_exists('inkblot_wp_loaded')) :
 /**
  * Generate theme modification stylesheet.
  * 
+ * Also handles Webcomic Infinite template loading.
+ * 
  * @return void
  * @action wp_loaded
  */
@@ -79,6 +81,29 @@ function inkblot_wp_loaded() {
 		header('Content-Type: text/css');
 		
 		require_once get_template_directory() . '/-/php/style.php';
+		
+		exit;
+	}
+	
+	if (isset($_POST['inkblot-webcomic-infinite']) and webcomic()) {
+		$collections = get_webcomic_collections();
+		
+		$webcomics = new WP_Query(array(
+			'posts_per_page' => 2,
+			'post_type' => in_array($_POST['collection'], $collections) ? $_POST['collection'] : $collections,
+			'offset' => (int) $_POST['offset'],
+			'order' => in_array($_POST['order'], array('ASC', 'DESC')) ? $_POST['order'] : 'DESC'
+		));
+		
+		if ($webcomics->have_posts()) {
+			$webcomics->the_post();
+			
+			get_template_part('template/webcomic-infinite-content', get_post_type());
+		}
+		
+		if (2 > $webcomics->post_count) {
+			get_template_part('template/webcomic-infinite-end', get_post_type());
+		}
 		
 		exit;
 	}

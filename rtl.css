@@ -80,7 +80,7 @@ body {
   float: right; }
   .post-details a:before {
     padding: 0; }
-  .post-details a:first-child:before, .post-details a[rel="author"]:before, .post-details a[rel="bookmark"]:before, .post-details a[rel="gallery"]:before, .post-details a[href*="/#comments"]:before, .post-details a[href*="#respond"]:before, .post-details a.image:before, .post-details a.post-edit-link:before {
+  .post-details a:first-child:before, .post-details a[rel="author"]:before, .post-details a[rel="bookmark"]:before, .post-details a[rel="gallery"]:before, .post-details a[href*="/#comments"]:before, .post-details a[href*="#respond"]:before, .post-details a.image:before, .post-details a.post-edit-link:before, .post-details a[href*="?prints"]:before, .post-details a[href*="?offset="]:before {
     content: ''; }
   .post-details a:after {
     font: 100%/1 awesome;
@@ -93,12 +93,16 @@ body {
     content: '\f133'; }
   .post-details a[rel="gallery"]:after {
     content: '\f00a'; }
-  .post-details a[href*="/#comments-"]:after, .post-details a[href*="#respond-"]:after {
+  .post-details a[href*="/#comments"]:after, .post-details a[href*="#respond"]:after {
     content: '\f086'; }
   .post-details a.image:after {
     content: '\f03e'; }
   .post-details a.post-edit-link:after {
     content: '\f044'; }
+  .post-details a[href*="?prints"]:after {
+    content: '\f0d6'; }
+  .post-details a[href*="?offset="]:after {
+    content: '\f02e'; }
 .post-footer span:before, .post-footer span:first-child:before {
   padding: 0; }
 .post-footer span:after {

@@ -13,11 +13,11 @@ Text Domain: inkblot
 Webcomic: 4.2
 */
 /*
-===== PLEASE READ THIS ========================================================
+===== PLEASE READ THIS =========================================================
 You can make a lot of common style modifications using the WordPress Theme
 Customizer. If you really want to tweak the CSS directly, you should create a
 child theme and do so in the child theme's `style.css` file.
-===============================================================================
+================================================================================
 */
 @font-face {
   font-family: 'awesome';
@@ -891,6 +891,8 @@ form.search input {
     content: '\f044'; }
   .post-details a[href*="?prints"]:before {
     content: '\f0d6'; }
+  .post-details a[href*="?offset="]:before {
+    content: '\f02e'; }
 .post-content {
   word-wrap: break-word; }
   .post-content img {

@@ -153,6 +153,10 @@
 			&[href*="?prints"]:before {
 				content: '\f0d6';
 			}
+			
+			&[href*="?offset="]:before {
+				content: '\f02e';
+			}
 		}
 	}
 	
