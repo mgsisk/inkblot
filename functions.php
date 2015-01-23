@@ -172,7 +172,7 @@ if ( ! function_exists('inkblot_after_setup_theme')) :
  * @hook after_setup_theme
  */
 function inkblot_after_setup_theme() {
-	load_theme_textdomain('inkblot', get_template_directory() . '/-/i18n');
+	load_theme_textdomain('inkblot', get_template_directory() . '/-/l10n');
 	
 	add_editor_style(get_stylesheet_uri());
 	
