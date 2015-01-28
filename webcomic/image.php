@@ -9,7 +9,7 @@
 ?>
 <div class="post-webcomic" data-webcomic-container data-webcomic-shortcuts data-webcomic-gestures>
 	
-	<?php inkblot_widgetized('webcomic-header'); ?>
+	<?php print inkblot_widgetized('webcomic-header'); ?>
 	
 	<?php if (get_theme_mod('webcomic_nav_above', true) or is_customize_preview()) : ?>
 		
@@ -53,6 +53,6 @@
 		
 	<?php endif; ?>
 	
-	<?php inkblot_widgetized('webcomic-footer'); ?>
+	<?php print inkblot_widgetized('webcomic-footer'); ?>
 	
 </div><!-- .post-webcomic -->
