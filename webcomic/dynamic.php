@@ -10,4 +10,4 @@
  * @see github.com/mgsisk/webcomic/wiki/Templates
  */
 
-get_template_part('webcomic/image', get_post_type());
+get_template_part('webcomic/display', get_post_type());

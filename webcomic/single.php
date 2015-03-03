@@ -15,7 +15,7 @@ get_header(); ?>
 	
 	<?php
 		while (have_posts()) : the_post();
-			get_template_part('webcomic/image', get_post_type());
+			get_template_part('webcomic/display', get_post_type());
 		endwhile;
 		
 		rewind_posts();
@@ -28,7 +28,7 @@ get_header(); ?>
 	<?php
 		while (have_posts()) : the_post();
 			if (get_theme_mod('webcomic_content', false)) :
-				get_template_part('webcomic/image', get_post_type());
+				get_template_part('webcomic/display', get_post_type());
 			endif;
 			
 			get_template_part('webcomic/content', get_post_type());

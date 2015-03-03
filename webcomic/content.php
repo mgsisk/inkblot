@@ -5,7 +5,7 @@
  * This is the content template used for Webcomic posts. It's almost identical
  * to the standard content template used for other posts, except for the
  * inclusion of a webcomic preview for search and archive pages. To change the
- * actual full webcomic display see the `/webcomic/image.php` template file.
+ * actual full webcomic display see the `/webcomic/display.php` template file.
  * 
  * @package Inkblot
  */

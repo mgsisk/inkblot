@@ -27,7 +27,7 @@ get_header(); ?>
 <?php
 	if ($webcomics and ! get_theme_mod('webcomic_content', false) and $webcomics->have_posts()) :
 		while ($webcomics->have_posts()) : $webcomics->the_post();
-			get_template_part('webcomic/image', get_post_type());
+			get_template_part('webcomic/display', get_post_type());
 		endwhile;
 		
 		$webcomics->rewind_posts();
@@ -40,7 +40,7 @@ get_header(); ?>
 		if ($webcomics and get_theme_mod('webcomic_home_order', 'DESC') and $webcomics->have_posts()) :
 			while ($webcomics->have_posts()) : $webcomics->the_post();
 				if (get_theme_mod('webcomic_content', false)) :
-					get_template_part('webcomic/image', get_post_type());
+					get_template_part('webcomic/display', get_post_type());
 				endif;
 				
 				get_template_part('webcomic/content', get_post_type());

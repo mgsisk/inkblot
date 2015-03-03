@@ -750,23 +750,23 @@ msgstr ""
 msgid "Purchase"
 msgstr ""
 
-#: inkblot/webcomic/image.php:20 inkblot/webcomic/image.php:44
+#: inkblot/webcomic/display.php:20 inkblot/webcomic/display.php:44
 msgid "&laquo;"
 msgstr ""
 
-#: inkblot/webcomic/image.php:21 inkblot/webcomic/image.php:45
+#: inkblot/webcomic/display.php:21 inkblot/webcomic/display.php:45
 msgid "&lsaquo;"
 msgstr ""
 
-#: inkblot/webcomic/image.php:22 inkblot/webcomic/image.php:46
+#: inkblot/webcomic/display.php:22 inkblot/webcomic/display.php:46
 msgid "&infin;"
 msgstr ""
 
-#: inkblot/webcomic/image.php:23 inkblot/webcomic/image.php:47
+#: inkblot/webcomic/display.php:23 inkblot/webcomic/display.php:47
 msgid "&rsaquo;"
 msgstr ""
 
-#: inkblot/webcomic/image.php:24 inkblot/webcomic/image.php:48
+#: inkblot/webcomic/display.php:24 inkblot/webcomic/display.php:48
 msgid "&raquo;"
 msgstr ""
 
