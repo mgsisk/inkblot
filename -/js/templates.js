@@ -8,7 +8,9 @@
       $('[data-inkblot-template-options], [data-inkblot-template-options] h4').hide();
       if (-1 !== $.inArray($(this).val(), $templates)) {
         $('#inkblot-template-options .inkblot-template-title').text(' - ' + $('[data-inkblot-template-options="' + $(this).val() + '"] h4').text());
-        return $('[data-inkblot-template-options="' + $(this).val() + '"]').show();
+        $('[data-inkblot-template-options="' + $(this).val() + '"]').show();
+        $('#inkblot-template-options select[name="inkblot_webcomic_order"]').prop('disabled', true);
+        return $('[data-inkblot-template-options="' + $(this).val() + '"] select[name="inkblot_webcomic_order"]').prop('disabled', false);
       } else {
         $('#inkblot-template-options h3 .inkblot-template-title').text('');
         return $('[data-inkblot-template-options="none"]').show();
