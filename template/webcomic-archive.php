@@ -28,6 +28,7 @@ get_header(); ?>
 				'webcomics' => true,
 				'target' => 'first',
 				'webcomic_image' => get_post_meta(get_the_ID(), 'inkblot_webcomic_image', true),
+				'show_image' => get_post_meta(get_the_ID(), 'inkblot_webcomic_term_image', true),
 				'collection' => get_post_meta(get_the_ID(), 'webcomic_collection', true)
 			);
 			
