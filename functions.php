@@ -61,7 +61,9 @@ if ( ! function_exists('inkblot_wp_head')) :
 function inkblot_wp_head() { ?>
 	<meta charset="<?php bloginfo('charset'); ?>">
 	<meta name="description" content="<?php inkblot_page_description(); ?>">
+	<?php if (get_theme_mod('responsive_width', 0) or is_customize_preview()) : ?>
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1">
+	<?php endif; ?>
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 	<?php
 }
