@@ -56,7 +56,7 @@
         $rgba.push($to);
       }
       if (-1 < $selectors.indexOf(' a')) {
-        $('#inkblot-mods-inline-css').append($selectors + '{' + $property + ':' + 'rgba(' + $rgba.join(',') + ')' + '}');
+        $('#inkblot-theme-inline-css').append($selectors + '{' + $property + ':' + 'rgba(' + $rgba.join(',') + ')' + '}');
       } else {
         $($selectors).css($property, 'rgba(' + $rgba.join(',') + ')');
       }
