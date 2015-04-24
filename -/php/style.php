@@ -249,6 +249,11 @@ if (is_readable(get_template_directory() . '/-/php/mods.php') and $mod = require
 	
 	if ($mod['page_link_color']) {
 		inkblot_css(array(
+			'button:focus',
+			'button:hover'
+		), 'background-color', array($mod['page_link_color'], $mod['page_link_opacity']));
+		
+		inkblot_css(array(
 			'.wrapper a',
 			'.post-footer span',
 			'nav.posts',
