@@ -27,21 +27,23 @@ if ( ! function_exists('inkblot_page_description')) :
  */
 function inkblot_page_description() {
 	$object = get_queried_object();
-	$output = get_bloginfo('description', 'display');
+	$description = get_bloginfo('description', 'display');
 	
 	if (is_singular() and has_excerpt() and ! is_home()) {
-		$output = get_the_excerpt();
+		$description = get_the_excerpt();
 	} else if ((is_category() or is_tag() or is_tax()) and $object->description) {
-		$output = $object->description;
+		$description = $object->description;
 	} elseif (is_author() and $bio = get_user_meta($object->ID, 'description', true)) {
-		$output = $bio;
+		$description = $bio;
 	}
 	
-	if (140 < strlen($output = strip_tags($output))) {
-		$output = substr($output, 0, 133) . '&#8230;';
+	$description = strip_tags($description);
+	
+	if (140 < strlen($description)) {
+		$description = substr($description, 0, 133) . '&#8230;';
 	}
 	
-	return esc_attr($output);
+	return esc_attr($description);
 }
 endif;
 
