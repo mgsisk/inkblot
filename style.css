@@ -14,15 +14,15 @@ Webcomic: 4.3
 */
 /*
 ===== PLEASE READ THIS =========================================================
-You can make a lot of common style modifications using the WordPress Theme
-Customizer. If you really want to tweak the CSS directly, you should create a
-child theme and do so in the child theme's `style.css` file.
+You can make most common style modifications – including adding custom CSS –
+using the Customizer. If you want to make extensive theme modifications you
+should create a child theme and do so in the child theme.
 ================================================================================
 */
 @font-face {
   font-family: 'awesome';
-  src: url("//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/fonts/fontawesome-webfont.eot");
-  src: url("//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/fonts/fontawesome-webfont.eot?#iefix") format("embedded-opentype"), url("//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/fonts/fontawesome-webfont.woff") format("woff"), url("//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/fonts/fontawesome-webfont.ttf") format("truetype"), url("//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/fonts/fontawesome-webfont.svg#fontawesomeregular") format("svg");
+  src: url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.eot");
+  src: url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.eot?#iefix") format("embedded-opentype"), url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.woff") format("woff"), url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.ttf") format("truetype"), url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.svg#fontawesomeregular") format("svg");
   font-weight: normal;
   font-style: normal; }
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
@@ -389,21 +389,29 @@ th {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
-  @media print {
-    *,
-    *:before,
-    *:after {
-      background: transparent !important;
-      color: #000 !important;
-      box-shadow: none !important;
-      text-shadow: none !important; } }
 
 body {
   background: #fff;
+  box-sizing: border-box;
   color: #222;
   font: 100%/1.4 'helvetica neue', helvetica, sans-serif;
   margin: 1rem;
   text-rendering: optimizeLegibility; }
+
+*,
+*:before,
+*:after,
+input[type="search"] {
+  box-sizing: inherit; }
+  @media print {
+    *,
+    *:before,
+    *:after,
+    input[type="search"] {
+      background: transparent !important;
+      color: #000 !important;
+      box-shadow: none !important;
+      text-shadow: none !important; } }
 
 a {
   color: #999;
@@ -594,7 +602,7 @@ button, input[type="submit"], input[type="reset"], input[type="button"] {
   button:active, input[type="submit"]:active, input[type="reset"]:active, input[type="button"]:active {
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2) inset; }
 
-body > a[href="#content"]:first-child {
+body > a[href="#content"] {
   border: 0;
   clip: rect(0 0 0 0);
   height: 1px;
@@ -603,7 +611,7 @@ body > a[href="#content"]:first-child {
   padding: 0;
   position: absolute;
   width: 1px; }
-  body > a[href="#content"]:first-child:focus, body > a[href="#content"]:first-child:active {
+  body > a[href="#content"]:focus, body > a[href="#content"]:active {
     clip: auto;
     height: auto;
     margin: 0;
@@ -822,15 +830,13 @@ form.search input {
 
 .post-webcomic nav {
   background: #222;
-  color: #fff; }
+  color: #fff;
+  text-align: center; }
   .post-webcomic nav.above {
     margin: 1px 0 0; }
   .post-webcomic nav a {
     color: #999;
-    font-size: 200%;
-    float: left;
-    text-align: center;
-    width: 20%; }
+    font-size: 200%; }
     .post-webcomic nav a:focus, .post-webcomic nav a:hover {
       color: #fff; }
     .post-webcomic nav a.current-webcomic {
@@ -883,13 +889,13 @@ form.search input {
     content: '\f133'; }
   .post-details a[rel="gallery"]:before {
     content: '\f00a'; }
-  .post-details a[href*="#comments"]:before, .post-details a[href*="#respond"]:before {
+  .post-details a[href*="#comments"]:before, .post-details a[href*="#respond"]:before, .post-details a[href*="#disqus"]:before {
     content: '\f086'; }
   .post-details a.image:before {
     content: '\f03e'; }
   .post-details a.post-edit-link:before {
     content: '\f044'; }
-  .post-details a[href*="?prints"]:before {
+  .post-details a[href$="prints"]:before {
     content: '\f0d6'; }
   .post-details a[href*="?offset="]:before {
     content: '\f02e'; }

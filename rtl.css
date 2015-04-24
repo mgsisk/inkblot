@@ -4,8 +4,8 @@
  */
 @font-face {
   font-family: 'awesome';
-  src: url("//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/fonts/fontawesome-webfont.eot");
-  src: url("//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/fonts/fontawesome-webfont.eot?#iefix") format("embedded-opentype"), url("//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/fonts/fontawesome-webfont.woff") format("woff"), url("//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/fonts/fontawesome-webfont.ttf") format("truetype"), url("//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/fonts/fontawesome-webfont.svg#fontawesomeregular") format("svg");
+  src: url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.eot");
+  src: url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.eot?#iefix") format("embedded-opentype"), url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.woff") format("woff"), url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.ttf") format("truetype"), url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.svg#fontawesomeregular") format("svg");
   font-weight: normal;
   font-style: normal; }
 html .rtl {
@@ -80,7 +80,7 @@ body {
   float: right; }
   .post-details a:before {
     padding: 0; }
-  .post-details a:first-child:before, .post-details a[rel="author"]:before, .post-details a[rel="bookmark"]:before, .post-details a[rel="gallery"]:before, .post-details a[href*="/#comments"]:before, .post-details a[href*="#respond"]:before, .post-details a.image:before, .post-details a.post-edit-link:before, .post-details a[href*="?prints"]:before, .post-details a[href*="?offset="]:before {
+  .post-details a:first-child:before, .post-details a[rel="author"]:before, .post-details a[rel="bookmark"]:before, .post-details a[rel="gallery"]:before, .post-details a[href*="#comments"]:before, .post-details a[href*="#respond"]:before, .post-details a[href*="#disqus"]:before, .post-details a.image:before, .post-details a.post-edit-link:before, .post-details a[href$="prints"]:before, .post-details a[href*="?offset="]:before {
     content: ''; }
   .post-details a:after {
     font: 100%/1 awesome;
@@ -93,13 +93,13 @@ body {
     content: '\f133'; }
   .post-details a[rel="gallery"]:after {
     content: '\f00a'; }
-  .post-details a[href*="/#comments"]:after, .post-details a[href*="#respond"]:after {
+  .post-details a[href*="#comments"]:after, .post-details a[href*="#respond"]:after, .post-details a[href*="#disqus"]:after {
     content: '\f086'; }
   .post-details a.image:after {
     content: '\f03e'; }
   .post-details a.post-edit-link:after {
     content: '\f044'; }
-  .post-details a[href*="?prints"]:after {
+  .post-details a[href$="prints"]:after {
     content: '\f0d6'; }
   .post-details a[href*="?offset="]:after {
     content: '\f02e'; }
