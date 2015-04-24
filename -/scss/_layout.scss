@@ -1,4 +1,4 @@
-body > a[href="#content"]:first-child {
+body > a[href="#content"] {
 	@include read-focus;
 }
 
