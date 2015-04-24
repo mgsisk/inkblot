@@ -15,9 +15,7 @@ if ( ! webcomic()) {
 
 get_header();
 
-$webcomic_transcripts = get_post_meta(get_the_ID(), 'inkblot_webcomic_transcripts', true);
 $webcomic_collection = get_webcomic_collection();
-$webcomic_comments = get_post_meta(get_the_ID(), 'inkblot_webcomic_comments', true);
 $webcomic_order = get_post_meta(get_the_ID(), 'inkblot_webcomic_order', true);
 $webcomics = new WP_Query(array(
 	'posts_per_page' => 1,
@@ -48,11 +46,11 @@ $webcomics = new WP_Query(array(
 				get_template_part('webcomic/content', get_post_type());
 			endwhile;
 			
-			if ($webcomic_transcripts) :
+			if (get_post_meta(get_the_ID(), 'inkblot_webcomic_transcripts', true)) :
 				webcomic_transcripts_template();
 			endif;
 			
-			if ($webcomic_comments) :
+			if (get_post_meta(get_the_ID(), 'inkblot_webcomic_comments', true)) :
 				comments_template();
 			endif;
 		endif;
