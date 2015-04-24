@@ -195,7 +195,7 @@
 	wp.customize('page_link_color', (value)->
 		value.bind((to)->
 			inkblot_color('page_link_color', to, '.wrapper a, .post-footer span, nav.posts, nav.post-pages, nav.posts-paged, nav.comments-paged', 'color')
-			inkblot_color('page_link_color', to, 'blockquote', 'hr, pre, th, td, fieldset, input, textarea, .post-footer, .comment, .comment .comment, .pingback, .trackback, .bypostauthor', 'border-color')
+			inkblot_color('page_link_color', to, 'blockquote, hr, pre, th, td, fieldset, input, textarea, .post-footer, .comment, .comment .comment, .pingback, .trackback, .bypostauthor', 'border-color')
 			
 			inkblot_color('header_textcolor', $('wbr.inkblot').data('header-textcolor'), '.banner > a', 'color')
 			inkblot_color('trim_link_color', $('wbr.inkblot').data('trim-link-color'), '.banner nav:before, .banner nav a, .banner select, .contentinfo a, .post-webcomic nav a', 'color')
@@ -205,7 +205,7 @@
 	wp.customize('page_link_opacity', (value)->
 		value.bind((to)->
 			inkblot_color('page_link_opacity', to, '.wrapper a, .post-footer span, nav.posts, nav.post-pages, nav.posts-paged, nav.comments-paged', 'color')
-			inkblot_color('page_link_opacity', to, 'blockquote', 'hr, pre, th, td, fieldset, input, textarea, .post-footer, .comment, .comment .comment, .pingback, .trackback, .bypostauthor', 'border-color')
+			inkblot_color('page_link_opacity', to, 'blockquote, hr, pre, th, td, fieldset, input, textarea, .post-footer, .comment, .comment .comment, .pingback, .trackback, .bypostauthor', 'border-color')
 			
 			inkblot_color('header_textcolor', $('wbr.inkblot').data('header-textcolor'), '.banner > a', 'color')
 			inkblot_color('trim_link_color', $('wbr.inkblot').data('trim-link-color'), '.banner nav:before, .banner nav a, .banner select, .contentinfo a, .post-webcomic nav a', 'color')
