@@ -118,7 +118,7 @@ function inkblot_customize_register($customize) {
 	)); $customize->add_control('content_width', array(
 		'type' => 'number',
 		'label' => __('Content Width', 'inkblot'),
-		'description' => __('Defines the maximum pixel width for post content.', 'inkblot'),
+		'description' => __('Defines the maximum pixel width for post content. <a href="//codex.wordpress.org/Content_Width">Learn more at the WordPress Codex.</a>', 'inkblot'),
 		'section' => 'inkblot_layout',
 		'priority' => 25,
 		'input_attr' => array(
