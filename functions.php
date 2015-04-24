@@ -141,7 +141,7 @@ function inkblot_wp_enqueue_scripts() {
 		wp_enqueue_style('inkblot-font', add_query_arg(array('family' => implode('|', $fonts)), "{$proto}://fonts.googleapis.com/css"));
 	}
 	
-	// wp_enqueue_script('inkblot-script', get_template_directory_uri() . '/-/js/script.js', array('jquery'), '', true);
+	wp_enqueue_script('inkblot-script', get_template_directory_uri() . '/-/js/script.js', array('jquery'), '', true);
 	
 	if (is_singular() and comments_open() and get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');
@@ -224,7 +224,6 @@ function inkblot_wp_footer() {
 				data-<?php print str_replace('_', '-', $key); ?>="<?php print get_theme_mod($key, $default); ?>"
 				
 			<?php endforeach; ?>
-
 		>
 	<?php }
 }
