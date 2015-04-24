@@ -160,11 +160,12 @@ body {
 			&[rel="author"]:before,
 			&[rel="bookmark"]:before,
 			&[rel="gallery"]:before,
-			&[href*="/#comments"]:before,
+			&[href*="#comments"]:before,
 			&[href*="#respond"]:before,
+			&[href*="#disqus"]:before,
 			&.image:before,
 			&.post-edit-link:before,
-			&[href*="?prints"]:before,
+			&[href$="prints"]:before,
 			&[href*="?offset="]:before {
 				content: '';
 			}
@@ -191,8 +192,9 @@ body {
 				content: '\f00a';
 			}
 			
-			&[href*="/#comments"]:after,
-			&[href*="#respond"]:after {
+			&[href*="#comments"]:after,
+			&[href*="#respond"]:after,
+			&[href*="#disqus"]:after {
 				content: '\f086';
 			}
 			
@@ -204,7 +206,7 @@ body {
 				content: '\f044';
 			}
 			
-			&[href*="?prints"]:after {
+			&[href$="prints"]:after {
 				content: '\f0d6';
 			}
 			
