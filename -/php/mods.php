@@ -1,6 +1,6 @@
 <?php
 /**
- * Returns a list of theme modification settings and their defaults. Used by
+ * Returns an array of theme modification settings and their defaults. Used by
  * `style.php` and the theme customizer.
  * 
  * @package Inkblot
