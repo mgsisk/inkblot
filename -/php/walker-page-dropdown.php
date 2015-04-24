@@ -55,12 +55,11 @@ class Inkblot_Walker_Page_Dropdown extends Walker_PageDropdown {
 		
 		$time = empty($args['show_date']) ? '' : mysql2date($args['date_format'], 'modified' === $args['show_date'] ? $page->post_modified : $page->post_date);
 		$classes = implode(' ', apply_filters('page_css_class', array_filter($classes), $page, $depth, $args, $current_page));
-		$selected = false === strpos($classes, 'current_page_item') ? '' : ' selected';
 		
 		$output .= sprintf('<option value="%s" class=""%s%s>%s%s%s%s%s',
 			get_permalink($page->ID),
 			esc_attr($classes),
-			$selected,
+			selected(false !== strpos($classes, 'current_page_item'), true, false),
 			str_repeat('&nbsp;', $depth * 4),
 			$args['link_before'],
 			apply_filters('the_title', $page->post_title, $page->ID),
