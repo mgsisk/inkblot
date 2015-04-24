@@ -44,26 +44,20 @@ function inkblot_insert_page($id, $post) {
 		$keys = array(
 			'inkblot_avatar',
 			'inkblot_sidebars',
+			'inkblot_show_webcomics',
 			'inkblot_webcomic_group',
 			'inkblot_webcomic_image',
 			'inkblot_webcomic_order',
 			'inkblot_webcomic_comments',
+			'inkblot_webcomic_term_order',
 			'inkblot_webcomic_term_image',
 			'inkblot_webcomic_transcripts'
 		);
 		
-		if (in_array($post->page_template, array(
-			'template/contributors.php',
-			'template/full-width.php',
-			'template/webcomic-archive.php',
-			'template/webcomic-homepage.php',
-			'template/webcomic-infinite.php'
-		))) {
-			foreach ($keys as $key) {
+		foreach ($keys as $key) {
+			if (isset($_POST[$key])) {
 				update_post_meta($id, $key, $_POST[$key]);
-			}
-		} else {
-			foreach ($keys as $key) {
+			} else {
 				delete_post_meta($id, $key);
 			}
 		}
@@ -85,14 +79,16 @@ function inkblot_template_options($page) {
 	$inkblot_avatar = get_post_meta($page->ID, 'inkblot_avatar', true);
 	$inkblot_sidebars = get_post_meta($page->ID, 'inkblot_sidebars', true);
 	
+	$show_webcomics = get_post_meta($page->ID, 'inkblot_show_webcomics', true);
 	$webcomic_group = get_post_meta($page->ID, 'inkblot_webcomic_group', true);
 	$webcomic_image = get_post_meta($page->ID, 'inkblot_webcomic_image', true);
 	$webcomic_order = get_post_meta($page->ID, 'inkblot_webcomic_order', true);
 	$webcomic_comments = get_post_meta($page->ID, 'inkblot_webcomic_comments', true);
 	$webcomic_term_image = get_post_meta($page->ID, 'inkblot_webcomic_term_image', true);
+	$webcomic_term_order = get_post_meta($page->ID, 'inkblot_webcomic_term_order', true);
 	$webcomic_transcripts = get_post_meta($page->ID, 'inkblot_webcomic_transcripts', true); ?>
 	<div data-inkblot-template-options="none">
-		<p><strong><?php _e('Select one of the following templates to modify template-specific options:', 'inkblot'); ?></strong></p>
+		<p><strong><?php _e('Select one of the following templates from the Page Attributes meta box to modify template-specific options:', 'inkblot'); ?></strong></p>
 		<ul>
 			<?php
 				foreach (get_page_templates() as $k => $v) {
@@ -120,7 +116,7 @@ function inkblot_template_options($page) {
 	<div data-inkblot-template-options="template/full-width.php">
 		<h4><?php _e('Full Width', 'inkblot'); ?></h4>
 		<p>
-			<input id="inkblot_sidebars" name="inkblot_sidebars" type="checkbox" value="1"<?php print $inkblot_sidebars ? ' checked' : ''; ?>>
+			<input id="inkblot_sidebars" name="inkblot_sidebars" type="checkbox" value="1"<?php checked($inkblot_sidebars); ?>>
 			<label for="inkblot_sidebars"><?php _e('Show sidebars below the page content', 'inkblot'); ?></label>
 		</p>
 	</div>
@@ -129,34 +125,28 @@ function inkblot_template_options($page) {
 		<h4><?php _e('Webcomic Archive', 'inkblot'); ?></h4>
 		<?php if (webcomic()) : ?>
 			
+			<?php
+				$select_img = $select_term_img = '';
+				
+				foreach (get_intermediate_image_sizes() as $size) {
+					$select_img .= sprintf('<option value="%s"%s>%s</option>',
+						$size,
+						selected($size, $webcomic_image, false),
+						$size
+					);
+					
+					$select_term_img .= sprintf('<option value="%s"%s>%s</option>',
+					 	$size,
+					 	selected($size, $webcomic_term_image, false),
+					 	$size
+					 );
+				}
+			?>
+			
 			<p>
 				
 				<?php
-					$select_img = $select_term_img = '';
-					
-					foreach (get_intermediate_image_sizes() as $size) {
-						$select_img .= sprintf('<option value="%s"%s>%s</option>',
-							$size,
-							selected($size, $webcomic_image, false),
-							$size
-						);
-						
-						$select_term_img .= sprintf('<option value="%s"%s>%s</option>',
-						 	$size,
-						 	selected($size, $webcomic_term_image, false),
-						 	$size
-						 );
-					}
-					
-					printf(__('<label>Show webcomic links as %1$s grouped by %2$s with %3$s term links</label>', 'inkblot'),
-						sprintf('
-							<select name="inkblot_webcomic_image">
-								<option value="">%s</option>
-								%s
-							</select>',
-							__('text', 'inkblot'),
-							$select_img
-						),
+					printf(__('Show %1$s links as %2$s starting with the %3$s term'),
 						sprintf('
 							<select name="inkblot_webcomic_group">
 								<option value="">%s</option>
@@ -176,6 +166,43 @@ function inkblot_template_options($page) {
 							</select>',
 							__('text', 'inkblot'),
 							$select_term_img
+						),
+						sprintf('
+							<select name="inkblot_webcomic_term_order">
+								<option value="ASC"%s>%s</option>
+								<option value="DESC"%s>%s</option>
+							</select>',
+							selected('ASC', $webcomic_term_order, false),
+							__('first', 'inkblot'),
+							selected('DESC', $webcomic_term_order, false),
+							__('latest', 'inkblot')
+						)
+					);
+				?>
+				
+			</p>
+			<p>
+				<input type="checkbox" name="inkblot_show_webcomics" value="1"<?php checked($show_webcomics); ?>>
+				
+				<?php
+					printf(__('<label>Show webcomic links as %1$s starting with the %2$s webcomic</label>', 'inkblot'),
+						sprintf('
+							<select name="inkblot_webcomic_image">
+								<option value="">%s</option>
+								%s
+							</select>',
+							__('text', 'inkblot'),
+							$select_img
+						),
+						sprintf('
+							<select name="inkblot_webcomic_order">
+								<option value="ASC"%s>%s</option>
+								<option value="DESC"%s>%s</option>
+							</select>',
+							selected('ASC', $webcomic_order, false),
+							__('first', 'inkblot'),
+							selected('DESC', $webcomic_order, false),
+							__('latest', 'inkblot')
 						)
 					);
 				?>
@@ -212,11 +239,11 @@ function inkblot_template_options($page) {
 				
 			</p>
 			<p>
-				<input id="inkblot_webcomic_transcripts" name="inkblot_webcomic_transcripts" type="checkbox" value="1"<?php print $webcomic_transcripts ? ' checked' : ''; ?>>
+				<input id="inkblot_webcomic_transcripts" name="inkblot_webcomic_transcripts" type="checkbox" value="1"<?php checked($webcomic_transcripts); ?>>
 				<label for="inkblot_webcomic_transcripts"><?php _e('Show transcripts', 'inkblot'); ?></label>
 			</p>
 			<p>
-				<input id="inkblot_webcomic_comments" name="inkblot_webcomic_comments" type="checkbox" value="1"<?php print $webcomic_comments ? ' checked' : ''; ?>>
+				<input id="inkblot_webcomic_comments" name="inkblot_webcomic_comments" type="checkbox" value="1"<?php checked($webcomic_comments); ?>>
 				<label for="inkblot_webcomic_comments"><?php _e('Show comments', 'inkblot'); ?></label>
 			</p>
 			
