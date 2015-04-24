@@ -718,6 +718,14 @@ function inkblot_customize_register($customize) {
 		'priority' => 990
 	));
 	
+	$customize->add_setting('favicon', array('default' => ''));
+	$favicon = new WP_Customize_Image_Control($customize, 'favicon', array(
+		'label' => __('Site Icon', 'inkblot'),
+		'section' => 'inkblot_miscellanea',
+		'context' => 'inkblot-favicon',
+		'description' => __('The site icon may be displayed by web browsers and mobile devices in various ways.', 'inkblot')
+	)); $customize->add_control($favicon);
+	
 	$customize->add_setting('post_thumbnail_width', array('default' => 144));
 	$customize->add_control('post_thumbnail_width', array(
 		'type' => 'number',

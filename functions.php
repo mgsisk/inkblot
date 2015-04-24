@@ -64,6 +64,11 @@ function inkblot_wp_head() { ?>
 	<?php if (get_theme_mod('responsive_width', 0) or is_customize_preview()) : ?>
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1">
 	<?php endif; ?>
+	<?php if (get_theme_mod('favicon')) : ?>
+	<link rel="icon" href="<?php print get_theme_mod('favicon'); ?>">
+	<link rel="apple-touch-icon" href="<?php print get_theme_mod('favicon'); ?>">
+	<link rel="msapplication-TileImage" href="<?php print get_theme_mod('favicon'); ?>">
+	<?php endif; ?>
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 	<?php
 }
