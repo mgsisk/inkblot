@@ -825,7 +825,8 @@ function inkblot_customize_register($customize) {
 		));
 		
 		$customize->add_setting('webcomic_resize', array(
-			'default' => true
+			'default' => true,
+			'transport' => 'postMessage'
 		)); $customize->add_control('webcomic_resize', array(
 			'type' => 'checkbox',
 			'label' => __('Resize webcomic to fit available space', 'inkblot'),
