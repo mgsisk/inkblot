@@ -1,5 +1,5 @@
 ##
-# Handle dynamic template options display.
+# Handle dynamic template options.
 # 
 # @package Inkblot
 ##
@@ -21,10 +21,12 @@ jQuery(($)->
 		if -1 != $.inArray($(this).val(), $templates)
 			$('#inkblot-template-options .inkblot-template-title').text(' - ' + $('[data-inkblot-template-options="' + $(this).val() + '"] h4').text())
 			$('[data-inkblot-template-options="' + $(this).val() + '"]').show()
-			$('#inkblot-template-options select[name="inkblot_webcomic_order"]').prop('disabled', true)
-			$('[data-inkblot-template-options="' + $(this).val() + '"] select[name="inkblot_webcomic_order"]').prop('disabled', false)
+			$('[data-inkblot-template-options]').not('[data-inkblot-template-options="' + $(this).val() + '"]').find('input,select,textarea').prop('disabled', true)
+			$('[data-inkblot-template-options="' + $(this).val() + '"]').find('input,select,textarea').prop('disabled', false)
 		else
+			
 			$('#inkblot-template-options h3 .inkblot-template-title').text('')
+			$('#inkblot-template-options').find('input,select,textarea').prop('disabled', true)
 			$('[data-inkblot-template-options="none"]').show()
 	).trigger('change')
 )
