@@ -14,6 +14,75 @@ if ( ! function_exists('get_template_directory')) {
 	return '';
 }
 
+if ( ! function_exists('inkblot_css')) :
+/**
+ * Save and output theme customizer CSS.
+ *
+ * @param string $value Color value to retrieve.
+ * @return string
+ */
+function inkblot_css($selectors = '', $property = '', $value = '') {
+	static $css = array();
+	
+	if ($value) {
+		if ('font-family' === $property) {
+			$value = str_replace('+', ' ', substr($value, 0, strpos($value, ':'))) . ', sans-serif';
+		} else if (false !== strpos($property, 'image')) {
+			$value = "url({$value})";
+		} else if (false !== strpos($property, 'position')) {
+			$value = "top {$value}";
+		} else if (false !== strpos($property, 'color')) {
+			if ('blank' === $value[0]) {
+				return;
+			}
+			
+			$value[0] = str_replace('#', '', $value[0]);
+			
+			if (is_numeric($value[1]) and 1 != $value[1]) {
+				$hexcolor = $value[0];
+				
+				if (2 === strlen($value[0])) {
+					$value[0] = str_repeat($value[0], 3);
+				} else if (3 === strlen($value[0])) {
+					$value[0] = "{$value[0][0]}{$value[0][0]}{$value[0][1]}{$value[0][1]}{$value[0][2]}{$value[0][2]}";
+				}
+				
+				$value[0] = hexdec($value[0]);
+				$value[0] = 'rgba(' . implode(',', array(
+					0xFF & ($value[0] >> 0x10),
+					0xFF & ($value[0] >> 0x8),
+					0xFF & $value[0]
+				)) . ",{$value[1]})";
+			} else {
+				$value = "#{$value[0]}";
+			}
+			
+			if (0 === strpos($value[0], 'rgba')) {
+				$value = $value[0];
+			} else {
+				unset($hexcolor);
+			}
+		}
+		
+		foreach ((array) $selectors as $selector) {
+			if (isset($hexcolor)) {
+				$css[$selector][] = "{$property}:#{$hexcolor}";
+			}
+			
+			$css[$selector][] = "{$property}:{$value}";
+		}
+	} else if ( ! $selectors) {
+		$output = '';
+		
+		foreach ($css as $selector => $properties) {
+			$output .= "{$selector}{" . implode(';', $properties) . "}";
+		}
+		
+		return $output;
+	}
+}
+endif;
+
 if (is_readable(get_template_directory() . '/-/php/mods.php') and $mod = require get_template_directory() . '/-/php/mods.php') :
 	$css = is_customize_preview() ? '/*preview*/' : '';
 	$editor = isset($_GET['inkblot-mods']) and 'editor' === $_GET['inkblot-mods'];
