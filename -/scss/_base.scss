@@ -4,6 +4,22 @@
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
+}
+
+body {
+	background: $background-color;
+	box-sizing: border-box;
+	color: $text-color;
+	font: 100%/1.4 'helvetica neue', helvetica, sans-serif;
+	margin: 1rem;
+	text-rendering: optimizeLegibility;
+}
+
+*,
+*:before,
+*:after,
+input[type="search"] {
+	box-sizing: inherit;
 	
 	@media print {
 		background: transparent !important;
@@ -11,14 +27,6 @@
 		box-shadow: none !important;
 		text-shadow: none !important;
 	}
-}
-
-body {
-	background: $background-color;
-	color: $text-color;
-	font: 100%/1.4 'helvetica neue', helvetica, sans-serif;
-	margin: 1rem;
-	text-rendering: optimizeLegibility;
 }
 
 a {
