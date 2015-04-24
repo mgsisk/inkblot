@@ -47,6 +47,10 @@ function inkblot_display_media_states($states) {
 		$states[] = __('Inkblot Trim Background', 'inkblot');
 	}
 	
+	if ('inkblot-favicon' === get_post_meta($post->ID, '_wp_attachment_context', true)) {
+		$states[] = __('Inkblot Site Icon', 'inkblot');
+	}
+	
 	return $states;
 }
 endif;
