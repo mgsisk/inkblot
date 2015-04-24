@@ -68,8 +68,8 @@ if ( ! function_exists('inkblot_post_nav')) :
 /**
  * Return post navigation.
  * 
- * Because there are no `get_` functions for these links we use
- * output buffering to store them in a varaiable.
+ * Because there are no `get_` functions for these links we use output buffering
+ * to store them in a varaiable.
  * 
  * @param mixed $class CSS classes or an array of classes to add to the <nav> element.
  * @param string $previous Previous post link text.
@@ -79,7 +79,7 @@ if ( ! function_exists('inkblot_post_nav')) :
  * @return string
  */
 function inkblot_post_nav($class = '', $previous = '&laquo; %title', $next = '%title &raquo;', $in_same_cat = false, $excluded_categories = '') {
-	if (get_adjacent_post(false, '', true) or get_adjacent_post(false, "", false)) {
+	if (get_adjacent_post(false, '', true) or get_adjacent_post(false, '', false)) {
 		ob_start();
 		
 		previous_post_link('%link', $previous, $in_same_cat, $excluded_categories);
@@ -217,7 +217,9 @@ function inkblot_start_comment($comment, $args, $depth) {
 		</footer><!-- .comment-footer -->
 		
 		<?php if ( ! $comment->comment_approved) : ?>
+			
 			<div class="moderating-comment"><?php _e('Your comment is awaiting moderation.', 'inkblot'); ?></div><!-- .moderating-comment -->
+			
 		<?php endif; ?>
 		
 		<div class="comment-content"><?php comment_text(); ?></div><!-- .comment-content -->
@@ -288,7 +290,7 @@ endif;
 
 if ( ! function_exists('inkblot_widgetized')) :
 /**
- * Render a generic widgetized area.
+ * Return a generic widgetized area.
  * 
  * @param string $id ID of the widgetized area.
  * @param string $class Space-separated string of classes to append to the container.
@@ -372,19 +374,27 @@ function inkblot_contributor($user, $avatar = 96) {
 		<?php if ($avatar) : ?>
 			
 			<div class="contributor-image">
+				
 				<?php echo get_avatar($user, (int) $avatar); ?>
+				
 			</div><!-- .contributor-image -->
 			
 		<?php endif; ?>
 		
 		<?php if ($post_count = count_user_posts($user)) : ?>
+			
 			<h2><a href="<?php print esc_url(get_author_posts_url($user)); ?>"><?php the_author_meta('display_name', $user); ?></a></h2>
+			
 		<?php else : ?>
+			
 			<h2><?php the_author_meta('display_name', $user); ?></h2>
 		<?php endif; ?>
 		
+		
 		<div class="contributor-description">
+			
 			<?php print wpautop(get_the_author_meta('description', $user)); ?>
+			
 		</div><!-- .contributor-description -->
 		
 	</div><!-- .contributor -->
