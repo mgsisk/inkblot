@@ -25,11 +25,13 @@ get_header(); ?>
 			
 			$webcomic_group = get_post_meta(get_the_ID(), 'inkblot_webcomic_group', true);
 			$webcomic_arguments = array(
-				'webcomics' => true,
-				'target' => 'first',
+				'collection' => get_post_meta(get_the_ID(), 'webcomic_collection', true),
+				'webcomics' => get_post_meta(get_the_ID(), 'inkblot_show_webcomics', true),
+				'order' => get_post_meta(get_the_ID(), 'inkblot_webcomic_term_order', true),
+				'target' => get_post_meta(get_the_ID(), 'inkblot_webcomic_term_target', true),
+				'webcomic_order' => get_post_meta(get_the_ID(), 'inkblot_webcomic_order', true),
 				'webcomic_image' => get_post_meta(get_the_ID(), 'inkblot_webcomic_image', true),
-				'show_image' => get_post_meta(get_the_ID(), 'inkblot_webcomic_term_image', true),
-				'collection' => get_post_meta(get_the_ID(), 'webcomic_collection', true)
+				'show_image' => get_post_meta(get_the_ID(), 'inkblot_webcomic_term_image', true)
 			);
 			
 			if ('character' === $webcomic_group) :
