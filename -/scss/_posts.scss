@@ -18,6 +18,7 @@
 		nav {
 			background: $text-color;
 			color: $background-color;
+			text-align: center;
 			
 			&.above {
 				margin: 1px 0 0;
@@ -26,9 +27,6 @@
 			a {
 				color: $anchor-color;
 				font-size: 200%;
-				float: left;
-				text-align: center;
-				width: 20%;
 				
 				&:focus,
 				&:hover {
@@ -138,7 +136,8 @@
 			}
 			
 			&[href*="#comments"]:before,
-			&[href*="#respond"]:before {
+			&[href*="#respond"]:before,
+			&[href*="#disqus"]:before {
 				content: '\f086';
 			}
 			
@@ -150,7 +149,7 @@
 				content: '\f044';
 			}
 			
-			&[href*="?prints"]:before {
+			&[href$="prints"]:before {
 				content: '\f0d6';
 			}
 			
