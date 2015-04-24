@@ -289,16 +289,19 @@ if ( ! function_exists('inkblot_widgetized')) :
  * Render a generic widgetized area.
  * 
  * @param string $id ID of the widgetized area.
- * @return void
+ * @param string $class Space-separated string of classes to append to the container.
+ * @return string
  * @uses inkblot_count_widgets()
  */
-function inkblot_widgetized($id) {
+function inkblot_widgetized($id, $class = '') {
 	$widget = '';
 	
 	if ($count = inkblot_count_widgets($id) or is_customize_preview()) :
+		$columns = get_theme_mod("sidebar-{$id}-columns", true) ? "columns-{$count}" : 'columns-1';
+		
 		ob_start(); ?>
 			
-			<div role="complementary" class="widgets <?php print $id; ?> columns-<?php print $count; ?>"><?php dynamic_sidebar($id); ?></div><!-- #<?php print $id; ?> -->
+			<div role="complementary" class="widgets <?php print $id . ' ' . $columns . ' ' . $class; ?>"><?php dynamic_sidebar($id); ?></div><!-- #<?php print $id; ?> -->
 			
 		<?php
 		
