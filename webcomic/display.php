@@ -13,15 +13,15 @@
 	
 	<?php if (get_theme_mod('webcomic_nav_above', true) or is_customize_preview()) : ?>
 		
-		<nav class="widgets columns-<?php print get_theme_mod('sidebar-webcomic-navigation-header-columns', true) ? inkblot_count_widgets('webcomic-navigation-header', 5) : 1; ?> above">
+		<nav class="widgets columns-<?php print inkblot_count_widgets('webcomic-navigation-header', 5); ?> above">
 			
 			<?php
 				if ( ! dynamic_sidebar("webcomic-navigation-header")) :
-					first_webcomic_link('<aside>%link</aside>', get_theme_mod('first_webcomic_image', false) ? sprintf('<img src="%s" alt="%s">', get_theme_mod('first_webcomic_image'), __('&laquo;', 'inkblot')) : '');
-					previous_webcomic_link('<aside>%link</aside>', get_theme_mod('previous_webcomic_image', false) ? sprintf('<img src="%s" alt="%s">', get_theme_mod('previous_webcomic_image'), __('&lsaquo;', 'inkblot')) : '');
-					random_webcomic_link('<aside>%link</aside>', get_theme_mod('random_webcomic_image', false) ? sprintf('<img src="%s" alt="%s">', get_theme_mod('random_webcomic_image'), __('&infin;', 'inkblot')) : '');
-					next_webcomic_link('<aside>%link</aside>', get_theme_mod('next_webcomic_image', false) ? sprintf('<img src="%s" alt="%s">', get_theme_mod('next_webcomic_image'), __('&rsaquo;', 'inkblot')) : '');
-					last_webcomic_link('<aside>%link</aside>', get_theme_mod('last_webcomic_image', false) ? sprintf('<img src="%s" alt="%s">', get_theme_mod('last_webcomic_image'), __('&raquo;', 'inkblot')) : '');
+					first_webcomic_link('<aside>%link</aside>');
+					previous_webcomic_link('<aside>%link</aside>');
+					random_webcomic_link('<aside>%link</aside>');
+					next_webcomic_link('<aside>%link</aside>');
+					last_webcomic_link('<aside>%link</aside>');
 				endif;
 			?>
 			
@@ -37,15 +37,15 @@
 	
 	<?php if (get_theme_mod('webcomic_nav_below', true) or is_customize_preview()) : ?>
 		
-		<nav class="widgets columns-<?php print get_theme_mod('sidebar-webcomic-navigation-footer-columns', true) ? inkblot_count_widgets('webcomic-navigation-header', 5) : 1; ?> below">
+		<nav class="widgets columns-<?php print inkblot_count_widgets('webcomic-navigation-header', 5); ?> below">
 			
 			<?php
 				if ( ! dynamic_sidebar("webcomic-navigation-footer")) :
-					first_webcomic_link('<aside>%link</aside>', get_theme_mod('first_webcomic_image', false) ? sprintf('<img src="%s" alt="%s">', get_theme_mod('first_webcomic_image'), __('&laquo;', 'inkblot')) : '');
-					previous_webcomic_link('<aside>%link</aside>', get_theme_mod('previous_webcomic_image', false) ? sprintf('<img src="%s" alt="%s">', get_theme_mod('previous_webcomic_image'), __('&lsaquo;', 'inkblot')) : '');
-					random_webcomic_link('<aside>%link</aside>', get_theme_mod('random_webcomic_image', false) ? sprintf('<img src="%s" alt="%s">', get_theme_mod('random_webcomic_image'), __('&infin;', 'inkblot')) : '');
-					next_webcomic_link('<aside>%link</aside>', get_theme_mod('next_webcomic_image', false) ? sprintf('<img src="%s" alt="%s">', get_theme_mod('next_webcomic_image'), __('&rsaquo;', 'inkblot')) : '');
-					last_webcomic_link('<aside>%link</aside>', get_theme_mod('last_webcomic_image', false) ? sprintf('<img src="%s" alt="%s">', get_theme_mod('last_webcomic_image'), __('&raquo;', 'inkblot')) : '');
+					first_webcomic_link('<aside>%link</aside>');
+					previous_webcomic_link('<aside>%link</aside>');
+					random_webcomic_link('<aside>%link</aside>');
+					next_webcomic_link('<aside>%link</aside>');
+					last_webcomic_link('<aside>%link</aside>');
 				endif;
 			?>
 			
