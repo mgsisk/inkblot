@@ -186,7 +186,6 @@ if ( ! function_exists('inkblot_start_comment')) :
  * @param object $comment Comment data object.
  * @param array $args Arguments passed to `wp_list_comments`.
  * @param integer $depth Depth of comment in reference to parents.
- * @return void
  */
 function inkblot_start_comment($comment, $args, $depth) {
 	$GLOBALS['comment'] = $comment; ?>
@@ -235,7 +234,6 @@ if ( ! function_exists('inkblot_end_comment')) :
  * @param object $comment Comment data object.
  * @param array $args Arguments passed to `wp_list_comments`.
  * @param integer $depth Depth of comment in reference to parents.
- * @return void
  */
 function inkblot_end_comment($comment, $args, $depth) { ?>
 	
@@ -413,8 +411,6 @@ endif;
 if ( ! function_exists('inkblot_webcomic_transcript')) :
 /**
  * Render a Webcomic transcript.
- * 
- * @return void
  */
 function inkblot_webcomic_transcript() { ?>
 	<article id="webcomic_transcript-<?php the_ID(); ?>" <?php post_class(); ?>>

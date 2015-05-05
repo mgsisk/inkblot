@@ -32,6 +32,7 @@ add_action('widgets_init', 'inkblot_widgets_init');
 add_action('wp_enqueue_scripts', 'inkblot_wp_enqueue_scripts');
 add_action('after_setup_theme', 'inkblot_after_setup_theme');
 add_action('wp_footer', 'inkblot_wp_footer');
+
 add_filter('body_class', 'inkblot_body_class', 10, 2);
 add_filter('excerpt_more', 'inkblot_excerpt_more');
 add_filter('the_content_more_link', 'inkblot_the_content_more_link');
@@ -40,9 +41,6 @@ add_filter('the_content_more_link', 'inkblot_the_content_more_link');
 if ( ! function_exists('inkblot_customize_preview_init')) :
 /**
  * Enqueue dynamic preview script.
- *
- * @return void
- * @hook customize_preview_init
  */
 function inkblot_customize_preview_init() {
 	wp_register_script('automattic-color', get_template_directory_uri() . '/-/js/color.js');
@@ -54,9 +52,7 @@ if ( ! function_exists('inkblot_wp_head')) :
 /**
  * Render the <head> portion of the page.
  *
- * @return void
  * @uses inkblot_page_description()
- * @hook wp_head
  */
 function inkblot_wp_head() { ?>
 	<meta charset="<?php bloginfo('charset'); ?>">
@@ -77,9 +73,6 @@ endif;
 if ( ! function_exists('inkblot_wp_loaded')) :
 /**
  * Generate theme modification stylesheet.
- * 
- * @return void
- * @action wp_loaded
  */
 function inkblot_wp_loaded() {
 	if (isset($_GET['inkblot-mods'])) {
@@ -95,9 +88,6 @@ endif;
 if ( ! function_exists('inkblot_widgets_init')) :
 /**
  * Register widgetized areas.
- *
- * @return void
- * @hook widgets_init
  */
 function inkblot_widgets_init() {
 	$sidebars = require get_template_directory() . '/-/php/sidebars.php';
@@ -119,9 +109,6 @@ endif;
 if ( ! function_exists('inkblot_wp_enqueue_scripts')) :
 /**
  * Enqueue scripts and stylesheets.
- *
- * @return void
- * @hook wp_enqueue_scripts
  */
 function inkblot_wp_enqueue_scripts() {
 	wp_enqueue_style('inkblot-theme', get_stylesheet_uri());
@@ -154,7 +141,6 @@ if ( ! function_exists('inkblot_after_setup_theme')) :
  * Setup theme features.
  * 
  * @uses Inkblot::$dir
- * @hook after_setup_theme
  */
 function inkblot_after_setup_theme() {
 	load_theme_textdomain('inkblot', get_template_directory() . '/-/l10n');
@@ -212,7 +198,6 @@ if ( ! function_exists('inkblot_wp_footer')) :
  * This element has a number of data attributes that are used to keep things
  * consistent while customizing the theme.
  *
- * @return void
  */
 function inkblot_wp_footer() {
 	if (is_customize_preview()) {
@@ -238,7 +223,6 @@ if ( ! function_exists('inkblot_body_class')) :
  * @param array $classes Array of body classes.
  * @param mixed $class Additional classes passed to `body_class()`.
  * @return array
- * @hook body_class
  */
 function inkblot_body_class($classes, $class) {
 	$classes[] = get_theme_mod('content', 'one-column');
@@ -270,7 +254,6 @@ if ( ! function_exists('inkblot_excerpt_more')) :
  * Return a more accessible read more link.
  *
  * @return string
- * @hook excerpt_more
  */
 function inkblot_excerpt_more() {
 	return '&#8230; <a href="' . get_permalink() . '" class="more-link">' . sprintf(__('Continue reading %s', 'inkblot'), get_the_title()) . '</a>';
@@ -282,7 +265,6 @@ if ( ! function_exists('inkblot_the_content_more_link')) :
  * Return a more accessible read more link.
  *
  * @return string
- * @hook the_content_more_link
  */
 function inkblot_the_content_more_link() {
 	return '<a href="' . get_permalink() . '" class="more-link">' . sprintf(__('Continue reading %s', 'inkblot'), get_the_title()) . '</a>';

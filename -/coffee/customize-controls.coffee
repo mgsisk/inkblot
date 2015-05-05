@@ -10,7 +10,6 @@
 	# 
 	# @param string settingId
 	# @param object o
-	# @return void
 	##
 	inkblot_toggle_controls = (settingId, object)->
 		wp.customize(settingId, (setting)->

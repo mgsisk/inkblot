@@ -12,9 +12,6 @@ add_action('admin_enqueue_scripts', 'inkblot_admin_enqueue_scripts', 10, 1);
 if ( ! function_exists('inkblot_after_switch_theme')) :
 /**
  * Activation hook.
- * 
- * @return void
- * @hook after_switch_theme
  */
 function inkblot_after_switch_theme() {
 	if (get_theme_mod('uninstall')) {
@@ -26,9 +23,6 @@ endif;
 if ( ! function_exists('inkblot_admin_enqueue_scripts')) :
 /**
  * Register and enqueue page-specific scirpts.
- * 
- * @return void
- * @hook admin_enqueue_scripts
  */
 function inkblot_admin_enqueue_scripts($page) {
 	global $post;

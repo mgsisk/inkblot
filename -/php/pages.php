@@ -11,9 +11,6 @@ add_action('wp_insert_post', 'inkblot_insert_page', 10, 2);
 if ( ! function_exists('inkblot_add_meta_boxes')) :
 /**
  * Add page meta boxes.
- * 
- * @return void
- * @hook add_meta_boxes
  */
 function inkblot_add_meta_boxes() {
 	add_meta_box('inkblot-template-options', __('Template Options', 'webcomic'), 'inkblot_template_options', 'page', 'normal', 'high');
@@ -26,8 +23,6 @@ if ( ! function_exists('inkblot_insert_page')) :
  * 
  * @param integer $id ID of the page to update.
  * @param object $post Post object to update.
- * @return void
- * @hook wp_insert_post
  */
 function inkblot_insert_page($id, $post) {
 	if (

@@ -13,8 +13,6 @@ if ( ! function_exists('inkblot_customize_register')) :
  * Register theme customization sections, settings, and controls.
  * 
  * @param object $customize WordPress theme customization object.
- * @return void
- * @hook customize_register
  */
 function inkblot_customize_register($customize) {
 	foreach (array('blogname', 'blogdescription', 'header_textcolor', 'background_color', 'background_image', 'background_repeat', 'background_position_x', 'background_attachment') as $setting) {
@@ -947,9 +945,6 @@ endif;
 if ( ! function_exists('inkblot_customize_controls_enqueue_scripts')) :
 /**
  * Enqueue custom control scripts.
- * 
- * @return void
- * @hook customize_controls_enqueue_scripts
  */
 function inkblot_customize_controls_enqueue_scripts() {
 	wp_enqueue_style('inkblot-customize-controls', get_template_directory_uri() . '/-/css/customize-controls.css');

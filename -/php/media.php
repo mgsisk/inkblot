@@ -13,8 +13,6 @@ if ( ! function_exists('inkblot_delete_attachment')) :
  * Update image theme mods when attachments are deleted.
  * 
  * @param integer $id ID of the attachment to delete.
- * @return void
- * @hook delete_attachment
  */
 function inkblot_delete_attachment($id) {
 	foreach (array(
@@ -34,7 +32,6 @@ if ( ! function_exists('inkblot_display_media_states')) :
  * 
  * @param array $states List of media states.
  * @return array
- * @hook display_media_states
  */
 function inkblot_display_media_states($states) {
 	global $post;
