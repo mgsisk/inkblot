@@ -268,7 +268,7 @@ function inkblot_comments_nav($class = '', $paged = array(), $previous = '', $ne
 }
 endif;
 
-if ( ! function_exists('inkblot_count_widget')) :
+if ( ! function_exists('inkblot_count_widgets')) :
 /**
  * Return the number of widgets for the specified sidebar.
  * 
@@ -276,15 +276,17 @@ if ( ! function_exists('inkblot_count_widget')) :
  * @param integer $default Default number of widgets for `$sidebar`.
  * @return integer
  */
-function inkblot_count_widgets($sidebar, $default = 0) {
+function inkblot_count_widgets($sidebar, $default = 1) {
+	$count = $default;
+	$single = ! in_array($sidebar, array('primary-sidebar', 'secondary-sidebar'));
 	$sidebar = "sidebar-{$sidebar}";
 	$sidebars = get_option('sidebars_widgets');
 	
-	if (isset($sidebars[$sidebar]) and count($sidebars[$sidebar])) {
-		return 10 < count($sidebars[$sidebar]) ? 10 : count($sidebars[$sidebar]);
+	if (isset($sidebars[$sidebar]) and count($sidebars[$sidebar]) and get_theme_mod("{$sidebar}-columns", $single)) {
+		$count = 10 < count($sidebars[$sidebar]) ? 10 : count($sidebars[$sidebar]);
 	}
 	
-	return $default;
+	return $count;
 }
 endif;
 
@@ -300,8 +302,8 @@ if ( ! function_exists('inkblot_widgetized')) :
 function inkblot_widgetized($id, $class = '') {
 	$widget = '';
 	
-	if ($count = inkblot_count_widgets($id) or is_customize_preview()) :
-		$columns = get_theme_mod("sidebar-{$id}-columns", true) ? "columns-{$count}" : 'columns-1';
+	if ($count = inkblot_count_widgets($id, 0) or is_customize_preview()) :
+		$columns = "columns-{$count}";
 		
 		ob_start(); ?>
 			

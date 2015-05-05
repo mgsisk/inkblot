@@ -6,6 +6,7 @@
  */
 ?>
 				<?php print inkblot_widgetized('content-footer'); ?>
+				
 			</div><!-- #content.content -->
 			<footer role="contentinfo" class="contentinfo widgets columns-<?php print inkblot_count_widgets('site-footer'); ?>">
 				
@@ -20,7 +21,9 @@
 				?>
 				
 			</footer><!-- .contentinfo -->
+			
 			<?php print inkblot_widgetized('page-footer'); ?>
+			
 		</div><!-- .wrapper -->
 		
 		<?php
