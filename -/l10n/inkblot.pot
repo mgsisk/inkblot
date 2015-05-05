@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Inkblot 4.3\n"
-"POT-Creation-Date: 2015-04-24 12:20-0500\n"
-"PO-Revision-Date: 2015-04-24 12:20-0500\n"
+"POT-Creation-Date: 2015-05-05 09:34-0500\n"
+"PO-Revision-Date: 2015-05-05 09:35-0500\n"
 "Last-Translator: \n"
 "Language-Team: Michael Sisk <help@mgsisk.com>\n"
 "Language: en_US\n"
@@ -716,7 +716,7 @@ msgstr ""
 msgid ", "
 msgstr ""
 
-#: inkblot/footer.php:14
+#: inkblot/footer.php:15
 #, php-format
 msgid "%1$s &bull; Powered by %2$s with %3$s"
 msgstr ""
@@ -728,6 +728,10 @@ msgstr ""
 #: inkblot/functions.php:276 inkblot/functions.php:288
 #, php-format
 msgid "Continue reading %s"
+msgstr ""
+
+#: inkblot/header.php:12
+msgid "Skip to content"
 msgstr ""
 
 #: inkblot/searchform.php:12 inkblot/searchform.php:16
@@ -750,26 +754,6 @@ msgstr ""
 
 #: inkblot/webcomic/content.php:57 inkblot/webcomic/infinite.php:44
 msgid "Purchase"
-msgstr ""
-
-#: inkblot/webcomic/display.php:20 inkblot/webcomic/display.php:44
-msgid "&laquo;"
-msgstr ""
-
-#: inkblot/webcomic/display.php:21 inkblot/webcomic/display.php:45
-msgid "&lsaquo;"
-msgstr ""
-
-#: inkblot/webcomic/display.php:22 inkblot/webcomic/display.php:46
-msgid "&infin;"
-msgstr ""
-
-#: inkblot/webcomic/display.php:23 inkblot/webcomic/display.php:47
-msgid "&rsaquo;"
-msgstr ""
-
-#: inkblot/webcomic/display.php:24 inkblot/webcomic/display.php:48
-msgid "&raquo;"
 msgstr ""
 
 #: inkblot/webcomic/prints.php:43
