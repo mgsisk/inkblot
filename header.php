@@ -12,9 +12,12 @@
 		<a href="#content"><?php _e('Skip to content', 'inkblot'); ?></a>
 		
 		<?php print inkblot_widgetized('document-header'); ?>
+		
 		<div class="wrapper">
+			
 			<?php print inkblot_widgetized('page-header'); ?>
-			<header role="banner" class="banner widgets columns-<?php print inkblot_count_widgets('site-footer'); ?>">
+			
+			<header role="banner" class="banner widgets columns-<?php print inkblot_count_widgets('site-header'); ?>">
 				
 				<?php if ( ! dynamic_sidebar('site-header')) : ?>
 					
