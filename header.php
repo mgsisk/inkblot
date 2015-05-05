@@ -26,7 +26,9 @@
 						<p><?php bloginfo('description'); ?></p>
 						
 						<?php if ($header = get_custom_header() and $header->url) : ?>
-							<img src="<?php header_image(); ?>" width="<?php print $header->width; ?>" height="<?php print $header->height; ?>" alt="">
+							
+							<img src="<?php header_image(); ?>" width="<?php print $header->width; ?>" height="<?php print $header->height; ?>" alt="<?php print esc_attr(get_bloginfo('name')); ?>">
+							
 						<?php endif; ?>
 						
 					</a>
@@ -68,4 +70,5 @@
 				
 			</header><!-- .banner -->
 			<div id="content" class="content">
+				
 				<?php print inkblot_widgetized('content-header'); ?>
