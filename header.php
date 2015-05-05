@@ -9,7 +9,8 @@
 <html <?php language_attributes(); ?> class="no-js">
 	<head><?php wp_head(); /* @see `inkblot_wp_head()` in `functions.php` */ ?></head>
 	<body id="document" <?php body_class(); ?>>
-		<a href="#content">Skip to content</a>
+		<a href="#content"><?php _e('Skip to content', 'inkblot'); ?></a>
+		
 		<?php print inkblot_widgetized('document-header'); ?>
 		<div class="wrapper">
 			<?php print inkblot_widgetized('page-header'); ?>
