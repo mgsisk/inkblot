@@ -5,7 +5,7 @@
  * Contributors page template.
  * 
  * @package Inkblot
- * @see http://codex.wordpress.org/Template_Hierarchy
+ * @see https://codex.wordpress.org/Template_Hierarchy
  */
 
 get_header(); ?>

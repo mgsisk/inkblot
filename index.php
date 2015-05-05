@@ -5,7 +5,7 @@
  * If you're using Webcomic you'll want to look at `webcomic/home.php`.
  * 
  * @package Inkblot
- * @see http://codex.wordpress.org/Template_Hierarchy
+ * @see https://codex.wordpress.org/Template_Hierarchy
  */
 
 get_header(); ?>

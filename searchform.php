@@ -3,7 +3,7 @@
  * Search form template.
  * 
  * @package Inkblot
- * @see http://codex.wordpress.org/Function_Reference/get_search_form
+ * @see https://codex.wordpress.org/Function_Reference/get_search_form
  */
 ?>
 

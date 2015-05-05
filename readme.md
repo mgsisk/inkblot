@@ -1,6 +1,4 @@
-# Inkblot
-
-The original Webcomic theme. Inkblot is an elegant, [fully responsive](http://en.wikipedia.org/wiki/Responsive_web_design), [highly customizable](http://codex.wordpress.org/Appearance_Customize_Screen) [Webcomic](http://github.com/mgsisk/webcomic)-ready [WordPress](http://wordpress.org) theme, named in honor of Rorschach from the Watchmen graphic novel.
+Inkblot is an elegant, [fully responsive](https://en.wikipedia.org/wiki/Responsive_web_design), [highly customizable](https://codex.wordpress.org/Appearance_Customize_Screen) [Webcomic](https://github.com/mgsisk/webcomic)-ready [WordPress](https://wordpress.org) theme, named in honor of Rorschach from the Watchmen graphic novel.
 
 ## Installation
 
@@ -8,7 +6,7 @@ You can install Inkblot from the **Themes > Add New** page in the administrative
 
 ### Manual Installation
 
-1. Download and extract Inkblot from the [WordPress.org theme directory](http://wordpress.org/themes/inkblot) (for the most recent stable release) or the [master GitHub reposity](http://github.com/mgsisk/inkblot) (for the most up-to-date release).
+1. Download and extract Inkblot from the [WordPress.org theme directory](https://wordpress.org/themes/inkblot) (for the most recent stable release) or the [master GitHub repository](https://github.com/mgsisk/inkblot) (for the most up-to-date release).
 2. Upload the `inkblot` directory to your `wp-content/themes` directory.
 3. Activate Inkblot through the **Appearance > Themes** page in the administrative dashboard.
 
@@ -16,8 +14,8 @@ You can install Inkblot from the **Themes > Add New** page in the administrative
 
 ### Where can I get help with Inkblot?
 
-- [Issue Tracker](http://github.com/mgsisk/inkblot/issues)
-- [Support Forum](http://wordpress.org/support/theme/inkblot)
+- [Issue Tracker](https://github.com/mgsisk/inkblot/issues)
+- [Support Forum](https://wordpress.org/support/theme/inkblot)
 - [Email Support](mailto:help@mgsisk.com)
 
 ---
@@ -35,4 +33,4 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with this program.  If not, see http://www.gnu.org/licenses.
+along with this program.  If not, see https://www.gnu.org/licenses.

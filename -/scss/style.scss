@@ -1,10 +1,10 @@
 /*
 Theme Name: Inkblot
-Theme URI: http://github.com/mgsisk/inkblot
+Theme URI: https://github.com/mgsisk/inkblot
 Author: Michael Sisk
 Author URI: http://mgsisk.com
 License: GPLv3
-License URI: http://www.gnu.org/licenses/gpl.html
+License URI: https://www.gnu.org/licenses/gpl.html
 Version: 4.3
 Description: Elegant, fully responsive, highly customizable Webcomic-ready theme named in honor of Rorschach from the Watchmen graphic novel.
 Tags: dark, light, white, black, gray, one-column, two-columns, three-columns, left-sidebar, right-sidebar, fixed-layout, fluid-layout, responsive-layout, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, microformats, post-formats, rtl-language-support, sticky-post, theme-options, translation-ready
@@ -17,13 +17,13 @@ Webcomic: 4.3
 // no effect on your site unless you generate a new `style.css` file with SASS.
 // For more information about SASS, see sass-lang.com
 
-/*
-===== PLEASE READ THIS =========================================================
-You can make most common style modifications – including adding custom CSS –
-using the Customizer. If you want to make extensive theme modifications you
-should create a child theme and do so in the child theme.
-================================================================================
-*/
+/**
+ * ===== PLEASE READ THIS ======================================================
+ * You can make most common style modifications – including adding custom CSS –
+ * using the Customizer. If you want to make extensive theme modifications you
+ * should create a child theme and do so in the child theme.
+ * =============================================================================
+ */
 
 @import
 	'utility',

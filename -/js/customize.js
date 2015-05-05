@@ -215,7 +215,7 @@
       if ('' === to) {
         return $(selectors).css('font-family', 'inherit');
       } else {
-        $('head').append('<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=' + to + '">');
+        $('head').append('<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=' + to + '">');
         return $(selectors).css('font-family', to.replace(/\+/g, ' ').substr(0, to.indexOf(':')));
       }
     };

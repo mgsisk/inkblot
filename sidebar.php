@@ -3,7 +3,7 @@
  * Standard sidebar template.
  * 
  * @package Inkblot
- * @see http://codex.wordpress.org/Template_Hierarchy
+ * @see https://codex.wordpress.org/Template_Hierarchy
  */
 
 if (is_page_template('template/full-width.php') and ! get_post_meta(get_the_ID(), 'inkblot_sidebars', true)) {

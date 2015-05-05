@@ -5,7 +5,7 @@
  * For single Webcomic posts, see `webcomic/single.php`.
  * 
  * @package Inkblot
- * @see http://codex.wordpress.org/Template_Hierarchy
+ * @see https://codex.wordpress.org/Template_Hierarchy
  */
 
 get_header(); ?>
