@@ -39,14 +39,7 @@
 		}
 	}
 	
-	.comment {
-		border: 0;
-		border-left: $border;
-		margin: 0 0 0 1rem;
-		padding: 1rem;
-	}
-	
-	footer {
+	&-footer {
 		img {
 			border-radius: 100rem;
 			margin: 0 1rem 0 0;
@@ -61,6 +54,13 @@
 		.time:before {
 			content: '\f133';
 		}
+	}
+	
+	.comment {
+		border: 0;
+		border-left: $border;
+		margin: 0 0 0 1rem;
+		padding: 1rem;
 	}
 }
 

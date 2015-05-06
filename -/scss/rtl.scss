@@ -402,12 +402,7 @@ nav {
 		}
 	}
 	
-	.comment {
-		border: 0;
-		border-right: $border;
-	}
-	
-	footer {
+	&-footer {
 		@include clear;
 		
 		img {
@@ -439,6 +434,11 @@ nav {
 				content: '\f133';
 			}
 		}
+	}
+	
+	.comment {
+		border: 0;
+		border-right: $border;
 	}
 }
 
