@@ -19,7 +19,9 @@
 		<?php if (is_single()) : ?>
 			<h1><?php the_title(); ?></h1>
 		<?php else : ?>
-			<h1><a href="<?php the_permalink(); ?>" title="<?php print esc_attr(sprintf(__('Permalink to %s', 'inkblot'), the_title_attribute('echo=0'))); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
+			
+			<h1><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
+			
 		<?php endif; ?>
 		
 		<div class="post-details">

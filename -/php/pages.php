@@ -141,7 +141,7 @@ function inkblot_template_options($page) {
 			<p>
 				
 				<?php
-					printf(__('Show %1$s links as %2$s starting with the %3$s term', 'inkblot'),
+					printf(__('<label>Show %1$s</label> <label>links as %2$s</label> <label>starting with the %3$s term</label>', 'inkblot'),
 						sprintf('
 							<select name="inkblot_webcomic_group">
 								<option value="">%s</option>

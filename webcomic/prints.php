@@ -17,7 +17,7 @@ get_header(); ?>
 		
 		<article id="post-<?php the_ID(); ?>" <?php post_class('webcomic-prints'); ?>>
 			<header class="post-header">
-				<h1><a href="<?php the_permalink(); ?>" title="<?php print esc_attr(sprintf(__('Permalink to %s', 'inkblot'), the_title_attribute('echo=0'))); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
+				<h1><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
 				<div class="post-details">
 					
 					<?php
