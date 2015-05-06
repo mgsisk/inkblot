@@ -2,6 +2,10 @@
 	/* . */
 }
 
+.screen-reader-text {
+	@include read;
+}
+
 .bypostauthor {
 	border: $border;
 }
