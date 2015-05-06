@@ -1,5 +1,12 @@
 body > a[href="#content"] {
 	@include read-focus;
+	
+	&:focus,
+	&:hover {
+		display: block;
+		padding: 1rem;
+		text-align: center;
+	}
 }
 
 .document-header,
@@ -14,7 +21,7 @@ body > a[href="#content"] {
 	padding: 1px;
 	position: relative;
 	
-	& a {
+	a {
 		color: $anchor-color;
 		
 		&:focus,
@@ -165,6 +172,8 @@ main,
 		float: left;
 		position: relative;
 		
+		&.open > ul,
+		&:focus > ul,
 		&:hover > ul {
 			opacity: 1;
 			visibility: visible;
