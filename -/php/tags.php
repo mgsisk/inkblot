@@ -89,8 +89,9 @@ function inkblot_post_nav($class = '', $previous = '&laquo; %title', $next = '%t
 		
 		ob_end_clean();
 		
-		return sprintf('<nav class="%s">%s</nav>',
+		return sprintf('<nav role="navigation" class="%s" aria-label="%s">%s</nav>',
 			implode(' ', array_merge(array('posts'), (array) $class)),
+			__('Post Navigation', 'inkblot'),
 			$links
 		);
 	}
@@ -112,8 +113,9 @@ function inkblot_posts_nav($class = '', $args = array(), $paged = false) {
 	if ($wp_query->max_num_pages > 1) {
 		$class = array_merge(array('posts-paged'), (array) $class);
 		
-		return sprintf('<nav class="%s">%s</nav><!-- .posts-paged -->',
+		return sprintf('<nav role="navigation" class="%s" aria-label="%s">%s</nav><!-- .posts-paged -->',
 			implode(' ', (array) $class),
+			__('Posts Page Navigation', 'inkblot'),
 			$paged ? preg_replace('/>...</', '>&#8230;<', paginate_links(array_merge(array(
 				'base' => str_replace(999999999, '%#%', get_pagenum_link(999999999)),
 				'total' => $wp_query->max_num_pages,
@@ -189,7 +191,7 @@ if ( ! function_exists('inkblot_start_comment')) :
 function inkblot_start_comment($comment, $args, $depth) {
 	$GLOBALS['comment'] = $comment; ?>
 	
-	<article id="comment-<?php comment_ID(); ?>" <?php comment_class(); ?>>
+	<article role="complementary" id="comment-<?php comment_ID(); ?>" <?php comment_class(); ?>>
 		<footer class="comment-footer">
 			
 			<?php
@@ -256,8 +258,9 @@ function inkblot_comments_nav($class = '', $paged = array(), $previous = '', $ne
 	if (1 < get_comment_pages_count() and get_option('page_comments')) {
 		$class = array_merge(array('comments-paged'), (array) $class);
 		
-		return sprintf('<nav class="%s">%s</nav><!-- .comments-paged -->',
+		return sprintf('<nav role="navigation" class="%s" aria-label="%s">%s</nav><!-- .comments-paged -->',
 			implode(' ', (array) $class),
+			__('Comments Page Navigation', 'inkblot'),
 			$paged ? paginate_comments_links(array_merge(array('echo' => false), (array) $paged))
 				   : get_previous_comments_link($previous) . get_next_comments_link($next)
 		);
@@ -298,13 +301,14 @@ if ( ! function_exists('inkblot_widgetized')) :
  */
 function inkblot_widgetized($id, $class = '') {
 	$widget = '';
+	$sidebars = require get_template_directory() . '/-/php/sidebars.php';
 	
 	if ($count = inkblot_count_widgets($id, 0) or is_customize_preview()) :
 		$columns = "columns-{$count}";
 		
 		ob_start(); ?>
 			
-			<div role="complementary" class="widgets <?php print $id . ' ' . $columns . ' ' . $class; ?>"><?php dynamic_sidebar($id); ?></div><!-- #<?php print $id; ?> -->
+			<div role="complementary" class="widgets <?php print $id . ' ' . $columns . ' ' . $class; ?>" aria-label="<?php print $sidebars[$id][0]; ?>"><?php dynamic_sidebar($id); ?></div><!-- #<?php print $id; ?> -->
 			
 		<?php
 		
@@ -412,7 +416,7 @@ if ( ! function_exists('inkblot_webcomic_transcript')) :
  * Render a Webcomic transcript.
  */
 function inkblot_webcomic_transcript() { ?>
-	<article id="webcomic_transcript-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<article role="complementary" id="webcomic_transcript-<?php the_ID(); ?>" <?php post_class(); ?>>
 		<div class="post-content"><?php the_content(); ?></div><!-- .post-content -->
 		<footer class="post-footer">
 			
