@@ -12,7 +12,7 @@
 
 global $post; ?>
 
-<aside id="webcomic-transcripts">
+<section id="webcomic-transcripts">
 	
 	<?php
 		if (post_password_required()) :
@@ -42,4 +42,4 @@ global $post; ?>
 		endif;
 	?>
 	
-</aside><!-- #webcomic-transcripts -->
+</section><!-- #webcomic-transcripts -->

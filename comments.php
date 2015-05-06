@@ -7,7 +7,7 @@
  */
 ?>
 
-<aside id="comments">
+<section id="comments">
 	
 	<?php
 		print inkblot_widgetized('comment-header');
@@ -40,4 +40,4 @@
 		print inkblot_widgetized('comment-footer');
 	?>
 	
-</aside><!-- #comments -->
+</section><!-- #comments -->
