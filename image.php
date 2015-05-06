@@ -12,7 +12,7 @@ get_header(); ?>
 	
 	<?php while (have_posts()) : the_post(); ?>
 		
-		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+		<article role="article" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 			<header class="post-header">
 				<h1><?php the_title(); ?></h1>
 				<div class="post-details">
@@ -42,11 +42,15 @@ get_header(); ?>
 			</nav>
 			
 			<div class="post-image">
+				
 				<?php the_attachment_link($post->ID, true); ?>
+				
 			</div><!-- .post-image -->
 			
 			<?php if ($post->post_excerpt) : ?>
+				
 				<div class="post-excerpt"><?php the_excerpt(); ?></div><!-- .post-excerpt -->
+				
 			<?php endif; ?>
 			
 			<div class="post-content">

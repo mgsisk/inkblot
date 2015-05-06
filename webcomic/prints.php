@@ -15,7 +15,7 @@ get_header(); ?>
 	
 	<?php while (have_posts()) : the_post(); ?>
 		
-		<article id="post-<?php the_ID(); ?>" <?php post_class('webcomic-prints'); ?>>
+		<article role="article" id="post-<?php the_ID(); ?>" <?php post_class('webcomic-prints'); ?>>
 			<header class="post-header">
 				<h1><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
 				<div class="post-details">

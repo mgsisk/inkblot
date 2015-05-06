@@ -11,7 +11,7 @@
  */
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article role="article" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	
 	<?php if ((is_search() or is_archive()) and get_theme_mod('webcomic_archive_size', 'large')) : ?>
 		
@@ -32,7 +32,9 @@
 	<header class="post-header">
 		
 		<?php if (is_single()) : ?>
+			
 			<h1><?php the_title(); ?></h1>
+			
 		<?php else : ?>
 			
 			<h1><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
