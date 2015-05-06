@@ -19,11 +19,15 @@ get_header(); ?>
 		</header><!-- .page-header -->
 		
 		<?php if (get_avatar(get_the_author_meta('user_email'))) : ?>
+			
 			<div class="page-image"><?php print get_avatar(get_the_author_meta('user_email'), 128); ?></div><!-- .page-image -->
+			
 		<?php endif; ?>
 		
 		<?php if (get_the_author_meta('description')) : ?>
+			
 			<div class="page-content"><?php the_author_meta('description'); ?></div><!-- .page-content -->
+			
 		<?php endif; ?>
 		
 		<hr>

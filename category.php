@@ -19,7 +19,9 @@ get_header(); ?>
 		</header><!-- .page-header -->
 		
 		<?php if (category_description()) : ?>
+			
 			<div class="page-content"><?php print category_description(); ?></div><!-- .page-content -->
+			
 		<?php endif; ?>
 		
 		<?php	

@@ -25,7 +25,9 @@ get_header(); ?>
 		</header><!-- .page-header -->
 		
 		<?php if (is_post_type_archive() and $post_type = get_queried_object() and $post_type->description) : ?>
+			
 			<div class="page-content"><?php print wpautop($post_type->description); ?></div><!-- .page-content -->
+			
 		<?php endif; ?>
 		
 		<?php
