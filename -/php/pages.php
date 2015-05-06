@@ -180,7 +180,7 @@ function inkblot_template_options($page) {
 				<input type="checkbox" name="inkblot_show_webcomics" value="1"<?php checked($show_webcomics); ?>>
 				
 				<?php
-					printf(__('<label>Show webcomic links as %1$s starting with the %2$s webcomic</label>', 'inkblot'),
+					printf(__('<label>Show webcomic links as %1$s</label> <label>starting with the %2$s webcomic</label>', 'inkblot'),
 						sprintf('
 							<select name="inkblot_webcomic_image">
 								<option value="">%s</option>
