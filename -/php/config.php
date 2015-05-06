@@ -285,7 +285,7 @@ function inkblot_customize_register($customize) {
 	));
 	
 	$customize->add_setting('trim_color', array(
-		'default' => '#222222',
+		'default' => '#000000',
 		'transport' => 'postMessage'
 	)); $customize->add_control(new WP_Customize_Color_Control($customize, 'trim_color', array(
 		'label' => __('Trim', 'inkblot'),
@@ -314,7 +314,7 @@ function inkblot_customize_register($customize) {
 	));
 	
 	$customize->add_setting('text_color', array(
-		'default' => '#222222',
+		'default' => '#000000',
 		'transport' => 'postMessage'
 	)); $customize->add_control(new WP_Customize_Color_Control($customize, 'text_color', array(
 		'label' => __('Site', 'inkblot'),
@@ -355,7 +355,7 @@ function inkblot_customize_register($customize) {
 	));
 	
 	$customize->add_setting('page_text_color', array(
-		'default' => '#222222',
+		'default' => '#000000',
 		'transport' => 'postMessage'
 	)); $customize->add_control(new WP_Customize_Color_Control($customize, 'page_text_color', array(
 		'label' => __('Page', 'inkblot'),
@@ -407,7 +407,7 @@ function inkblot_customize_register($customize) {
 	));
 	
 	$customize->add_setting('link_color', array(
-		'default' => '#999999',
+		'default' => '#767676',
 		'transport' => 'postMessage'
 	)); $customize->add_control(new WP_Customize_Color_Control($customize, 'link_color', array(
 		'label' => __('Site', 'inkblot'),
@@ -430,7 +430,7 @@ function inkblot_customize_register($customize) {
 	));
 	
 	$customize->add_setting('link_hover_color', array(
-		'default' => '#222222',
+		'default' => '#000000',
 		'transport' => 'postMessage'
 	)); $customize->add_control(new WP_Customize_Color_Control($customize, 'link_hover_color', array(
 		'label' => __('Site Hover', 'inkblot'),
@@ -453,7 +453,7 @@ function inkblot_customize_register($customize) {
 	));
 	
 	$customize->add_setting('page_link_color', array(
-		'default' => '#999999',
+		'default' => '#767676',
 		'transport' => 'postMessage'
 	)); $customize->add_control(new WP_Customize_Color_Control($customize, 'page_link_color', array(
 		'label' => __('Page', 'inkblot'),
@@ -476,7 +476,7 @@ function inkblot_customize_register($customize) {
 	));
 	
 	$customize->add_setting('page_link_hover_color', array(
-		'default' => '#222222',
+		'default' => '#000000',
 		'transport' => 'postMessage'
 	)); $customize->add_control(new WP_Customize_Color_Control($customize, 'page_link_hover_color', array(
 		'label' => __('Page Hover', 'inkblot'),
@@ -499,7 +499,7 @@ function inkblot_customize_register($customize) {
 	));
 	
 	$customize->add_setting('trim_link_color', array(
-		'default' => '#999999',
+		'default' => '#767676',
 		'transport' => 'postMessage'
 	)); $customize->add_control(new WP_Customize_Color_Control($customize, 'trim_link_color', array(
 		'label' => __('Trim', 'inkblot'),
