@@ -191,7 +191,7 @@ if ( ! function_exists('inkblot_start_comment')) :
 function inkblot_start_comment($comment, $args, $depth) {
 	$GLOBALS['comment'] = $comment; ?>
 	
-	<article role="complementary" id="comment-<?php comment_ID(); ?>" <?php comment_class(); ?>>
+	<article id="comment-<?php comment_ID(); ?>" <?php comment_class(); ?>>
 		<footer class="comment-footer">
 			
 			<?php
@@ -416,7 +416,7 @@ if ( ! function_exists('inkblot_webcomic_transcript')) :
  * Render a Webcomic transcript.
  */
 function inkblot_webcomic_transcript() { ?>
-	<article role="complementary" id="webcomic_transcript-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<article id="webcomic_transcript-<?php the_ID(); ?>" <?php post_class(); ?>>
 		<div class="post-content"><?php the_content(); ?></div><!-- .post-content -->
 		<footer class="post-footer">
 			
