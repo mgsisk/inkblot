@@ -33,7 +33,7 @@
 						
 					</a>
 					
-					<nav>
+					<nav role="navigation" aria-label="<?php _e('Primary Navigation', 'inkblot'); ?>">
 						
 						<?php
 							wp_nav_menu(array(

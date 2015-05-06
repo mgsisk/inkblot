@@ -13,7 +13,7 @@
 	
 	<?php if (get_theme_mod('webcomic_nav_above', true) or is_customize_preview()) : ?>
 		
-		<nav class="widgets columns-<?php print inkblot_count_widgets('webcomic-navigation-header', 5); ?> above">
+		<nav role="navigation" class="widgets columns-<?php print inkblot_count_widgets('webcomic-navigation-header', 5); ?> above" aria-label="<?php _e('Webcomic Navigation Header', 'inkblot'); ?>">
 			
 			<?php
 				if ( ! dynamic_sidebar("webcomic-navigation-header")) :
@@ -37,7 +37,7 @@
 	
 	<?php if (get_theme_mod('webcomic_nav_below', true) or is_customize_preview()) : ?>
 		
-		<nav class="widgets columns-<?php print inkblot_count_widgets('webcomic-navigation-header', 5); ?> below">
+		<nav role="navigation" class="widgets columns-<?php print inkblot_count_widgets('webcomic-navigation-header', 5); ?> below" aria-label="<?php _e('Webcomic Navigation Footer', 'inkblot'); ?>">
 			
 			<?php
 				if ( ! dynamic_sidebar("webcomic-navigation-footer")) :

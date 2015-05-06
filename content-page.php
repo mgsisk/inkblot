@@ -32,7 +32,7 @@
 			the_content();
 			
 			wp_link_pages(array(
-				'before' => '<nav class="post-pages">',
+				'before' => sprintf('<nav role="navigation" class="post-pages" aria-label="%s">', __('Post Pages Navigation', 'inkblot')),
 				'after' => '</nav>'
 			));
 		?>

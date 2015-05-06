@@ -32,7 +32,7 @@ get_header(); ?>
 				</div>
 			</header><!-- .post-header -->
 			
-			<nav class="posts">
+			<nav role="navigation" class="posts" aria-label="<?php _e('Image Navigation', 'inkblot'); ?>">
 				
 				<?php
 					previous_image_link(array(64, 64));
@@ -55,7 +55,7 @@ get_header(); ?>
 					the_content();
 					
 					wp_link_pages(array(
-						'before' => '<nav class="post-pages">',
+						'before' => sprintf('<nav role="navigation" class="post-pages" aria-label="%s">', __('Post Pages Navigation', 'inkblot')),
 						'after' => '</nav>'
 					));
 				?>
