@@ -3,7 +3,10 @@
   document.documentElement.className = document.documentElement.className.replace(/no-js/, 'js');
 
   jQuery(function($) {
-    return $('.responsive .banner select').on('change', function(e) {
+    $('.banner nav a').on('focus', function(e) {
+      return $(this).closest('nav').find('li').removeClass('open').end().end().parents().addClass('open').siblings().removeClass('open').closest('nav');
+    });
+    return $('.banner nav select').on('change', function(e) {
       if ($(this).val()) {
         return window.location.href = $(this).val();
       }
