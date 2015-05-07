@@ -32,13 +32,12 @@ get_header(); ?>
 				</div>
 			</header><!-- .post-header -->
 			
-			<nav role="navigation" class="posts" aria-label="<?php _e('Image Navigation', 'inkblot'); ?>">
-				
-				<?php
-					previous_image_link(array(64, 64));
-					next_image_link(array(64, 64));
-				?>
-				
+			<nav class="navigation image-navigation" role="navigation">
+				<h2 class="screen-reader-text"><?php _e('Image navigation', 'inkblot'); ?></h2>
+				<div class="nav-links">
+					<div class="nav-previous"><?php previous_image_link(array(64, 64)); ?></div>
+					<div class="nav-next"><?php next_image_link(array(64, 64)); ?></div>
+				</div>
 			</nav>
 			
 			<div class="post-image">

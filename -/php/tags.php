@@ -311,7 +311,12 @@ function inkblot_widgetized($id, $class = '') {
 		
 		ob_start(); ?>
 			
-			<div role="complementary" class="widgets <?php print $id . ' ' . $columns . ' ' . $class; ?>" aria-label="<?php print $sidebars[$id][0]; ?>"><?php dynamic_sidebar($id); ?></div><!-- #<?php print $id; ?> -->
+			<div role="complementary" class="widgets <?php print $id . ' ' . $columns . ' ' . $class; ?>">
+				<h2 class="screen-reader-text"><?php print $sidebars[$id][0]; ?></h2>
+				
+				<?php dynamic_sidebar($id); ?>
+				
+			</div><!-- #<?php print $id; ?> -->
 			
 		<?php
 		
