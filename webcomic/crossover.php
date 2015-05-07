@@ -33,9 +33,7 @@ endif; ?>
 		<?php endif; ?>
 
 		<?php
-			while (have_posts()) :
-				the_post();
-				
+			while (have_posts()) : the_post();
 				get_template_part('webcomic/content', get_post_type());
 			endwhile;
 			
