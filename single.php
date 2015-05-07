@@ -16,7 +16,10 @@ get_header(); ?>
 		while (have_posts()) : the_post();
 			get_template_part('content', get_post_format());
 			
-			the_post_navigation();
+			the_post_navigation(array(
+				'next_text' => sprintf('<span class="screen-reader-text">%s </span>%%title', __('Next post: ', 'inkblot')),
+				'prev_text' => sprintf('<span class="screen-reader-text">%s </span>%%title', __('Previous post: ', 'inkblot'))
+			));
 			
 			comments_template();
 		endwhile;
