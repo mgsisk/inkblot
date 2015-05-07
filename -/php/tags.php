@@ -123,9 +123,9 @@ if ( ! function_exists('inkblot_post_datetime')) :
  * @return string
  */
 function inkblot_post_datetime() {
-	return sprintf('<a href="%1$s" title="%2$s" rel="bookmark"><time datetime="%3$s">%4$s</time></a>',
+	return sprintf('<a href="%1$s" rel="bookmark"><span class="screen-reader-text">%2$s </span><time datetime="%3$s">%4$s</time></a>',
 		esc_url(get_permalink()),
-		esc_attr(get_the_time()),
+		sprintf(__('%s published on', 'inkblot'), get_the_title()),
 		esc_attr(get_the_date('c')),
 		esc_html(get_the_date())
 	);
