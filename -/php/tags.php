@@ -251,21 +251,18 @@ if ( ! function_exists('inkblot_comments_nav')) :
 /**
  * Return comments paged navigation.
  * 
- * @param mixed $class CSS classes or an array of classes to add to the <nav> element.
  * @param mixed $paged Arguments to pass to `paginate_comments_link`, or true to enable pagination with default arguments.
  * @param string $previous Label to use for the previous comments page link when not using paged navigation.
  * @param string $next Label to use for the next comments page link when not using paged navigation.
  * @return string
  */
-function inkblot_comments_nav($class = '', $paged = array(), $previous = '', $next = '') {
+function inkblot_comments_nav($paged = array(), $previous = '', $next = '') {
 	if (1 < get_comment_pages_count() and get_option('page_comments')) {
-		$class = array_merge(array('comments-paged'), (array) $class);
-		
-		return sprintf('<nav role="navigation" class="%s" aria-label="%s">%s</nav><!-- .comments-paged -->',
-			implode(' ', (array) $class),
-			__('Comments Page Navigation', 'inkblot'),
+		return sprintf('<nav class="navigation %1$s" role="navigation"><h2 class="screen-reader-text">%2$s</h2><div class="nav-links">%3$s</div></nav>',
+			$paged ? 'pagination' : 'comment-navigation',
+			__('Comments navigation', 'inkblot'),
 			$paged ? paginate_comments_links(array_merge(array('echo' => false), (array) $paged))
-				   : get_previous_comments_link($previous) . get_next_comments_link($next)
+				   : '<div class="nav-previous">' . get_previous_comments_link($previous) . '</div><div class="nav-next">' . get_next_comments_link($next) . '</div>'
 		);
 	}
 }

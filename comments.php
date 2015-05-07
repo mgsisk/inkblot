@@ -29,7 +29,7 @@
 					'end-callback' => 'inkblot_end_comment'
 				));
 				
-				print inkblot_comments_nav('below', get_theme_mod('paged_comments', false));
+				print inkblot_comments_nav(get_theme_mod('paged_comments', true));
 			elseif ( ! comments_open() and get_comments_number() and post_type_supports(get_post_type(), 'comments')) :
 				// comments are closed, but the post has and supports comments
 			endif;
