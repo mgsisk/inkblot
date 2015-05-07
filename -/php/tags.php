@@ -108,7 +108,7 @@ function inkblot_posts_nav($args = array(), $paged = false) {
 		? get_the_posts_pagination(array_merge(array(
 			'prev_text' => __('&laquo; Previous Page', 'inkblot'),
 			'next_text' => __('Next Page &raquo;', 'inkblot'),
-			'before_page_number' => sprintf('<span class="screen-reader-text">%s</span>', __('Page', 'inkblot'))
+			'before_page_number' => sprintf('<span class="screen-reader-text">%s </span>', __('Page', 'inkblot'))
 		), (array) $args))
 		: get_the_posts_navigation(array_merge(array(
 			'prev_text' => __('&laquo; Previous Page', 'inkblot'),
@@ -263,8 +263,14 @@ function inkblot_comments_nav($paged = array(), $previous = '', $next = '') {
 		return sprintf('<nav class="navigation %1$s" role="navigation" aria-label="%2$s">%3$s</nav>',
 			$paged ? 'pagination' : 'comment-navigation',
 			__('Comments navigation', 'inkblot'),
-			$paged ? paginate_comments_links(array_merge(array('echo' => false), (array) $paged))
-				   : '<div class="nav-previous">' . get_previous_comments_link($previous) . '</div><div class="nav-next">' . get_next_comments_link($next) . '</div>'
+			$paged
+				? paginate_comments_links(array_merge(array(
+					'echo' => false,
+					'prev_text' => __('&laquo; Previous Page', 'inkblot'),
+					'next_text' => __('Next Page &raquo;', 'inkblot'),
+					'before_page_number' => sprintf('<span class="screen-reader-text">%s </span>', __('Page', 'inkblot'))
+				), (array) $paged))
+				: '<div class="nav-previous">' . get_previous_comments_link($previous) . '</div><div class="nav-next">' . get_next_comments_link($next) . '</div>'
 		);
 	}
 }
