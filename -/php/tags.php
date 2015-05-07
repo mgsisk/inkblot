@@ -132,6 +132,21 @@ function inkblot_post_datetime() {
 }
 endif;
 
+if ( ! function_exists('inkblot_post_author')) :
+/**
+ * Return a post author link, formatted for Inkblot.
+ * 
+ * @return string
+ */
+function inkblot_post_author() {
+	return sprintf('<a href="%1$s" rel="author"><span class="screen-reader-text">%2$s </span>%3$s</a>',
+		get_author_posts_url(get_the_author_meta('ID')),
+		sprintf(__('Read more posts by the author of %s,', 'inkblot'), get_the_title()),
+		get_the_author()
+	);
+}
+endif;
+
 if ( ! function_exists('inkblot_post_parent')) :
 /**
  * Return a post parent link, formatted for Inkblot.

@@ -32,7 +32,7 @@
 			<?php
 				print inkblot_post_datetime();
 				
-				the_author_posts_link();
+				print inkblot_post_author();
 				
 				if ( ! post_password_required() and (comments_open() or get_comments_number())) :
 					comments_popup_link();
