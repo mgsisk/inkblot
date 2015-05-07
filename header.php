@@ -69,6 +69,6 @@
 				<?php endif; ?>
 				
 			</header><!-- .banner -->
-			<div id="content" class="content">
+			<div id="content" class="content" tabindex="-1">
 				
 				<?php print inkblot_widgetized('content-header'); ?>
