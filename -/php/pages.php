@@ -141,9 +141,9 @@ function inkblot_template_options($page) {
 			<p>
 				
 				<?php
-					printf(__('<label>Show %1$s</label> <label>links as %2$s</label> <label>starting with the %3$s term</label>', 'inkblot'),
+					printf(__('<label for="inkblot_webcomic_archive_group">Show %1$s</label> <label for="inkblot_webcomic_archive_term_image">links as %2$s</label> <label for="inkblot_webcomic_archive_term_order">starting with the %3$s term</label>', 'inkblot'),
 						sprintf('
-							<select name="inkblot_webcomic_group">
+							<select id="inkblot_webcomic_archive_group" name="inkblot_webcomic_group">
 								<option value="">%s</option>
 								<option value="storyline"%s>%s</option>
 								<option value="character"%s>%s</option>
@@ -155,7 +155,7 @@ function inkblot_template_options($page) {
 							__('character', 'inkblot')
 						),
 						sprintf('
-							<select name="inkblot_webcomic_term_image">
+							<select id="inkblot_webcomic_archive_term_image" name="inkblot_webcomic_term_image">
 								<option value="">%s</option>
 								%s
 							</select>',
@@ -163,7 +163,7 @@ function inkblot_template_options($page) {
 							$select_term_img
 						),
 						sprintf('
-							<select name="inkblot_webcomic_term_order">
+							<select id="inkblot_webcomic_archive_term_order" name="inkblot_webcomic_term_order">
 								<option value="ASC"%s>%s</option>
 								<option value="DESC"%s>%s</option>
 							</select>',
@@ -180,9 +180,9 @@ function inkblot_template_options($page) {
 				<input type="checkbox" name="inkblot_show_webcomics" value="1"<?php checked($show_webcomics); ?>>
 				
 				<?php
-					printf(__('<label>Show webcomic links as %1$s</label> <label>starting with the %2$s webcomic</label>', 'inkblot'),
+					printf(__('<label for="inkblot_webcomic_archive_image">Show webcomic links as %1$s</label> <label for="inkblot_webcomic_archive_order">starting with the %2$s webcomic</label>', 'inkblot'),
 						sprintf('
-							<select name="inkblot_webcomic_image">
+							<select id="inkblot_webcomic_archive_image" name="inkblot_webcomic_image">
 								<option value="">%s</option>
 								%s
 							</select>',
@@ -190,7 +190,7 @@ function inkblot_template_options($page) {
 							$select_img
 						),
 						sprintf('
-							<select name="inkblot_webcomic_order">
+							<select id="inkblot_webcomic_archive_order" name="inkblot_webcomic_order">
 								<option value="ASC"%s>%s</option>
 								<option value="DESC"%s>%s</option>
 							</select>',
@@ -218,9 +218,9 @@ function inkblot_template_options($page) {
 			<p>
 				
 				<?php
-					printf(__('<label>Show the %1$s webcomic</label>', 'inkblot'),
+					printf(__('<label for="inkblot_webcomic_homepage_order">Show the %1$s webcomic</label>', 'inkblot'),
 						sprintf('
-							<select name="inkblot_webcomic_order">
+							<select id="inkblot_webcomic_homepage_order" name="inkblot_webcomic_order">
 								<option value="ASC"%s>%s</option>
 								<option value="DESC"%s>%s</option>
 							</select>',
@@ -256,9 +256,9 @@ function inkblot_template_options($page) {
 			<p>
 				
 				<?php
-					printf(__('<label>Start with the %1$s webcomic</label>', 'inkblot'),
+					printf(__('<label for="inkblot_webcomic_infinite_order">Start with the %1$s webcomic</label>', 'inkblot'),
 						sprintf('
-							<select name="inkblot_webcomic_order">
+							<select id="inkblot_webcomic_infinite_order" name="inkblot_webcomic_order">
 								<option value="ASC"%s>%s</option>
 								<option value="DESC"%s>%s</option>
 							</select>',
