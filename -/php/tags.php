@@ -204,8 +204,9 @@ function inkblot_start_comment($comment, $args, $depth) {
 				
 				comment_author_link();
 				
-				printf(__('<a href="%1$s" class="time"><time datetime="%2$s">%3$s @ %4$s</time></a>', 'inkblot'),
+				printf(__('<a href="%1$s" class="time"><span class="screen-reader-text">%2$s </span><time datetime="%3$s">%4$s @ %5$s</time></a>', 'inkblot'),
 					esc_url(get_comment_link($comment->comment_ID)),
+					sprintf(__('Comment by %s published on', 'inkblot'), get_comment_author()),
 					get_comment_time('c'),
 					get_comment_date(),
 					get_comment_time()
@@ -216,7 +217,7 @@ function inkblot_start_comment($comment, $args, $depth) {
 					'max_depth' => $args['max_depth']
 				)));
 				
-				edit_comment_link();
+				edit_comment_link(sprintf(__('Edit<span class="screen-reader-text"> comment by %s</span>', 'inkblot'), get_comment_author()));
 			?>
 			
 		</footer><!-- .comment-footer -->
@@ -434,9 +435,9 @@ function inkblot_webcomic_transcript() { ?>
 		<footer class="post-footer">
 			
 			<?php
-				the_webcomic_transcript_authors(true, '<span class="webcomic-transcript-authors">', ', ', '</span>');
+				the_webcomic_transcript_authors(true, sprintf('<span class="webcomic-transcript-authors"><span class="screen-reader-text">%s</span>', __('Webcomic Transcript Authors', 'inkblot')), ', ', '</span>');
 				
-				the_webcomic_transcript_languages('<span class="webcomic-transcript-languages">', ', ', '</span>');
+				the_webcomic_transcript_languages(sprintf('<span class="webcomic-transcript-languages"><span class="screen-reader-text">%s</span>', __('Webcomic Transcript Languages', 'inkblot')), ', ', '</span>');
 			?>
 			
 		</footer><!-- .post-footer -->
