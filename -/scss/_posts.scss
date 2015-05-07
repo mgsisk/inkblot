@@ -181,11 +181,15 @@
 		span {
 			color: $anchor-color;
 			
-			&:before {
-				padding: 0 .25rem 0 1rem;
+			padding: 0 0 0 1rem;
+			
+			&:first-child {
+				padding: 0;
 			}
 			
-			&:first-child:before {
+			&:before {
+				@include font-awesome;
+				
 				padding: 0 .25rem 0 0;
 			}
 		}
