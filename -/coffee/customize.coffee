@@ -424,7 +424,7 @@
 	
 	wp.customize('webcomic_resize', (value)->
 		value.bind((to)->
-			$('.post-webcomic .webcomic-image').toggleClass('scroll', !to)
+			$('.post-webcomic .webcomic-image').toggleClass('scroll', ! to)
 		)
 	)
 	

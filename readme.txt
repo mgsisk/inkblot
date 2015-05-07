@@ -4,10 +4,10 @@ Contributors: mgsisk
 Donate link: https://patreon.com/mgsisk
 Requires at least: 4.2
 Tested up to: 4.2
-Stable tag: 4.3
+Stable tag: 4.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl.html
-Tags: dark, light, white, black, gray, one-column, two-columns, three-columns, left-sidebar, right-sidebar, fixed-layout, fluid-layout, responsive-layout, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, microformats, post-formats, rtl-language-support, sticky-post, theme-options, translation-ready
+Tags: black, white, dark, light, one-column, two-columns, three-columns, left-sidebar, right-sidebar, fixed-layout, fluid-layout, flexible-header, responsive-layout, accessibility-ready, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready
 
 The original Webcomic theme.
 
