@@ -781,7 +781,7 @@ function inkblot_customize_register($customize) {
 	));
 	$customize->add_control('css', array(
 		'type' => 'textarea',
-		'description' => __('Enter CSS rules below to further customize your theme. Extensive CSS changes should be done using a child theme.', 'inkblot'),
+		'description' => __('Enter CSS rules below to further customize your theme.', 'inkblot'),
 		'section' => 'inkblot_css'
 	));
 	
