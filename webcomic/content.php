@@ -88,15 +88,15 @@
 	<footer class="post-footer">
 		
 		<?php
-			the_terms(get_the_ID(), 'category', '<span class="post-categories">', __(', ', 'inkblot'), '</span>');
+			the_terms(get_the_ID(), 'category', sprintf('<span class="post-categories"><span class="screen-reader-text">%s </span>', __('Categories', 'inkblot')), __(', ', 'inkblot'), '</span>');
 			
-			the_tags('<span class="post-tags">', __(', ', 'inkblot'), '</span>');
+			the_tags(sprintf('<span class="post-tags"><span class="screen-reader-text">%s </span>', __('Tags', 'inkblot')), __(', ', 'inkblot'), '</span>');
 			
-			print WebcomicTag::get_the_webcomic_collection_list(0, '<span class="webcomic-collections">', __(', ', 'inkblot'), '</span>');
+			print WebcomicTag::get_the_webcomic_collection_list(0, sprintf('<span class="webcomic-collections"><span class="screen-reader-text">%s</span>', __('Webcomic Collections', 'inkblot')), __(', ', 'inkblot'), '</span>');
 			
-			print WebcomicTag::get_the_webcomic_term_list(0, 'storyline', '<span class="webcomic-storylines">', __(', ', 'inkblot'), '</span>');
+			print WebcomicTag::get_the_webcomic_term_list(0, 'storyline', sprintf('<span class="webcomic-storylines"><span class="screen-reader-text">%s</span>', __('Webcomic Storylines', 'inkblot')), __(', ', 'inkblot'), '</span>');
 			
-			print WebcomicTag::get_the_webcomic_term_list(0, 'character', '<span class="webcomic-characters">', __(', ', 'inkblot'), '</span>');
+			print WebcomicTag::get_the_webcomic_term_list(0, 'character', sprintf('<span class="webcomic-characters"><span class="screen-reader-text">%s</span>', __('Webcomic Collections', 'inkblot')), __(', ', 'inkblot'), '</span>');
 		?>
 		
 	</footer><!-- .post-footer -->

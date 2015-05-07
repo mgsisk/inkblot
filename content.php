@@ -70,9 +70,9 @@
 	<footer class="post-footer">
 		
 		<?php
-			the_terms(get_the_ID(), 'category', '<span class="post-categories">', __(', ', 'inkblot'), '</span>');
+			the_terms(get_the_ID(), 'category', sprintf('<span class="post-categories"><span class="screen-reader-text">%s </span>', __('Categories', 'inkblot')), __(', ', 'inkblot'), '</span>');
 			
-			the_tags('<span class="post-tags">', __(', ', 'inkblot'), '</span>');
+			the_tags(sprintf('<span class="post-tags"><span class="screen-reader-text">%s </span>', __('Tags', 'inkblot')), __(', ', 'inkblot'), '</span>');
 		?>
 		
 	</footer><!-- .post-footer -->
