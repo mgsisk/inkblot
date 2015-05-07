@@ -5,7 +5,7 @@ $opacity: .8;
 
 $border: thin solid $anchor-color;
 
-@mixin font-awesome {
+@mixin icon-font {
 	font: 100%/1 awesome;
 }
 
@@ -51,13 +51,14 @@ $border: thin solid $anchor-color;
 	}
 }
 
-@font-face{
+@font-face {
 	font-family: 'awesome';
-	src: url('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.eot');
-	src: url('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
-		url('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.woff') format('woff'),
-		url('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.ttf') format('truetype'),
-		url('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.svg#fontawesomeregular') format('svg');
+	font-style: normal;
 	font-weight: normal;
-	font-style: normal
+	src: url('https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.eot');
+	src: url('https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
+		url('https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.woff') format('woff'),
+		url('https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.ttf') format('truetype'),
+		url('https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.svg#fontawesomeregular') format('svg');
+	
 }

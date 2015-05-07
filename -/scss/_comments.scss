@@ -3,19 +3,11 @@
 	margin: 0 0 1rem;
 	padding: 1rem;
 	
-	&-reply-link:before {
-		content: '\f112';
-	}
-	
-	&-edit-link:before {
-		content: '\f044';
-	}
-	
 	&-reply-title a {
 		font-weight: normal;
 		
 		&:before {
-			@include font-awesome;
+			@include icon-font;
 			
 			content: '\f057';
 			padding: 0 .3rem 0 0;
@@ -31,7 +23,7 @@
 			visibility: hidden;
 			
 			&:before {
-				@include font-awesome;
+				@include icon-font;
 				
 				content: '\f069';
 				visibility: visible;
@@ -42,17 +34,28 @@
 	&-footer {
 		img {
 			border-radius: 100rem;
-			margin: 0 1rem 0 0;
 		}
 		
-		a:before {
-			@include font-awesome;
+		a {
+			padding: 0 0 0 1rem;
 			
-			padding: 0 .25rem 0 1rem;
-		}
-		
-		.time:before {
-			content: '\f133';
+			&:before {
+				@include icon-font;
+				
+				padding: 0 .3rem 0 0;
+			}
+			
+			&.time:before {
+				content: '\f133';
+			}
+			
+			&.comment-edit-link:before {
+				content: '\f044';
+			}
+			
+			&.comment-reply-link:before {
+				content: '\f112';
+			}
 		}
 	}
 	
@@ -90,13 +93,15 @@
 }
 
 .webcomic-transcript-authors:before {
-	@include font-awesome;
+	@include icon-font;
+	
 	content: '\f007';
 	padding: 0 .3rem 0 1rem;
 }
 
 .webcomic-transcript-languages:before {
-	@include font-awesome;
+	@include icon-font;
+	
 	content: '\f1ab';
 	padding: 0 .3rem 0 1rem;
 }

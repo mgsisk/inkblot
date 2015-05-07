@@ -6,7 +6,7 @@
 	
 	&:after,
 	&:before {
-		@include font-awesome;
+		@include icon-font;
 		
 		content: '';
 		padding: 0 1rem;
@@ -64,7 +64,7 @@
 			word-wrap: break-word;
 			
 			a:before {
-				@include font-awesome;
+				@include icon-font;
 				
 				padding: 0 .5rem 0 0;
 				vertical-align: baseline;
@@ -120,7 +120,7 @@
 			}
 			
 			&:before {
-				@include font-awesome;
+				@include icon-font;
 				
 				padding: 0 .3rem 0 0;
 			}
@@ -170,7 +170,7 @@
 	}
 	
 	&-footer {
-		@include font-awesome;
+		@include icon-font;
 		
 		border-bottom: $border;
 		clear: both;
@@ -188,32 +188,28 @@
 			}
 			
 			&:before {
-				@include font-awesome;
+				@include icon-font;
 				
 				padding: 0 .3rem 0 0;
 			}
-		}
-		
-		.post {
-			&-categories:before {
+			
+			&.post-categories:before {
 				content: '\f07c';
 			}
 			
-			&-tags:before {
+			&.post-tags:before {
 				content: '\f02b';
 			}
-		}
-		
-		.webcomic {
-			&-collections:before {
+			
+			&.webcomic-collections:before {
 				content: '\f1c5';
 			}
 			
-			&-storylines:before {
+			&.webcomic-storylines:before {
 				content: '\f02d';
 			}
 			
-			&-characters:before {
+			&.webcomic-characters:before {
 				content: '\f0c0';
 			}
 		}
@@ -245,15 +241,10 @@
 	}
 }
 
-.more-link {
-	font-size: smaller;
+.more-link:after {
+	@include icon-font;
 	
-	&:before {
-		@include font-awesome;
-		
-		content: '\f138';
-		padding: 0 .25rem 0 0;
-	}
+	content: '\f138';
 }
 
 nav {
@@ -298,7 +289,7 @@ nav {
 		}
 		
 		&.post .nav-links:before {
-			@include font-awesome;
+			@include icon-font;
 			
 			content: '\f0c5';
 			padding: 0 .3rem 0 0;

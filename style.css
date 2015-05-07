@@ -21,10 +21,10 @@ Webcomic: 4.3
  */
 @font-face {
   font-family: 'awesome';
-  src: url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.eot");
-  src: url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.eot?#iefix") format("embedded-opentype"), url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.woff") format("woff"), url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.ttf") format("truetype"), url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.svg#fontawesomeregular") format("svg");
+  font-style: normal;
   font-weight: normal;
-  font-style: normal; }
+  src: url("https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.eot");
+  src: url("https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.eot?#iefix") format("embedded-opentype"), url("https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.woff") format("woff"), url("https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.ttf") format("truetype"), url("https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.svg#fontawesomeregular") format("svg"); }
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 /**
  * 1. Set default font family to sans-serif.
@@ -903,21 +903,23 @@ form.search input {
   margin: 0 0 1rem;
   padding: 0 0 1rem; }
   .post-footer span {
-    color: #767676; }
+    color: #767676;
+    padding: 0 0 0 1rem; }
+    .post-footer span:first-child {
+      padding: 0; }
     .post-footer span:before {
-      padding: 0 .25rem 0 1rem; }
-    .post-footer span:first-child:before {
-      padding: 0 .25rem 0 0; }
-  .post-footer .post-categories:before {
-    content: '\f07c'; }
-  .post-footer .post-tags:before {
-    content: '\f02b'; }
-  .post-footer .webcomic-collections:before {
-    content: '\f1c5'; }
-  .post-footer .webcomic-storylines:before {
-    content: '\f02d'; }
-  .post-footer .webcomic-characters:before {
-    content: '\f0c0'; }
+      font: 100%/1 awesome;
+      padding: 0 .3rem 0 0; }
+    .post-footer span.post-categories:before {
+      content: '\f07c'; }
+    .post-footer span.post-tags:before {
+      content: '\f02b'; }
+    .post-footer span.webcomic-collections:before {
+      content: '\f1c5'; }
+    .post-footer span.webcomic-storylines:before {
+      content: '\f02d'; }
+    .post-footer span.webcomic-characters:before {
+      content: '\f0c0'; }
 
 .attachment .post-image,
 .webcomic-prints .post-image {
@@ -936,12 +938,9 @@ form.search input {
   display: inline-block;
   margin: 0 1rem 1rem 0; }
 
-.more-link {
-  font-size: smaller; }
-  .more-link:before {
-    font: 100%/1 awesome;
-    content: '\f138';
-    padding: 0 .25rem 0 0; }
+.more-link:after {
+  font: 100%/1 awesome;
+  content: '\f138'; }
 
 nav.post-navigation, nav.posts-navigation, nav.image-navigation, nav.comment-navigation {
   clear: both;
@@ -1035,10 +1034,6 @@ nav.pagination {
   border-bottom: thin solid #767676;
   margin: 0 0 1rem;
   padding: 1rem; }
-  .comment-reply-link:before {
-    content: '\f112'; }
-  .comment-edit-link:before {
-    content: '\f044'; }
   .comment-reply-title a {
     font-weight: normal; }
     .comment-reply-title a:before {
@@ -1054,13 +1049,18 @@ nav.pagination {
       content: '\f069';
       visibility: visible; }
   .comment-footer img {
-    border-radius: 100rem;
-    margin: 0 1rem 0 0; }
-  .comment-footer a:before {
-    font: 100%/1 awesome;
-    padding: 0 .25rem 0 1rem; }
-  .comment-footer .time:before {
-    content: '\f133'; }
+    border-radius: 100rem; }
+  .comment-footer a {
+    padding: 0 0 0 1rem; }
+    .comment-footer a:before {
+      font: 100%/1 awesome;
+      padding: 0 .3rem 0 0; }
+    .comment-footer a.time:before {
+      content: '\f133'; }
+    .comment-footer a.comment-edit-link:before {
+      content: '\f044'; }
+    .comment-footer a.comment-reply-link:before {
+      content: '\f112'; }
   .comment .comment, .pingback .comment,
   .trackback .comment, .comment .pingback, .pingback .pingback,
   .trackback .pingback,
