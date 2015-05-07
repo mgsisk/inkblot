@@ -39,7 +39,7 @@ endif; ?>
 				get_template_part('webcomic/content', get_post_type());
 			endwhile;
 			
-			print inkblot_posts_nav('below', false, get_theme_mod('paged_navigation', true));
+			print inkblot_posts_nav(false, get_theme_mod('paged_navigation', true));
 		else:
 			get_template_part('content', 'none');
 		endif;

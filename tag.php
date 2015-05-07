@@ -31,7 +31,7 @@ get_header(); ?>
 				: get_template_part('content', get_post_format());
 			endwhile;
 			
-			print inkblot_posts_nav('below', false, get_theme_mod('paged_navigation', true));
+			print inkblot_posts_nav(false, get_theme_mod('paged_navigation', true));
 		else:
 			get_template_part('content', 'none');
 		endif;

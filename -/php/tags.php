@@ -99,29 +99,20 @@ if ( ! function_exists('inkblot_posts_nav')) :
 /**
  * Return posts paged navigation.
  * 
- * @param mixed $class CSS classes or an array of classes to add to the <nav> element.
  * @param array $args Arguments to pass to either `paginate_links` or `get_posts_nav_link`.
  * @param boolean $paged Whether to display paged navigation.
  * @return string
  */
-function inkblot_posts_nav($class = '', $args = array(), $paged = false) {
-	global $wp_query;
-
-	if ($wp_query->max_num_pages > 1) {
-		$class = array_merge(array('posts-paged'), (array) $class);
-		
-		return sprintf('<nav role="navigation" class="%s" aria-label="%s">%s</nav><!-- .posts-paged -->',
-			implode(' ', (array) $class),
-			__('Posts Page Navigation', 'inkblot'),
-			$paged ? preg_replace('/>...</', '>&#8230;<', paginate_links(array_merge(array(
-				'base' => str_replace(999999999, '%#%', get_pagenum_link(999999999)),
-				'total' => $wp_query->max_num_pages,
-				'format' => '?paged=%#%',
-				'current' => max(1, get_query_var('paged'))
-			), (array) $args)))
-				   : get_posts_nav_link((array) $args)
-		);
-	}
+function inkblot_posts_nav($args = array(), $paged = false) {
+	return $paged ? get_the_posts_pagination(array_merge(array(
+						'prev_text' => __('&laquo; Previous Page', 'inkblot'),
+						'next_text' => __('Next Page &raquo;', 'inkblot'),
+						'before_page_number' => sprintf('<span class="screen-reader-text">%s</span>', __('Page', 'inkblot'))
+					), (array) $args))
+					: get_the_posts_navigation(array_merge(array(
+						'prev_text' => __('&laquo; Previous Page', 'inkblot'),
+						'next_text' => __('Next Page &raquo;', 'inkblot')
+					), (array) $args));
 }
 endif;
 
