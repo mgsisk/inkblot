@@ -378,27 +378,27 @@ if ( ! function_exists('inkblot_contributor')) :
 function inkblot_contributor($user, $avatar = 96) {
 	ob_start(); ?>
 	
-	<div class="contributor">
+	<aside role="complementary" class="contributor">
 		
 		<?php if ($avatar) : ?>
 			
-			<div class="contributor-image">
-				
-				<?php echo get_avatar($user, (int) $avatar); ?>
-				
-			</div><!-- .contributor-image -->
+			<div class="contributor-image"><?php echo get_avatar($user, (int) $avatar); ?></div><!-- .contributor-image -->
 			
 		<?php endif; ?>
 		
-		<?php if ($post_count = count_user_posts($user)) : ?>
+		<header class="contributor-header">
 			
-			<h2><a href="<?php print esc_url(get_author_posts_url($user)); ?>"><?php the_author_meta('display_name', $user); ?></a></h2>
+			<?php if ($post_count = count_user_posts($user)) : ?>
+				
+				<h1><a href="<?php print esc_url(get_author_posts_url($user)); ?>"><?php the_author_meta('display_name', $user); ?></a></h1>
+				
+			<?php else : ?>
+				
+				<h1><?php the_author_meta('display_name', $user); ?></h1>
+				
+			<?php endif; ?>
 			
-		<?php else : ?>
-			
-			<h2><?php the_author_meta('display_name', $user); ?></h2>
-		<?php endif; ?>
-		
+		</header><!-- .contributor-header -->
 		
 		<div class="contributor-description">
 			
@@ -406,7 +406,7 @@ function inkblot_contributor($user, $avatar = 96) {
 			
 		</div><!-- .contributor-description -->
 		
-	</div><!-- .contributor -->
+	</aside><!-- .contributor -->
 	<?php
 	
 	$contributor = ob_get_contents();
