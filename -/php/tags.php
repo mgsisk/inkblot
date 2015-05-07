@@ -68,9 +68,7 @@ if ( ! function_exists('inkblot_post_nav')) :
 /**
  * Return post navigation.
  * 
- * Because there are no `get_` functions for these links we use output buffering
- * to store them in a varaiable.
- * 
+ * @deprecated
  * @param mixed $class CSS classes or an array of classes to add to the <nav> element.
  * @param string $previous Previous post link text.
  * @param string $next Next post link text.
@@ -89,9 +87,8 @@ function inkblot_post_nav($class = '', $previous = '&laquo; %title', $next = '%t
 		
 		ob_end_clean();
 		
-		return sprintf('<nav role="navigation" class="%s" aria-label="%s">%s</nav>',
+		return sprintf('<nav role="navigation" class="%s">%s</nav>',
 			implode(' ', array_merge(array('posts'), (array) $class)),
-			__('Post Navigation', 'inkblot'),
 			$links
 		);
 	}

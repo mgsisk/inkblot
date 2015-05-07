@@ -16,7 +16,7 @@ get_header(); ?>
 		while (have_posts()) : the_post();
 			get_template_part('content', get_post_format());
 			
-			print inkblot_post_nav();
+			the_post_navigation();
 			
 			comments_template();
 		endwhile;
