@@ -241,10 +241,6 @@ main,
 }
 
 form.search {
-	label {
-		@include read;
-	}
-	
 	input {
 		width: 100%;
 	}
