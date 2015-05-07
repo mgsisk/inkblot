@@ -242,7 +242,7 @@ main,
 
 form.search {
 	label {
-		@include read-focus;
+		@include read;
 	}
 	
 	input {
