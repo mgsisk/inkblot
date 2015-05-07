@@ -38,7 +38,7 @@
 	
 	&-caption {
 		max-width: 100%;
-		padding: .25rem;
+		padding: .3rem;
 		text-align: center;
 		
 		img {
@@ -56,12 +56,12 @@
 	@include clear;
 	
 	margin: auto;
-	padding: .25rem;
+	padding: .3rem;
 	
 	&-item {
 		display: inline-block;
 		margin: 0;
-		padding: .25rem;
+		padding: .3rem;
 		text-align: center;
 		vertical-align: top;
 		

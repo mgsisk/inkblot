@@ -874,7 +874,7 @@ form.search input {
       padding: 0; }
     .post-details a:before {
       font: 100%/1 awesome;
-      padding: 0 .25rem 0 0; }
+      padding: 0 .3rem 0 0; }
     .post-details a[rel="author"]:before {
       content: '\f007'; }
     .post-details a[rel="bookmark"]:before {
@@ -972,11 +972,11 @@ nav.pagination {
   nav.pagination a,
   nav.pagination .current {
     display: inline-block;
-    padding: 0 .25rem; }
+    padding: 0 .3rem; }
   nav.pagination.post .nav-links:before {
     font: 100%/1 awesome;
     content: '\f0c5';
-    padding: 0 .25rem 0 0; }
+    padding: 0 .3rem 0 0; }
 
 .webcomic-prints div {
   margin: 0 0 1rem; }
@@ -1044,7 +1044,7 @@ nav.pagination {
     .comment-reply-title a:before {
       font: 100%/1 awesome;
       content: '\f057';
-      padding: 0 .25rem 0 0; }
+      padding: 0 .3rem 0 0; }
   .comment-form label, .webcomic-transcribe-form label {
     display: block; }
   .comment-form .required, .webcomic-transcribe-form .required {
@@ -1086,12 +1086,12 @@ nav.pagination {
 .webcomic-transcript-authors:before {
   font: 100%/1 awesome;
   content: '\f007';
-  padding: 0 .25rem 0 1rem; }
+  padding: 0 .3rem 0 1rem; }
 
 .webcomic-transcript-languages:before {
   font: 100%/1 awesome;
   content: '\f1ab';
-  padding: 0 .25rem 0 1rem; }
+  padding: 0 .3rem 0 1rem; }
 
 .sticky {
   /* . */ }
@@ -1125,7 +1125,7 @@ nav.pagination {
   margin: 1rem 0; }
 .wp-caption {
   max-width: 100%;
-  padding: .25rem;
+  padding: .3rem;
   text-align: center; }
   .wp-caption img {
     border-radius: .3rem; }
@@ -1135,7 +1135,7 @@ nav.pagination {
 
 .gallery {
   margin: auto;
-  padding: .25rem; }
+  padding: .3rem; }
   .gallery:before, .gallery:after {
     content: ' ';
     display: table; }
@@ -1144,7 +1144,7 @@ nav.pagination {
   .gallery-item {
     display: inline-block;
     margin: 0;
-    padding: .25rem;
+    padding: .3rem;
     text-align: center;
     vertical-align: top; }
     .gallery-columns-1 .gallery-item {

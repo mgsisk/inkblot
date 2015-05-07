@@ -122,7 +122,7 @@
 			&:before {
 				@include font-awesome;
 				
-				padding: 0 .25rem 0 0;
+				padding: 0 .3rem 0 0;
 			}
 			
 			&[rel="author"]:before {
@@ -190,7 +190,7 @@
 			&:before {
 				@include font-awesome;
 				
-				padding: 0 .25rem 0 0;
+				padding: 0 .3rem 0 0;
 			}
 		}
 		
@@ -294,14 +294,14 @@ nav {
 		a,
 		.current {
 			display: inline-block;
-			padding: 0 .25rem;
+			padding: 0 .3rem;
 		}
 		
 		&.post .nav-links:before {
 			@include font-awesome;
 			
 			content: '\f0c5';
-			padding: 0 .25rem 0 0;
+			padding: 0 .3rem 0 0;
 		}
 	}
 }

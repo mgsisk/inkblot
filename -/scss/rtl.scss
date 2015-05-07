@@ -173,11 +173,11 @@ body {
 			&:after {
 				@include font-awesome;
 				
-				padding: 0 1rem 0 .25rem;
+				padding: 0 1rem 0 .3rem;
 			}
 			
 			&:first-child:after {
-				padding: 0 0 0 .25rem;
+				padding: 0 0 0 .3rem;
 			}
 			
 			&[rel="author"]:after {
@@ -228,7 +228,7 @@ body {
 			}
 			
 			&:last-child:after {
-				padding: 0 0 0 .25rem;
+				padding: 0 0 0 .3rem;
 			}
 		}
 		
@@ -398,7 +398,7 @@ nav {
 			@include font-awesome;
 			
 			content: '\f057';
-			padding: 0 0 0 .25rem;
+			padding: 0 0 0 .3rem;
 		}
 	}
 	
@@ -421,7 +421,7 @@ nav {
 			&:after {
 				@include font-awesome;
 				
-				padding: 0 1rem 0 .25rem;
+				padding: 0 1rem 0 .3rem;
 			}
 		}
 		

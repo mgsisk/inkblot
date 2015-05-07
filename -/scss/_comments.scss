@@ -18,7 +18,7 @@
 			@include font-awesome;
 			
 			content: '\f057';
-			padding: 0 .25rem 0 0;
+			padding: 0 .3rem 0 0;
 		}
 	}
 	
@@ -92,11 +92,11 @@
 .webcomic-transcript-authors:before {
 	@include font-awesome;
 	content: '\f007';
-	padding: 0 .25rem 0 1rem;
+	padding: 0 .3rem 0 1rem;
 }
 
 .webcomic-transcript-languages:before {
 	@include font-awesome;
 	content: '\f1ab';
-	padding: 0 .25rem 0 1rem;
+	padding: 0 .3rem 0 1rem;
 }

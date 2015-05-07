@@ -428,7 +428,7 @@ if (is_readable(get_template_directory() . '/-/php/mods.php') and $mod = require
 		inkblot_css('.wp-editor .aligncenter', 'margin', '1rem auto');
 		inkblot_css('.wp-editor .alignright', 'margin', '0 0 1rem 1rem');
 		inkblot_css('.wp-editor .alignleft', 'margin', '0 1rem 1rem 0');
-		inkblot_css('.wp-editor .wp-caption', 'padding', '.25rem');
+		inkblot_css('.wp-editor .wp-caption', 'padding', '.3rem');
 		inkblot_css('.wp-editor .wp-caption-dd', 'font-size', 'smaller');
 		inkblot_css('.wp-editor .wp-caption-dd', 'margin', '.5rem 0 0');
 	}
