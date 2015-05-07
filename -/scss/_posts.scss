@@ -113,13 +113,15 @@
 		font-size: smaller;
 		
 		a {
+			padding: 0 0 0 1rem;
+			
+			&:first-child {
+				padding: 0;
+			}
+			
 			&:before {
 				@include font-awesome;
 				
-				padding: 0 .25rem 0 1rem;
-			}
-			
-			&:first-child:before {
 				padding: 0 .25rem 0 0;
 			}
 			
@@ -251,10 +253,35 @@
 }
 
 nav {
-	&.posts,
-	&.post-pages,
-	&.posts-paged,
-	&.comments-paged {
+	&.post-navigation,
+	&.posts-navigation,
+	&.image-navigation,
+	&.comment-navigation {
+		@include clear;
+		
+		clear: both;
+		margin: 1rem 0;
+		
+		.nav-previous {
+			float: left;
+		}
+		
+		.nav-next {
+			float: right;
+		}
+		
+		img {
+			margin: 0 0 1rem;
+			transition: opacity .2s;
+		}
+		
+		a:focus img,
+		a:hover img {
+			opacity: $opacity;
+		}
+	}
+	
+	&.pagination {
 		clear: both;
 		color: $anchor-color;
 		margin: 1rem 0;
@@ -264,43 +291,14 @@ nav {
 		.current {
 			display: inline-block;
 			padding: 0 .25rem;
-			
-			&:focus,
-			&:hover {
-				img {
-					opacity: $opacity;
-				}
-			}
-			
-			img {
-				margin: 0 0 1rem;
-				transition: opacity .2s;
-			}
 		}
-	}
-	
-	&.posts,
-	&.comments-paged {
-		@include clear;
 		
-		a {
-			&:last-child {
-				float: right;
-				margin: 0 0 0 1rem;
-			}
+		&.post .nav-links:before {
+			@include font-awesome;
 			
-			&:first-child {
-				float: left;
-				margin: 0 1rem 0 0;
-			}
+			content: '\f0c5';
+			padding: 0 .25rem 0 0;
 		}
-	}
-	
-	&.post-pages:before {
-		@include font-awesome;
-		
-		content: '\f0c5';
-		padding: 0 .25rem 0 0;
 	}
 }
 
