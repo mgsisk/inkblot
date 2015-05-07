@@ -174,9 +174,9 @@ if ( ! function_exists('inkblot_image_details')) :
  */
 function inkblot_image_details() {
 	if ($data = wp_get_attachment_metadata() and isset($data['width'], $data['height'])) {
-		return sprintf('<a href="%1$s" title="%2$s" class="image">%3$s &#215; %4$s</a>',
+		return sprintf('<a href="%1$s" class="image"><span class="screen-reader-text">%2$s </span>%3$s &#215; %4$s</a>',
 			esc_url(wp_get_attachment_url()),
-			__('View ful-size image', 'inkblot'),
+			__('View image at full size,', 'inkblot'),
 			$data['width'],
 			$data['height']
 		);
