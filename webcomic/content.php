@@ -62,7 +62,7 @@
 					);
 				endif;
 				
-				edit_post_link();
+				edit_post_link(sprintf(__('Edit %s', 'inkblot'), '<span class="screen-reader-text">' . get_the_title() . '</span>'));
 			?>
 		</div>
 	</header><!-- .post-header -->

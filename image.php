@@ -26,7 +26,7 @@ get_header(); ?>
 							comments_popup_link();
 						endif;
 						
-						edit_post_link();
+						edit_post_link(sprintf(__('Edit %s', 'inkblot'), '<span class="screen-reader-text">' . get_the_title() . '</span>'));
 					?>
 					
 				</div>
