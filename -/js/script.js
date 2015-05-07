@@ -4,7 +4,10 @@
 
   jQuery(function($) {
     $('.banner nav a').on('focus', function(e) {
-      return $(this).closest('nav').find('li').removeClass('open').end().end().parents().addClass('open').siblings().removeClass('open').closest('nav');
+      return $(this).parents().addClass('open').siblings().removeClass('open').closest('nav');
+    });
+    $('.banner nav a').on('blur', function(e) {
+      return $(this).closest('nav').find('li').removeClass('open');
     });
     return $('.banner nav select').on('change', function(e) {
       if ($(this).val()) {
