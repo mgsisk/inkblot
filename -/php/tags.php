@@ -157,8 +157,9 @@ function inkblot_post_parent() {
 	if ($ancestors = get_post_ancestors(get_the_ID())) {
 		$parent = current($ancestors);
 		
-		return sprintf('<a href="%1$s" rel="gallery">%3$s</a>',
+		return sprintf('<a href="%1$s" rel="gallery"><span class="screen-reader-text">%2$s </span>%3$s</a>',
 			esc_url(get_permalink($parent)),
+			__('Return to', 'inkblot'),
 			get_the_title($parent)
 		);
 	}
