@@ -104,15 +104,16 @@ if ( ! function_exists('inkblot_posts_nav')) :
  * @return string
  */
 function inkblot_posts_nav($args = array(), $paged = false) {
-	return $paged ? get_the_posts_pagination(array_merge(array(
-						'prev_text' => __('&laquo; Previous Page', 'inkblot'),
-						'next_text' => __('Next Page &raquo;', 'inkblot'),
-						'before_page_number' => sprintf('<span class="screen-reader-text">%s</span>', __('Page', 'inkblot'))
-					), (array) $args))
-					: get_the_posts_navigation(array_merge(array(
-						'prev_text' => __('&laquo; Previous Page', 'inkblot'),
-						'next_text' => __('Next Page &raquo;', 'inkblot')
-					), (array) $args));
+	return $paged
+		? get_the_posts_pagination(array_merge(array(
+			'prev_text' => __('&laquo; Previous Page', 'inkblot'),
+			'next_text' => __('Next Page &raquo;', 'inkblot'),
+			'before_page_number' => sprintf('<span class="screen-reader-text">%s</span>', __('Page', 'inkblot'))
+		), (array) $args))
+		: get_the_posts_navigation(array_merge(array(
+			'prev_text' => __('&laquo; Previous Page', 'inkblot'),
+			'next_text' => __('Next Page &raquo;', 'inkblot')
+		), (array) $args));
 }
 endif;
 
