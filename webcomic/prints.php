@@ -20,7 +20,7 @@ get_header(); ?>
 				<h1><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
 				<div class="post-details">
 					
-					<?php edit_post_link(sprintf(__('Edit %s', 'inkblot'), '<span class="screen-reader-text">' . get_the_title() . '</span>')); ?>
+					<?php edit_post_link(sprintf(__('Edit %1$s', 'inkblot'), '<span class="screen-reader-text">' . get_the_title() . '</span>')); ?>
 					
 				</div>
 			</header><!-- .post-header -->

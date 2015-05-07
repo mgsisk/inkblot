@@ -20,7 +20,7 @@ if (is_page_template('template/full-width.php') and ! get_post_meta(get_the_ID()
 			
 			<aside class="widget">
 				<h1><?php _e('Primary Sidebar', 'inkblot'); ?></h1>
-				<p><?php printf(__('This is the primary sidebar. You can remove this message by adding widgets to it from the <a href="%s">Customizer</a>.', 'inkblot'), admin_url('customize.php')); ?></p>
+				<p><?php printf(__('This is the primary sidebar. You can remove this message by adding widgets to it from the <a href="%1$s">Customizer</a>.', 'inkblot'), admin_url('customize.php')); ?></p>
 			</aside>
 			
 		<?php endif; ?>	
@@ -38,7 +38,7 @@ if (is_page_template('template/full-width.php') and ! get_post_meta(get_the_ID()
 			
 			<aside class="widget">
 				<h1><?php _e('Secondary Sidebar', 'inkblot'); ?></h1>
-				<p><?php printf(__('This is the secondary sidebar. You can remove this message by adding widgets to it from the <a href="%s">Customizer</a>.', 'inkblot'), admin_url('customize.php')); ?></p>
+				<p><?php printf(__('This is the secondary sidebar. You can remove this message by adding widgets to it from the <a href="%1$s">Customizer</a>.', 'inkblot'), admin_url('customize.php')); ?></p>
 			</aside>
 			
 		<?php endif; ?>	

@@ -263,7 +263,7 @@ if ( ! function_exists('inkblot_excerpt_more')) :
  * @return string
  */
 function inkblot_excerpt_more() {
-	return '&#8230; <a href="' . get_permalink() . '" class="more-link">' . sprintf(__('Continue reading %s', 'inkblot'), '<span class="screen-reader-text">' . get_the_title() . '</span>') . '</a>';
+	return '&#8230; <a href="' . get_permalink() . '" class="more-link">' . sprintf(__('Continue reading %1$s', 'inkblot'), '<span class="screen-reader-text">' . get_the_title() . '</span>') . '</a>';
 }
 endif;
 
@@ -274,6 +274,6 @@ if ( ! function_exists('inkblot_the_content_more_link')) :
  * @return string
  */
 function inkblot_the_content_more_link() {
-	return '<a href="' . get_permalink() . '" class="more-link">' . sprintf(__('Continue reading %s', 'inkblot'), '<span class="screen-reader-text">' . get_the_title() . '</span>') . '</a>';
+	return '<a href="' . get_permalink() . '" class="more-link">' . sprintf(__('Continue reading %1$s', 'inkblot'), '<span class="screen-reader-text">' . get_the_title() . '</span>') . '</a>';
 }
 endif;

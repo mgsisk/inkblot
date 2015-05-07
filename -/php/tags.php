@@ -126,7 +126,7 @@ if ( ! function_exists('inkblot_post_datetime')) :
 function inkblot_post_datetime() {
 	return sprintf('<a href="%1$s" rel="bookmark"><span class="screen-reader-text">%2$s </span><time datetime="%3$s">%4$s</time></a>',
 		esc_url(get_permalink()),
-		sprintf(__('%s published on', 'inkblot'), get_the_title()),
+		sprintf(__('%1$s published on', 'inkblot'), get_the_title()),
 		esc_attr(get_the_date('c')),
 		esc_html(get_the_date())
 	);
@@ -142,7 +142,7 @@ if ( ! function_exists('inkblot_post_author')) :
 function inkblot_post_author() {
 	return sprintf('<a href="%1$s" rel="author"><span class="screen-reader-text">%2$s </span>%3$s</a>',
 		get_author_posts_url(get_the_author_meta('ID')),
-		sprintf(__('Read more posts by the author of %s,', 'inkblot'), get_the_title()),
+		sprintf(__('Read more posts by the author of %1$s,', 'inkblot'), get_the_title()),
 		get_the_author()
 	);
 }
