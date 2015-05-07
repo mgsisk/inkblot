@@ -9,12 +9,12 @@ document.documentElement.className = document.documentElement.className.replace(
 jQuery(($)->
 	$('.banner nav a').on('focus', (e)->
 		$(this)
-			.parents().addClass('open')
-			.siblings().removeClass('open').closest('nav')
+			.parentsUntil('.menu').addClass('open')
+			.siblings().removeClass('open')
 	)
 	
 	$('.banner nav a').on('blur', (e)->
-		$(this).closest('nav').find('li').removeClass('open')
+		$(this).parentsUntil('.menu').removeClass('open')
 	)
 	
 	$('.banner nav select').on('change', (e)->
