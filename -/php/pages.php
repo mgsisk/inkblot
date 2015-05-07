@@ -206,7 +206,7 @@ function inkblot_template_options($page) {
 			
 		<?php else : ?>
 			
-			<p><?php printf(__('It looks like %s is not installed or activated. This template will not affect the appearance of this page.', 'inkblot'), '<a href="https://wordpress.org/plugins/webcomic" target="_blank">Webcomic</a>'); ?></p>
+			<p><?php printf(__('It looks like %s is not installed or activated. This template will not affect the appearance of this page.', 'inkblot'), '<a href="https://wordpress.org/plugins/webcomic">Webcomic</a>'); ?></p>
 			
 		<?php endif; ?>
 	</div>
@@ -244,7 +244,7 @@ function inkblot_template_options($page) {
 			
 		<?php else : ?>
 			
-			<p><?php printf(__('It looks like %s is not installed or activated. This template will not affect the appearance of this page.', 'inkblot'), '<a href="https://wordpress.org/plugins/webcomic" target="_blank">Webcomic</a>'); ?></p>
+			<p><?php printf(__('It looks like %s is not installed or activated. This template will not affect the appearance of this page.', 'inkblot'), '<a href="https://wordpress.org/plugins/webcomic">Webcomic</a>'); ?></p>
 			
 		<?php endif; ?>
 	</div>
@@ -274,7 +274,7 @@ function inkblot_template_options($page) {
 			
 		<?php else : ?>
 			
-			<p><?php printf(__('It looks like %s is not installed or activated. This template will not affect the appearance of this page.', 'inkblot'), '<a href="https://wordpress.org/plugins/webcomic" target="_blank">Webcomic</a>'); ?></p>
+			<p><?php printf(__('It looks like %s is not installed or activated. This template will not affect the appearance of this page.', 'inkblot'), '<a href="https://wordpress.org/plugins/webcomic">Webcomic</a>'); ?></p>
 			<input type="hidden" name="inkblot_webcomic_group" value="<?php print get_post_meta($page->ID, 'inkblot_webcomic_group', true); ?>">
 			<input type="hidden" name="inkblot_webcomic_image" value="<?php print get_post_meta($page->ID, 'inkblot_webcomic_image', true); ?>">
 			<input type="hidden" name="inkblot_webcomic_order" value="<?php print get_post_meta($page->ID, 'inkblot_webcomic_order', true); ?>">
