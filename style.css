@@ -8,7 +8,7 @@ License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl.html
 Version: 4.4
 Description: Elegant, fully responsive, highly customizable Webcomic-ready theme named in honor of Rorschach from the Watchmen graphic novel.
-Tags: dark, light, white, black, gray, one-column, two-columns, three-columns, left-sidebar, right-sidebar, fixed-layout, fluid-layout, responsive-layout, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, microformats, post-formats, rtl-language-support, sticky-post, theme-options, translation-ready, accessibility-ready
+Tags: black, white, dark, light, one-column, two-columns, three-columns, left-sidebar, right-sidebar, fixed-layout, fluid-layout, flexible-header, responsive-layout, accessibility-ready, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready
 Text Domain: inkblot
 Webcomic: 4.3
 */
@@ -16,7 +16,7 @@ Webcomic: 4.3
  * ===== PLEASE READ THIS ======================================================
  * You can make most common style modifications – including adding custom CSS –
  * using the Customizer. If you want to make extensive theme modifications you
- * should create a child theme and do so in the child theme.
+ * should create a child theme.
  * =============================================================================
  */
 @font-face {
@@ -383,11 +383,13 @@ td,
 th {
   padding: 0; }
 
+html {
+  font: 100%/1.4 'helvetica neue', helvetica, sans-serif; }
+
 body {
   background: #fff;
   box-sizing: border-box;
   color: #000;
-  font: 100%/1.4 'helvetica neue', helvetica, sans-serif;
   margin: 1rem;
   text-rendering: optimizeLegibility; }
 
@@ -409,9 +411,12 @@ input[type="search"] {
 a {
   color: #767676;
   text-decoration: none;
-  transition: color .2s, opacity .2s; }
+  transition: color .2s, opacity .2s, outline .2s; }
   a:focus, a:hover {
     color: #000; }
+  a:focus {
+    outline: thin dotted;
+    outline-offset: .3rem; }
   a:active {
     opacity: 0.4; }
   @media print {
@@ -545,9 +550,12 @@ input {
   color: #000;
   line-height: 1.8;
   max-width: 100%;
-  padding: 0 .5rem; }
+  padding: 0 .5rem;
+  transition: border-color .2s, box-shadow .2s; }
   input:focus, input:hover {
-    border-color: #000;
+    border-color: #000; }
+  input:focus {
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
     outline: 0; }
   input[type="search"] {
     -moz-box-sizing: border-box;
@@ -563,6 +571,9 @@ input {
 
 select {
   max-width: 100%; }
+  select:focus {
+    outline: thin dotted;
+    outline-offset: .1rem; }
 
 textarea {
   background: #fff;
@@ -576,12 +587,18 @@ textarea {
   max-width: 100%;
   padding: .5rem;
   resize: vertical;
+  transition: border-color .2s, box-shadow .2s;
   width: 100%; }
   textarea:focus, textarea:hover {
-    border-color: #000;
+    border-color: #000; }
+  textarea:focus {
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
     outline: 0; }
 
-button, input[type="submit"], input[type="reset"], input[type="button"] {
+button, input[type="submit"], input[type="reset"], input[type="button"],
+input[type="reset"],
+input[type="submit"],
+input[type="button"] {
   border: 0;
   border-radius: .3rem;
   background: #000;
@@ -589,10 +606,25 @@ button, input[type="submit"], input[type="reset"], input[type="button"] {
   display: inline-block;
   line-height: 1.8;
   padding: 0 .5rem;
-  transition: background-color .2s; }
-  button:focus, input[type="submit"]:focus, input[type="reset"]:focus, input[type="button"]:focus, button:hover, input[type="submit"]:hover, input[type="reset"]:hover, input[type="button"]:hover {
+  transition: background-color .2s, box-shadow .2s; }
+  button:focus, input[type="submit"]:focus, input[type="reset"]:focus, input[type="button"]:focus, button:hover, input[type="submit"]:hover, input[type="reset"]:hover, input[type="button"]:hover,
+  input[type="reset"]:focus,
+  input[type="reset"]:hover,
+  input[type="submit"]:focus,
+  input[type="submit"]:hover,
+  input[type="button"]:focus,
+  input[type="button"]:hover {
     background: #767676; }
-  button:active, input[type="submit"]:active, input[type="reset"]:active, input[type="button"]:active {
+  button:focus, input[type="submit"]:focus, input[type="reset"]:focus, input[type="button"]:focus,
+  input[type="reset"]:focus,
+  input[type="submit"]:focus,
+  input[type="button"]:focus {
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+    outline: 0; }
+  button:active, input[type="submit"]:active, input[type="reset"]:active, input[type="button"]:active,
+  input[type="reset"]:active,
+  input[type="submit"]:active,
+  input[type="button"]:active {
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2) inset; }
 
 body > a[href="#content"] {
@@ -615,6 +647,9 @@ body > a[href="#content"] {
     display: block;
     padding: 1rem;
     text-align: center; }
+
+.content:focus {
+  outline: 0; }
 
 .document-header,
 .document-footer {
@@ -764,15 +799,6 @@ main,
     .contentinfo a:focus, .contentinfo a:hover {
       color: #fff; }
 
-form.search label {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px; }
 form.search input {
   width: 100%; }
 

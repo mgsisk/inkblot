@@ -9,6 +9,10 @@ body > a[href="#content"] {
 	}
 }
 
+.content:focus {
+	outline: 0;
+}
+
 .document-header,
 .document-footer {
 	margin: auto;

@@ -1,8 +1,11 @@
+html {
+	font: 100%/1.4 'helvetica neue', helvetica, sans-serif;
+}
+
 body {
 	background: $background-color;
 	box-sizing: border-box;
 	color: $text-color;
-	font: 100%/1.4 'helvetica neue', helvetica, sans-serif;
 	margin: 1rem;
 	text-rendering: optimizeLegibility;
 }
@@ -25,11 +28,17 @@ a {
 	color: $anchor-color;
 	text-decoration: none;
 	transition: color .2s,
-		opacity .2s;
+		opacity .2s,
+		outline .2s;
 	
 	&:focus,
 	&:hover {
 		color: $text-color;
+	}
+	
+	&:focus {
+		outline: thin dotted;
+		outline-offset: .3rem;
 	}
 	
 	&:active {
@@ -218,10 +227,16 @@ input {
 	line-height: 1.8;
 	max-width: 100%;
 	padding: 0 .5rem;
+	transition: border-color .2s,
+		box-shadow .2s;
 	
 	&:focus,
 	&:hover {
 		border-color: $text-color;
+	}
+	
+	&:focus {
+		box-shadow: 0 0 1rem rgba(0, 0, 0, $opacity / 4);
 		outline: 0;
 	}
 	
@@ -252,6 +267,11 @@ input {
 
 select {
 	max-width: 100%;
+	
+	&:focus {
+		outline: thin dotted;
+		outline-offset: .1rem;
+	}
 }
 
 textarea {
@@ -266,16 +286,25 @@ textarea {
 	max-width: 100%;
 	padding: .5rem;
 	resize: vertical;
+	transition: border-color .2s,
+		box-shadow .2s;
 	width: 100%;
 	
 	&:focus,
 	&:hover {
 		border-color: $text-color;
+	}
+	
+	&:focus {
+		box-shadow: 0 0 1rem rgba(0, 0, 0, $opacity / 4);
 		outline: 0;
 	}
 }
 
-button {
+button,
+input[type="reset"],
+input[type="submit"],
+input[type="button"] {
 	border: 0;
 	border-radius: .3rem;
 	background: $text-color;
@@ -283,11 +312,17 @@ button {
 	display: inline-block;
 	line-height: 1.8;
 	padding: 0 .5rem;
-	transition: background-color .2s;
+	transition: background-color .2s,
+		box-shadow .2s;
 	
 	&:focus,
 	&:hover {
 		background: $anchor-color;
+	}
+	
+	&:focus {
+		box-shadow: 0 0 1rem rgba(0, 0, 0, $opacity / 4);
+		outline: 0;
 	}
 	
 	&:active {
