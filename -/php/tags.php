@@ -260,7 +260,7 @@ if ( ! function_exists('inkblot_comments_nav')) :
  */
 function inkblot_comments_nav($paged = array(), $previous = '', $next = '') {
 	if (1 < get_comment_pages_count() and get_option('page_comments')) {
-		return sprintf('<nav class="navigation %1$s" role="navigation"><h2 class="screen-reader-text">%2$s</h2><div class="nav-links">%3$s</div></nav>',
+		return sprintf('<nav class="navigation %1$s" role="navigation" aria-label="%2$s">%3$s</nav>',
 			$paged ? 'pagination' : 'comment-navigation',
 			__('Comments navigation', 'inkblot'),
 			$paged ? paginate_comments_links(array_merge(array('echo' => false), (array) $paged))
@@ -310,12 +310,7 @@ function inkblot_widgetized($id, $class = '') {
 		
 		ob_start(); ?>
 			
-			<div role="complementary" class="widgets <?php print $id . ' ' . $columns . ' ' . $class; ?>">
-				<h2 class="screen-reader-text"><?php print $sidebars[$id][0]; ?></h2>
-				
-				<?php dynamic_sidebar($id); ?>
-				
-			</div><!-- #<?php print $id; ?> -->
+			<div class="widgets <?php print $id . ' ' . $columns . ' ' . $class; ?>" aria-label="<?php print $sidebars[$id][0]; ?>"><?php dynamic_sidebar($id); ?></div><!-- #<?php print $id; ?> -->
 			
 		<?php
 		

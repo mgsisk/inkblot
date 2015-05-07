@@ -33,8 +33,7 @@
 						
 					</a>
 					
-					<nav role="navigation">
-						<h2 class="screen-reader-text"><?php _e('Primary Navigation', 'inkblot'); ?></h2>
+					<nav role="navigation" aria-label="<?php _e('Primary Navigation', 'inkblot'); ?>">
 						
 						<?php
 							wp_nav_menu(array(
