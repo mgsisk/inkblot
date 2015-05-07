@@ -32,8 +32,9 @@
 			the_content();
 			
 			wp_link_pages(array(
-				'before' => sprintf('<nav role="navigation" class="post-pages" aria-label="%s">', __('Post Pages Navigation', 'inkblot')),
-				'after' => '</nav>'
+				'before' => sprintf('<nav class="navigation pagination post" role="navigation"><h2 class="screen-reader-text">%s</h2><div class="nav-links">', __('Post pages navigation', 'inkblot')),
+				'after' => '</div></nav>',
+				'pagelink' => sprintf('<span class="screen-reader-text">%s</span> %%', __('Page', 'inkblot'))
 			));
 		?>
 		
