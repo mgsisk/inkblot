@@ -24,6 +24,7 @@ class Inkblot_Walker_Page_Dropdown extends Walker_PageDropdown {
 	 * @param object $page Current page being handled by the walker.
 	 * @param integer $depth Depth the walker is currently at.
 	 * @param array $args Arguments passed to the walker.
+	 * @param integer $current_page ID of the current page.
 	 */
 	function start_el(&$output, $page, $depth = 0, $args = array(), $current_page = 0) {
 		if ( ! $output) {
