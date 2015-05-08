@@ -390,7 +390,7 @@ body {
   background: #fff;
   box-sizing: border-box;
   color: #000;
-  margin: 1rem;
+  padding: 1rem;
   text-rendering: optimizeLegibility; }
 
 *,
@@ -895,9 +895,9 @@ form.search input {
 .post-details {
   font-size: smaller; }
   .post-details a {
-    padding: 0 0 0 1rem; }
+    margin: 0 0 0 1rem; }
     .post-details a:first-child {
-      padding: 0; }
+      margin: 0; }
     .post-details a:before {
       font: 100%/1 awesome;
       padding: 0 .3rem 0 0; }
@@ -1078,9 +1078,9 @@ nav.pagination {
     border-radius: 100rem;
     margin: 0 1rem 0 0; }
   .comment-footer a {
-    padding: 0 0 0 1rem; }
+    margin: 0 0 0 1rem; }
     .comment-footer a.url {
-      padding: 0; }
+      margin: 0; }
     .comment-footer a:before {
       font: 100%/1 awesome;
       padding: 0 .3rem 0 0; }
