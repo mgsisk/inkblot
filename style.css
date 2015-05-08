@@ -1075,9 +1075,12 @@ nav.pagination {
       content: '\f069';
       visibility: visible; }
   .comment-footer img {
-    border-radius: 100rem; }
+    border-radius: 100rem;
+    margin: 0 1rem 0 0; }
   .comment-footer a {
     padding: 0 0 0 1rem; }
+    .comment-footer a.url {
+      padding: 0; }
     .comment-footer a:before {
       font: 100%/1 awesome;
       padding: 0 .3rem 0 0; }

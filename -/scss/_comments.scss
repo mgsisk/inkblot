@@ -34,10 +34,15 @@
 	&-footer {
 		img {
 			border-radius: 100rem;
+			margin: 0 1rem 0 0;
 		}
 		
 		a {
 			padding: 0 0 0 1rem;
+			
+			&.url {
+				padding: 0;
+			}
 			
 			&:before {
 				@include icon-font;
