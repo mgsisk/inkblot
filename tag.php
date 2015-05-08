@@ -15,7 +15,7 @@ get_header(); ?>
 	<?php if (have_posts()) : ?>
 		
 		<header class="page-header">
-			<h1><?php single_tag_title(); ?></h1>
+			<h1><?php single_tag_title(sprintf('<span class="screen-reader-text">%s </span>', __('Posts tagged ', 'inkblot'))); ?></h1>
 		</header><!-- .page-header -->
 		
 		<?php if (tag_description()) : ?>

@@ -13,7 +13,7 @@ get_header(); ?>
 	<?php if (have_posts()) : ?>
 		
 		<header class="page-header">
-			<h1><?php print get_search_query(); ?></h1>
+			<h1><?php printf(__('<span class="screen-reader-text">Search results for </span>%1$s'), get_search_query()) ?></h1>
 		</header><!-- .page-header -->
 		
 		<?php

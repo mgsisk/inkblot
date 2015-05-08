@@ -21,7 +21,7 @@ endif; ?>
 	<?php if (have_posts()) : ?>
 		
 		<header class="page-header">
-			<h1><?php webcomic_collection_title(); ?></h1>
+			<h1><?php post_type_archive_title(sprintf('<span class="screen-reader-text">%s </span>', __('Webcomics from', 'inkblot'))); ?></h1>
 		</header><!-- .page-header -->
 		
 		<?php if (WebcomicTag::webcomic_collection_image()) : ?>

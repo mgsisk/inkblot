@@ -15,7 +15,7 @@ get_header(); ?>
 	<?php if (have_posts()) : ?>
 		
 		<header class="page-header">
-			<h1><?php print inkblot_date_archive_title(); ?></h1>
+			<h1><?php printf('<span class="screen-reader-text">%s </span>%s', __('Posts from', 'inkblot'), inkblot_date_archive_title()); ?></h1>
 		</header><!-- .page-header -->
 		
 		<?php	

@@ -15,7 +15,7 @@ get_header(); ?>
 	<?php if (have_posts()) : ?>
 
 		<header class="page-header">
-			<h1><?php print apply_filters('the_author', get_the_author_meta('display_name')); ?></h1>
+			<h1><?php printf(__('<span class="screen-reader-text">%s </span>%s'), __('Posts authored by', 'inkblot'), apply_filters('the_author', get_the_author_meta('display_name'))); ?></h1>
 		</header><!-- .page-header -->
 		
 		<?php if (get_avatar(get_the_author_meta('user_email'))) : ?>

@@ -26,16 +26,21 @@ get_header(); ?>
 			</header><!-- .post-header -->
 			
 			<div class="post-image">
+				
 				<?php the_webcomic(get_theme_mod('webcomic_archive_size', 'large')); ?>
+				
 			</div><!-- .post-image -->
 			
 			<?php if ($post->post_excerpt) : ?>
+				
 				<div class="post-excerpt"><?php the_excerpt(); ?></div><!-- .post-excerpt -->
+				
 			<?php endif; ?>
 			
 			<div class="post-content">
 				
 				<p>
+					
 					<?php
 						if (webcomic_prints_available(true)) :
 							webcomic_print_form('original', __('%total Original Print', 'inkblot'));
@@ -45,6 +50,7 @@ get_header(); ?>
 						
 						webcomic_print_form('international', __('%total International', 'inkblot'));
 					?>
+					
 				</p>
 				
 			</div><!-- .post-content -->

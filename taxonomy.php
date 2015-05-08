@@ -20,7 +20,7 @@ get_header(); ?>
 		
 		<?php if (term_description()) : ?>
 			
-			<div class="page-content"><?php print term_description(); ?></div><!-- .page-content -->
+			<div class="page-content"><?php print term_description(sprintf('<span class="screen-reader-text">%s </span>', __('Posts with the custom taxonomy term', 'inkblot'))); ?></div><!-- .page-content -->
 			
 		<?php endif; ?>
 		

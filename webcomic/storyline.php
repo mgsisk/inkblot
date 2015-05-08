@@ -21,7 +21,7 @@ endif; ?>
 	<?php if (have_posts()) : ?>
 		
 		<header class="page-header">
-			<h1><?php single_term_title(); ?></h1>
+			<h1><?php single_term_title(sprintf('<span class="screen-reader-text">%s </span>', __('Webcomics that are part of', 'inkblot'))); ?></h1>
 		</header><!-- .page-header -->
 		
 		<?php if (WebcomicTag::webcomic_term_image()) : ?>

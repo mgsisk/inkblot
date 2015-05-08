@@ -12,7 +12,7 @@ $link = get_permalink(get_the_ID());
 $images = '';
 
 foreach ($attachments as $attachment) {
-	$images .= wp_get_attachment_image($attachment->ID, $feed_size);
+    $images .= wp_get_attachment_image($attachment->ID, $feed_size);
 }
 
 $prepend = "<p><a href='{$link}'>{$images}</a></p>";
