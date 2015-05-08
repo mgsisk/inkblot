@@ -15,12 +15,12 @@ get_header(); ?>
 	<?php if (have_posts()) : ?>
 		
 		<header class="page-header">
-			<h1><?php single_term_title(); ?></h1>
+			<h1><?php single_term_title(sprintf('<span class="screen-reader-text">%s </span>', __('Posts with the custom taxonomy term', 'inkblot'))); ?></h1>
 		</header><!-- .page-header -->
 		
 		<?php if (term_description()) : ?>
 			
-			<div class="page-content"><?php print term_description(sprintf('<span class="screen-reader-text">%s </span>', __('Posts with the custom taxonomy term', 'inkblot'))); ?></div><!-- .page-content -->
+			<div class="page-content"><?php print term_description(); ?></div><!-- .page-content -->
 			
 		<?php endif; ?>
 		
