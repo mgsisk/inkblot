@@ -26,7 +26,9 @@
 	<?php endif; ?>
 	
 	<?php if (has_post_thumbnail()) : ?>
+		
 		<div class="post-image"><?php the_post_thumbnail(); ?></div><!-- .post-image -->
+		
 	<?php endif; ?>
 	
 	<header class="post-header">
@@ -42,6 +44,7 @@
 		<?php endif; ?>
 		
 		<div class="post-details">
+			
 			<?php
 				print inkblot_post_datetime();
 				
@@ -64,23 +67,28 @@
 				
 				edit_post_link(sprintf(__('Edit %1$s', 'inkblot'), '<span class="screen-reader-text">' . get_the_title() . '</span>'));
 			?>
+			
 		</div>
 	</header><!-- .post-header -->
 	
 	<?php if (is_search()) : ?>
+		
 		<div class="post-excerpt"><?php the_excerpt(); ?></div><!-- .post-excerpt -->
+		
 	<?php else : ?>
 		
 		<div class="post-content">
+			
 			<?php
 				the_content();
 				
 				wp_link_pages(array(
-					'before' => sprintf('<nav class="navigation pagination post" role="navigation"><h2 class="screen-reader-text">%s</h2><div class="nav-links">', __('Post pages navigation', 'inkblot')),
+					'before' => sprintf('<nav class="navigation pagination post" role="navigation" aria-label="%s"><div class="nav-links">', __('Post pages navigation', 'inkblot')),
 					'after' => '</div></nav>',
 					'pagelink' => sprintf('<span class="screen-reader-text">%s</span> %%', __('Page', 'inkblot'))
 				));
 			?>
+			
 		</div>
 		
 	<?php endif; ?>
