@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Inkblot 4.4\n"
-"POT-Creation-Date: 2015-05-06 23:16-0500\n"
-"PO-Revision-Date: 2015-05-06 23:16-0500\n"
+"POT-Creation-Date: 2015-05-11 09:37-0500\n"
+"PO-Revision-Date: 2015-05-11 09:38-0500\n"
 "Last-Translator: \n"
 "Language-Team: Michael Sisk <help@mgsisk.com>\n"
 "Language: en_US\n"
@@ -123,8 +123,8 @@ msgstr ""
 #: inkblot/-/php/config.php:199 inkblot/-/php/config.php:268
 #: inkblot/-/php/config.php:361 inkblot/-/php/config.php:459
 #: inkblot/-/php/config.php:555 inkblot/-/php/tags.php:111
-#: inkblot/content-page.php:37 inkblot/content.php:62 inkblot/image.php:63
-#: inkblot/webcomic/content.php:81
+#: inkblot/-/php/tags.php:272 inkblot/content-page.php:39
+#: inkblot/content.php:62 inkblot/image.php:62 inkblot/webcomic/content.php:88
 msgid "Page"
 msgstr ""
 
@@ -297,9 +297,7 @@ msgid "Stylesheet"
 msgstr ""
 
 #: inkblot/-/php/config.php:784
-msgid ""
-"Enter CSS rules below to further customize your theme. Extensive CSS changes "
-"should be done using a child theme."
+msgid "Enter CSS rules below to further customize your theme."
 msgstr ""
 
 #: inkblot/-/php/config.php:791
@@ -451,8 +449,9 @@ msgstr ""
 #: inkblot/-/php/pages.php:144
 #, php-format
 msgid ""
-"<label>Show %1$s</label> <label>links as %2$s</label> <label>starting with "
-"the %3$s term</label>"
+"<label for=\"inkblot_webcomic_archive_group\">Show %1$s</label> <label for="
+"\"inkblot_webcomic_archive_term_image\">links as %2$s</label> <label for="
+"\"inkblot_webcomic_archive_term_order\">starting with the %3$s term</label>"
 msgstr ""
 
 #: inkblot/-/php/pages.php:151
@@ -484,7 +483,8 @@ msgstr ""
 #: inkblot/-/php/pages.php:183
 #, php-format
 msgid ""
-"<label>Show webcomic links as %1$s</label> <label>starting with the %2$s "
+"<label for=\"inkblot_webcomic_archive_image\">Show webcomic links as %1$s</"
+"label> <label for=\"inkblot_webcomic_archive_order\">starting with the %2$s "
 "webcomic</label>"
 msgstr ""
 
@@ -492,7 +492,7 @@ msgstr ""
 #: inkblot/-/php/pages.php:277
 #, php-format
 msgid ""
-"It looks like %s is not installed or activated. This template will not "
+"It looks like %1$s is not installed or activated. This template will not "
 "affect the appearance of this page."
 msgstr ""
 
@@ -502,7 +502,8 @@ msgstr ""
 
 #: inkblot/-/php/pages.php:221
 #, php-format
-msgid "<label>Show the %1$s webcomic</label>"
+msgid ""
+"<label for=\"inkblot_webcomic_homepage_order\">Show the %1$s webcomic</label>"
 msgstr ""
 
 #: inkblot/-/php/pages.php:238
@@ -519,7 +520,9 @@ msgstr ""
 
 #: inkblot/-/php/pages.php:259
 #, php-format
-msgid "<label>Start with the %1$s webcomic</label>"
+msgid ""
+"<label for=\"inkblot_webcomic_infinite_order\">Start with the %1$s webcomic</"
+"label>"
 msgstr ""
 
 #: inkblot/-/php/sidebars.php:9 inkblot/sidebar.php:17 inkblot/sidebar.php:22
@@ -644,7 +647,7 @@ msgstr ""
 msgid "Located below the webcomic, just inside the webcomic wrapper."
 msgstr ""
 
-#: inkblot/-/php/sidebars.php:27 inkblot/webcomic/display.php:17
+#: inkblot/-/php/sidebars.php:27 inkblot/webcomic/display.php:16
 msgid "Webcomic Navigation Header"
 msgstr ""
 
@@ -652,7 +655,7 @@ msgstr ""
 msgid "Navigation displayed above the webcomic."
 msgstr ""
 
-#: inkblot/-/php/sidebars.php:28 inkblot/webcomic/display.php:42
+#: inkblot/-/php/sidebars.php:28 inkblot/webcomic/display.php:40
 msgid "Webcomic Navigation Footer"
 msgstr ""
 
@@ -661,21 +664,23 @@ msgid "Navigation displayed below the webcomic."
 msgstr ""
 
 #: inkblot/-/php/tags.php:109 inkblot/-/php/tags.php:114
+#: inkblot/-/php/tags.php:270
 msgid "&laquo; Previous Page"
 msgstr ""
 
 #: inkblot/-/php/tags.php:110 inkblot/-/php/tags.php:115
+#: inkblot/-/php/tags.php:271
 msgid "Next Page &raquo;"
 msgstr ""
 
 #: inkblot/-/php/tags.php:129
 #, php-format
-msgid "%s published on"
+msgid "%1$s published on"
 msgstr ""
 
 #: inkblot/-/php/tags.php:145
 #, php-format
-msgid "Read more posts by the author of %s,"
+msgid "Read more posts by the author of %1$s,"
 msgstr ""
 
 #: inkblot/-/php/tags.php:163
@@ -689,24 +694,59 @@ msgstr ""
 #: inkblot/-/php/tags.php:207
 #, php-format
 msgid ""
-"<a href=\"%1$s\" class=\"time\"><time datetime=\"%2$s\">%3$s @ %4$s</time></"
-"a>"
+"<a href=\"%1$s\" class=\"time\"><span class=\"screen-reader-text\">%2$s </"
+"span><time datetime=\"%3$s\">%4$s @ %5$s</time></a>"
 msgstr ""
 
-#: inkblot/-/php/tags.php:226
+#: inkblot/-/php/tags.php:209
+#, php-format
+msgid "Comment by %s published on"
+msgstr ""
+
+#: inkblot/-/php/tags.php:220
+#, php-format
+msgid "Edit<span class=\"screen-reader-text\"> comment by %s</span>"
+msgstr ""
+
+#: inkblot/-/php/tags.php:227
 msgid "Your comment is awaiting moderation."
 msgstr ""
 
-#: inkblot/-/php/tags.php:265
+#: inkblot/-/php/tags.php:266
 msgid "Comments navigation"
 msgstr ""
 
-#: inkblot/-/php/walker-page-dropdown.php:33
+#: inkblot/-/php/tags.php:438
+msgid "Webcomic Transcript Authors"
+msgstr ""
+
+#: inkblot/-/php/tags.php:440
+msgid "Webcomic Transcript Languages"
+msgstr ""
+
+#: inkblot/-/php/walker-page-dropdown.php:34
 msgid "Home"
+msgstr ""
+
+#: inkblot/archive.php:21
+msgid "Custom post type archive"
 msgstr ""
 
 #: inkblot/archive.php:22
 msgid "Archive"
+msgstr ""
+
+#: inkblot/author.php:18
+#, php-format
+msgid "<span class=\"screen-reader-text\">%s </span>%s"
+msgstr ""
+
+#: inkblot/author.php:18
+msgid "Posts authored by"
+msgstr ""
+
+#: inkblot/category.php:18
+msgid "Posts categoriezed as"
 msgstr ""
 
 #: inkblot/content-none.php:12
@@ -725,27 +765,39 @@ msgstr ""
 
 #: inkblot/content-none.php:29
 msgid ""
-"Apologies, but we can't seem to find what you're looking for. Perhaps "
-"searching will help."
+"Sorry, but we can't seem to find what you're looking for. Perhaps searching "
+"will help."
 msgstr ""
 
-#: inkblot/content-page.php:24 inkblot/content.php:42 inkblot/image.php:29
-#: inkblot/webcomic/content.php:65 inkblot/webcomic/infinite.php:50
+#: inkblot/content-page.php:26 inkblot/content.php:42 inkblot/image.php:29
+#: inkblot/webcomic/content.php:68 inkblot/webcomic/infinite.php:50
 #: inkblot/webcomic/prints.php:23
 #, php-format
-msgid "Edit %s"
+msgid "Edit %1$s"
 msgstr ""
 
-#: inkblot/content-page.php:35 inkblot/content.php:60 inkblot/image.php:61
-#: inkblot/webcomic/content.php:79
+#: inkblot/content-page.php:37 inkblot/content.php:60 inkblot/image.php:60
+#: inkblot/webcomic/content.php:86
 msgid "Post pages navigation"
 msgstr ""
 
+#: inkblot/content.php:73 inkblot/webcomic/content.php:99
+msgid "Categories"
+msgstr ""
+
 #: inkblot/content.php:73 inkblot/content.php:75
-#: inkblot/webcomic/content.php:91 inkblot/webcomic/content.php:93
-#: inkblot/webcomic/content.php:95 inkblot/webcomic/content.php:97
-#: inkblot/webcomic/content.php:99
+#: inkblot/webcomic/content.php:99 inkblot/webcomic/content.php:101
+#: inkblot/webcomic/content.php:103 inkblot/webcomic/content.php:105
+#: inkblot/webcomic/content.php:107
 msgid ", "
+msgstr ""
+
+#: inkblot/content.php:75 inkblot/webcomic/content.php:101
+msgid "Tags"
+msgstr ""
+
+#: inkblot/date.php:18
+msgid "Posts from"
 msgstr ""
 
 #: inkblot/footer.php:15
@@ -759,19 +811,24 @@ msgstr ""
 
 #: inkblot/functions.php:266 inkblot/functions.php:277
 #, php-format
-msgid "Continue reading %s"
+msgid "Continue reading %1$s"
 msgstr ""
 
 #: inkblot/header.php:12
 msgid "Skip to content"
 msgstr ""
 
-#: inkblot/header.php:37
+#: inkblot/header.php:36
 msgid "Primary Navigation"
 msgstr ""
 
-#: inkblot/image.php:36
+#: inkblot/image.php:35
 msgid "Image navigation"
+msgstr ""
+
+#: inkblot/search.php:16
+#, php-format
+msgid "<span class=\"screen-reader-text\">Search results for </span>%1$s"
 msgstr ""
 
 #: inkblot/searchform.php:12 inkblot/searchform.php:16
@@ -782,29 +839,65 @@ msgstr ""
 #, php-format
 msgid ""
 "This is the primary sidebar. You can remove this message by adding widgets "
-"to it from the <a href=\"%s\">Customizer</a>."
+"to it from the <a href=\"%1$s\">Customizer</a>."
 msgstr ""
 
 #: inkblot/sidebar.php:41
 #, php-format
 msgid ""
 "This is the secondary sidebar. You can remove this message by adding widgets "
-"to it from the <a href=\"%s\">Customizer</a>."
+"to it from the <a href=\"%1$s\">Customizer</a>."
 msgstr ""
 
-#: inkblot/webcomic/content.php:61 inkblot/webcomic/infinite.php:44
+#: inkblot/single.php:20
+msgid "Next post: "
+msgstr ""
+
+#: inkblot/single.php:21
+msgid "Previous post: "
+msgstr ""
+
+#: inkblot/tag.php:18
+msgid "Posts tagged "
+msgstr ""
+
+#: inkblot/taxonomy.php:18
+msgid "Posts with the custom taxonomy term"
+msgstr ""
+
+#: inkblot/webcomic/character.php:24
+msgid "Webcomics featuring"
+msgstr ""
+
+#: inkblot/webcomic/collection.php:24
+msgid "Webcomics from"
+msgstr ""
+
+#: inkblot/webcomic/content.php:64 inkblot/webcomic/infinite.php:44
 msgid "Purchase"
 msgstr ""
 
-#: inkblot/webcomic/prints.php:41
-msgid "%total Original Print"
+#: inkblot/webcomic/content.php:103 inkblot/webcomic/content.php:107
+msgid "Webcomic Collections"
 msgstr ""
 
-#: inkblot/webcomic/prints.php:44
-msgid "%total Domestic"
+#: inkblot/webcomic/content.php:105
+msgid "Webcomic Storylines"
+msgstr ""
+
+#: inkblot/webcomic/crossover.php:24
+msgid "Webcomics that crossover with"
 msgstr ""
 
 #: inkblot/webcomic/prints.php:46
+msgid "%total Original Print"
+msgstr ""
+
+#: inkblot/webcomic/prints.php:49
+msgid "%total Domestic"
+msgstr ""
+
+#: inkblot/webcomic/prints.php:51
 msgid "%total International"
 msgstr ""
 
@@ -840,6 +933,10 @@ msgstr ""
 
 #: inkblot/webcomic/restricted-role.php:27
 msgid "Apologies, but you don't have permission to view this content."
+msgstr ""
+
+#: inkblot/webcomic/storyline.php:24
+msgid "Webcomics that are part of"
 msgstr ""
 
 #: inkblot/webcomic/transcripts.php:24
