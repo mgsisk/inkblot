@@ -25,11 +25,15 @@ endif; ?>
 		</header><!-- .page-header -->
 		
 		<?php if (WebcomicTag::webcomic_term_image()) : ?>
+			
 			<div class="page-image"><?php webcomic_character_avatar(); ?></div><!-- .page-image -->
+			
 		<?php endif; ?>
 		
 		<?php if (term_description()) : ?>
+			
 			<div class="page-content"><?php print term_description(); ?></div><!-- .page-content -->
+			
 		<?php endif; ?>
 		
 		<?php
