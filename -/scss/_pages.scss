@@ -60,9 +60,14 @@
 	}
 	
 	&-template-templatefull-width-php {
+		&.four-column main {
+			@include prefix(order, 1);
+		}
+		
 		main,
 		.sidebar1,
-		.sidebar2 {
+		.sidebar2,
+		.sidebar3 {
 			width: 100%;
 		}
 	}

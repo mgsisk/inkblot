@@ -1103,7 +1103,8 @@ nav.pagination {
   order: 1; }
 .page-template-templatefull-width-php main,
 .page-template-templatefull-width-php .sidebar1,
-.page-template-templatefull-width-php .sidebar2 {
+.page-template-templatefull-width-php .sidebar2,
+.page-template-templatefull-width-php .sidebar3 {
   width: 100%; }
 
 .contributor {
