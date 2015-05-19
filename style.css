@@ -8,7 +8,7 @@ License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl.html
 Version: 4.4
 Description: Elegant, fully responsive, highly customizable Webcomic-ready theme named in honor of Rorschach from the Watchmen graphic novel.
-Tags: black, white, dark, light, one-column, two-columns, three-columns, left-sidebar, right-sidebar, fixed-layout, fluid-layout, flexible-header, responsive-layout, accessibility-ready, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready
+Tags: black, white, dark, light, one-column, two-columns, three-columns, four-columns, left-sidebar, right-sidebar, fixed-layout, fluid-layout, flexible-header, responsive-layout, accessibility-ready, blavatar, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready
 Text Domain: inkblot
 Webcomic: 4.3
 */
@@ -668,11 +668,13 @@ body > a[href="#content"] {
 
 main,
 .sidebar1,
-.sidebar2 {
+.sidebar2,
+.sidebar3 {
   padding: 1rem; }
 
 .one-column .sidebar1,
-.one-column .sidebar2 {
+.one-column .sidebar2,
+.one-column .sidebar3 {
   display: none; }
 
 .two-column-left main, .two-column-right .sidebar1 {
@@ -688,6 +690,62 @@ main,
   float: right; }
 .three-column-center main, .three-column-center .sidebar1 {
   position: relative; }
+
+.four-column .content {
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: -webkit-flex;
+  display: flex;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  -o-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap; }
+  .four-column .content > .post-webcomic {
+    width: 100%; }
+.four-column .sidebar1 {
+  -moz-order: 2;
+  -ms-order: 2;
+  -o-order: 2;
+  -webkit-order: 2;
+  order: 2; }
+.four-column .sidebar2 {
+  -moz-order: 4;
+  -ms-order: 4;
+  -o-order: 4;
+  -webkit-order: 4;
+  order: 4; }
+.four-column .sidebar3 {
+  -moz-order: 6;
+  -ms-order: 6;
+  -o-order: 6;
+  -webkit-order: 6;
+  order: 6; }
+.four-column.content-far-left main {
+  -moz-order: 1;
+  -ms-order: 1;
+  -o-order: 1;
+  -webkit-order: 1;
+  order: 1; }
+.four-column.content-left main {
+  -moz-order: 3;
+  -ms-order: 3;
+  -o-order: 3;
+  -webkit-order: 3;
+  order: 3; }
+.four-column.content-right main {
+  -moz-order: 5;
+  -ms-order: 5;
+  -o-order: 5;
+  -webkit-order: 5;
+  order: 5; }
+.four-column.content-far-right main {
+  -moz-order: 7;
+  -ms-order: 7;
+  -o-order: 7;
+  -webkit-order: 7;
+  order: 7; }
 
 .banner {
   position: relative; }

@@ -94,12 +94,13 @@ if (is_readable(get_template_directory() . '/-/php/mods.php') and $mod = require
 	if ($mod['content'] and 'one-column' !== $mod['content']) {
 		$mod['sidebar1_width'] = $mod['sidebar1_width'] ? $mod['sidebar1_width'] : 25;
 		$mod['sidebar2_width'] = $mod['sidebar2_width'] ? $mod['sidebar2_width'] : 25;
+		$mod['sidebar3_width'] = $mod['sidebar3_width'] ? $mod['sidebar3_width'] : 25;
 		
 		$main_width = 100 - $mod['sidebar1_width'];
 		
 		inkblot_css('.sidebar1', 'width', "{$mod['sidebar1_width']}%");
 		
-		if (false !== strpos($mod['content'], 'three-column')) {
+		if (false !== strpos($mod['content'], 'three-column') or false !== strpos($mod['content'], 'four-column')) {
 			$main_width -= $mod['sidebar2_width'];
 			
 			inkblot_css('.sidebar2', 'width', "{$mod['sidebar2_width']}%");
@@ -108,6 +109,12 @@ if (is_readable(get_template_directory() . '/-/php/mods.php') and $mod = require
 				inkblot_css('main', 'left', "{$mod['sidebar1_width']}%");
 				inkblot_css('.sidebar1', 'left', "-{$main_width}%");
 			}
+		}
+		
+		if (false !== strpos($mod['content'], 'four-column')) {
+			$main_width -= $mod['sidebar3_width'] + 1;
+			
+			inkblot_css('.sidebar3', 'width', "{$mod['sidebar3_width']}%");
 		}
 		
 		inkblot_css('main', 'width', "{$main_width}%");
@@ -438,7 +445,7 @@ if (is_readable(get_template_directory() . '/-/php/mods.php') and $mod = require
 	if ($responsive_width = get_theme_mod('responsive_width', 0)) {
 		$css .= <<<RESPONSIVE
 @media only screen and (max-width: {$responsive_width}px) {
-	main, .sidebar1, .sidebar2 {float: none; left: 0; width: 100%}
+	main, .sidebar1, .sidebar2, .sidebar3 {float: none; left: 0; width: 100%}
 	.banner nav {background: none}
 	.banner nav:before {display: block; visibility: visible}
 	.banner nav ul {display: none; visibility: hidden}

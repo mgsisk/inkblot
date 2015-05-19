@@ -37,12 +37,14 @@ body > a[href="#content"] {
 
 main,
 .sidebar1,
-.sidebar2 {
+.sidebar2,
+.sidebar3 {
 	padding: 1rem;
 }
 
 .one-column .sidebar1,
-.one-column .sidebar2 {
+.one-column .sidebar2,
+.one-column .sidebar3 {
 	display: none;
 }
 
@@ -82,6 +84,45 @@ main,
 	&-center main,
 	&-center .sidebar1 {
 		position: relative;
+	}
+}
+
+.four-column {
+	.content {
+		@include prefix-value(display, flex);
+		@include prefix(flex-wrap, wrap);
+		
+		> .post-webcomic {
+			width: 100%;
+		}
+	}
+	
+	.sidebar1 {
+		@include prefix(order, 2);
+	}
+	
+	.sidebar2 {
+		@include prefix(order, 4);
+	}
+	
+	.sidebar3 {
+		@include prefix(order, 6);
+	}
+	
+	&.content-far-left main {
+		@include prefix(order, 1);
+	}
+	
+	&.content-left main {
+		@include prefix(order, 3);
+	}
+	
+	&.content-right main {
+		@include prefix(order, 5);
+	}
+	
+	&.content-far-right main {
+		@include prefix(order, 7);
 	}
 }
 
