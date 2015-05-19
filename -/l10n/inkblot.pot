@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Inkblot 4.4\n"
-"POT-Creation-Date: 2015-05-11 09:37-0500\n"
-"PO-Revision-Date: 2015-05-11 09:38-0500\n"
+"Project-Id-Version: Inkblot 4.5\n"
+"POT-Creation-Date: 2015-05-19 15:50-0500\n"
+"PO-Revision-Date: 2015-05-19 15:50-0500\n"
 "Last-Translator: \n"
 "Language-Team: Michael Sisk <help@mgsisk.com>\n"
 "Language: en_US\n"
@@ -18,389 +18,421 @@ msgstr ""
 "_esc_html__;_esc_html_e;_esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: inkblot\n"
 
-#: inkblot/-/php/config.php:22 inkblot/-/php/config.php:177
-#: inkblot/-/php/config.php:245 inkblot/-/php/config.php:320
-#: inkblot/-/php/config.php:413
+#: inkblot/-/php/config.php:22 inkblot/-/php/config.php:199
+#: inkblot/-/php/config.php:267 inkblot/-/php/config.php:342
+#: inkblot/-/php/config.php:435
 msgid "Site"
 msgstr ""
 
-#: inkblot/-/php/config.php:30 inkblot/-/php/config.php:813
+#: inkblot/-/php/config.php:31 inkblot/-/php/config.php:842
 msgid "Layout"
 msgstr ""
 
-#: inkblot/-/php/config.php:42
-msgid "No sidebars"
-msgstr ""
-
-#: inkblot/-/php/config.php:43
-msgid "Content on left (one sidebar)"
+#: inkblot/-/php/config.php:40
+msgid "Content and Sidebars"
 msgstr ""
 
 #: inkblot/-/php/config.php:44
-msgid "Content on right (one sidebar)"
+msgid "No sidebars"
 msgstr ""
 
 #: inkblot/-/php/config.php:45
-msgid "Content on left (two sidebars)"
+msgid "Content on left, 1 sidebar"
 msgstr ""
 
 #: inkblot/-/php/config.php:46
-msgid "Content on right (two sidebars)"
+msgid "Content on right, 1 sidebar"
 msgstr ""
 
 #: inkblot/-/php/config.php:47
-msgid "Content centered (two sidebars)"
+msgid "Content on left, 2 sidebars"
 msgstr ""
 
-#: inkblot/-/php/config.php:56
+#: inkblot/-/php/config.php:48
+msgid "Content on right, 2 sidebars"
+msgstr ""
+
+#: inkblot/-/php/config.php:49
+msgid "Content centered, 2 sidebars"
+msgstr ""
+
+#: inkblot/-/php/config.php:50
+msgid "Content on far left, 3 sidebars"
+msgstr ""
+
+#: inkblot/-/php/config.php:51
+msgid "Content on left, 3 sidebars"
+msgstr ""
+
+#: inkblot/-/php/config.php:52
+msgid "Content on right, 3 sidebars"
+msgstr ""
+
+#: inkblot/-/php/config.php:53
+msgid "Content on far right, 3 sidebars"
+msgstr ""
+
+#: inkblot/-/php/config.php:62
 msgid "Primary Sidebar Width"
 msgstr ""
 
-#: inkblot/-/php/config.php:57
-msgid "The percentage width of the primary Sidebar."
+#: inkblot/-/php/config.php:63
+msgid "The percentage width of the primary sidebar."
 msgstr ""
 
-#: inkblot/-/php/config.php:72
+#: inkblot/-/php/config.php:78
 msgid "Secondary Sidebar Width"
 msgstr ""
 
-#: inkblot/-/php/config.php:73
-msgid "The percentage width of the secondary Sidebar."
+#: inkblot/-/php/config.php:79
+msgid "The percentage width of the secondary sidebar."
 msgstr ""
 
-#: inkblot/-/php/config.php:88
+#: inkblot/-/php/config.php:94
+msgid "Tertiary Sidebar Width"
+msgstr ""
+
+#: inkblot/-/php/config.php:95
+msgid "The percentage width of the tertiary sidebar."
+msgstr ""
+
+#: inkblot/-/php/config.php:110
 msgid "Minimum Width"
 msgstr ""
 
-#: inkblot/-/php/config.php:89
+#: inkblot/-/php/config.php:111
 msgid "The minimum pixel width the page will resize to."
 msgstr ""
 
-#: inkblot/-/php/config.php:103
+#: inkblot/-/php/config.php:125
 msgid "Maximum Width"
 msgstr ""
 
-#: inkblot/-/php/config.php:104
+#: inkblot/-/php/config.php:126
 msgid "The maximum pixel width the page will resize to."
 msgstr ""
 
-#: inkblot/-/php/config.php:118
+#: inkblot/-/php/config.php:140
 msgid "Content Width"
 msgstr ""
 
-#: inkblot/-/php/config.php:119
+#: inkblot/-/php/config.php:141
 msgid ""
 "Defines the maximum pixel width for post content. <a href=\"//codex."
 "wordpress.org/Content_Width\">Learn more at the WordPress Codex.</a>"
 msgstr ""
 
-#: inkblot/-/php/config.php:131
+#: inkblot/-/php/config.php:153
 msgid ""
 "Responsive features will only be used when your page is less than or equal "
 "to this pixel width."
 msgstr ""
 
-#: inkblot/-/php/config.php:132
+#: inkblot/-/php/config.php:154
 msgid "Responsive Width"
 msgstr ""
 
-#: inkblot/-/php/config.php:146
+#: inkblot/-/php/config.php:168
 msgid "Fonts"
 msgstr ""
 
-#: inkblot/-/php/config.php:155
+#: inkblot/-/php/config.php:177
 msgid "Base Size"
 msgstr ""
 
-#: inkblot/-/php/config.php:166
+#: inkblot/-/php/config.php:188
 msgid "(inherit)"
 msgstr ""
 
-#: inkblot/-/php/config.php:188
+#: inkblot/-/php/config.php:210
 msgid "Header"
 msgstr ""
 
-#: inkblot/-/php/config.php:199 inkblot/-/php/config.php:268
-#: inkblot/-/php/config.php:361 inkblot/-/php/config.php:459
-#: inkblot/-/php/config.php:555 inkblot/-/php/tags.php:111
+#: inkblot/-/php/config.php:221 inkblot/-/php/config.php:290
+#: inkblot/-/php/config.php:383 inkblot/-/php/config.php:481
+#: inkblot/-/php/config.php:577 inkblot/-/php/tags.php:111
 #: inkblot/-/php/tags.php:272 inkblot/content-page.php:39
 #: inkblot/content.php:62 inkblot/image.php:62 inkblot/webcomic/content.php:88
 msgid "Page"
 msgstr ""
 
-#: inkblot/-/php/config.php:210
+#: inkblot/-/php/config.php:232
 msgid "Titles"
 msgstr ""
 
-#: inkblot/-/php/config.php:221 inkblot/-/php/config.php:291
-#: inkblot/-/php/config.php:384 inkblot/-/php/config.php:505
-#: inkblot/-/php/config.php:612
+#: inkblot/-/php/config.php:243 inkblot/-/php/config.php:313
+#: inkblot/-/php/config.php:406 inkblot/-/php/config.php:527
+#: inkblot/-/php/config.php:634
 msgid "Trim"
 msgstr ""
 
-#: inkblot/-/php/config.php:231
+#: inkblot/-/php/config.php:253
 msgid "Colors"
 msgstr ""
 
-#: inkblot/-/php/config.php:236
+#: inkblot/-/php/config.php:258
 msgid "Backgrounds"
 msgstr ""
 
-#: inkblot/-/php/config.php:311
+#: inkblot/-/php/config.php:333
 msgid "Text"
 msgstr ""
 
-#: inkblot/-/php/config.php:404
+#: inkblot/-/php/config.php:426
 msgid "Links"
 msgstr ""
 
-#: inkblot/-/php/config.php:436
+#: inkblot/-/php/config.php:458
 msgid "Site Hover"
 msgstr ""
 
-#: inkblot/-/php/config.php:482
+#: inkblot/-/php/config.php:504
 msgid "Page Hover"
 msgstr ""
 
-#: inkblot/-/php/config.php:528
+#: inkblot/-/php/config.php:550
 msgid "Trim Hover"
 msgstr ""
 
-#: inkblot/-/php/config.php:550
+#: inkblot/-/php/config.php:572
 msgid "Background Images"
 msgstr ""
 
-#: inkblot/-/php/config.php:564 inkblot/-/php/config.php:621
+#: inkblot/-/php/config.php:586 inkblot/-/php/config.php:643
 msgid "Background Image"
 msgstr ""
 
-#: inkblot/-/php/config.php:574 inkblot/-/php/config.php:631
+#: inkblot/-/php/config.php:596 inkblot/-/php/config.php:653
 msgid "Background Repeat"
 msgstr ""
 
-#: inkblot/-/php/config.php:577 inkblot/-/php/config.php:634
+#: inkblot/-/php/config.php:599 inkblot/-/php/config.php:656
 msgid "No Repeat"
 msgstr ""
 
-#: inkblot/-/php/config.php:578 inkblot/-/php/config.php:635
+#: inkblot/-/php/config.php:600 inkblot/-/php/config.php:657
 msgid "Tile"
 msgstr ""
 
-#: inkblot/-/php/config.php:579 inkblot/-/php/config.php:636
+#: inkblot/-/php/config.php:601 inkblot/-/php/config.php:658
 msgid "Tile Horizontally"
 msgstr ""
 
-#: inkblot/-/php/config.php:580 inkblot/-/php/config.php:637
+#: inkblot/-/php/config.php:602 inkblot/-/php/config.php:659
 msgid "Tile Vertically"
 msgstr ""
 
-#: inkblot/-/php/config.php:589 inkblot/-/php/config.php:646
+#: inkblot/-/php/config.php:611 inkblot/-/php/config.php:668
 msgid "Background Position"
 msgstr ""
 
-#: inkblot/-/php/config.php:592 inkblot/-/php/config.php:649
+#: inkblot/-/php/config.php:614 inkblot/-/php/config.php:671
 msgid "Left"
 msgstr ""
 
-#: inkblot/-/php/config.php:593 inkblot/-/php/config.php:650
+#: inkblot/-/php/config.php:615 inkblot/-/php/config.php:672
 msgid "Center"
 msgstr ""
 
-#: inkblot/-/php/config.php:594 inkblot/-/php/config.php:651
+#: inkblot/-/php/config.php:616 inkblot/-/php/config.php:673
 msgid "Right"
 msgstr ""
 
-#: inkblot/-/php/config.php:603 inkblot/-/php/config.php:660
+#: inkblot/-/php/config.php:625 inkblot/-/php/config.php:682
 msgid "Background Attachment"
 msgstr ""
 
-#: inkblot/-/php/config.php:606 inkblot/-/php/config.php:663
+#: inkblot/-/php/config.php:628 inkblot/-/php/config.php:685
 msgid "Scroll"
 msgstr ""
 
-#: inkblot/-/php/config.php:607 inkblot/-/php/config.php:664
+#: inkblot/-/php/config.php:629 inkblot/-/php/config.php:686
 msgid "Fixed"
 msgstr ""
 
-#: inkblot/-/php/config.php:673
+#: inkblot/-/php/config.php:695
+msgid "Use featured image for single posts"
+msgstr ""
+
+#: inkblot/-/php/config.php:702
 msgid "Width"
 msgstr ""
 
-#: inkblot/-/php/config.php:674
+#: inkblot/-/php/config.php:703
 msgid ""
 "The pixel width of your header image. Changes will not affect previously "
 "uploaded header images."
 msgstr ""
 
-#: inkblot/-/php/config.php:685
+#: inkblot/-/php/config.php:714
 msgid "Height"
 msgstr ""
 
-#: inkblot/-/php/config.php:686
+#: inkblot/-/php/config.php:715
 msgid ""
 "The pixel height of your header image. Changes will not affect previously "
 "header images."
 msgstr ""
 
-#: inkblot/-/php/config.php:699
+#: inkblot/-/php/config.php:728
 msgid "Use paged navigation for posts"
 msgstr ""
 
-#: inkblot/-/php/config.php:707
+#: inkblot/-/php/config.php:736
 msgid "Use paged navigation for comments"
 msgstr ""
 
-#: inkblot/-/php/config.php:720
+#: inkblot/-/php/config.php:749
 msgid "Display widgets as separate columns"
 msgstr ""
 
-#: inkblot/-/php/config.php:728
+#: inkblot/-/php/config.php:757
 msgid "Miscellanea"
 msgstr ""
 
-#: inkblot/-/php/config.php:734
+#: inkblot/-/php/config.php:763
 msgid "Site Icon"
 msgstr ""
 
-#: inkblot/-/php/config.php:737
+#: inkblot/-/php/config.php:766
 msgid ""
 "The site icon may be displayed by web browsers and mobile devices in various "
 "ways."
 msgstr ""
 
-#: inkblot/-/php/config.php:743
+#: inkblot/-/php/config.php:772
 msgid "Post Thumbnail Width"
 msgstr ""
 
-#: inkblot/-/php/config.php:744
+#: inkblot/-/php/config.php:773
 msgid ""
 "The pixel width of post thumbnails. Changes will not affect previously "
 "uploaded thumbnails."
 msgstr ""
 
-#: inkblot/-/php/config.php:755
+#: inkblot/-/php/config.php:784
 msgid "Post Thumbnail Height"
 msgstr ""
 
-#: inkblot/-/php/config.php:756
+#: inkblot/-/php/config.php:785
 msgid ""
 "The pixel height of post thumbnails. Changes will not affect previously "
 "uploaded thumbnails."
 msgstr ""
 
-#: inkblot/-/php/config.php:767
+#: inkblot/-/php/config.php:796
 msgid "Remove theme modifications when changing themes"
 msgstr ""
 
-#: inkblot/-/php/config.php:774
+#: inkblot/-/php/config.php:803
 msgid "Stylesheet"
 msgstr ""
 
-#: inkblot/-/php/config.php:784
+#: inkblot/-/php/config.php:813
 msgid "Enter CSS rules below to further customize your theme."
 msgstr ""
 
-#: inkblot/-/php/config.php:791
+#: inkblot/-/php/config.php:820
 msgid "none"
 msgstr ""
 
-#: inkblot/-/php/config.php:792
+#: inkblot/-/php/config.php:821
 msgid "any collection"
 msgstr ""
 
-#: inkblot/-/php/config.php:798
+#: inkblot/-/php/config.php:827
 msgid "full"
 msgstr ""
 
-#: inkblot/-/php/config.php:805
+#: inkblot/-/php/config.php:834
 msgid "Webcomic"
 msgstr ""
 
-#: inkblot/-/php/config.php:806
+#: inkblot/-/php/config.php:835
 msgid "These settings affect features related to the Webcomic plugin."
 msgstr ""
 
-#: inkblot/-/php/config.php:821
+#: inkblot/-/php/config.php:850
 msgid "Place webcomic in the content column"
 msgstr ""
 
-#: inkblot/-/php/config.php:830
+#: inkblot/-/php/config.php:859
 msgid "Resize webcomic to fit available space"
 msgstr ""
 
-#: inkblot/-/php/config.php:837
+#: inkblot/-/php/config.php:866
 msgid "Navigation"
 msgstr ""
 
-#: inkblot/-/php/config.php:845
+#: inkblot/-/php/config.php:874
 msgid "Webcomic attachments link to"
 msgstr ""
 
-#: inkblot/-/php/config.php:848 inkblot/-/php/config.php:914
+#: inkblot/-/php/config.php:877 inkblot/-/php/config.php:943
 msgid "Nothing"
 msgstr ""
 
-#: inkblot/-/php/config.php:849
+#: inkblot/-/php/config.php:878
 msgid "Next webcomic"
 msgstr ""
 
-#: inkblot/-/php/config.php:850
+#: inkblot/-/php/config.php:879
 msgid "Previous webcomic"
 msgstr ""
 
-#: inkblot/-/php/config.php:859
+#: inkblot/-/php/config.php:888
 msgid "Show navigation above the webcomic"
 msgstr ""
 
-#: inkblot/-/php/config.php:868
+#: inkblot/-/php/config.php:897
 msgid "Show navigation below the webcomic"
 msgstr ""
 
-#: inkblot/-/php/config.php:875
+#: inkblot/-/php/config.php:904
 msgid "Archives"
 msgstr ""
 
-#: inkblot/-/php/config.php:883
+#: inkblot/-/php/config.php:912
 msgid "Posts are displayed in"
 msgstr ""
 
-#: inkblot/-/php/config.php:886
+#: inkblot/-/php/config.php:915
 msgid "Chronological order"
 msgstr ""
 
-#: inkblot/-/php/config.php:887
+#: inkblot/-/php/config.php:916
 msgid "Reverse chronlogical order"
 msgstr ""
 
-#: inkblot/-/php/config.php:895
+#: inkblot/-/php/config.php:924
 msgid "Show previews of this size "
 msgstr ""
 
-#: inkblot/-/php/config.php:903
+#: inkblot/-/php/config.php:932
 msgid "Front Page"
 msgstr ""
 
-#: inkblot/-/php/config.php:911
+#: inkblot/-/php/config.php:940
 msgid "Front page displays"
 msgstr ""
 
-#: inkblot/-/php/config.php:915
+#: inkblot/-/php/config.php:944
 msgid "Your latest webcomic"
 msgstr ""
 
-#: inkblot/-/php/config.php:916
+#: inkblot/-/php/config.php:945
 msgid "Your first webcomic"
 msgstr ""
 
-#: inkblot/-/php/config.php:923
+#: inkblot/-/php/config.php:952
 msgid "From this collection"
 msgstr ""
 
-#: inkblot/-/php/config.php:931
+#: inkblot/-/php/config.php:960
 msgid "Include comments on the front page"
 msgstr ""
 
-#: inkblot/-/php/config.php:938
+#: inkblot/-/php/config.php:967
 msgid "Include transcripts on the front page"
 msgstr ""
 
@@ -541,125 +573,135 @@ msgstr ""
 
 #: inkblot/-/php/sidebars.php:10
 msgid ""
-"Used in three-column layouts only. You can change theme layout from the "
+"Used in three and four-column layouts. You can change theme layout from the "
 "Appearance > Customize page."
 msgstr ""
 
+#: inkblot/-/php/sidebars.php:11 inkblot/sidebar.php:53 inkblot/sidebar.php:58
+msgid "Tertiary Sidebar"
+msgstr ""
+
 #: inkblot/-/php/sidebars.php:11
+msgid ""
+"Used in four-column layouts only. You can change theme layout from the "
+"Appearance > Customize page."
+msgstr ""
+
+#: inkblot/-/php/sidebars.php:12
 msgid "Document Header"
 msgstr ""
 
-#: inkblot/-/php/sidebars.php:11
+#: inkblot/-/php/sidebars.php:12
 msgid "Located at the very top of the page, outside of the page wrapper."
 msgstr ""
 
-#: inkblot/-/php/sidebars.php:12
+#: inkblot/-/php/sidebars.php:13
 msgid "Document Footer"
 msgstr ""
 
-#: inkblot/-/php/sidebars.php:12
+#: inkblot/-/php/sidebars.php:13
 msgid "Located at the very bottom of the page, outside of the page wrapper."
 msgstr ""
 
-#: inkblot/-/php/sidebars.php:13
+#: inkblot/-/php/sidebars.php:14
 msgid "Site Header"
 msgstr ""
 
-#: inkblot/-/php/sidebars.php:13
+#: inkblot/-/php/sidebars.php:14
 msgid ""
 "Located at the top of the page, where the site title and navigation are "
 "usually displayed."
 msgstr ""
 
-#: inkblot/-/php/sidebars.php:14
+#: inkblot/-/php/sidebars.php:15
 msgid "Site Footer"
 msgstr ""
 
-#: inkblot/-/php/sidebars.php:14
+#: inkblot/-/php/sidebars.php:15
 msgid ""
 "Located at the bottom of the page, where copyright information is usually "
 "displayed."
 msgstr ""
 
-#: inkblot/-/php/sidebars.php:15
+#: inkblot/-/php/sidebars.php:16
 msgid "Page Header"
 msgstr ""
 
-#: inkblot/-/php/sidebars.php:15
+#: inkblot/-/php/sidebars.php:16
 msgid "Located near the top of the page, just inside the page wrapper."
 msgstr ""
 
-#: inkblot/-/php/sidebars.php:16
+#: inkblot/-/php/sidebars.php:17
 msgid "Page Footer"
 msgstr ""
 
-#: inkblot/-/php/sidebars.php:16
+#: inkblot/-/php/sidebars.php:17
 msgid "Located near the bottom of the page, just inside the page wrapper."
 msgstr ""
 
-#: inkblot/-/php/sidebars.php:17
+#: inkblot/-/php/sidebars.php:18
 msgid "Content Header"
 msgstr ""
 
-#: inkblot/-/php/sidebars.php:17
+#: inkblot/-/php/sidebars.php:18
 msgid "Located near the top of the page, just inside the content wrapper."
 msgstr ""
 
-#: inkblot/-/php/sidebars.php:18
+#: inkblot/-/php/sidebars.php:19
 msgid "Content Footer"
 msgstr ""
 
-#: inkblot/-/php/sidebars.php:18
+#: inkblot/-/php/sidebars.php:19
 msgid "Located near the bottom of the page, just inside the content wrapper."
 msgstr ""
 
-#: inkblot/-/php/sidebars.php:19
+#: inkblot/-/php/sidebars.php:20
 msgid "Comment Header"
 msgstr ""
 
-#: inkblot/-/php/sidebars.php:19
+#: inkblot/-/php/sidebars.php:20
 msgid ""
 "Located above the comments list for a post, just inside the comments wrapper."
 msgstr ""
 
-#: inkblot/-/php/sidebars.php:20
+#: inkblot/-/php/sidebars.php:21
 msgid "Comment Footer"
 msgstr ""
 
-#: inkblot/-/php/sidebars.php:20
+#: inkblot/-/php/sidebars.php:21
 msgid ""
 "Located below the comments list for a post, just inside the comments wrapper."
 msgstr ""
 
-#: inkblot/-/php/sidebars.php:25
+#: inkblot/-/php/sidebars.php:26
 msgid "Webcomic Header"
 msgstr ""
 
-#: inkblot/-/php/sidebars.php:25
+#: inkblot/-/php/sidebars.php:26
 msgid "Located above the webcomic, just inside the webcomic wrapper."
 msgstr ""
 
-#: inkblot/-/php/sidebars.php:26
+#: inkblot/-/php/sidebars.php:27
 msgid "Webcomic Footer"
 msgstr ""
 
-#: inkblot/-/php/sidebars.php:26
+#: inkblot/-/php/sidebars.php:27
 msgid "Located below the webcomic, just inside the webcomic wrapper."
 msgstr ""
 
-#: inkblot/-/php/sidebars.php:27 inkblot/webcomic/display.php:16
+#: inkblot/-/php/sidebars.php:28 inkblot/webcomic/display.php:16
 msgid "Webcomic Navigation Header"
 msgstr ""
 
-#: inkblot/-/php/sidebars.php:27
+#: inkblot/-/php/sidebars.php:28
 msgid "Navigation displayed above the webcomic."
 msgstr ""
 
-#: inkblot/-/php/sidebars.php:28 inkblot/webcomic/display.php:40
+#: inkblot/-/php/sidebars.php:29 inkblot/webcomic/display.php:40
 msgid "Webcomic Navigation Footer"
 msgstr ""
 
-#: inkblot/-/php/sidebars.php:28
+#: inkblot/-/php/sidebars.php:29
 msgid "Navigation displayed below the webcomic."
 msgstr ""
 
@@ -728,11 +770,11 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-#: inkblot/archive.php:21
+#: inkblot/archive.php:22
 msgid "Custom post type archive"
 msgstr ""
 
-#: inkblot/archive.php:22
+#: inkblot/archive.php:23
 msgid "Archive"
 msgstr ""
 
@@ -805,11 +847,11 @@ msgstr ""
 msgid "%1$s &bull; Powered by %2$s with %3$s"
 msgstr ""
 
-#: inkblot/functions.php:195
+#: inkblot/functions.php:191
 msgid "Primary Menu"
 msgstr ""
 
-#: inkblot/functions.php:266 inkblot/functions.php:277
+#: inkblot/functions.php:262 inkblot/functions.php:273
 #, php-format
 msgid "Continue reading %1$s"
 msgstr ""
@@ -818,7 +860,7 @@ msgstr ""
 msgid "Skip to content"
 msgstr ""
 
-#: inkblot/header.php:36
+#: inkblot/header.php:40
 msgid "Primary Navigation"
 msgstr ""
 
@@ -846,6 +888,13 @@ msgstr ""
 #, php-format
 msgid ""
 "This is the secondary sidebar. You can remove this message by adding widgets "
+"to it from the <a href=\"%1$s\">Customizer</a>."
+msgstr ""
+
+#: inkblot/sidebar.php:59
+#, php-format
+msgid ""
+"This is the tertiary sidebar. You can remove this message by adding widgets "
 "to it from the <a href=\"%1$s\">Customizer</a>."
 msgstr ""
 
