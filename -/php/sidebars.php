@@ -7,7 +7,8 @@
 
 $sidebars = array(
 	'primary-sidebar' => array(__('Primary Sidebar', 'inkblot'), __('Used in both two and three-column layouts. You can change theme layout from the Appearance > Customize page.', 'inkblot')),
-	'secondary-sidebar' => array(__('Secondary Sidebar', 'inkblot'), __('Used in three-column layouts only. You can change theme layout from the Appearance > Customize page.', 'inkblot')),
+	'secondary-sidebar' => array(__('Secondary Sidebar', 'inkblot'), __('Used in three and four-column layouts. You can change theme layout from the Appearance > Customize page.', 'inkblot')),
+	'tertiary-sidebar' => array(__('Tertiary Sidebar', 'inkblot'), __('Used in four-column layouts only. You can change theme layout from the Appearance > Customize page.', 'inkblot')),
 	'document-header' => array(__('Document Header', 'inkblot'), __('Located at the very top of the page, outside of the page wrapper.', 'inkblot')),
 	'document-footer' => array(__('Document Footer', 'inkblot'), __('Located at the very bottom of the page, outside of the page wrapper.', 'inkblot')),
 	'site-header' => array(__('Site Header', 'inkblot'), __('Located at the top of the page, where the site title and navigation are usually displayed.', 'inkblot')),
