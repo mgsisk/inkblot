@@ -265,7 +265,7 @@
       } else if (-1 !== content.indexOf('two')) {
         width -= sidebar1 + 1;
       }
-      if ('three-column-center' === content) {
+      if ('three-column content-center' === content) {
         $('main ').css({
           left: sidebar1 + 1 + '%',
           position: 'relative'
@@ -288,7 +288,7 @@
       $('.sidebar1').css('width', sidebar1 + '%');
       $('.sidebar2').css('width', sidebar2 + '%');
       $('.sidebar3').css('width', sidebar3 + '%');
-      return $('body').removeClass('one-column two-column-left two-column-right three-column-left three-column-right three-column-center four-column content-far-left content-left content-right content-far-right').addClass(content);
+      return $('body').removeClass('one-column two-column three-column four-column content-far-left content-left content-center content-right content-far-right').addClass(content);
     };
     wp.customize('content', function(value) {
       return value.bind(function(to) {

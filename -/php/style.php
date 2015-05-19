@@ -105,7 +105,7 @@ if (is_readable(get_template_directory() . '/-/php/mods.php') and $mod = require
 			
 			inkblot_css('.sidebar2', 'width', "{$mod['sidebar2_width']}%");
 			
-			if ('three-column-center' === $mod['content']) {
+			if ('three-column content-center' === $mod['content']) {
 				inkblot_css('main', 'left', "{$mod['sidebar1_width']}%");
 				inkblot_css('.sidebar1', 'left', "-{$main_width}%");
 			}

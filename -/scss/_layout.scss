@@ -49,40 +49,40 @@ main,
 }
 
 .two-column {
-	&-left main,
-	&-right .sidebar1 {
+	&.content-left main,
+	&.content-right .sidebar1 {
 		float: left;
 	}
 	
-	&-right main,
-	&-left .sidebar1 {
+	&.content--right main,
+	&.content-left .sidebar1 {
 		float: right;
 	}
 	
-	&-left .sidebar2,
-	&-right .sidebar2 {
+	&.content-left .sidebar2,
+	&.content-right .sidebar2 {
 		display: none;
 	}
 }
 
 .three-column {
-	&-left main,
-	&-right .sidebar1,
-	&-right .sidebar2,
-	&-center main,
-	&-center .sidebar1,
-	&-center .sidebar2 {
+	&.content-left main,
+	&.content-right .sidebar1,
+	&.content-right .sidebar2,
+	&.content-center main,
+	&.content-center .sidebar1,
+	&.content-center .sidebar2 {
 		float: left;
 	}
 	
-	&-right main,
-	&-left .sidebar1,
-	&-left .sidebar2 {
+	&.content-right main,
+	&.content-left .sidebar1,
+	&.content-left .sidebar2 {
 	float: right;
 	}
 	
-	&-center main,
-	&-center .sidebar1 {
+	&.content-center main,
+	&.content-center .sidebar1 {
 		position: relative;
 	}
 }
@@ -251,10 +251,8 @@ main,
 	
 	select {
 		@include hide;
+		@include prefix(appearance, none);
 		
-		-moz-appearance: none;
-		-webkit-appearance: none;
-		appearance: none;
 		background: $text-color;
 		border: 0;
 		border-radius: 0;

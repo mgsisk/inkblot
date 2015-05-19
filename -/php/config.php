@@ -26,6 +26,7 @@ function inkblot_customize_register($customize) {
 	}
 	
 	/* ----- Layout --------------------------------------------------------- */
+	
 	$customize->add_section('inkblot_layout', array(
 		'title' => __('Layout', 'inkblot'),
 		'priority' => 25
@@ -41,11 +42,11 @@ function inkblot_customize_register($customize) {
 		'priority' => 0,
 		'choices' => array(
 			'one-column' => __('No sidebars', 'inkblot'),
-			'two-column-left' => __('Content on left, 1 sidebar', 'inkblot'),
-			'two-column-right' => __('Content on right, 1 sidebar', 'inkblot'),
-			'three-column-left' => __('Content on left, 2 sidebars', 'inkblot'),
-			'three-column-right' => __('Content on right, 2 sidebars', 'inkblot'),
-			'three-column-center' => __('Content centered, 2 sidebars', 'inkblot'),
+			'two-column content-left' => __('Content on left, 1 sidebar', 'inkblot'),
+			'two-column content-right' => __('Content on right, 1 sidebar', 'inkblot'),
+			'three-column content-left' => __('Content on left, 2 sidebars', 'inkblot'),
+			'three-column content-right' => __('Content on right, 2 sidebars', 'inkblot'),
+			'three-column content-center' => __('Content centered, 2 sidebars', 'inkblot'),
 			'four-column content-far-left' => __('Content on far left, 3 sidebars', 'inkblot'),
 			'four-column content-left' => __('Content on left, 3 sidebars', 'inkblot'),
 			'four-column content-right' => __('Content on right, 3 sidebars', 'inkblot'),
