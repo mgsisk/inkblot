@@ -45,7 +45,16 @@
 		content:
 			controls: ['sidebar2_width']
 			callback: (to)->
-				return (-1 != to.indexOf('three'))
+				return (-1 != to.indexOf('three') or -1 != to.indexOf('four'))
+	, (settingId, object)->
+		inkblot_toggle_controls(settingId, object)
+	)
+	
+	$.each(
+		content:
+			controls: ['sidebar3_width']
+			callback: (to)->
+				return (-1 != to.indexOf('four'))
 	, (settingId, object)->
 		inkblot_toggle_controls(settingId, object)
 	)
@@ -56,6 +65,7 @@
 		$.each([
 			'primary-sidebar',
 			'secondary-sidebar',
+			'tertiary-sidebar',
 			'document-header',
 			'document-footer',
 			'site-header',

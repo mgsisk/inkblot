@@ -42,14 +42,24 @@
       content: {
         controls: ['sidebar2_width'],
         callback: function(to) {
-          return -1 !== to.indexOf('three');
+          return -1 !== to.indexOf('three') || -1 !== to.indexOf('four');
+        }
+      }
+    }, function(settingId, object) {
+      return inkblot_toggle_controls(settingId, object);
+    });
+    $.each({
+      content: {
+        controls: ['sidebar3_width'],
+        callback: function(to) {
+          return -1 !== to.indexOf('four');
         }
       }
     }, function(settingId, object) {
       return inkblot_toggle_controls(settingId, object);
     });
     return $(document).on('click', function(event) {
-      return $.each(['primary-sidebar', 'secondary-sidebar', 'document-header', 'document-footer', 'site-header', 'site-footer', 'page-header', 'page-footer', 'content-header', 'content-footer', 'comment-header', 'comment-footer', 'webcomic-header', 'webcomic-footer', 'webcomic-navigation-header', 'webcomic-navigation-footer'], function(index, value) {
+      return $.each(['primary-sidebar', 'secondary-sidebar', 'tertiary-sidebar', 'document-header', 'document-footer', 'site-header', 'site-footer', 'page-header', 'page-footer', 'content-header', 'content-footer', 'comment-header', 'comment-footer', 'webcomic-header', 'webcomic-footer', 'webcomic-navigation-header', 'webcomic-navigation-footer'], function(index, value) {
         return $('#customize-control-sidebar-' + value + '-columns').show();
       });
     });
