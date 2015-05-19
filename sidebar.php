@@ -29,7 +29,7 @@ if (is_page_template('template/full-width.php') and ! get_post_meta(get_the_ID()
 	
 <?php endif; ?>
 
-<?php if (false !== strpos(get_theme_mod('content', 'one-column'), 'three-column') or is_customize_preview()) : ?>
+<?php if (false !== strpos(get_theme_mod('content', 'one-column'), 'three-column') or false !== strpos(get_theme_mod('content', 'one-column'), 'four-column') or is_customize_preview()) : ?>
 	
 	<div class="sidebar2 widgets columns-<?php print inkblot_count_widgets('secondary-sidebar'); ?>">
 		<h1 class="screen-reader-text"><?php _e('Secondary Sidebar', 'inkblot'); ?></h1>
@@ -45,4 +45,22 @@ if (is_page_template('template/full-width.php') and ! get_post_meta(get_the_ID()
 		
 	</div><!-- .sidebar2 -->
 	
+<?php endif; ?>
+
+<?php if (false !== strpos(get_theme_mod('content', 'one-column'), 'four-column') or is_customize_preview()) : ?>
+
+	<div class="sidebar3 widgets columns-<?php print inkblot_count_widgets('tertiary-sidebar'); ?>">
+		<h1 class="screen-reader-text"><?php _e('Tertiary Sidebar', 'inkblot'); ?></h1>
+
+		<?php if ( ! dynamic_sidebar('tertiary-sidebar') and current_user_can('edit_theme_options')) : ?>
+
+			<aside class="widget">
+				<h1><?php _e('Tertiary Sidebar', 'inkblot'); ?></h1>
+				<p><?php printf(__('This is the tertiary sidebar. You can remove this message by adding widgets to it from the <a href="%1$s">Customizer</a>.', 'inkblot'), admin_url('customize.php')); ?></p>
+			</aside>
+
+		<?php endif; ?>	
+
+</div><!-- .sidebar3 -->
+
 <?php endif; ?>
