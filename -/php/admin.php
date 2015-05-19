@@ -48,7 +48,7 @@ function inkblot_admin_enqueue_scripts($page) {
 				get_theme_mod('page_font')
 			));
 			
-			wp_enqueue_style('inkblot-fonts', add_query_arg(array('family' => implode('|', $fonts)), "https://fonts.googleapis.com/css"));
+			wp_enqueue_style('inkblot-fonts', add_query_arg(array('family' => implode('|', $fonts)), 'https://fonts.googleapis.com/css'));
 		}
 	}
 }
