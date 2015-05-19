@@ -14,6 +14,18 @@ if ( ! function_exists('inkblot_after_switch_theme')) :
  * Activation hook.
  */
 function inkblot_after_switch_theme() {
+	$content = get_theme_mod('content');
+	
+	if ($content and in_array($content, array(
+		'two-column-left',
+		'two-column-right',
+		'three-column-left',
+		'three-column-right',
+		'three-column-center'
+	))) {
+		set_theme_mod('content', str_replace(array('-left', '-right', '-center'), array(' content-left', ' content-right', ' content-center'), $content));
+	}
+	
 	if (get_theme_mod('uninstall')) {
 		remove_theme_mods();
 	}
