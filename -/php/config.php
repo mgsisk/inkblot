@@ -35,7 +35,8 @@ function inkblot_customize_register($customize) {
 		'default' => 'one-column',
 		'transport' => 'postMessage'
 	)); $customize->add_control('content', array(
-		'type' => 'radio',
+		'type' => 'select',
+		'label' => __('Content and Sidebars', 'inkblot'),
 		'section' => 'inkblot_layout',
 		'priority' => 0,
 		'choices' => array(
@@ -44,7 +45,11 @@ function inkblot_customize_register($customize) {
 			'two-column-right' => __('Content on right (one sidebar)', 'inkblot'),
 			'three-column-left' => __('Content on left (two sidebars)', 'inkblot'),
 			'three-column-right' => __('Content on right (two sidebars)', 'inkblot'),
-			'three-column-center' => __('Content centered (two sidebars)', 'inkblot')
+			'three-column-center' => __('Content centered (two sidebars)', 'inkblot'),
+			'four-column content-far-left' => __('Content far left (three sidebars)', 'inkblot'),
+			'four-column content-left' => __('Content left (three sidebars)', 'inkblot'),
+			'four-column content-right' => __('Content right (three sidebars)', 'inkblot'),
+			'four-column content-far-right' => __('Content far right (three sidebars)', 'inkblot'),
 		)
 	));
 	
@@ -54,7 +59,7 @@ function inkblot_customize_register($customize) {
 	)); $customize->add_control('sidebar1_width', array(
 		'type' => 'number',
 		'label' => __('Primary Sidebar Width', 'inkblot'),
-		'description' => __('The percentage width of the primary Sidebar.', 'inkblot'),
+		'description' => __('The percentage width of the primary sidebar.', 'inkblot'),
 		'section' => 'inkblot_layout',
 		'priority' => 5,
 		'input_attrs' => array(
@@ -70,7 +75,23 @@ function inkblot_customize_register($customize) {
 	)); $customize->add_control('sidebar2_width', array(
 		'type' => 'number',
 		'label' => __('Secondary Sidebar Width', 'inkblot'),
-		'description' => __('The percentage width of the secondary Sidebar.', 'inkblot'),
+		'description' => __('The percentage width of the secondary sidebar.', 'inkblot'),
+		'section' => 'inkblot_layout',
+		'priority' => 10,
+		'input_attrs' => array(
+			'min' => 5,
+			'max' => 45,
+			'step' => 1
+		)
+	));
+	
+	$customize->add_setting('sidebar3_width', array(
+		'default' => 25,
+		'transport' => 'postMessage'
+	)); $customize->add_control('sidebar3_width', array(
+		'type' => 'number',
+		'label' => __('Tertiary Sidebar Width', 'inkblot'),
+		'description' => __('The percentage width of the tertiary sidebar.', 'inkblot'),
 		'section' => 'inkblot_layout',
 		'priority' => 10,
 		'input_attrs' => array(
@@ -714,7 +735,7 @@ function inkblot_customize_register($customize) {
 	$sidebars = require get_template_directory() . '/-/php/sidebars.php';
 	
 	foreach (array_keys($sidebars) as $sidebar) {
-		$customize->add_setting("sidebar-{$sidebar}-columns", array('default' => ! in_array($sidebar, array('primary-sidebar', 'secondary-sidebar'))));
+		$customize->add_setting("sidebar-{$sidebar}-columns", array('default' => ! in_array($sidebar, array('primary-sidebar', 'secondary-sidebar', 'tertiary-sidebar'))));
 		$customize->add_control("sidebar-{$sidebar}-columns", array(
 			'type' => 'checkbox',
 			'label' => __('Display widgets as separate columns', 'inkblot'),
