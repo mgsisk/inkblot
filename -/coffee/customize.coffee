@@ -331,7 +331,12 @@
 		content = $('wbr.inkblot').data('content')
 		sidebar1 = Number($('wbr.inkblot').data('sidebar1-width'))
 		sidebar2 = Number($('wbr.inkblot').data('sidebar2-width'))
+		sidebar3 = Number($('wbr.inkblot').data('sidebar3-width'))
 		
+		console.log(width)
+		
+		if -1 != content.indexOf('four')
+			width -= sidebar1 + sidebar2 + sidebar3 + 3
 		if -1 != content.indexOf('three')
 			width -= sidebar1 + sidebar2 + 2
 		else if -1 != content.indexOf('two')
@@ -361,8 +366,9 @@
 		$('main').css('width', width + '%')
 		$('.sidebar1').css('width', sidebar1 + '%')
 		$('.sidebar2').css('width', sidebar2 + '%')
+		$('.sidebar3').css('width', sidebar3 + '%')
 		
-		$('body').removeClass('one-column two-column-left two-column-right three-column-left three-column-right three-column-center').addClass(content)
+		$('body').removeClass('one-column two-column-left two-column-right three-column-left three-column-right three-column-center four-column content-far-left content-left content-right content-far-right').addClass(content)
 	
 	wp.customize('content', (value)->
 		value.bind((to)->
@@ -383,6 +389,14 @@
 	wp.customize('sidebar2_width', (value)->
 		value.bind((to)->
 			$('wbr.inkblot').data('sidebar2-width', to)
+			
+			inkblot_update_layout()
+		)
+	)
+	
+	wp.customize('sidebar3_width', (value)->
+		value.bind((to)->
+			$('wbr.inkblot').data('sidebar3-width', to)
 			
 			inkblot_update_layout()
 		)

@@ -250,11 +250,16 @@
       });
     });
     inkblot_update_layout = function() {
-      var content, sidebar1, sidebar2, width;
+      var content, sidebar1, sidebar2, sidebar3, width;
       width = 100;
       content = $('wbr.inkblot').data('content');
       sidebar1 = Number($('wbr.inkblot').data('sidebar1-width'));
       sidebar2 = Number($('wbr.inkblot').data('sidebar2-width'));
+      sidebar3 = Number($('wbr.inkblot').data('sidebar3-width'));
+      console.log(width);
+      if (-1 !== content.indexOf('four')) {
+        width -= sidebar1 + sidebar2 + sidebar3 + 3;
+      }
       if (-1 !== content.indexOf('three')) {
         width -= sidebar1 + sidebar2 + 2;
       } else if (-1 !== content.indexOf('two')) {
@@ -282,7 +287,8 @@
       $('main').css('width', width + '%');
       $('.sidebar1').css('width', sidebar1 + '%');
       $('.sidebar2').css('width', sidebar2 + '%');
-      return $('body').removeClass('one-column two-column-left two-column-right three-column-left three-column-right three-column-center').addClass(content);
+      $('.sidebar3').css('width', sidebar3 + '%');
+      return $('body').removeClass('one-column two-column-left two-column-right three-column-left three-column-right three-column-center four-column content-far-left content-left content-right content-far-right').addClass(content);
     };
     wp.customize('content', function(value) {
       return value.bind(function(to) {
@@ -299,6 +305,12 @@
     wp.customize('sidebar2_width', function(value) {
       return value.bind(function(to) {
         $('wbr.inkblot').data('sidebar2-width', to);
+        return inkblot_update_layout();
+      });
+    });
+    wp.customize('sidebar3_width', function(value) {
+      return value.bind(function(to) {
+        $('wbr.inkblot').data('sidebar3-width', to);
         return inkblot_update_layout();
       });
     });
