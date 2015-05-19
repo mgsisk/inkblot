@@ -31,13 +31,12 @@ function inkblot_admin_enqueue_scripts($page) {
 		wp_enqueue_script('inkblot-templates-script', get_template_directory_uri() . '/-/js/templates.js', array('jquery'));
 	} else if ('appearance_page_custom-header' === $page) {
 		if (get_theme_mod('font') or get_theme_mod('page_font')) {
-			$proto = is_ssl() ? 'https' : 'http';
 			$fonts = array_filter(array(
 				get_theme_mod('font'),
 				get_theme_mod('page_font')
 			));
 			
-			wp_enqueue_style('inkblot-fonts', add_query_arg(array('family' => implode('|', $fonts)), "{$proto}://fonts.googleapis.com/css"));
+			wp_enqueue_style('inkblot-fonts', add_query_arg(array('family' => implode('|', $fonts)), "https://fonts.googleapis.com/css"));
 		}
 	}
 }
@@ -50,12 +49,8 @@ if ( ! function_exists('inkblot_get_fonts')) :
  * @return object
  */
 function inkblot_get_fonts() {
-	$fonts = array();
+	$fonts = wp_remote_get('https://www.googleapis.com/webfonts/v1/webfonts?sort=alpha&key=AIzaSyDGeJxu3MGJVi5RiUw4rQ3Jt_Q4VtSOnyE');
 	
-	if ($fonts = wp_remote_get('https://www.googleapis.com/webfonts/v1/webfonts?sort=alpha&key=AIzaSyDGeJxu3MGJVi5RiUw4rQ3Jt_Q4VtSOnyE') and ! is_wp_error($fonts)) {
-		$fonts = json_decode($fonts['body']);
-	}
-	
-	return is_wp_error($fonts) ? false : $fonts;
+	return is_wp_error($fonts) ? false : json_decode($fonts['body']);
 }
 endif;

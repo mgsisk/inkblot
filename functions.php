@@ -37,7 +37,6 @@ add_filter('body_class', 'inkblot_body_class', 10, 2);
 add_filter('excerpt_more', 'inkblot_excerpt_more');
 add_filter('the_content_more_link', 'inkblot_the_content_more_link');
 
-
 if ( ! function_exists('inkblot_customize_preview_init')) :
 /**
  * Enqueue dynamic preview script.
@@ -123,7 +122,6 @@ function inkblot_wp_enqueue_scripts() {
 	wp_add_inline_style('inkblot-theme', require get_template_directory() . '/-/php/style.php');
 	
 	if (get_theme_mod('font') or get_theme_mod('header_font') or get_theme_mod('page_font') or get_theme_mod('title_font') or get_theme_mod('trim_font')) {
-		$proto = is_ssl() ? 'https' : 'http';
 		$fonts = array_filter(array(
 			get_theme_mod('font'),
 			get_theme_mod('header_font'),
@@ -132,7 +130,7 @@ function inkblot_wp_enqueue_scripts() {
 			get_theme_mod('trim_font')
 		));
 		
-		wp_enqueue_style('inkblot-font', add_query_arg(array('family' => implode('|', $fonts)), "{$proto}://fonts.googleapis.com/css"));
+		wp_enqueue_style('inkblot-font', add_query_arg(array('family' => implode('|', $fonts)), "https://fonts.googleapis.com/css"));
 	}
 	
 	wp_enqueue_script('inkblot-script', get_template_directory_uri() . '/-/js/script.js', array('jquery'), '', true);
@@ -155,14 +153,12 @@ function inkblot_after_setup_theme() {
 	add_editor_style(get_stylesheet_uri());
 	
 	if (get_theme_mod('font') or get_theme_mod('page_font') or get_theme_mod('title_font')) {
-		$proto = is_ssl() ? 'https' : 'http';
-		
 		foreach (array_filter(array(
 			get_theme_mod('font'),
 			get_theme_mod('page_font'),
 			get_theme_mod('title_font')
 		)) as $font) {
-			add_editor_style(add_query_arg(array('family' => $font), "{$proto}://fonts.googleapis.com/css"));
+			add_editor_style(add_query_arg(array('family' => $font), "https://fonts.googleapis.com/css"));
 		}
 	}
 	
