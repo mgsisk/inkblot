@@ -688,6 +688,13 @@ function inkblot_customize_register($customize) {
 	
 	/* ----- Header Image --------------------------------------------------- */
 	
+	$customize->add_setting('header_post_thumbnail', array('default' => false));
+	$customize->add_control('header_post_thumbnail', array(
+		'type' => 'checkbox',
+		'label' => __('Use featured image for single posts', 'inkblot'),
+		'section' => 'header_image'
+	));
+	
 	$customize->add_setting('header_width', array('default' => 960));
 	$customize->add_control('header_width', array(
 		'type' => 'number',

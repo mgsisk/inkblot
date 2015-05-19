@@ -27,7 +27,15 @@
 						
 						<?php if ($header = get_custom_header() and $header->url) : ?>
 							
-							<img src="<?php header_image(); ?>" width="<?php print $header->width; ?>" height="<?php print $header->height; ?>" alt="<?php print esc_attr(get_bloginfo('name')); ?>">
+							<?php if (get_theme_mod('header_post_thumbnail') and has_post_thumbnail()) : ?>
+								
+								<?php the_post_thumbnail(array(get_theme_mod('header_width'), get_theme_mod('header_height'))); ?>
+								
+							<?php else : ?>
+								
+								<img src="<?php header_image(); ?>" width="<?php print $header->width; ?>" height="<?php print $header->height; ?>" alt="<?php print esc_attr(get_bloginfo('name')); ?>">
+								
+							<?php endif; ?>
 							
 						<?php endif; ?>
 						
