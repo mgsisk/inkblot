@@ -51,6 +51,22 @@ $border: thin solid $anchor-color;
 	}
 }
 
+@mixin prefix($property, $value...) {
+	-moz-#{$property}: $value;
+	-ms-#{$property}: $value;
+	-o-#{$property}: $value;
+	-webkit-#{$property}: $value;
+	#{$property}: $value;
+}
+
+@mixin prefix-value($property, $value) {
+	#{$property}: -moz-#{$value};
+	#{$property}: -ms-#{$value};
+	#{$property}: -o-#{$value};
+	#{$property}: -webkit-#{$value};
+	#{$property}: $value;
+}
+
 @font-face {
 	font-family: 'awesome';
 	font-style: normal;
