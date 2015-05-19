@@ -16,11 +16,13 @@ get_header(); ?>
 		
 		<header class="page-header">
 			<h1>
+				
 				<?php
 					is_post_type_archive()
 					? post_type_archive_title(sprintf('<span class="screen-reader-text">%s </span>', __('Custom post type archive', 'inkblot')))
 					: _e('Archive', 'inkblot');
 				?>
+				
 			</h1>
 		</header><!-- .page-header -->
 		
