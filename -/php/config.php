@@ -41,15 +41,15 @@ function inkblot_customize_register($customize) {
 		'priority' => 0,
 		'choices' => array(
 			'one-column' => __('No sidebars', 'inkblot'),
-			'two-column-left' => __('Content on left (one sidebar)', 'inkblot'),
-			'two-column-right' => __('Content on right (one sidebar)', 'inkblot'),
-			'three-column-left' => __('Content on left (two sidebars)', 'inkblot'),
-			'three-column-right' => __('Content on right (two sidebars)', 'inkblot'),
-			'three-column-center' => __('Content centered (two sidebars)', 'inkblot'),
-			'four-column content-far-left' => __('Content far left (three sidebars)', 'inkblot'),
-			'four-column content-left' => __('Content left (three sidebars)', 'inkblot'),
-			'four-column content-right' => __('Content right (three sidebars)', 'inkblot'),
-			'four-column content-far-right' => __('Content far right (three sidebars)', 'inkblot'),
+			'two-column-left' => __('Content on left, 1 sidebar', 'inkblot'),
+			'two-column-right' => __('Content on right, 1 sidebar', 'inkblot'),
+			'three-column-left' => __('Content on left, 2 sidebars', 'inkblot'),
+			'three-column-right' => __('Content on right, 2 sidebars', 'inkblot'),
+			'three-column-center' => __('Content centered, 2 sidebars', 'inkblot'),
+			'four-column content-far-left' => __('Content on far left, 3 sidebars', 'inkblot'),
+			'four-column content-left' => __('Content on left, 3 sidebars', 'inkblot'),
+			'four-column content-right' => __('Content on right, 3 sidebars', 'inkblot'),
+			'four-column content-far-right' => __('Content on far right, 3 sidebars', 'inkblot'),
 		)
 	));
 	
