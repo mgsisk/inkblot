@@ -25,17 +25,13 @@
 						<h1><?php bloginfo('name'); ?></h1>
 						<p><?php bloginfo('description'); ?></p>
 						
-						<?php if ($header = get_custom_header() and $header->url) : ?>
+						<?php if (get_theme_mod('header_post_thumbnail') and has_post_thumbnail()) : ?>
 							
-							<?php if (get_theme_mod('header_post_thumbnail') and has_post_thumbnail()) : ?>
-								
-								<?php the_post_thumbnail(array(get_theme_mod('header_width'), get_theme_mod('header_height'))); ?>
-								
-							<?php else : ?>
-								
-								<img src="<?php header_image(); ?>" width="<?php print $header->width; ?>" height="<?php print $header->height; ?>" alt="<?php print esc_attr(get_bloginfo('name')); ?>">
-								
-							<?php endif; ?>
+							<?php the_post_thumbnail(array(get_theme_mod('header_width'), get_theme_mod('header_height'))); ?>
+							
+						<?php elseif ($header = get_custom_header() and $header->url) : ?>
+							
+							<img src="<?php header_image(); ?>" width="<?php print $header->width; ?>" height="<?php print $header->height; ?>" alt="<?php print esc_attr(get_bloginfo('name')); ?>">
 							
 						<?php endif; ?>
 						
