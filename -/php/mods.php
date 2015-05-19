@@ -11,6 +11,7 @@ return array(
 	'content' => 'one-column',
 	'sidebar1_width' => 25,
 	'sidebar2_width' => 25,
+	'sidebar3_width' => 25,
 	'min_width' => 0,
 	'max_width' => 0,
 	'responsive_width' => 0,
