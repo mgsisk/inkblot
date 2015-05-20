@@ -58,29 +58,15 @@
     }, function(settingId, object) {
       return inkblot_toggle_controls(settingId, object);
     });
-    $(document).on('change', '#customize-control-layout_scheme select', function(event) {
-      return $.each($('wbr.inkblot-scheme-layout.' + $(this).val()).data(), function(index, value) {
-        index = index.replace(/([A-Z])/g, function(string) {
-          return '_' + string.toLowerCase();
-        });
-        return wp.customize(index).set(value);
-      });
-    });
-    $(document).on('change', '#customize-control-font_scheme select', function(event) {
-      return $.each($('wbr.inkblot-scheme-font.' + $(this).val()).data(), function(index, value) {
-        index = index.replace(/([A-Z])/g, function(string) {
-          return '_' + string.toLowerCase();
-        });
-        return wp.customize(index).set(value);
-      });
-    });
-    $(document).on('change', '#customize-control-color_scheme select', function(event) {
-      return $.each($('wbr.inkblot-scheme-color.' + $(this).val()).data(), function(index, value) {
+    $(document).on('change', '#customize-control-scheme select', function(event) {
+      return $.each($('wbr.inkblot-scheme.' + $(this).val()).data(), function(index, value) {
         index = index.replace(/([A-Z])/g, function(string) {
           return '_' + string.toLowerCase();
         });
         wp.customize(index).set(value);
-        return wp.customize.control(index).container.find('.color-picker-hex').data('data-default-color', value).wpColorPicker('defaultColor', value);
+        if (-1 < index.indexOf('color')) {
+          return wp.customize.control(index).container.find('.color-picker-hex').data('data-default-color', value).wpColorPicker('defaultColor', value);
+        }
       });
     });
     return $(document).on('click', function(event) {

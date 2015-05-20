@@ -60,46 +60,52 @@
 	)
 	
 	##
-	# Update layout on scheme change.
+	# Update options on scheme change.
 	##
-	$(document).on('change', '#customize-control-layout_scheme select', (event)->
-		$.each($('wbr.inkblot-scheme-layout.' + $(this).val()).data(), (index, value)->
+	$(document).on('change', '#customize-control-scheme select', (event)->
+		$.each($('wbr.inkblot-scheme.' + $(this).val()).data(), (index, value)->
 			index = index.replace(/([A-Z])/g, (string)->
 				return '_' + string.toLowerCase()
 			)
 			
 			wp.customize(index).set(value)
+			
+			if -1 < index.indexOf('color')
+				wp.customize.control(index).container.find('.color-picker-hex')
+					.data('data-default-color', value)
+					.wpColorPicker('defaultColor', value)
 		)
 	)
 	
-	##
-	# Update fonts on scheme change.
-	##
-	$(document).on('change', '#customize-control-font_scheme select', (event)->
-		$.each($('wbr.inkblot-scheme-font.' + $(this).val()).data(), (index, value)->
-			index = index.replace(/([A-Z])/g, (string)->
-				return '_' + string.toLowerCase()
-			)
-			
-			wp.customize(index).set(value)
-		)
-	)
-	
-	##
-	# Update colors on scheme change.
-	##
-	$(document).on('change', '#customize-control-color_scheme select', (event)->
-		$.each($('wbr.inkblot-scheme-color.' + $(this).val()).data(), (index, value)->
-			index = index.replace(/([A-Z])/g, (string)->
-				return '_' + string.toLowerCase()
-			)
-			
-			wp.customize(index).set(value)
-			wp.customize.control(index).container.find('.color-picker-hex')
-				.data('data-default-color', value)
-				.wpColorPicker('defaultColor', value)
-		)
-	)
+	# 
+	# ##
+	# # Update fonts on scheme change.
+	# ##
+	# $(document).on('change', '#customize-control-font_scheme select', (event)->
+	# 	$.each($('wbr.inkblot-scheme-font.' + $(this).val()).data(), (index, value)->
+	# 		index = index.replace(/([A-Z])/g, (string)->
+	# 			return '_' + string.toLowerCase()
+	# 		)
+	# 		
+	# 		wp.customize(index).set(value)
+	# 	)
+	# )
+	# 
+	# ##
+	# # Update colors on scheme change.
+	# ##
+	# $(document).on('change', '#customize-control-color_scheme select', (event)->
+	# 	$.each($('wbr.inkblot-scheme-color.' + $(this).val()).data(), (index, value)->
+	# 		index = index.replace(/([A-Z])/g, (string)->
+	# 			return '_' + string.toLowerCase()
+	# 		)
+	# 		
+	# 		wp.customize(index).set(value)
+	# 		wp.customize.control(index).container.find('.color-picker-hex')
+	# 			.data('data-default-color', value)
+	# 			.wpColorPicker('defaultColor', value)
+	# 	)
+	# )
 	
 	# @todo remove this ugly kludge
 	
