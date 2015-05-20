@@ -1326,7 +1326,7 @@ function inkblot_template_options($page) {
 			<input type="hidden" name="inkblot_webcomic_order" value="<?php print get_post_meta($page->ID, 'inkblot_webcomic_order', true); ?>">
 			<input type="hidden" name="inkblot_webcomic_comments" value="<?php print get_post_meta($page->ID, 'inkblot_webcomic_comments', true); ?>">
 			<input type="hidden" name="inkblot_webcomic_term_image" value="<?php print get_post_meta($page->ID, 'inkblot_webcomic_term_image', true); ?>">
-
+			
 		<?php endif; ?>
 	</div>
 	<?php
