@@ -20,11 +20,9 @@ require_once get_template_directory() . '/-/php/walker-page-dropdown.php';
 
 if (is_admin() or is_customize_preview()) {
 	require_once get_template_directory() . '/-/php/admin.php';
-	require_once get_template_directory() . '/-/php/media.php';
-	require_once get_template_directory() . '/-/php/pages.php';
-	require_once get_template_directory() . '/-/php/config.php';
 }
 
+add_action('after_switch_theme', 'inkblot_after_switch_theme');
 add_action('customize_preview_init', 'inkblot_customize_preview_init');
 add_action('wp_head', 'inkblot_wp_head', 0);
 add_action('wp_loaded', 'inkblot_wp_loaded', 0);
@@ -36,6 +34,29 @@ add_action('wp_footer', 'inkblot_wp_footer');
 add_filter('body_class', 'inkblot_body_class', 10, 2);
 add_filter('excerpt_more', 'inkblot_excerpt_more');
 add_filter('the_content_more_link', 'inkblot_the_content_more_link');
+
+if ( ! function_exists('inkblot_after_switch_theme')) :
+/**
+ * Activation hook.
+ */
+function inkblot_after_switch_theme() {
+	$content = get_theme_mod('content');
+	
+	if ($content and in_array($content, array(
+		'two-column-left',
+		'two-column-right',
+		'three-column-left',
+		'three-column-right',
+		'three-column-center'
+	))) {
+		set_theme_mod('content', str_replace(array('-left', '-right', '-center'), array(' content-left', ' content-right', ' content-center'), $content));
+	}
+	
+	if (get_theme_mod('uninstall')) {
+		remove_theme_mods();
+	}
+}
+endif;
 
 if ( ! function_exists('inkblot_customize_preview_init')) :
 /**
