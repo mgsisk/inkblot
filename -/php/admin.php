@@ -5,8 +5,6 @@
  * @package Inkblot
  */
 
-
-
 add_action('add_meta_boxes', 'inkblot_add_meta_boxes');
 add_action('wp_insert_post', 'inkblot_insert_page', 10, 2);
 add_action('customize_register', 'inkblot_customize_register');
