@@ -85,6 +85,24 @@ function inkblot_customize_register($customize) {
 		}
 	}
 	
+	/* ----- Schemes -------------------------------------------------------- */
+	
+	$customize->add_section('inkblot_scheme', array(
+		'title' => __('Scheme', 'inkblot'),
+		'description' => __('Collections of predefined theme options.', 'inkblot'),
+		'priority' => 20
+	));
+	
+	$customize->add_setting('scheme', array(
+		'default' => '',
+		'transport' => 'postMessage'
+	)); $customize->add_control('scheme', array(
+		'type' => 'select',
+		'section' => 'inkblot_scheme',
+		'priority' => 0,
+		'choices' => inkblot_get_scheme_choices()
+	));
+	
 	/* ----- Layout --------------------------------------------------------- */
 	
 	$customize->add_section('inkblot_layout', array(
@@ -92,25 +110,11 @@ function inkblot_customize_register($customize) {
 		'priority' => 25
 	));
 	
-	$customize->add_setting('layout_scheme', array(
-		'default' => '',
-		'transport' => 'postMessage'
-	)); $customize->add_control('layout_scheme', array(
-		'type' => 'select',
-		'label' => __('Scheme', 'inkblot'),
-		'description' => __('Collections of predefined layout options.', 'inkblot'),
-		'section' => 'inkblot_layout',
-		'priority' => 0,
-		'choices' => inkblot_get_scheme_choices()
-	));
-	
 	$customize->add_setting('content', array(
 		'default' => 'one-column',
 		'transport' => 'postMessage'
 	)); $customize->add_control('content', array(
 		'type' => 'select',
-		'label' => __('Content and Sidebars', 'inkblot'),
-		'description' => __('Defines the the number of sidebars and where page content is located.', 'inkblot'),
 		'section' => 'inkblot_layout',
 		'priority' => 5,
 		'choices' => array(
@@ -242,18 +246,6 @@ function inkblot_customize_register($customize) {
 		'priority' => 30
 	));
 	
-	$customize->add_setting('font_scheme', array(
-		'default' => '',
-		'transport' => 'postMessage'
-	)); $customize->add_control('font_scheme', array(
-		'type' => 'select',
-		'label' => __('Scheme', 'inkblot'),
-		'description' => __('Collections of predefined font options.', 'inkblot'),
-		'section' => 'inkblot_fonts',
-		'priority' => 0,
-		'choices' => inkblot_get_scheme_choices()
-	));
-	
 	$customize->add_setting('font_size', array(
 		'default' => 100,
 		'transport' => 'postMessage'
@@ -337,23 +329,6 @@ function inkblot_customize_register($customize) {
 	$customize->add_panel('inkblot_colors', array(
 		'title' => __('Colors', 'inkblot'),
 		'priority' => 35
-	));
-	
-	$customize->add_section('inkblot_color_scheme', array(
-		'title' => __('Scheme', 'inkblot'),
-		'description' => __('Collections of predefined color options.', 'inkblot'),
-		'panel' => 'inkblot_colors',
-		'priority' => 0
-	));
-	
-	$customize->add_setting('color_scheme', array(
-		'default' => '',
-		'transport' => 'postMessage'
-	)); $customize->add_control('color_scheme', array(
-		'type' => 'select',
-		'section' => 'inkblot_color_scheme',
-		'priority' => 0,
-		'choices' => inkblot_get_scheme_choices()
 	));
 	
 	$customize->add_section('inkblot_background_colors', array(
@@ -1132,19 +1107,17 @@ if ( ! function_exists('inkblot_customize_controls_print_footer_scripts')) :
 function inkblot_customize_controls_print_footer_scripts() {
 	$themes = require get_template_directory() . '/-/php/schemes.php';
 	
-	foreach ($themes as $name => $meta) :
-		foreach ($meta['data'] as $type => $data) : ?>
+	foreach ($themes as $id => $meta) : ?>
+		
+		<wbr class="inkblot-scheme <?php print $id; ?>"
+			<?php foreach ($meta['data'] as $key => $value) : ?>
+				
+				data-<?php print str_replace('_', '-', $key); ?>="<?php print $value; ?>"
+				
+			<?php endforeach; ?>
+		>
 			
-			<wbr class="inkblot-scheme-<?php print $type; ?> <?php print $name; ?>"
-				<?php foreach ($data as $key => $value) : ?>
-					
-					data-<?php print str_replace('_', '-', $key); ?>="<?php print $value; ?>"
-					
-				<?php endforeach; ?>
-			>
-			
-		<?php endforeach;
-	endforeach;
+	<?php endforeach;
 }
 endif;
 
