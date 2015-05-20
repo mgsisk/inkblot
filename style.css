@@ -679,9 +679,10 @@ main,
 
 .two-column.content-left main, .two-column.content-right .sidebar1 {
   float: left; }
-.two-column.content--right main, .two-column.content-left .sidebar1 {
+.two-column.content-right main, .two-column.content-left .sidebar1 {
   float: right; }
-.two-column.content-left .sidebar2, .two-column.content-right .sidebar2 {
+.two-column .sidebar2,
+.two-column .sidebar3 {
   display: none; }
 
 .three-column.content-left main, .three-column.content-right .sidebar1, .three-column.content-right .sidebar2, .three-column.content-center main, .three-column.content-center .sidebar1, .three-column.content-center .sidebar2 {
@@ -690,6 +691,8 @@ main,
   float: right; }
 .three-column.content-center main, .three-column.content-center .sidebar1 {
   position: relative; }
+.three-column .sidebar3 {
+  display: none; }
 
 .four-column .content {
   display: -moz-flex;

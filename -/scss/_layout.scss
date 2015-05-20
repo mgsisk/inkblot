@@ -54,13 +54,13 @@ main,
 		float: left;
 	}
 	
-	&.content--right main,
+	&.content-right main,
 	&.content-left .sidebar1 {
 		float: right;
 	}
 	
-	&.content-left .sidebar2,
-	&.content-right .sidebar2 {
+	.sidebar2,
+	.sidebar3 {
 		display: none;
 	}
 }
@@ -78,12 +78,16 @@ main,
 	&.content-right main,
 	&.content-left .sidebar1,
 	&.content-left .sidebar2 {
-	float: right;
+		float: right;
 	}
 	
 	&.content-center main,
 	&.content-center .sidebar1 {
 		position: relative;
+	}
+	
+	.sidebar3 {
+		display: none;
 	}
 }
 
