@@ -11,6 +11,7 @@ add_action('customize_register', 'inkblot_customize_register');
 add_action('delete_attachment', 'inkblot_delete_attachment', 10, 1);
 add_action('admin_enqueue_scripts', 'inkblot_admin_enqueue_scripts', 10, 1);
 add_action('customize_controls_enqueue_scripts', 'inkblot_customize_controls_enqueue_scripts');
+add_action('customize_controls_print_footer_scripts', 'inkblot_customize_controls_print_footer_scripts');
 
 add_filter('display_media_states', 'inkblot_display_media_states', 10, 1);
 
@@ -91,14 +92,27 @@ function inkblot_customize_register($customize) {
 		'priority' => 25
 	));
 	
+	$customize->add_setting('layout_theme', array(
+		'default' => '',
+		'transport' => 'postMessage'
+	)); $customize->add_control('layout_theme', array(
+		'type' => 'select',
+		'label' => __('Theme', 'inkblot'),
+		'description' => __('Collections of predefined layout options.', 'inkblot'),
+		'section' => 'inkblot_layout',
+		'priority' => 0,
+		'choices' => inkblot_get_theme_choices()
+	));
+	
 	$customize->add_setting('content', array(
 		'default' => 'one-column',
 		'transport' => 'postMessage'
 	)); $customize->add_control('content', array(
 		'type' => 'select',
 		'label' => __('Content and Sidebars', 'inkblot'),
+		'description' => __('Defines the the number of sidebars and where page content is located.', 'inkblot'),
 		'section' => 'inkblot_layout',
-		'priority' => 0,
+		'priority' => 5,
 		'choices' => array(
 			'one-column' => __('No sidebars', 'inkblot'),
 			'two-column content-left' => __('Content on left, 1 sidebar', 'inkblot'),
@@ -121,7 +135,7 @@ function inkblot_customize_register($customize) {
 		'label' => __('Primary Sidebar Width', 'inkblot'),
 		'description' => __('The percentage width of the primary sidebar.', 'inkblot'),
 		'section' => 'inkblot_layout',
-		'priority' => 5,
+		'priority' => 10,
 		'input_attrs' => array(
 			'min' => 5,
 			'max' => 45,
@@ -137,7 +151,7 @@ function inkblot_customize_register($customize) {
 		'label' => __('Secondary Sidebar Width', 'inkblot'),
 		'description' => __('The percentage width of the secondary sidebar.', 'inkblot'),
 		'section' => 'inkblot_layout',
-		'priority' => 10,
+		'priority' => 15,
 		'input_attrs' => array(
 			'min' => 5,
 			'max' => 45,
@@ -153,7 +167,7 @@ function inkblot_customize_register($customize) {
 		'label' => __('Tertiary Sidebar Width', 'inkblot'),
 		'description' => __('The percentage width of the tertiary sidebar.', 'inkblot'),
 		'section' => 'inkblot_layout',
-		'priority' => 10,
+		'priority' => 20,
 		'input_attrs' => array(
 			'min' => 5,
 			'max' => 45,
@@ -169,7 +183,7 @@ function inkblot_customize_register($customize) {
 		'label' => __('Minimum Width', 'inkblot'),
 		'description' => __('The minimum pixel width the page will resize to.', 'inkblot'),
 		'section' => 'inkblot_layout',
-		'priority' => 15,
+		'priority' => 25,
 		'input_attrs' => array(
 			'min' => 0,
 			'step' => 10
@@ -184,7 +198,7 @@ function inkblot_customize_register($customize) {
 		'label' => __('Maximum Width', 'inkblot'),
 		'description' => __('The maximum pixel width the page will resize to.', 'inkblot'),
 		'section' => 'inkblot_layout',
-		'priority' => 20,
+		'priority' => 30,
 		'input_attrs' => array(
 			'min' => 0,
 			'step' => 10
@@ -199,7 +213,7 @@ function inkblot_customize_register($customize) {
 		'label' => __('Content Width', 'inkblot'),
 		'description' => __('Defines the maximum pixel width for post content. <a href="//codex.wordpress.org/Content_Width">Learn more at the WordPress Codex.</a>', 'inkblot'),
 		'section' => 'inkblot_layout',
-		'priority' => 25,
+		'priority' => 35,
 		'input_attr' => array(
 			'min' => 0,
 			'step' => 10
@@ -212,7 +226,7 @@ function inkblot_customize_register($customize) {
 		'description' => __('Responsive features will only be used when your page is less than or equal to this pixel width.', 'inkblot'),
 		'label' => __('Responsive Width', 'inkblot'),
 		'section' => 'inkblot_layout',
-		'priority' => 30,
+		'priority' => 40,
 		'input_attrs' => array(
 			'min' => 0,
 			'step' => 10
@@ -228,14 +242,26 @@ function inkblot_customize_register($customize) {
 		'priority' => 30
 	));
 	
+	$customize->add_setting('font_theme', array(
+		'default' => '',
+		'transport' => 'postMessage'
+	)); $customize->add_control('font_theme', array(
+		'type' => 'select',
+		'label' => __('Theme', 'inkblot'),
+		'description' => __('Collections of predefined font options.', 'inkblot'),
+		'section' => 'inkblot_fonts',
+		'priority' => 0,
+		'choices' => inkblot_get_theme_choices()
+	));
+	
 	$customize->add_setting('font_size', array(
 		'default' => 100,
 		'transport' => 'postMessage'
 	)); $customize->add_control('font_size', array(
 		'type' => 'range',
-		'label' => __('Base Size', 'inkblot'),
+		'label' => __('Size', 'inkblot'),
 		'section' => 'inkblot_fonts',
-		'priority' => 0,
+		'priority' => 5,
 		'input_attrs' => array(
 			'min' => 50,
 			'max' => 200,
@@ -257,7 +283,7 @@ function inkblot_customize_register($customize) {
 			'type' => 'select',
 			'label' => __('Site', 'inkblot'),
 			'section' => 'inkblot_fonts',
-			'priority' => 5,
+			'priority' => 10,
 			'choices' => $fonts
 		));
 		
@@ -268,7 +294,7 @@ function inkblot_customize_register($customize) {
 			'type' => 'select',
 			'label' => __('Header', 'inkblot'),
 			'section' => 'inkblot_fonts',
-			'priority' => 10,
+			'priority' => 15,
 			'choices' => $fonts
 		));
 		
@@ -279,7 +305,7 @@ function inkblot_customize_register($customize) {
 			'type' => 'select',
 			'label' => __('Page', 'inkblot'),
 			'section' => 'inkblot_fonts',
-			'priority' => 15,
+			'priority' => 20,
 			'choices' => $fonts
 		));
 		
@@ -290,7 +316,7 @@ function inkblot_customize_register($customize) {
 			'type' => 'select',
 			'label' => __('Titles', 'inkblot'),
 			'section' => 'inkblot_fonts',
-			'priority' => 20,
+			'priority' => 25,
 			'choices' => $fonts
 		));
 		
@@ -301,7 +327,7 @@ function inkblot_customize_register($customize) {
 			'type' => 'select',
 			'label' => __('Trim', 'inkblot'),
 			'section' => 'inkblot_fonts',
-			'priority' => 25,
+			'priority' => 30,
 			'choices' => $fonts
 		));
 	}
@@ -311,6 +337,23 @@ function inkblot_customize_register($customize) {
 	$customize->add_panel('inkblot_colors', array(
 		'title' => __('Colors', 'inkblot'),
 		'priority' => 35
+	));
+	
+	$customize->add_section('inkblot_theme_colors', array(
+		'title' => __('Theme', 'inkblot'),
+		'description' => __('Collections of predefined color options.', 'inkblot'),
+		'panel' => 'inkblot_colors',
+		'priority' => 0
+	));
+	
+	$customize->add_setting('color_theme', array(
+		'default' => '',
+		'transport' => 'postMessage'
+	)); $customize->add_control('color_theme', array(
+		'type' => 'select',
+		'section' => 'inkblot_theme_colors',
+		'priority' => 0,
+		'choices' => inkblot_get_theme_choices()
 	));
 	
 	$customize->add_section('inkblot_background_colors', array(
@@ -1079,6 +1122,32 @@ function inkblot_customize_controls_enqueue_scripts() {
 }
 endif;
 
+if ( ! function_exists('inkblot_customize_controls_print_footer_scripts')) :
+/**
+ * Add customization elements to the bottom of the customizer.
+ *
+ * These elements have a number of data attributes that are used for various
+ * dynamic customizer controls.
+ */
+function inkblot_customize_controls_print_footer_scripts() {
+	$themes = require get_template_directory() . '/-/php/themes.php';
+	
+	foreach ($themes as $name => $meta) :
+		foreach ($meta['data'] as $type => $data) : ?>
+			
+			<wbr class="inkblot-theme-<?php print $type; ?> <?php print $name; ?>"
+				<?php foreach ($data as $key => $value) : ?>
+					
+					data-<?php print str_replace('_', '-', $key); ?>="<?php print $value; ?>"
+					
+				<?php endforeach; ?>
+			>
+			
+		<?php endforeach;
+	endforeach;
+}
+endif;
+
 if ( ! function_exists('inkblot_display_media_states')) :
 /**
  * Display relevant status for theme media.
@@ -1362,5 +1431,23 @@ function inkblot_get_fonts() {
 	$fonts = wp_remote_get('https://www.googleapis.com/webfonts/v1/webfonts?sort=alpha&key=AIzaSyDGeJxu3MGJVi5RiUw4rQ3Jt_Q4VtSOnyE');
 	
 	return is_wp_error($fonts) ? false : json_decode($fonts['body']);
+}
+endif;
+
+if ( ! function_exists('inkblot_get_theme_choices')) :
+/**
+ * Return Inkblot themes.
+ * 
+ * @return array
+ */
+function inkblot_get_theme_choices() {
+	$themes = require get_template_directory() . '/-/php/themes.php';
+	$options = array();
+	
+	foreach ($themes as $key => $meta) {
+		$options[$key] = $meta['name'];
+	}
+	
+	return $options;
 }
 endif;
