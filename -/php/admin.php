@@ -92,16 +92,16 @@ function inkblot_customize_register($customize) {
 		'priority' => 25
 	));
 	
-	$customize->add_setting('layout_theme', array(
+	$customize->add_setting('layout_scheme', array(
 		'default' => '',
 		'transport' => 'postMessage'
-	)); $customize->add_control('layout_theme', array(
+	)); $customize->add_control('layout_scheme', array(
 		'type' => 'select',
-		'label' => __('Theme', 'inkblot'),
+		'label' => __('Scheme', 'inkblot'),
 		'description' => __('Collections of predefined layout options.', 'inkblot'),
 		'section' => 'inkblot_layout',
 		'priority' => 0,
-		'choices' => inkblot_get_theme_choices()
+		'choices' => inkblot_get_scheme_choices()
 	));
 	
 	$customize->add_setting('content', array(
@@ -242,16 +242,16 @@ function inkblot_customize_register($customize) {
 		'priority' => 30
 	));
 	
-	$customize->add_setting('font_theme', array(
+	$customize->add_setting('font_scheme', array(
 		'default' => '',
 		'transport' => 'postMessage'
-	)); $customize->add_control('font_theme', array(
+	)); $customize->add_control('font_scheme', array(
 		'type' => 'select',
-		'label' => __('Theme', 'inkblot'),
+		'label' => __('Scheme', 'inkblot'),
 		'description' => __('Collections of predefined font options.', 'inkblot'),
 		'section' => 'inkblot_fonts',
 		'priority' => 0,
-		'choices' => inkblot_get_theme_choices()
+		'choices' => inkblot_get_scheme_choices()
 	));
 	
 	$customize->add_setting('font_size', array(
@@ -339,21 +339,21 @@ function inkblot_customize_register($customize) {
 		'priority' => 35
 	));
 	
-	$customize->add_section('inkblot_theme_colors', array(
-		'title' => __('Theme', 'inkblot'),
+	$customize->add_section('inkblot_color_scheme', array(
+		'title' => __('Scheme', 'inkblot'),
 		'description' => __('Collections of predefined color options.', 'inkblot'),
 		'panel' => 'inkblot_colors',
 		'priority' => 0
 	));
 	
-	$customize->add_setting('color_theme', array(
+	$customize->add_setting('color_scheme', array(
 		'default' => '',
 		'transport' => 'postMessage'
-	)); $customize->add_control('color_theme', array(
+	)); $customize->add_control('color_scheme', array(
 		'type' => 'select',
-		'section' => 'inkblot_theme_colors',
+		'section' => 'inkblot_color_scheme',
 		'priority' => 0,
-		'choices' => inkblot_get_theme_choices()
+		'choices' => inkblot_get_scheme_choices()
 	));
 	
 	$customize->add_section('inkblot_background_colors', array(
@@ -1130,12 +1130,12 @@ if ( ! function_exists('inkblot_customize_controls_print_footer_scripts')) :
  * dynamic customizer controls.
  */
 function inkblot_customize_controls_print_footer_scripts() {
-	$themes = require get_template_directory() . '/-/php/themes.php';
+	$themes = require get_template_directory() . '/-/php/schemes.php';
 	
 	foreach ($themes as $name => $meta) :
 		foreach ($meta['data'] as $type => $data) : ?>
 			
-			<wbr class="inkblot-theme-<?php print $type; ?> <?php print $name; ?>"
+			<wbr class="inkblot-scheme-<?php print $type; ?> <?php print $name; ?>"
 				<?php foreach ($data as $key => $value) : ?>
 					
 					data-<?php print str_replace('_', '-', $key); ?>="<?php print $value; ?>"
@@ -1434,14 +1434,14 @@ function inkblot_get_fonts() {
 }
 endif;
 
-if ( ! function_exists('inkblot_get_theme_choices')) :
+if ( ! function_exists('inkblot_get_scheme_choices')) :
 /**
  * Return Inkblot themes.
  * 
  * @return array
  */
-function inkblot_get_theme_choices() {
-	$themes = require get_template_directory() . '/-/php/themes.php';
+function inkblot_get_scheme_choices() {
+	$themes = require get_template_directory() . '/-/php/schemes.php';
 	$options = array();
 	
 	foreach ($themes as $key => $meta) {

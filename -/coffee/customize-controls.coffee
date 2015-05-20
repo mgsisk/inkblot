@@ -60,10 +60,10 @@
 	)
 	
 	##
-	# Update layout on theme change.
+	# Update layout on scheme change.
 	##
-	$(document).on('change', '#customize-control-layout_theme select', (event)->
-		$.each($('wbr.inkblot-theme-layout.' + $(this).val()).data(), (index, value)->
+	$(document).on('change', '#customize-control-layout_scheme select', (event)->
+		$.each($('wbr.inkblot-scheme-layout.' + $(this).val()).data(), (index, value)->
 			index = index.replace(/([A-Z])/g, (string)->
 				return '_' + string.toLowerCase()
 			)
@@ -73,10 +73,10 @@
 	)
 	
 	##
-	# Update fonts on theme change.
+	# Update fonts on scheme change.
 	##
-	$(document).on('change', '#customize-control-font_theme select', (event)->
-		$.each($('wbr.inkblot-theme-font.' + $(this).val()).data(), (index, value)->
+	$(document).on('change', '#customize-control-font_scheme select', (event)->
+		$.each($('wbr.inkblot-scheme-font.' + $(this).val()).data(), (index, value)->
 			index = index.replace(/([A-Z])/g, (string)->
 				return '_' + string.toLowerCase()
 			)
@@ -86,10 +86,10 @@
 	)
 	
 	##
-	# Update colors on theme change.
+	# Update colors on scheme change.
 	##
-	$(document).on('change', '#customize-control-color_theme select', (event)->
-		$.each($('wbr.inkblot-theme-color.' + $(this).val()).data(), (index, value)->
+	$(document).on('change', '#customize-control-color_scheme select', (event)->
+		$.each($('wbr.inkblot-scheme-color.' + $(this).val()).data(), (index, value)->
 			index = index.replace(/([A-Z])/g, (string)->
 				return '_' + string.toLowerCase()
 			)
