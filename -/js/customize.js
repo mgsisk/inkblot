@@ -256,7 +256,6 @@
       sidebar1 = Number($('wbr.inkblot').data('sidebar1-width'));
       sidebar2 = Number($('wbr.inkblot').data('sidebar2-width'));
       sidebar3 = Number($('wbr.inkblot').data('sidebar3-width'));
-      console.log(width);
       if (-1 !== content.indexOf('four')) {
         width -= sidebar1 + sidebar2 + sidebar3 + 3;
       }
