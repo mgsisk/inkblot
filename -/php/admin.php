@@ -52,6 +52,7 @@ function inkblot_insert_page($id, $post) {
 			'inkblot_webcomic_comments',
 			'inkblot_webcomic_term_order',
 			'inkblot_webcomic_term_image',
+			'inkblot_webcomic_term_target',
 			'inkblot_webcomic_transcripts'
 		);
 		
@@ -1125,7 +1126,9 @@ function inkblot_template_options($page) {
 	$webcomic_comments = get_post_meta($page->ID, 'inkblot_webcomic_comments', true);
 	$webcomic_term_image = get_post_meta($page->ID, 'inkblot_webcomic_term_image', true);
 	$webcomic_term_order = get_post_meta($page->ID, 'inkblot_webcomic_term_order', true);
+	$webcomic_term_target = get_post_meta($page->ID, 'inkblot_webcomic_term_target', true);
 	$webcomic_transcripts = get_post_meta($page->ID, 'inkblot_webcomic_transcripts', true); ?>
+	
 	<div data-inkblot-template-options="none">
 		<p><strong><?php _e('Select one of the following templates from the Page Attributes meta box to modify template-specific options:', 'inkblot'); ?></strong></p>
 		<ul>
@@ -1186,7 +1189,7 @@ function inkblot_template_options($page) {
 			<p>
 				
 				<?php
-					printf(__('<label for="inkblot_webcomic_archive_group">Show %1$s</label> <label for="inkblot_webcomic_archive_term_image">links as %2$s</label> <label for="inkblot_webcomic_archive_term_order">starting with the %3$s term</label>', 'inkblot'),
+					printf(__('<label for="inkblot_webcomic_archive_group">Show %1$s</label> <label for="inkblot_webcomic_archive_term_image">links as %2$s</label> <label for="inkblot_webcomic_archive_term_target">pointing to %3$s</label> <label for="inkblot_webcomic_archive_term_order">starting with the %4$s term</label>', 'inkblot'),
 						sprintf('
 							<select id="inkblot_webcomic_archive_group" name="inkblot_webcomic_group">
 								<option value="">%s</option>
@@ -1206,6 +1209,22 @@ function inkblot_template_options($page) {
 							</select>',
 							__('text', 'inkblot'),
 							$select_term_img
+						),
+						sprintf('
+							<select id="inkblot_webcomic_archive_term_target" name="inkblot_webcomic_term_target">
+								<option value="archive"%s>%s</option>
+								<option value="first"%s>%s</option>
+								<option value="last"%s>%s</option>
+								<option value="random"%s>%s</option>
+							</select>',
+							selected('archive', $webcomic_term_target, false),
+							__('an archive page', 'inkblot'),
+							selected('first', $webcomic_term_target, false),
+							__('the first webcomic', 'inkblot'),
+							selected('last', $webcomic_term_target, false),
+							__('the last webcomic', 'inkblot'),
+							selected('random', $webcomic_term_target, false),
+							__('a random webcomic', 'inkblot')
 						),
 						sprintf('
 							<select id="inkblot_webcomic_archive_term_order" name="inkblot_webcomic_term_order">
