@@ -58,6 +58,31 @@
     }, function(settingId, object) {
       return inkblot_toggle_controls(settingId, object);
     });
+    $(document).on('change', '#customize-control-layout_theme select', function(event) {
+      return $.each($('wbr.inkblot-theme-layout.' + $(this).val()).data(), function(index, value) {
+        index = index.replace(/([A-Z])/g, function(string) {
+          return '_' + string.toLowerCase();
+        });
+        return wp.customize(index).set(value);
+      });
+    });
+    $(document).on('change', '#customize-control-font_theme select', function(event) {
+      return $.each($('wbr.inkblot-theme-font.' + $(this).val()).data(), function(index, value) {
+        index = index.replace(/([A-Z])/g, function(string) {
+          return '_' + string.toLowerCase();
+        });
+        return wp.customize(index).set(value);
+      });
+    });
+    $(document).on('change', '#customize-control-color_theme select', function(event) {
+      return $.each($('wbr.inkblot-theme-color.' + $(this).val()).data(), function(index, value) {
+        index = index.replace(/([A-Z])/g, function(string) {
+          return '_' + string.toLowerCase();
+        });
+        wp.customize(index).set(value);
+        return wp.customize.control(index).container.find('.color-picker-hex').data('data-default-color', value).wpColorPicker('defaultColor', value);
+      });
+    });
     return $(document).on('click', function(event) {
       return $.each(['primary-sidebar', 'secondary-sidebar', 'tertiary-sidebar', 'document-header', 'document-footer', 'site-header', 'site-footer', 'page-header', 'page-footer', 'content-header', 'content-footer', 'comment-header', 'comment-footer', 'webcomic-header', 'webcomic-footer', 'webcomic-navigation-header', 'webcomic-navigation-footer'], function(index, value) {
         return $('#customize-control-sidebar-' + value + '-columns').show();

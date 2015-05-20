@@ -59,6 +59,48 @@
 		inkblot_toggle_controls(settingId, object)
 	)
 	
+	##
+	# Update layout on theme change.
+	##
+	$(document).on('change', '#customize-control-layout_theme select', (event)->
+		$.each($('wbr.inkblot-theme-layout.' + $(this).val()).data(), (index, value)->
+			index = index.replace(/([A-Z])/g, (string)->
+				return '_' + string.toLowerCase()
+			)
+			
+			wp.customize(index).set(value)
+		)
+	)
+	
+	##
+	# Update fonts on theme change.
+	##
+	$(document).on('change', '#customize-control-font_theme select', (event)->
+		$.each($('wbr.inkblot-theme-font.' + $(this).val()).data(), (index, value)->
+			index = index.replace(/([A-Z])/g, (string)->
+				return '_' + string.toLowerCase()
+			)
+			
+			wp.customize(index).set(value)
+		)
+	)
+	
+	##
+	# Update colors on theme change.
+	##
+	$(document).on('change', '#customize-control-color_theme select', (event)->
+		$.each($('wbr.inkblot-theme-color.' + $(this).val()).data(), (index, value)->
+			index = index.replace(/([A-Z])/g, (string)->
+				return '_' + string.toLowerCase()
+			)
+			
+			wp.customize(index).set(value)
+			wp.customize.control(index).container.find('.color-picker-hex')
+				.data('data-default-color', value)
+				.wpColorPicker('defaultColor', value)
+		)
+	)
+	
 	# @todo remove this ugly kludge
 	
 	$(document).on('click', (event)->
