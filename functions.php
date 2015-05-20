@@ -221,20 +221,20 @@ if ( ! function_exists('inkblot_wp_footer')) :
  *
  * This element has a number of data attributes that are used to keep things
  * consistent while customizing the theme.
- *
  */
 function inkblot_wp_footer() {
-	if (is_customize_preview()) {
+	if (is_customize_preview()) :
 		$mod = require get_template_directory() . '/-/php/mods.php'; ?>
-		<wbr
-			class="inkblot"
+		
+		<wbr class="inkblot"
 			<?php foreach ($mod as $key => $default) : ?>
 				
 				data-<?php print str_replace('_', '-', $key); ?>="<?php print get_theme_mod($key, $default); ?>"
 				
 			<?php endforeach; ?>
 		>
-	<?php }
+		<?php
+	endif;
 }
 endif;
 
