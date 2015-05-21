@@ -167,7 +167,7 @@ if (is_readable(get_template_directory() . '/-/php/mods.php') and $mod = require
 	
 	if ($mod['title_font']) {
 		inkblot_css(array(
-			'h1',
+			'h1:not(.banner h1)',
 			'h2',
 			'h3',
 			'h4',
@@ -263,10 +263,7 @@ if (is_readable(get_template_directory() . '/-/php/mods.php') and $mod = require
 		inkblot_css(array(
 			'.wrapper a',
 			'.post-footer span',
-			'nav.posts',
-			'nav.post-pages',
-			'nav.posts-paged',
-			'nav.comments-paged'
+			'nav.pagination'
 		), 'color', array($mod['page_link_color'], $mod['page_link_opacity']));
 		
 		inkblot_css(array(
@@ -442,9 +439,10 @@ if (is_readable(get_template_directory() . '/-/php/mods.php') and $mod = require
 	
 	$css .= inkblot_css();
 	
-	if ($responsive_width = get_theme_mod('responsive_width', 0)) {
+	if ($responsive_width = get_theme_mod('responsive_width', 0) or is_customize_preview()) {
 		$css .= <<<RESPONSIVE
 @media only screen and (max-width: {$responsive_width}px) {
+	.four-column.content-far-left main,.four-column.content-left main,.four-column.content-right main,.four-column.content-far-right main {-moz-order: 1;-ms-order: 1;-o-order: 1;-webkit-order: 1;order: 1}
 	main, .sidebar1, .sidebar2, .sidebar3 {float: none; left: 0; width: 100%}
 	.banner nav {background: none}
 	.banner nav:before {display: block; visibility: visible}
