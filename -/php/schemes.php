@@ -100,5 +100,35 @@ return array(
 			'trim_link_hover_color' => '#657678'
 		)
 	),
+	'silkscreen' => array( // https://color.adobe.com/Here-We-Are-color-theme-1555849/
+		'name' => __('Silkscreen', 'inkblot'),
+		'data' => array(
+			'content' => 'three-column content-left',
+			'sidebar1_width' => 21,
+			'sidebar2_width' => 21,
+			'sidebar3_width' => 21,
+			'min_width' => 982,
+			'max_width' => 982,
+			'responsive_width' => 0,
+			'font_size' => 85,
+			'font' => 'Varela+Round:regular',
+			'header_font' => 'Luckiest+Guy:regular',
+			'page_font' => '',
+			'title_font' => 'Luckiest+Guy:regular',
+			'trim_font' => 'Luckiest+Guy:regular',
+			'background_color' => '#ffd462',
+			'page_color' => '#3e0c1b',
+			'trim_color' => '#791832',
+			'text_color' => '#3e0c1b',
+			'header_textcolor' => '#cd4310',
+			'page_text_color' => '#ffd462',
+			'trim_text_color' => '#ffd462',
+			'link_color' => '#cd4310',
+			'link_hover_color' => '#3e0c1b',
+			'page_link_color' => '#cd4310',
+			'page_link_hover_color' => '#fa7d50',
+			'trim_link_color' => '#fa7d50',
+			'trim_link_hover_color' => '#ffd462'
+		)
 	)
 );
