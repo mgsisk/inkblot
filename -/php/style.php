@@ -181,7 +181,8 @@ if (is_readable(get_template_directory() . '/-/php/mods.php') and $mod = require
 		inkblot_css(array(
 			'.banner nav',
 			'.banner select',
-			'.post-webcomic nav'
+			'.post-webcomic nav',
+			'.contentinfo'
 		), 'font-family', $mod['trim_font']);
 	}
 	
