@@ -259,7 +259,13 @@ if (is_readable(get_template_directory() . '/-/php/mods.php') and $mod = require
 	if ($mod['page_link_color']) {
 		inkblot_css(array(
 			'button:focus',
-			'button:hover'
+			'button:hover',
+			'input[type="submit"]:focus',
+			'input[type="submit"]:hover',
+			'input[type="reset"]:focus',
+			'input[type="reset"]:hover',
+			'input[type="button"]:focus',
+			'input[type="button"]:hover'
 		), 'background-color', array($mod['page_link_color'], $mod['page_link_opacity']));
 		
 		inkblot_css(array(
