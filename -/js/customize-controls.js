@@ -58,7 +58,7 @@
     }, function(settingId, object) {
       return inkblot_toggle_controls(settingId, object);
     });
-    $(document).on('change', '#customize-control-scheme select', function(event) {
+    $(document).on('change', '#customize-control-scheme input[name="_customize-radio-scheme"]', function(event) {
       return $.each($('wbr.inkblot-scheme.' + $(this).val()).data(), function(index, value) {
         index = index.replace(/([A-Z])/g, function(string) {
           return '_' + string.toLowerCase();

@@ -62,7 +62,7 @@
 	##
 	# Update options on scheme change.
 	##
-	$(document).on('change', '#customize-control-scheme select', (event)->
+	$(document).on('change', '#customize-control-scheme input[name="_customize-radio-scheme"]', (event)->
 		$.each($('wbr.inkblot-scheme.' + $(this).val()).data(), (index, value)->
 			index = index.replace(/([A-Z])/g, (string)->
 				return '_' + string.toLowerCase()
@@ -76,36 +76,6 @@
 					.wpColorPicker('defaultColor', value)
 		)
 	)
-	
-	# 
-	# ##
-	# # Update fonts on scheme change.
-	# ##
-	# $(document).on('change', '#customize-control-font_scheme select', (event)->
-	# 	$.each($('wbr.inkblot-scheme-font.' + $(this).val()).data(), (index, value)->
-	# 		index = index.replace(/([A-Z])/g, (string)->
-	# 			return '_' + string.toLowerCase()
-	# 		)
-	# 		
-	# 		wp.customize(index).set(value)
-	# 	)
-	# )
-	# 
-	# ##
-	# # Update colors on scheme change.
-	# ##
-	# $(document).on('change', '#customize-control-color_scheme select', (event)->
-	# 	$.each($('wbr.inkblot-scheme-color.' + $(this).val()).data(), (index, value)->
-	# 		index = index.replace(/([A-Z])/g, (string)->
-	# 			return '_' + string.toLowerCase()
-	# 		)
-	# 		
-	# 		wp.customize(index).set(value)
-	# 		wp.customize.control(index).container.find('.color-picker-hex')
-	# 			.data('data-default-color', value)
-	# 			.wpColorPicker('defaultColor', value)
-	# 	)
-	# )
 	
 	# @todo remove this ugly kludge
 	
