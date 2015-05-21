@@ -69,5 +69,36 @@ return array(
 			'trim_link_hover_color' => '#f6fee1'
 		)
 	),
+	'hydrogen' => array( // https://color.adobe.com/harbor-color-theme-409231/
+		'name' => __('Hydrogen', 'inkblot'),
+		'data' => array(
+			'content' => 'three-column content-center',
+			'sidebar1_width' => 21,
+			'sidebar2_width' => 21,
+			'sidebar3_width' => 21,
+			'min_width' => 0,
+			'max_width' => 982,
+			'responsive_width' => 640,
+			'font_size' => 85,
+			'font' => 'Nova+Square:regular',
+			'header_font' => 'Quantico:regular,italic,700,700italic',
+			'page_font' => '',
+			'title_font' => 'Quantico:regular,italic,700,700italic',
+			'trim_font' => 'Quantico:regular,italic,700,700italic',
+			'background_color' => '#2f3738',
+			'page_color' => '#d6fbff',
+			'trim_color' => '#5fd8e4',
+			'text_color' => '#a0bcbf',
+			'header_textcolor' => '#2f3738',
+			'page_text_color' => '#2f3738',
+			'trim_text_color' => '#657678',
+			'link_color' => '#5fd8e4',
+			'link_hover_color' => '#d6fbff',
+			'page_link_color' => '#a0bcbf',
+			'page_link_hover_color' => '#5fd8e4',
+			'trim_link_color' => '#2f3738',
+			'trim_link_hover_color' => '#657678'
+		)
+	),
 	)
 );
