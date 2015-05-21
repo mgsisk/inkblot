@@ -1432,6 +1432,8 @@ function inkblot_get_scheme_choices() {
 		$options[$key] = $meta['name'];
 	}
 	
+	asort($options);
+	
 	return $options;
 }
 endif;
