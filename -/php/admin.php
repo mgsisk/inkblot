@@ -935,7 +935,7 @@ function inkblot_customize_register($customize) {
 		$customize->add_setting('webcomic_content', array('default' => false));
 		$customize->add_control('webcomic_content', array(
 			'type' => 'checkbox',
-			'label' => __('Place webcomic in the content column', 'inkblot'),
+			'label' => __('Place webcomic in the main column', 'inkblot'),
 			'section' => 'webcomic_layout'
 		));
 		
