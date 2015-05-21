@@ -412,6 +412,14 @@
 		)
 	)
 	
+	wp.customize('responsive_width', (value)->
+		value.bind((to)->
+			$('#inkblot-theme-inline-css').text(
+				$('#inkblot-theme-inline-css').text().replace(/\(max-width: \d+px\)/, '(max-width: ' + to + 'px)')
+			)
+		)
+	)
+	
 	#===== Title ==============================================================#
 	
 	wp.customize('blogname', (value)-> 
