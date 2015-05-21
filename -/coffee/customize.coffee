@@ -109,7 +109,7 @@
 	
 	wp.customize('trim_color', (value)->
 		value.bind((to)->
-			inkblot_color('trim_color', to, '.banner nav, .banner ul ul, .contentinfo, .post-webcomic nav, button, input[type="submit"], input[type="reset"], input[type="button"]', 'background-color')
+			inkblot_color('trim_color', to, '.banner nav, .banner ul ul, .banner select, .contentinfo, .post-webcomic nav, button, input[type="submit"], input[type="reset"], input[type="button"]', 'background-color')
 		)
 	)
 	
@@ -134,7 +134,7 @@
 	wp.customize('header_textcolor', (value)->
 		value.bind((to)->
 			if 'blank' != to
-				inkblot_color('header_textcolor', to, '.banner > a', 'color')
+				inkblot_color('header_textcolor', to, '.banner > a, .banner > a:focus, .banner > a:hover', 'color')
 		)
 	)
 	
@@ -194,7 +194,7 @@
 	
 	wp.customize('page_link_color', (value)->
 		value.bind((to)->
-			inkblot_color('page_link_color', to, '.wrapper a, .post-footer span, nav.posts, nav.post-pages, nav.posts-paged, nav.comments-paged', 'color')
+			inkblot_color('page_link_color', to, '.wrapper a, .post-footer span, nav.pagination', 'color')
 			inkblot_color('page_link_color', to, 'blockquote, hr, pre, th, td, fieldset, input, textarea, .post-footer, .comment, .comment .comment, .pingback, .trackback, .bypostauthor', 'border-color')
 			
 			inkblot_color('header_textcolor', $('wbr.inkblot').data('header-textcolor'), '.banner > a', 'color')
@@ -204,7 +204,7 @@
 	
 	wp.customize('page_link_opacity', (value)->
 		value.bind((to)->
-			inkblot_color('page_link_opacity', to, '.wrapper a, .post-footer span, nav.posts, nav.post-pages, nav.posts-paged, nav.comments-paged', 'color')
+			inkblot_color('page_link_opacity', to, '.wrapper a, .post-footer span, nav.pagination', 'color')
 			inkblot_color('page_link_opacity', to, 'blockquote, hr, pre, th, td, fieldset, input, textarea, .post-footer, .comment, .comment .comment, .pingback, .trackback, .bypostauthor', 'border-color')
 			
 			inkblot_color('header_textcolor', $('wbr.inkblot').data('header-textcolor'), '.banner > a', 'color')
