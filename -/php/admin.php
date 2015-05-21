@@ -224,7 +224,10 @@ function inkblot_customize_register($customize) {
 		)
 	));
 	
-	$customize->add_setting('responsive_width', array('default' => 0));
+	$customize->add_setting('responsive_width', array(
+		'default' => 0,
+		'transport' => 'postMessage'
+	));
 	$customize->add_control('responsive_width', array(
 		'type' => 'number',
 		'description' => __('Responsive features will only be used when your page is less than or equal to this pixel width.', 'inkblot'),
@@ -835,16 +838,20 @@ function inkblot_customize_register($customize) {
 		'priority' => 990
 	));
 	
-	$customize->add_setting('favicon', array('default' => ''));
-	$favicon = new WP_Customize_Image_Control($customize, 'favicon', array(
+	$customize->add_setting('favicon', array(
+		'default' => '',
+		'transport' => 'postMessage'
+	)); $favicon = new WP_Customize_Image_Control($customize, 'favicon', array(
 		'label' => __('Site Icon', 'inkblot'),
 		'section' => 'inkblot_miscellanea',
 		'context' => 'inkblot-favicon',
 		'description' => __('The site icon may be displayed by web browsers and mobile devices in various ways.', 'inkblot')
 	)); $customize->add_control($favicon);
 	
-	$customize->add_setting('post_thumbnail_width', array('default' => 144));
-	$customize->add_control('post_thumbnail_width', array(
+	$customize->add_setting('post_thumbnail_width', array(
+		'default' => 144,
+		'transport' => 'postMessage'
+	)); $customize->add_control('post_thumbnail_width', array(
 		'type' => 'number',
 		'label' => __('Post Thumbnail Width', 'inkblot'),
 		'description' => __('The pixel width of post thumbnails. Changes will not affect previously uploaded thumbnails.', 'inkblot'),
@@ -855,8 +862,10 @@ function inkblot_customize_register($customize) {
 		)
 	));
 	
-	$customize->add_setting('post_thumbnail_height', array('default' => 144));
-	$customize->add_control('post_thumbnail_height', array(
+	$customize->add_setting('post_thumbnail_height', array(
+		'default' => 144,
+		'transport' => 'postMessage'
+	)); $customize->add_control('post_thumbnail_height', array(
 		'type' => 'number',
 		'label' => __('Post Thumbnail Height', 'inkblot'),
 		'description' => __('The pixel height of post thumbnails. Changes will not affect previously uploaded thumbnails.', 'inkblot'),
@@ -867,8 +876,10 @@ function inkblot_customize_register($customize) {
 		)
 	));
 	
-	$customize->add_setting('uninstall', array('default' => false));
-	$customize->add_control('uninstall', array(
+	$customize->add_setting('uninstall', array(
+		'default' => false,
+		'transport' => 'postMessage'
+	)); $customize->add_control('uninstall', array(
 		'type' => 'checkbox',
 		'label' => __('Remove theme modifications when changing themes', 'inkblot'),
 		'section' => 'inkblot_miscellanea'
