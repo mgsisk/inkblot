@@ -97,7 +97,7 @@ function inkblot_customize_register($customize) {
 		'default' => 'inkblot',
 		'transport' => 'postMessage'
 	)); $customize->add_control('scheme', array(
-		'type' => 'select',
+		'type' => 'radio',
 		'section' => 'inkblot_scheme',
 		'priority' => 0,
 		'choices' => inkblot_get_scheme_choices()
