@@ -60,7 +60,7 @@
 	}
 	
 	&-template-templatefull-width-php {
-		&.four-column main {
+		main {
 			@include prefix(order, 1);
 		}
 		

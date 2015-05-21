@@ -9,10 +9,6 @@ body > a[href="#content"] {
 	}
 }
 
-.content:focus {
-	outline: 0;
-}
-
 .document-header,
 .document-footer {
 	margin: auto;
@@ -35,98 +31,86 @@ body > a[href="#content"] {
 	}
 }
 
+.content {
+	@include clear;
+	@include prefix-value(display, flex);
+	@include prefix(flex-wrap, wrap);
+	
+	&:focus {
+		outline: 0;
+	}
+	
+	&-footer {
+		@include prefix(order, 99);
+	}
+}
+
 main,
 .sidebar1,
 .sidebar2,
 .sidebar3 {
+	display: none;
 	padding: 1rem;
 }
 
-.one-column .sidebar1,
-.one-column .sidebar2,
-.one-column .sidebar3 {
-	display: none;
+main {
+	display: block;
+}
+
+.sidebar1 {
+	@include prefix(order, 20);
+}
+
+.sidebar2 {
+	@include prefix(order, 40);
+}
+
+.sidebar3 {
+	@include prefix(order, 60);
 }
 
 .two-column {
-	&.content-left main,
-	&.content-right .sidebar1 {
-		float: left;
+	&.content-right main {
+		@include prefix(order, 30);
 	}
 	
-	&.content-right main,
-	&.content-left .sidebar1 {
-		float: right;
-	}
-	
-	.sidebar2,
-	.sidebar3 {
-		display: none;
+	.sidebar1 {
+		display: block;
 	}
 }
 
 .three-column {
-	&.content-left main,
-	&.content-right .sidebar1,
-	&.content-right .sidebar2,
-	&.content-center main,
-	&.content-center .sidebar1,
-	&.content-center .sidebar2 {
-		float: left;
+	&.content-center main {
+		@include prefix(order, 30);
 	}
 	
-	&.content-right main,
-	&.content-left .sidebar1,
-	&.content-left .sidebar2 {
-		float: right;
+	&.content-right main {
+		@include prefix(order, 50);
 	}
 	
-	&.content-center main,
-	&.content-center .sidebar1 {
-		position: relative;
-	}
-	
-	.sidebar3 {
-		display: none;
+	.sidebar1,
+	.sidebar2 {
+		display: block;
 	}
 }
 
 .four-column {
-	.content {
-		@include prefix-value(display, flex);
-		@include prefix(flex-wrap, wrap);
-		
-		> .post-webcomic {
-			width: 100%;
-		}
-	}
-	
-	.sidebar1 {
-		@include prefix(order, 2);
-	}
-	
-	.sidebar2 {
-		@include prefix(order, 4);
-	}
-	
-	.sidebar3 {
-		@include prefix(order, 6);
-	}
-	
-	&.content-far-left main {
-		@include prefix(order, 1);
-	}
-	
 	&.content-left main {
-		@include prefix(order, 3);
+		@include prefix(order, 30);
 	}
 	
 	&.content-right main {
-		@include prefix(order, 5);
+		@include prefix(order, 50);
 	}
 	
 	&.content-far-right main {
-		@include prefix(order, 7);
+		@include prefix(order, 70);
+	}
+	
+	.sidebar1,
+	.sidebar2,
+	.sidebar3 {
+		display: block;
 	}
 }
 
@@ -265,10 +249,6 @@ main,
 		line-height: 2.4;
 		padding: 0 1rem;
 	}
-}
-
-.content {
-	@include clear;
 }
 
 .contentinfo {
