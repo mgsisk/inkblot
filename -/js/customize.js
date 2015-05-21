@@ -250,43 +250,29 @@
       });
     });
     inkblot_update_layout = function() {
-      var content, sidebar1, sidebar2, sidebar3, width;
+      var content, inline_css, pixel, sidebar1, sidebar2, sidebar3, width;
+      pixel = 0;
       width = 100;
       content = $('wbr.inkblot').data('content');
       sidebar1 = Number($('wbr.inkblot').data('sidebar1-width'));
       sidebar2 = Number($('wbr.inkblot').data('sidebar2-width'));
       sidebar3 = Number($('wbr.inkblot').data('sidebar3-width'));
+      inline_css = $('#inkblot-theme-inline-css').text();
       if (-1 !== content.indexOf('four')) {
-        width -= sidebar1 + sidebar2 + sidebar3 + 3;
-      }
-      if (-1 !== content.indexOf('three')) {
-        width -= sidebar1 + sidebar2 + 2;
+        pixel = 3;
+        width -= sidebar1 + sidebar2 + sidebar3;
+      } else if (-1 !== content.indexOf('three')) {
+        pixel = 2;
+        width -= sidebar1 + sidebar2;
       } else if (-1 !== content.indexOf('two')) {
-        width -= sidebar1 + 1;
+        pixel = 1;
+        width -= sidebar1;
       }
-      if ('three-column content-center' === content) {
-        $('main ').css({
-          left: sidebar1 + 1 + '%',
-          position: 'relative'
-        });
-        $('.sidebar1').css({
-          left: '-' + width + '%',
-          position: 'relative'
-        });
-      } else {
-        $('main ').css({
-          left: '0',
-          position: 'static'
-        });
-        $('.sidebar1').css({
-          left: '-' + width + '%',
-          position: 'static'
-        });
-      }
-      $('main').css('width', width + '%');
-      $('.sidebar1').css('width', sidebar1 + '%');
-      $('.sidebar2').css('width', sidebar2 + '%');
-      $('.sidebar3').css('width', sidebar3 + '%');
+      inline_css = inline_css.replace(/main{width:calc\(\d+(\.\d+)?% - \dpx\)}/, 'main{width:calc(' + width + '% - ' + pixel + 'px)}');
+      inline_css = inline_css.replace(/\.sidebar1{width:\d+(\.\d+)?%}/, '.sidebar1{width:' + sidebar1 + '%}');
+      inline_css = inline_css.replace(/\.sidebar2{width:\d+(\.\d+)?%}/, '.sidebar2{width:' + sidebar2 + '%}');
+      inline_css = inline_css.replace(/\.sidebar3{width:\d+(\.\d+)?%}/, '.sidebar3{width:' + sidebar3 + '%}');
+      $('#inkblot-theme-inline-css').text(inline_css);
       return $('body').removeClass('one-column two-column three-column four-column content-far-left content-left content-center content-right content-far-right').addClass(content);
     };
     wp.customize('content', function(value) {
