@@ -89,7 +89,7 @@ function inkblot_customize_register($customize) {
 	
 	$customize->add_section('inkblot_scheme', array(
 		'title' => __('Scheme', 'inkblot'),
-		'description' => __('Collections of predefined theme options.', 'inkblot'),
+		'description' => __('Schemes are collections of predefined theme options, including layout, fonts, and colors.', 'inkblot'),
 		'priority' => 20
 	));
 	
