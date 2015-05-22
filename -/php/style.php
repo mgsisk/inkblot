@@ -103,17 +103,17 @@ if (is_readable(get_template_directory() . '/-/php/mods.php') and $mod = require
 		inkblot_css('.sidebar3', 'width', "{$mod['sidebar3_width']}%");
 		
 		if ($mod['content'] and 'one-column' !== $mod['content']) {
-			$pixel++;
+			$pixel += 2;
 			$main_width -= $mod['sidebar1_width'];
 		}
 		
 		if (false !== strpos($mod['content'], 'three-column') or false !== strpos($mod['content'], 'four-column')) {
-			$pixel++;
+			$pixel += 2;
 			$main_width -= $mod['sidebar2_width'];
 		}
 		
 		if (false !== strpos($mod['content'], 'four-column')) {
-			$pixel++;
+			$pixel += 2;
 			$main_width -= $mod['sidebar3_width'];
 		}
 		
