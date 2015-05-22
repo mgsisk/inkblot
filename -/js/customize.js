@@ -214,10 +214,10 @@
     inkblot_font = function(to, selectors) {
       if ('' === to) {
         return $(selectors).css('font-family', 'inherit');
-      } else {
-        $('head').append('<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=' + to + '">');
-        return $(selectors).css('font-family', to.replace(/\+/g, ' ').substr(0, to.indexOf(':')));
+      } else if (!$('link.inkblot-font-' + to.substr(0, to.indexOf(':'))).length) {
+        $('head').append('<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=' + to + '" class="inkblot-font-' + to.substr(0, to.indexOf(':')) + '">');
       }
+      return $(selectors).css('font-family', '"' + to.replace(/\+/g, ' ').substr(0, to.indexOf(':')) + '"');
     };
     wp.customize('font_size', function(value) {
       return value.bind(function(to) {
