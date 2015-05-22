@@ -26,7 +26,7 @@ function inkblot_css($selectors = '', $property = '', $value = '') {
 	
 	if ($value) {
 		if ('font-family' === $property) {
-			$value = str_replace('+', ' ', substr($value, 0, strpos($value, ':'))) . ', sans-serif';
+			$value = '"' . str_replace('+', ' ', substr($value, 0, strpos($value, ':'))) . '", sans-serif';
 		} else if (false !== strpos($property, 'image')) {
 			$value = "url({$value})";
 		} else if (false !== strpos($property, 'position')) {
