@@ -391,13 +391,19 @@
 	
 	wp.customize('min_width', (value)->
 		value.bind((to)->
-			$('.wrapper, .document-header, .document-footer').css('min-width', if 0 < Number(to) then to + 'px' else '')
+			$('.wrapper, .document-header, .document-footer').css(
+				'min-width': if 0 < Number(to) then to + 'px' else '0px' # auto doesn't work, for some reason
+				width: 'auto'
+			)
 		)
 	)
 	
 	wp.customize('max_width', (value)->
 		value.bind((to)->
-			$('.wrapper, .document-header, .document-footer').css('max-width', if 0 < Number(to) then to + 'px' else '')
+			$('.wrapper, .document-header, .document-footer').css(
+				'max-width': if 0 < Number(to) then to + 'px' else '999999px' # auto doesn't work, for some reason
+				width: 'auto'
+			)
 		)
 	)
 	

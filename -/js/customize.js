@@ -301,12 +301,18 @@
     });
     wp.customize('min_width', function(value) {
       return value.bind(function(to) {
-        return $('.wrapper, .document-header, .document-footer').css('min-width', 0 < Number(to) ? to + 'px' : '');
+        return $('.wrapper, .document-header, .document-footer').css({
+          'min-width': 0 < Number(to) ? to + 'px' : '0px',
+          width: 'auto'
+        });
       });
     });
     wp.customize('max_width', function(value) {
       return value.bind(function(to) {
-        return $('.wrapper, .document-header, .document-footer').css('max-width', 0 < Number(to) ? to + 'px' : '');
+        return $('.wrapper, .document-header, .document-footer').css({
+          'max-width': 0 < Number(to) ? to + 'px' : '999999px',
+          width: 'auto'
+        });
       });
     });
     wp.customize('responsive_width', function(value) {
