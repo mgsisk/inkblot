@@ -1121,7 +1121,7 @@ function inkblot_customize_controls_print_footer_scripts() {
 	foreach ($themes as $id => $meta) : ?>
 		
 		<wbr class="inkblot-scheme <?php print $id; ?>"
-			<?php foreach ($meta['data'] as $key => $value) : ?>
+			<?php foreach ($meta['mods'] as $key => $value) : ?>
 				
 				data-<?php print str_replace('_', '-', $key); ?>="<?php print $value; ?>"
 				
