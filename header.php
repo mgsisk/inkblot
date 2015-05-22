@@ -22,7 +22,7 @@
 				<?php if ( ! dynamic_sidebar('site-header')) : ?>
 					
 					<a href="<?php print esc_url(home_url()); ?>" rel="home">
-						<h1><?php bloginfo('name'); ?></h1>
+						<h1 class="site"><?php bloginfo('name'); ?></h1>
 						<p><?php bloginfo('description'); ?></p>
 						
 						<?php if (get_theme_mod('header_post_thumbnail') and has_post_thumbnail()) : ?>

@@ -241,7 +241,7 @@
     });
     wp.customize('title_font', function(value) {
       return value.bind(function(to) {
-        return inkblot_font(to, 'h1:not(.banner h1), h2, h3, h4, h5, h6');
+        return inkblot_font(to, 'h1:not(.site), h2, h3, h4, h5, h6');
       });
     });
     wp.customize('trim_font', function(value) {

@@ -309,7 +309,7 @@
 	
 	wp.customize('title_font', (value)->
 		value.bind((to)->
-			inkblot_font(to, 'h1:not(.banner h1), h2, h3, h4, h5, h6')
+			inkblot_font(to, 'h1:not(.site), h2, h3, h4, h5, h6')
 		)
 	)
 	

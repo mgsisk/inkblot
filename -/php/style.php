@@ -168,7 +168,7 @@ if (is_readable(get_template_directory() . '/-/php/mods.php') and $mod = require
 	
 	if ($mod['title_font']) {
 		inkblot_css(array(
-			'h1:not(.banner h1)',
+			'h1:not(.site)',
 			'h2',
 			'h3',
 			'h4',
