@@ -823,8 +823,10 @@ function inkblot_customize_register($customize) {
 	$sidebars = require get_template_directory() . '/-/php/sidebars.php';
 	
 	foreach (array_keys($sidebars) as $sidebar) {
-		$customize->add_setting("sidebar-{$sidebar}-columns", array('default' => ! in_array($sidebar, array('primary-sidebar', 'secondary-sidebar', 'tertiary-sidebar'))));
-		$customize->add_control("sidebar-{$sidebar}-columns", array(
+		$customize->add_setting("sidebar-{$sidebar}-columns", array(
+			'default' => ! in_array($sidebar, array('primary-sidebar', 'secondary-sidebar', 'tertiary-sidebar')),
+			'transport' => 'postMessage'
+		)); $customize->add_control("sidebar-{$sidebar}-columns", array(
 			'type' => 'checkbox',
 			'label' => __('Display widgets as separate columns', 'inkblot'),
 			'section' => "sidebar-widgets-sidebar-{$sidebar}"

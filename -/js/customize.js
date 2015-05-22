@@ -320,6 +320,39 @@
         return $('#inkblot-theme-inline-css').text($('#inkblot-theme-inline-css').text().replace(/\(max-width: \d+px\)/, '(max-width: ' + to + 'px)'));
       });
     });
+    $.each(['primary-sidebar', 'secondary-sidebar', 'tertiary-sidebar', 'document-header', 'document-footer', 'site-header', 'site-footer', 'page-header', 'page-footer', 'content-header', 'content-footer', 'comment-header', 'comment-footer', 'webcomic-header', 'webcomic-footer', 'webcomic-navigation-header', 'webcomic-navigation-footer'], function(index, sidebar) {
+      return wp.customize('sidebar-' + sidebar + '-columns', function(value) {
+        switch (sidebar) {
+          case 'primary-sidebar':
+            sidebar = 'sidebar1';
+            break;
+          case 'secondary-sidebar':
+            sidebar = 'sidebar2';
+            break;
+          case 'tertiary-sidebar':
+            sidebar = 'sidebar3';
+            break;
+          case 'webcomic-navigation-header':
+            sidebar = 'post-webcomic nav.above';
+            break;
+          case 'webcomic-navigation-footer':
+            sidebar = 'post-webcomic nav.below';
+        }
+        if (-1 === sidebar.indexOf('.')) {
+          sidebar = '.' + sidebar;
+        }
+        return value.bind(function(to) {
+          var columns;
+          $(sidebar).removeClass('columns-1 columns-2 columns-3 columns-4 columns-5 columns-6 columns-7 columns-8 columns-9 columns-10');
+          if (to) {
+            columns = 10 < $(sidebar).children('.widget').length ? 10 : $(sidebar).children('.widget').length;
+            return $(sidebar).addClass('columns-' + columns);
+          } else {
+            return $(sidebar).addClass('columns-1');
+          }
+        });
+      });
+    });
     wp.customize('blogname', function(value) {
       return value.bind(function(to) {
         return $('.banner h1').html(to);
