@@ -63,9 +63,11 @@
         index = index.replace(/([A-Z])/g, function(string) {
           return '_' + string.toLowerCase();
         });
-        wp.customize(index).set(value);
-        if (-1 < index.indexOf('color')) {
-          return wp.customize.control(index).container.find('.color-picker-hex').data('data-default-color', value).wpColorPicker('defaultColor', value);
+        if (void 0 !== wp.customize(index)) {
+          wp.customize(index).set(value);
+          if (-1 < index.indexOf('color')) {
+            return wp.customize.control(index).container.find('.color-picker-hex').data('data-default-color', value).wpColorPicker('defaultColor', value);
+          }
         }
       });
     });

@@ -68,12 +68,13 @@
 				return '_' + string.toLowerCase()
 			)
 			
-			wp.customize(index).set(value)
-			
-			if -1 < index.indexOf('color')
-				wp.customize.control(index).container.find('.color-picker-hex')
-					.data('data-default-color', value)
-					.wpColorPicker('defaultColor', value)
+			if undefined != wp.customize(index)
+				wp.customize(index).set(value)
+				
+				if -1 < index.indexOf('color')
+					wp.customize.control(index).container.find('.color-picker-hex')
+						.data('data-default-color', value)
+						.wpColorPicker('defaultColor', value)
 		)
 	)
 	
