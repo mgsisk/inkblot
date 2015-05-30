@@ -345,7 +345,7 @@
 			pixel = 4
 			width -= sidebar1 + sidebar2
 		else if -1 != content.indexOf('two')
-			pixel = 2
+			pixel = 3
 			width -= sidebar1
 		
 		inline_css = inline_css.replace(/main{width:calc\(\d+(\.\d+)?% - \dpx\)}/, 'main{width:calc(' + width + '% - ' + pixel + 'px)}')

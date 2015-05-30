@@ -103,7 +103,7 @@ if (is_readable(get_template_directory() . '/-/php/mods.php') and $mod = require
 		inkblot_css('.sidebar3', 'width', "{$mod['sidebar3_width']}%");
 		
 		if ($mod['content'] and 'one-column' !== $mod['content']) {
-			$pixel += 2;
+			$pixel += is_customize_preview() ? 3 : 2;
 			$main_width -= $mod['sidebar1_width'];
 		}
 		
