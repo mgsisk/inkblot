@@ -30,8 +30,6 @@ get_header(); ?>
 			
 		<?php endif; ?>
 		
-		<hr>
-		
 		<?php
 			while (have_posts()) : the_post();
 				(webcomic() and is_a_webcomic())
