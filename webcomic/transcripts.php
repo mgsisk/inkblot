@@ -21,7 +21,7 @@ global $post; ?>
 			if ($transcripts = get_webcomic_transcripts()) : ?>
 				
 				<header class="webcomic-transcripts-header">
-					<h1><?php _e('Transcripts', 'inkblot'); ?></h1>
+					<h2><?php _e('Transcripts', 'inkblot'); ?></h2>
 				</header><!-- .comments-header -->
 				
 			<?php

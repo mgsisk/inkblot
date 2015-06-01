@@ -18,7 +18,7 @@
 			if (have_comments()) : ?>
 				
 				<header class="comments-header">
-					<h1><?php comments_number(); ?></h1>
+					<h2><?php comments_number(); ?></h2>
 				</header><!-- .comments-header -->
 				
 			<?php

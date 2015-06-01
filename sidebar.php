@@ -19,7 +19,7 @@ if (is_page_template('template/full-width.php') and ! get_post_meta(get_the_ID()
 		<?php if ( ! dynamic_sidebar('primary-sidebar') and current_user_can('edit_theme_options')) : ?>
 			
 			<aside class="widget">
-				<h1><?php _e('Primary Sidebar', 'inkblot'); ?></h1>
+				<h2><?php _e('Primary Sidebar', 'inkblot'); ?></h2>
 				<p><?php printf(__('This is the primary sidebar. You can remove this message by adding widgets to it from the <a href="%1$s">Customizer</a>.', 'inkblot'), admin_url('customize.php')); ?></p>
 			</aside>
 			
@@ -37,7 +37,7 @@ if (is_page_template('template/full-width.php') and ! get_post_meta(get_the_ID()
 		<?php if ( ! dynamic_sidebar('secondary-sidebar') and current_user_can('edit_theme_options')) : ?>
 			
 			<aside class="widget">
-				<h1><?php _e('Secondary Sidebar', 'inkblot'); ?></h1>
+				<h2><?php _e('Secondary Sidebar', 'inkblot'); ?></h2>
 				<p><?php printf(__('This is the secondary sidebar. You can remove this message by adding widgets to it from the <a href="%1$s">Customizer</a>.', 'inkblot'), admin_url('customize.php')); ?></p>
 			</aside>
 			
@@ -55,7 +55,7 @@ if (is_page_template('template/full-width.php') and ! get_post_meta(get_the_ID()
 		<?php if ( ! dynamic_sidebar('tertiary-sidebar') and current_user_can('edit_theme_options')) : ?>
 
 			<aside class="widget">
-				<h1><?php _e('Tertiary Sidebar', 'inkblot'); ?></h1>
+				<h2><?php _e('Tertiary Sidebar', 'inkblot'); ?></h2>
 				<p><?php printf(__('This is the tertiary sidebar. You can remove this message by adding widgets to it from the <a href="%1$s">Customizer</a>.', 'inkblot'), admin_url('customize.php')); ?></p>
 			</aside>
 

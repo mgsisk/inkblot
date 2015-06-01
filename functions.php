@@ -126,8 +126,8 @@ function inkblot_widgets_init() {
 			'description' => $sidebar[1],
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget' => '</aside>',
-			'before_title' => '<h1>',
-			'after_title' => '</h1>'
+			'before_title' => '<h2>',
+			'after_title' => '</h2>'
 		));
 	}
 }

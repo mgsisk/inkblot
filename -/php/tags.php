@@ -398,11 +398,11 @@ function inkblot_contributor($user, $avatar = 96) {
 			
 			<?php if ($post_count = count_user_posts($user)) : ?>
 				
-				<h1><a href="<?php print esc_url(get_author_posts_url($user)); ?>"><?php the_author_meta('display_name', $user); ?></a></h1>
+				<h2><a href="<?php print esc_url(get_author_posts_url($user)); ?>"><?php the_author_meta('display_name', $user); ?></a></h2>
 				
 			<?php else : ?>
 				
-				<h1><?php the_author_meta('display_name', $user); ?></h1>
+				<h2><?php the_author_meta('display_name', $user); ?></h2>
 				
 			<?php endif; ?>
 			

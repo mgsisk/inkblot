@@ -24,7 +24,7 @@
 			
 		<?php else : ?>
 			
-			<h1><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
+			<h2><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
 			
 		<?php endif; ?>
 		
