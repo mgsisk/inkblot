@@ -61,10 +61,13 @@
 	}
 	
 	&-header {
-		h1 {
+		h1,
+		h2 {
 			margin: 0;
 			word-wrap: break-word;
-			
+		}
+		
+		h2 {
 			a:before {
 				@include icon-font;
 				
@@ -168,6 +171,7 @@
 		
 		img {
 			border-radius: .3rem;
+			max-width: 100%;
 		}
 	}
 	

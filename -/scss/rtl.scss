@@ -80,67 +80,65 @@ body {
 	}
 	
 	&-header {
-		h1 {
-			a {
-				&:before {
-					padding: 0;
-					
-					.format-audio &,
-					.format-image &,
-					.format-gallery &,
-					.format-video &,
-					.format-aside &,
-					.format-status &,
-					.format-link &,
-					.format-quote &,
-					.format-chat &,
-					.sticky & {
-						content: '';
-					}
+		h2 {
+			a:before {
+				padding: 0;
+				
+				.format-audio &,
+				.format-image &,
+				.format-gallery &,
+				.format-video &,
+				.format-aside &,
+				.format-status &,
+				.format-link &,
+				.format-quote &,
+				.format-chat &,
+				.sticky & {
+					content: '';
+				}
+			}
+				
+			a:after {
+				@include icon-font;
+				
+				padding: 0 0 0 .5rem;
+				vertical-align: baseline;
+				
+				.format-audio & {
+					content: '\f025';
 				}
 				
-				&:after {
-					@include icon-font;
-					
-					padding: 0 0 0 .5rem;
-					vertical-align: baseline;
-					
-					.format-audio & {
-						content: '\f025';
-					}
-					
-					.format-image &,
-					.format-gallery & {
-						content: '\f03e';
-					}
-					
-					.format-video & {
-						content: '\f03d';
-					}
-					
-					.format-aside & {
-						content: '\f036';
-					}
-					
-					.format-status & {
-						content: '\f141';
-					}
-					
-					.format-link & {
-						content: '\f08e';
-					}
-					
-					.format-quote & {
-						content: '\f10d';
-					}
-					
-					.format-chat & {
-						content: '\f0e6';
-					}
-					
-					.sticky & {
-						content: '\f192';
-					}
+				.format-image &,
+				.format-gallery & {
+					content: '\f03e';
+				}
+				
+				.format-video & {
+					content: '\f03d';
+				}
+				
+				.format-aside & {
+					content: '\f036';
+				}
+				
+				.format-status & {
+					content: '\f141';
+				}
+				
+				.format-link & {
+					content: '\f08e';
+				}
+				
+				.format-quote & {
+					content: '\f10d';
+				}
+				
+				.format-chat & {
+					content: '\f0e6';
+				}
+				
+				.sticky & {
+					content: '\f192';
 				}
 			}
 		}
