@@ -147,6 +147,7 @@ p {
 pre {
 	border: $border;
 	padding: 1rem;
+	word-wrap: normal;
 	
 	@media print {
 		page-break-inside: avoid;
