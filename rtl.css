@@ -45,31 +45,31 @@ body {
 .post-image {
   float: left;
   margin: 0 1rem 1rem 0; }
-.post-header h1 a:before {
+.post-header h2 a:before {
   padding: 0; }
-  .format-audio .post-header h1 a:before, .format-image .post-header h1 a:before, .format-gallery .post-header h1 a:before, .format-video .post-header h1 a:before, .format-aside .post-header h1 a:before, .format-status .post-header h1 a:before, .format-link .post-header h1 a:before, .format-quote .post-header h1 a:before, .format-chat .post-header h1 a:before, .sticky .post-header h1 a:before {
+  .format-audio .post-header h2 a:before, .format-image .post-header h2 a:before, .format-gallery .post-header h2 a:before, .format-video .post-header h2 a:before, .format-aside .post-header h2 a:before, .format-status .post-header h2 a:before, .format-link .post-header h2 a:before, .format-quote .post-header h2 a:before, .format-chat .post-header h2 a:before, .sticky .post-header h2 a:before {
     content: ''; }
-.post-header h1 a:after {
+.post-header h2 a:after {
   font: 100%/1 awesome;
   padding: 0 0 0 .5rem;
   vertical-align: baseline; }
-  .format-audio .post-header h1 a:after {
+  .format-audio .post-header h2 a:after {
     content: '\f025'; }
-  .format-image .post-header h1 a:after, .format-gallery .post-header h1 a:after {
+  .format-image .post-header h2 a:after, .format-gallery .post-header h2 a:after {
     content: '\f03e'; }
-  .format-video .post-header h1 a:after {
+  .format-video .post-header h2 a:after {
     content: '\f03d'; }
-  .format-aside .post-header h1 a:after {
+  .format-aside .post-header h2 a:after {
     content: '\f036'; }
-  .format-status .post-header h1 a:after {
+  .format-status .post-header h2 a:after {
     content: '\f141'; }
-  .format-link .post-header h1 a:after {
+  .format-link .post-header h2 a:after {
     content: '\f08e'; }
-  .format-quote .post-header h1 a:after {
+  .format-quote .post-header h2 a:after {
     content: '\f10d'; }
-  .format-chat .post-header h1 a:after {
+  .format-chat .post-header h2 a:after {
     content: '\f0e6'; }
-  .sticky .post-header h1 a:after {
+  .sticky .post-header h2 a:after {
     content: '\f192'; }
 .post-details:before, .post-details:after {
   content: ' ';

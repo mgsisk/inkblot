@@ -487,7 +487,8 @@ nav ol {
 
 pre {
   border: thin solid #767676;
-  padding: 1rem; }
+  padding: 1rem;
+  word-wrap: normal; }
   @media print {
     pre {
       page-break-inside: avoid; } }
@@ -884,7 +885,7 @@ form.search input {
 .widgets aside {
   float: left;
   word-wrap: break-word; }
-  .widgets aside h1 {
+  .widgets aside h2 {
     font-size: 100%;
     margin: 1rem 0; }
 .widgets.columns-1 aside {
@@ -943,31 +944,32 @@ form.search input {
   margin: 0 0 1rem 1rem; }
   .post-image img {
     border-radius: .3rem; }
-.post-header h1 {
+.post-header h1,
+.post-header h2 {
   margin: 0;
   word-wrap: break-word; }
-  .post-header h1 a:before {
-    font: 100%/1 awesome;
-    padding: 0 .5rem 0 0;
-    vertical-align: baseline; }
-    .format-audio .post-header h1 a:before {
-      content: '\f025'; }
-    .format-image .post-header h1 a:before, .format-gallery .post-header h1 a:before {
-      content: '\f03e'; }
-    .format-video .post-header h1 a:before {
-      content: '\f03d'; }
-    .format-aside .post-header h1 a:before {
-      content: '\f036'; }
-    .format-status .post-header h1 a:before {
-      content: '\f141'; }
-    .format-link .post-header h1 a:before {
-      content: '\f08e'; }
-    .format-quote .post-header h1 a:before {
-      content: '\f10d'; }
-    .format-chat .post-header h1 a:before {
-      content: '\f0e6'; }
-    .sticky .post-header h1 a:before {
-      content: '\f192'; }
+.post-header h2 a:before {
+  font: 100%/1 awesome;
+  padding: 0 .5rem 0 0;
+  vertical-align: baseline; }
+  .format-audio .post-header h2 a:before {
+    content: '\f025'; }
+  .format-image .post-header h2 a:before, .format-gallery .post-header h2 a:before {
+    content: '\f03e'; }
+  .format-video .post-header h2 a:before {
+    content: '\f03d'; }
+  .format-aside .post-header h2 a:before {
+    content: '\f036'; }
+  .format-status .post-header h2 a:before {
+    content: '\f141'; }
+  .format-link .post-header h2 a:before {
+    content: '\f08e'; }
+  .format-quote .post-header h2 a:before {
+    content: '\f10d'; }
+  .format-chat .post-header h2 a:before {
+    content: '\f0e6'; }
+  .sticky .post-header h2 a:before {
+    content: '\f192'; }
 .post-details {
   font-size: smaller; }
   .post-details a {
@@ -996,7 +998,8 @@ form.search input {
 .post-content {
   word-wrap: break-word; }
   .post-content img {
-    border-radius: .3rem; }
+    border-radius: .3rem;
+    max-width: 100%; }
 .post-footer {
   border-bottom: thin solid #767676;
   clear: both;
@@ -1221,7 +1224,7 @@ nav.pagination {
   border: thin solid #767676; }
 
 .alignnone {
-  margin: 1rem; }
+  margin: 1rem 0; }
 .aligncenter {
   display: block;
   margin: 0 auto 1rem; }
