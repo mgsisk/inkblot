@@ -16,7 +16,7 @@
 		<nav role="navigation" class="widgets columns-<?php print inkblot_count_widgets('webcomic-navigation-header', 5); ?> above" aria-label="<?php _e('Webcomic Navigation Header', 'inkblot'); ?>">
 			
 			<?php
-				if ( ! dynamic_sidebar("webcomic-navigation-header")) :
+				if ( ! dynamic_sidebar('webcomic-navigation-header')) :
 					first_webcomic_link('<aside>%link</aside>');
 					previous_webcomic_link('<aside>%link</aside>');
 					random_webcomic_link('<aside>%link</aside>');
@@ -40,7 +40,7 @@
 		<nav role="navigation" class="widgets columns-<?php print inkblot_count_widgets('webcomic-navigation-header', 5); ?> below" aria-label="<?php _e('Webcomic Navigation Footer', 'inkblot'); ?>">
 			
 			<?php
-				if ( ! dynamic_sidebar("webcomic-navigation-footer")) :
+				if ( ! dynamic_sidebar('webcomic-navigation-footer')) :
 					first_webcomic_link('<aside>%link</aside>');
 					previous_webcomic_link('<aside>%link</aside>');
 					random_webcomic_link('<aside>%link</aside>');
