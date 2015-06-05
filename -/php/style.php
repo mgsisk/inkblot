@@ -443,6 +443,9 @@ if (is_readable(get_template_directory() . '/-/php/mods.php') and $mod = require
 		inkblot_css('.wp-editor .wp-caption', 'padding', '.3rem');
 		inkblot_css('.wp-editor .wp-caption-dd', 'font-size', 'smaller');
 		inkblot_css('.wp-editor .wp-caption-dd', 'margin', '.5rem 0 0');
+		inkblot_css('.wp-editor .wp-audio-shortcode', 'margin', '0 0');
+		inkblot_css('.wp-editor .wp-audio-shortcode', 'max-width', 'none');
+		inkblot_css('.wp-editor .wp-audio-shortcode', 'vertical-align', 'inherit');
 	}
 	
 	$css .= inkblot_css();
