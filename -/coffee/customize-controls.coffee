@@ -62,8 +62,8 @@
 	##
 	# Update options on scheme change.
 	##
-		$.each($('wbr.inkblot-scheme.' + $(this).val()).data(), (index, value)->
 	$(document).on('change', '#customize-control-scheme input[name="_customize-radio-scheme"]', ->
+		$.each($('wbr.inkblot-scheme.' + $(@).val()).data(), (index, value)->
 			index = index.replace(/([A-Z])/g, (string)->
 				return '_' + string.toLowerCase()
 			)
