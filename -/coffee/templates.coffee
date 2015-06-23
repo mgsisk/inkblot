@@ -15,7 +15,7 @@ jQuery(($)->
 	
 	$('#inkblot-template-options h3').append('<span class="inkblot-template-title"></span>')
 	
-	$('#page_template').on('change', (e)->
+	$('#page_template').on('change', ->
 		$('[data-inkblot-template-options], [data-inkblot-template-options] h4').hide()
 		
 		if -1 != $.inArray($(this).val(), templates)

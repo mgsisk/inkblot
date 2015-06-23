@@ -4,7 +4,7 @@
     var templates;
     templates = ['template/contributors.php', 'template/full-width.php', 'template/webcomic-archive.php', 'template/webcomic-homepage.php', 'template/webcomic-infinite.php'];
     $('#inkblot-template-options h3').append('<span class="inkblot-template-title"></span>');
-    return $('#page_template').on('change', function(e) {
+    return $('#page_template').on('change', function() {
       $('[data-inkblot-template-options], [data-inkblot-template-options] h4').hide();
       if (-1 !== $.inArray($(this).val(), templates)) {
         $('#inkblot-template-options .inkblot-template-title').text(' - ' + $('[data-inkblot-template-options="' + $(this).val() + '"] h4').text());
