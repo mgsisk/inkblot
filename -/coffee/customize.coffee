@@ -462,7 +462,7 @@
 	
 	#===== Title ==============================================================#
 	
-	wp.customize('blogname', (value)-> 
+	wp.customize('blogname', (value)->
 		value.bind((to)->
 			$('.banner h1').html(to)
 		)
