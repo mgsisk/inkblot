@@ -329,7 +329,7 @@
 	#
 	# @return null
 	##
-	inkblot_update_layout = ()->
+	inkblot_update_layout = ->
 		pixel = 0
 		width = 100
 		content = $('wbr.inkblot').data('content')
