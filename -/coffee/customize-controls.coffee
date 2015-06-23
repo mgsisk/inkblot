@@ -28,7 +28,7 @@
 		content:
 			controls: ['sidebar1_width']
 			callback: (to)->
-				return 'one-column' != to
+				return 'one-column' isnt to
 		page_background_image:
 			controls: ['page_background_repeat', 'page_background_position_x', 'page_background_attachment']
 			callback: (to)->
@@ -45,7 +45,7 @@
 		content:
 			controls: ['sidebar2_width']
 			callback: (to)->
-				return (-1 != to.indexOf('three') or -1 != to.indexOf('four'))
+				return (-1 isnt to.indexOf('three') or -1 isnt to.indexOf('four'))
 	, (settingId, object)->
 		inkblot_toggle_controls(settingId, object)
 	)
@@ -54,7 +54,7 @@
 		content:
 			controls: ['sidebar3_width']
 			callback: (to)->
-				return (-1 != to.indexOf('four'))
+				return (-1 isnt to.indexOf('four'))
 	, (settingId, object)->
 		inkblot_toggle_controls(settingId, object)
 	)
@@ -68,7 +68,7 @@
 				return '_' + string.toLowerCase()
 			)
 			
-			if undefined != wp.customize(index)
+			if undefined isnt wp.customize(index)
 				wp.customize(index).set(value)
 				
 				if -1 < index.indexOf('color')

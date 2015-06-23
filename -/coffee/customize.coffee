@@ -133,7 +133,7 @@
 	
 	wp.customize('header_textcolor', (value)->
 		value.bind((to)->
-			if 'blank' != to
+			if 'blank' isnt to
 				inkblot_color('header_textcolor', to, '.banner > a, .banner > a:focus, .banner > a:hover', 'color')
 		)
 	)
@@ -278,7 +278,7 @@
 	##
 	inkblot_font = (to, selectors)->
 		
-		if '' == to
+		if '' is to
 			return $(selectors).css('font-family', 'inherit')
 		else if not $('link.inkblot-font-' + to.substr(0, to.indexOf(':'))).length
 			$('head').append('<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=' + to + '" class="inkblot-font-' + to.substr(0, to.indexOf(':')) + '">')
@@ -338,13 +338,13 @@
 		sidebar3 = Number($('wbr.inkblot').data('sidebar3-width'))
 		inline_css = $('#inkblot-theme-inline-css').text()
 		
-		if -1 != content.indexOf('four')
+		if -1 isnt content.indexOf('four')
 			pixel = 6
 			width -= sidebar1 + sidebar2 + sidebar3
-		else if -1 != content.indexOf('three')
+		else if -1 isnt content.indexOf('three')
 			pixel = 4
 			width -= sidebar1 + sidebar2
-		else if -1 != content.indexOf('two')
+		else if -1 isnt content.indexOf('two')
 			pixel = 3
 			width -= sidebar1
 		
@@ -444,7 +444,7 @@
 				when 'webcomic-navigation-header' then sidebar = 'post-webcomic nav.above'
 				when 'webcomic-navigation-footer' then sidebar = 'post-webcomic nav.below'
 				
-			if -1 == sidebar.indexOf('.')
+			if -1 is sidebar.indexOf('.')
 				sidebar = '.' + sidebar
 			
 			value.bind((to)->
@@ -476,7 +476,7 @@
 	
 	wp.customize('header_textcolor', (value)->
 		value.bind((to)->
-			$('.banner h1, .banner p').toggle('blank' != to)
+			$('.banner h1, .banner p').toggle('blank' isnt to)
 		)
 	)
 	
@@ -484,7 +484,7 @@
 	
 	wp.customize('webcomic_resize', (value)->
 		value.bind((to)->
-			$('.post-webcomic .webcomic-image').toggleClass('scroll', ! to)
+			$('.post-webcomic .webcomic-image').toggleClass('scroll', not to)
 		)
 	)
 	
