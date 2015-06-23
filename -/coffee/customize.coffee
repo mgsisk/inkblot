@@ -260,10 +260,10 @@
 	
 	wp.customize('css', (value)->
 		value.bind((to)->
-			$('head style.inkblot-custom').remove();
+			$('head style.inkblot-custom').remove()
 			
 			if to
-				$('head').append('<style class="inkblot-custom">' + to + '</style>');
+				$('head').append('<style class="inkblot-custom">' + to + '</style>')
 		)
 	)
 	
@@ -448,7 +448,7 @@
 				sidebar = '.' + sidebar
 			
 			value.bind((to)->
-				$(sidebar).removeClass('columns-1 columns-2 columns-3 columns-4 columns-5 columns-6 columns-7 columns-8 columns-9 columns-10');
+				$(sidebar).removeClass('columns-1 columns-2 columns-3 columns-4 columns-5 columns-6 columns-7 columns-8 columns-9 columns-10')
 				
 				if to
 					columns = if 10 < $(sidebar).children('.widget').length then 10 else $(sidebar).children('.widget').length
