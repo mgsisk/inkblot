@@ -19,18 +19,17 @@ Webcomic: 4.3
 
 /**
  * ===== PLEASE READ THIS ======================================================
- * You can make most common style modifications – including adding custom CSS –
+ * You can make most common style modifications - including adding custom CSS -
  * using the Customizer. If you want to make extensive theme modifications you
  * should create a child theme.
  * =============================================================================
  */
 
-@import
-	'utility',
-	'normalize',
-	'base',
-	'layout',
-	'posts',
-	'pages',
-	'comments',
-	'wordpress';
+@import 'utility',
+'normalize',
+'base',
+'layout',
+'posts',
+'pages',
+'comments',
+'wordpress';

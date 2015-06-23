@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /*
 Theme Name: Inkblot
 Theme URI: https://github.com/mgsisk/inkblot
@@ -14,7 +13,7 @@ Webcomic: 4.3
 */
 /**
  * ===== PLEASE READ THIS ======================================================
- * You can make most common style modifications – including adding custom CSS –
+ * You can make most common style modifications - including adding custom CSS -
  * using the Customizer. If you want to make extensive theme modifications you
  * should create a child theme.
  * =============================================================================
@@ -916,7 +915,7 @@ form.search input {
   text-align: center; }
   .first-post:after, .first-post:before {
     font: 100%/1 awesome;
-    content: '';
+    content: '\f005';
     padding: 0 1rem; }
 
 .post-webcomic {
