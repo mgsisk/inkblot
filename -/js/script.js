@@ -3,13 +3,13 @@
   document.documentElement.className = document.documentElement.className.replace(/no-js/, 'js');
 
   jQuery(function($) {
-    $('.banner nav a').on('focus', function(e) {
+    $('.banner nav a').on('focus', function() {
       return $(this).parentsUntil('.menu').addClass('open').siblings().removeClass('open');
     });
-    $('.banner nav a').on('blur', function(e) {
+    $('.banner nav a').on('blur', function() {
       return $(this).parentsUntil('.menu').removeClass('open');
     });
-    return $('.banner nav select').on('change', function(e) {
+    return $('.banner nav select').on('change', function() {
       if ($(this).val()) {
         return window.location.href = $(this).val();
       }

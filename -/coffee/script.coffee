@@ -7,18 +7,18 @@
 document.documentElement.className = document.documentElement.className.replace(/no-js/, 'js')
 
 jQuery(($)->
-	$('.banner nav a').on('focus', (e)->
 		$(this)
+	$('.banner nav a').on('focus', ->
 			.parentsUntil('.menu').addClass('open')
 			.siblings().removeClass('open')
 	)
 	
-	$('.banner nav a').on('blur', (e)->
 		$(this).parentsUntil('.menu').removeClass('open')
+	$('.banner nav a').on('blur', ->
 	)
 	
-	$('.banner nav select').on('change', (e)->
 		if $(this).val()
 			window.location.href = $(this).val()
+	$('.banner nav select').on('change', ->
 	)
 )
