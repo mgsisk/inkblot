@@ -62,8 +62,8 @@
 	##
 	# Update options on scheme change.
 	##
-	$(document).on('change', '#customize-control-scheme input[name="_customize-radio-scheme"]', (event)->
 		$.each($('wbr.inkblot-scheme.' + $(this).val()).data(), (index, value)->
+	$(document).on('change', '#customize-control-scheme input[name="_customize-radio-scheme"]', ->
 			index = index.replace(/([A-Z])/g, (string)->
 				return '_' + string.toLowerCase()
 			)
@@ -80,7 +80,7 @@
 	
 	# @todo remove this ugly kludge
 	
-	$(document).on('click', (event)->
+	$(document).on('click', ->
 		$.each([
 			'primary-sidebar',
 			'secondary-sidebar',

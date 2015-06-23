@@ -58,7 +58,7 @@
     }, function(settingId, object) {
       return inkblot_toggle_controls(settingId, object);
     });
-    $(document).on('change', '#customize-control-scheme input[name="_customize-radio-scheme"]', function(event) {
+    $(document).on('change', '#customize-control-scheme input[name="_customize-radio-scheme"]', function() {
       return $.each($('wbr.inkblot-scheme.' + $(this).val()).data(), function(index, value) {
         index = index.replace(/([A-Z])/g, function(string) {
           return '_' + string.toLowerCase();
@@ -71,7 +71,7 @@
         }
       });
     });
-    return $(document).on('click', function(event) {
+    return $(document).on('click', function() {
       return $.each(['primary-sidebar', 'secondary-sidebar', 'tertiary-sidebar', 'document-header', 'document-footer', 'site-header', 'site-footer', 'page-header', 'page-footer', 'content-header', 'content-footer', 'comment-header', 'comment-footer', 'webcomic-header', 'webcomic-footer', 'webcomic-navigation-header', 'webcomic-navigation-footer'], function(index, value) {
         return $('#customize-control-sidebar-' + value + '-columns').show();
       });
