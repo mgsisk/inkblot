@@ -1,9 +1,9 @@
 <?php
 /**
  * Date archive template.
- * 
+ *
  * For Webcomic-specific archives, see `webcomic/archive.php`.
- * 
+ *
  * @package Inkblot
  * @see codex.wordpress.org/Template_Hierarchy
  */
@@ -18,7 +18,7 @@ get_header(); ?>
 			<h1><?php printf('<span class="screen-reader-text">%s </span>%s', __('Posts from', 'inkblot'), inkblot_date_archive_title()); ?></h1>
 		</header><!-- .page-header -->
 		
-		<?php	
+		<?php
 			while (have_posts()) : the_post();
 				(webcomic() and is_a_webcomic())
 				? get_template_part('webcomic/content', get_post_type())

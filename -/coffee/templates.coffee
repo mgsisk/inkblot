@@ -1,6 +1,6 @@
 ##
 # Handle dynamic template options.
-# 
+#
 # @package Inkblot
 ##
 

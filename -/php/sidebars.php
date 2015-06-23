@@ -1,7 +1,7 @@
 <?php
 /**
  * Returns an array of sidebars.
- * 
+ *
  * @package Inkblot
  * @return array
  */

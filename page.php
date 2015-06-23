@@ -1,10 +1,10 @@
 <?php
 /**
  * Generic page template.
- * 
+ *
  * For Webcomic page templates, see `webcomic/template-archive.php` or
  * `webcomic/template-home.php`.
- * 
+ *
  * @package Inkblot
  * @see https://codex.wordpress.org/Template_Hierarchy
  */

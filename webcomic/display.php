@@ -1,9 +1,9 @@
 <?php
 /**
  * Webcomic display template.
- * 
+ *
  * Handles webcomic image and navigation display.
- * 
+ *
  * @package Inkblot
  */
 ?>

@@ -1,17 +1,17 @@
 <?php
 /**
  * Contains template tags specific to the Inkblot theme.
- * 
+ *
  * @package Inkblot
  */
 
 if ( ! function_exists('webcomic')) :
 /**
  * Is a compatible version of Webcomic installed and active?
- * 
+ *
  * This function is actually part of the Webcomic plugin. If it doesn't exist,
  * it's probably safe to assume that Webcomic is not installed and active.
- * 
+ *
  * @return boolean
  */
 function webcomic() {
@@ -22,7 +22,7 @@ endif;
 if ( ! function_exists('inkblot_page_description')) :
 /**
  * Return appropriate `<meta>` description text.
- * 
+ *
  * @return string
  */
 function inkblot_page_description() {
@@ -50,7 +50,7 @@ endif;
 if ( ! function_exists('inkblot_date_archive_title')) :
 /**
  * Return the date archive title, formatted for Inkblot.
- * 
+ *
  * @return string
  */
 function inkblot_date_archive_title($year = 'Y', $month = 'F Y', $date = '') {
@@ -67,7 +67,7 @@ endif;
 if ( ! function_exists('inkblot_post_nav')) :
 /**
  * Return post navigation.
- * 
+ *
  * @deprecated
  * @param mixed $class CSS classes or an array of classes to add to the <nav> element.
  * @param string $previous Previous post link text.
@@ -98,7 +98,7 @@ endif;
 if ( ! function_exists('inkblot_posts_nav')) :
 /**
  * Return posts paged navigation.
- * 
+ *
  * @param array $args Arguments to pass to either `paginate_links` or `get_posts_nav_link`.
  * @param boolean $paged Whether to display paged navigation.
  * @return string
@@ -120,7 +120,7 @@ endif;
 if ( ! function_exists('inkblot_post_datetime')) :
 /**
  * Return the post publish date and time, formatted for Inkblot.
- * 
+ *
  * @return string
  */
 function inkblot_post_datetime() {
@@ -136,7 +136,7 @@ endif;
 if ( ! function_exists('inkblot_post_author')) :
 /**
  * Return a post author link, formatted for Inkblot.
- * 
+ *
  * @return string
  */
 function inkblot_post_author() {
@@ -151,7 +151,7 @@ endif;
 if ( ! function_exists('inkblot_post_parent')) :
 /**
  * Return a post parent link, formatted for Inkblot.
- * 
+ *
  * @return string
  */
 function inkblot_post_parent() {
@@ -170,7 +170,7 @@ endif;
 if ( ! function_exists('inkblot_image_details')) :
 /**
  * Return image information for attachments, formatted for Inkblot.
- * 
+ *
  * @return string
  */
 function inkblot_image_details() {
@@ -188,7 +188,7 @@ endif;
 if ( ! function_exists('inkblot_start_comment')) :
 /**
  * Render a comment.
- * 
+ *
  * @param object $comment Comment data object.
  * @param array $args Arguments passed to `wp_list_comments`.
  * @param integer $depth Depth of comment in reference to parents.
@@ -237,7 +237,7 @@ endif;
 if ( ! function_exists('inkblot_end_comment')) :
 /**
  * Render a comment closing tag.
- * 
+ *
  * @param object $comment Comment data object.
  * @param array $args Arguments passed to `wp_list_comments`.
  * @param integer $depth Depth of comment in reference to parents.
@@ -253,7 +253,7 @@ endif;
 if ( ! function_exists('inkblot_comments_nav')) :
 /**
  * Return comments paged navigation.
- * 
+ *
  * @param mixed $paged Arguments to pass to `paginate_comments_link`, or true to enable pagination with default arguments.
  * @param string $previous Label to use for the previous comments page link when not using paged navigation.
  * @param string $next Label to use for the next comments page link when not using paged navigation.
@@ -280,7 +280,7 @@ endif;
 if ( ! function_exists('inkblot_count_widgets')) :
 /**
  * Return the number of widgets for the specified sidebar.
- * 
+ *
  * @param string $sidebar ID of the sidebar to count widgets for.
  * @param integer $default Default number of widgets for `$sidebar`.
  * @return integer
@@ -302,7 +302,7 @@ endif;
 if ( ! function_exists('inkblot_widgetized')) :
 /**
  * Return a generic widgetized area.
- * 
+ *
  * @param string $id ID of the widgetized area.
  * @param string $class Space-separated string of classes to append to the container.
  * @return string
@@ -338,7 +338,7 @@ endif;
 if ( ! function_exists('inkblot_search_id')) :
 /**
  * Return a unique search form ID.
- * 
+ *
  * @param boolean $add Increment the counter.
  * @return string
  */
@@ -357,7 +357,7 @@ endif;
 if ( ! function_exists('inkblot_copyright')) :
 /**
  * Return copyright notice.
- * 
+ *
  * @param integer $user User ID to use for the copyright attribution name.
  * @return string
  */
@@ -378,7 +378,7 @@ endif;
 if ( ! function_exists('inkblot_contributor')) :
 /**
  * Return a contributor block for the contributor template.
- * 
+ *
  * @param integer $user User ID.
  * @param integer $avatar Size of the avatar to display.
  * @return string

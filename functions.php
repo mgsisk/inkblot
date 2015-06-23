@@ -1,7 +1,7 @@
 <?php
 /**
  * Inkblot theme functions.
- * 
+ *
  * @package Inkblot
  */
 
@@ -165,7 +165,7 @@ endif;
 if ( ! function_exists('inkblot_after_setup_theme')) :
 /**
  * Setup theme features.
- * 
+ *
  * @uses Inkblot::$dir
  */
 function inkblot_after_setup_theme() {

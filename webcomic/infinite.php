@@ -1,11 +1,11 @@
 <?php
 /**
  * Webcomic display template for infinite scrolling.
- * 
+ *
  * Handles Webcomic display on infinite-scroll pages. Refer to
  * `template/webcomic-infinite.php` to see how to setup a page for infinite
  * scrolling.
- * 
+ *
  * @package Inkblot
  */
 ?>

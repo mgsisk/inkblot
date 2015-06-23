@@ -1,7 +1,7 @@
 <?php
 /**
  * Contains the Inkblot administrative functions.
- * 
+ *
  * @package Inkblot
  */
 
@@ -27,7 +27,7 @@ endif;
 if ( ! function_exists('inkblot_insert_page')) :
 /**
  * Save metadata with pages.
- * 
+ *
  * @param integer $id ID of the page to update.
  * @param object $post Post object to update.
  */
@@ -71,7 +71,7 @@ endif;
 if ( ! function_exists('inkblot_customize_register')) :
 /**
  * Register theme customization sections, settings, and controls.
- * 
+ *
  * @param object $customize WordPress theme customization object.
  */
 function inkblot_customize_register($customize) {
@@ -1063,7 +1063,7 @@ endif;
 if ( ! function_exists('inkblot_delete_attachment')) :
 /**
  * Update image theme mods when attachments are deleted.
- * 
+ *
  * @param integer $id ID of the attachment to delete.
  */
 function inkblot_delete_attachment($id) {
@@ -1137,7 +1137,7 @@ endif;
 if ( ! function_exists('inkblot_display_media_states')) :
 /**
  * Display relevant status for theme media.
- * 
+ *
  * @param array $states List of media states.
  * @return array
  */
@@ -1163,7 +1163,7 @@ endif;
 if ( ! function_exists('inkblot_template_options')) :
 /**
  * Render the webcomic template meta box.
- * 
+ *
  * @param object $page Current page object.
  * @uses webcomic()
  * @uses get_webcomic_collections()
@@ -1410,7 +1410,7 @@ endif;
 if ( ! function_exists('inkblot_get_fonts')) :
 /**
  * Return Google Font data.
- * 
+ *
  * @return object
  */
 function inkblot_get_fonts() {
@@ -1423,7 +1423,7 @@ endif;
 if ( ! function_exists('inkblot_get_scheme_choices')) :
 /**
  * Return Inkblot themes.
- * 
+ *
  * @return array
  */
 function inkblot_get_scheme_choices() {

@@ -1,7 +1,7 @@
 <?php
 /**
  * Page content template.
- * 
+ *
  * @package Inkblot
  */
 ?>

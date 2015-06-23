@@ -1,11 +1,11 @@
 <?php
 /**
  * Webcomic home template.
- * 
+ *
  * This is the Webcomic homepage template (used in place of the normal
  * `home.php` or `index.php` when Webcomic is active). The only real difference
  * between this template and the normal template is the inclusion of a webcomic.
- * 
+ *
  * @package Inkblot
  * @see github.com/mgsisk/webcomic/wiki/Templates
  */

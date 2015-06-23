@@ -1,7 +1,7 @@
 <?php
 /**
  * Search form template.
- * 
+ *
  * @package Inkblot
  * @see https://codex.wordpress.org/Function_Reference/get_search_form
  */

@@ -1,9 +1,9 @@
 <?php
 /**
  * Single post template.
- * 
+ *
  * For single Webcomic posts, see `webcomic/single.php`.
- * 
+ *
  * @package Inkblot
  * @see https://codex.wordpress.org/Template_Hierarchy
  */

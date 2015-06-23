@@ -1,9 +1,9 @@
 <?php
 /**
  * Template Name: Contributors
- * 
+ *
  * Contributors page template.
- * 
+ *
  * @package Inkblot
  * @see https://codex.wordpress.org/Template_Hierarchy
  */

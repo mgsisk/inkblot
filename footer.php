@@ -1,7 +1,7 @@
 <?php
 /**
  * Footer template.
- * 
+ *
  * @package Inkblot
  */
 ?>

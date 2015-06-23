@@ -1,14 +1,14 @@
 <?php
 /**
  * Template Name: Webcomic Infinite
- * 
+ *
  * Useful for creating an infinite-scroll archive. The actual logic for this is
  * handled by the Webcomic plugin; you just need an empty container element
  * with a `data-webcomic-infinite` attribute set to the current page ID and
  * Webcomic takes care of the rest.
- * 
+ *
  * To adjust the output for infninte scroll comics, see `webcomic/infinite.php`.
- * 
+ *
  * @package Inkblot
  */
 

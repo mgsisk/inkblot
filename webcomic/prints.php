@@ -1,10 +1,10 @@
 <?php
 /**
  * Webcomic prints template.
- * 
+ *
  * This template is similar to the `single.php` template, but used specifically
  * for displaying webcomic print purchasing options.
- * 
+ *
  * @package Inkblot
  * @see github.com/mgsisk/webcomic/wiki/Templates
  */

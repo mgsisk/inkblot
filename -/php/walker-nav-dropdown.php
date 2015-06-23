@@ -3,7 +3,7 @@
 if ( ! class_exists('Inkblot_Walker_Nav_Dropdown')) :
 /**
  * Handle responsive dropdown menu output.
- * 
+ *
  * @package Inkblot
  */
 class Inkblot_Walker_Nav_Dropdown extends Walker_Nav_Menu {
@@ -19,7 +19,7 @@ class Inkblot_Walker_Nav_Dropdown extends Walker_Nav_Menu {
 	
 	/**
 	 * Start element output.
-	 * 
+	 *
 	 * @param string $output Walker output string.
 	 * @param object $item Current item being handled by the walker.
 	 * @param integer $depth Depth the walker is currently at.
@@ -45,7 +45,7 @@ class Inkblot_Walker_Nav_Dropdown extends Walker_Nav_Menu {
 	
 	/**
 	 * End element output.
-	 * 
+	 *
 	 * @param string $output Walker output string.
 	 * @param object $item Current item being handled by the walker.
 	 * @param integer $depth Depth the walker is currently at.

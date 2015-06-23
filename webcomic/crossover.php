@@ -1,7 +1,7 @@
 <?php
 /**
  * Webcomic crossover archive template.
- * 
+ *
  * @package Inkblot
  * @see github.com/mgsisk/webcomic/wiki/Templates
  */

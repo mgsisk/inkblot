@@ -1,10 +1,10 @@
 <?php
 /**
  * Single webcomic template.
- * 
+ *
  * This template is nearly identical to the normal `single.php` template, except
  * for the addition of webcomic display.
- * 
+ *
  * @package Inkblot
  * @see github.com/mgsisk/webcomic/wiki/Templates
  */

@@ -1,11 +1,11 @@
 <?php
 /**
  * Inline CSS generator.
- * 
+ *
  * Generates CSS based on theme modifications, which is then included in the
  * site header, overriding rules declared in `style.css`. Also used in the post
  * editor to ensure the editor matches your site.
- * 
+ *
  * @package Inkblot
  * @return string
  */

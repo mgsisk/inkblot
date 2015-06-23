@@ -2,7 +2,7 @@
 /**
  * Returns an array of preconfigured theme options. Used in the Customizer to
  * dynamically update various theme options.
- * 
+ *
  * @pckage Inkblot
  * @return array
  */

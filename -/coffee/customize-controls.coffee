@@ -1,13 +1,13 @@
 ##
 # Handle unique customization controls.
-# 
+#
 # @package Inkblot
 ##
 
 (($)->
 	##
 	# Toggle control visibility.
-	# 
+	#
 	# @param string settingId
 	# @param object o
 	##

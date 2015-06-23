@@ -1,9 +1,9 @@
 <?php
 /**
  * Template Name: Webcomic Archive
- * 
+ *
  * Useful for creating a more traditional webcomic archive page.
- * 
+ *
  * @package Inkblot
  */
 

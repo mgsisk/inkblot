@@ -1,7 +1,7 @@
 <?php
 /**
  * Header template.
- * 
+ *
  * @package Inkblot
  * @see https://codex.wordpress.org/Template_Hierarchy
  */

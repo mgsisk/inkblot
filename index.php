@@ -1,9 +1,9 @@
 <?php
 /**
  * The main template file.
- * 
+ *
  * If you're using Webcomic you'll want to look at `webcomic/home.php`.
- * 
+ *
  * @package Inkblot
  * @see https://codex.wordpress.org/Template_Hierarchy
  */

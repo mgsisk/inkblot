@@ -1,9 +1,9 @@
 <?php
 /**
  * Generic content template.
- * 
+ *
  * For Webcomic-specific content, see `webcomic/content.php`/
- * 
+ *
  * @package Inkblot
  */
 ?>

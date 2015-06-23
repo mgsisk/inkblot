@@ -1,9 +1,9 @@
 <?php
 /**
  * Generic archive template.
- * 
+ *
  * For Webcomic-specific archives, see `webcomic/archive.php`.
- * 
+ *
  * @package Inkblot
  * @see codex.wordpress.org/Template_Hierarchy
  */

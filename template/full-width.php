@@ -1,9 +1,9 @@
 <?php
 /**
  * Template Name: Full Width
- * 
+ *
  * Full-width page template.
- * 
+ *
  * @package Inkblot
  * @see https://codex.wordpress.org/Template_Hierarchy
  */

@@ -3,7 +3,7 @@
 if ( ! class_exists('Inkblot_Walker_Page_Dropdown')) :
 /**
  * Handle responsive dropdown page menu output.
- * 
+ *
  * @package Inkblot
  */
 class Inkblot_Walker_Page_Dropdown extends Walker_PageDropdown {
@@ -19,7 +19,7 @@ class Inkblot_Walker_Page_Dropdown extends Walker_PageDropdown {
 	
 	/**
 	 * Start element output.
-	 * 
+	 *
 	 * @param string $output Walker output string.
 	 * @param object $page Current page being handled by the walker.
 	 * @param integer $depth Depth the walker is currently at.
@@ -71,7 +71,7 @@ class Inkblot_Walker_Page_Dropdown extends Walker_PageDropdown {
 	
 	/**
 	 * End element output.
-	 * 
+	 *
 	 * @param string $output Walker output string.
 	 * @param object $page Current page being handled by the walker.
 	 * @param integer $depth Depth the walker is currently at.

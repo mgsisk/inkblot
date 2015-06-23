@@ -1,7 +1,7 @@
 <?php
 /**
  * Standard sidebar template.
- * 
+ *
  * @package Inkblot
  * @see https://codex.wordpress.org/Template_Hierarchy
  */
@@ -23,7 +23,7 @@ if (is_page_template('template/full-width.php') and ! get_post_meta(get_the_ID()
 				<p><?php printf(__('This is the primary sidebar. You can remove this message by adding widgets to it from the <a href="%1$s">Customizer</a>.', 'inkblot'), admin_url('customize.php')); ?></p>
 			</aside>
 			
-		<?php endif; ?>	
+		<?php endif; ?>
 		
 	</div><!-- .sidebar1 -->
 	
@@ -41,7 +41,7 @@ if (is_page_template('template/full-width.php') and ! get_post_meta(get_the_ID()
 				<p><?php printf(__('This is the secondary sidebar. You can remove this message by adding widgets to it from the <a href="%1$s">Customizer</a>.', 'inkblot'), admin_url('customize.php')); ?></p>
 			</aside>
 			
-		<?php endif; ?>	
+		<?php endif; ?>
 		
 	</div><!-- .sidebar2 -->
 	
@@ -59,7 +59,7 @@ if (is_page_template('template/full-width.php') and ! get_post_meta(get_the_ID()
 				<p><?php printf(__('This is the tertiary sidebar. You can remove this message by adding widgets to it from the <a href="%1$s">Customizer</a>.', 'inkblot'), admin_url('customize.php')); ?></p>
 			</aside>
 
-		<?php endif; ?>	
+		<?php endif; ?>
 
 </div><!-- .sidebar3 -->
 

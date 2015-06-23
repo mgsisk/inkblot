@@ -1,7 +1,7 @@
 <?php
 /**
  * Role-restricted content template.
- * 
+ *
  * @package Inkblot
  * @see github.com/mgsisk/webcomic/wiki/Templates
  */

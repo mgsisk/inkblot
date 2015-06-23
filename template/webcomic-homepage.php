@@ -1,9 +1,9 @@
 <?php
 /**
  * Template Name: Webcomic Homepage
- * 
+ *
  * Useful for creating a dedicated home page for specific Webcomic collections.
- * 
+ *
  * @package Inkblot
  */
 

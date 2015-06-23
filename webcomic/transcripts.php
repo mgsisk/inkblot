@@ -1,11 +1,11 @@
 <?php
 /**
  * Webcomic transcripts template.
- * 
+ *
  * This template is nearly identical to WordPress' own `comments.php` template,
  * except that we have to check for (and display) transcripts that are
  * Pending Review (i.e. transcripts that users can improve upon).
- * 
+ *
  * @package Inkblot
  * @see github.com/mgsisk/webcomic/wiki/Templates
  */
@@ -17,7 +17,7 @@ global $post; ?>
 	<?php
 		if (post_password_required()) :
 			// a password is required to view this post
-		else : 
+		else :
 			if ($transcripts = get_webcomic_transcripts()) : ?>
 				
 				<header class="webcomic-transcripts-header">

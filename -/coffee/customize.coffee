@@ -1,6 +1,6 @@
 ##
 # Handle dynamic title and tagline customization previews.
-# 
+#
 # @package Inkblot
 ##
 
@@ -59,7 +59,7 @@
 	
 	##
 	# Update theme colors for customization preview.
-	# 
+	#
 	# @param string id Color to update.
 	# @param string to Color or opacity to update.
 	# @param string selectors HTML element selectors to update.
@@ -271,7 +271,7 @@
 	
 	##
 	# Append font stylesheets for customization preview.
-	# 
+	#
 	# @param string to Font to append.
 	# @param string selectors HTML element selectors to update.
 	# @return null
@@ -326,7 +326,7 @@
 	
 	##
 	# Update layout dimensions.
-	# 
+	#
 	# @return null
 	##
 	inkblot_update_layout = ()->

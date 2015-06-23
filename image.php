@@ -1,7 +1,7 @@
 <?php
 /**
  * Image attachment template.
- * 
+ *
  * @package Inkblot
  * @see https://codex.wordpress.org/Template_Hierarchy
  */

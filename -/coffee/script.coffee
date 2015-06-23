@@ -1,6 +1,6 @@
 ##
 # Handle theme-specific functionality.
-# 
+#
 # @package Inkblot
 ##
 

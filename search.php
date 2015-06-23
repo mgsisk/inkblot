@@ -1,7 +1,7 @@
 <?php
 /**
  * Search results template.
- * 
+ *
  * @package Inkblot
  * @see https://codex.wordpress.org/Template_Hierarchy
  */
