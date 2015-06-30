@@ -12,3 +12,5 @@ guardfile
 inkblot.mo
 package.json
 rakefile
+_/coffee
+_/sass
