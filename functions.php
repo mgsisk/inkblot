@@ -14,12 +14,12 @@ if ( ! isset($content_width)) {
 	$content_width = get_theme_mod('content_width', 640);
 }
 
-require_once get_template_directory() . '/-/php/tags.php';
-require_once get_template_directory() . '/-/php/walker-nav-dropdown.php';
-require_once get_template_directory() . '/-/php/walker-page-dropdown.php';
+require_once get_template_directory() . '/_/php/tags.php';
+require_once get_template_directory() . '/_/php/walker-nav-dropdown.php';
+require_once get_template_directory() . '/_/php/walker-page-dropdown.php';
 
 if (is_admin() or is_customize_preview()) {
-	require_once get_template_directory() . '/-/php/admin.php';
+	require_once get_template_directory() . '/_/php/admin.php';
 }
 
 add_action('after_switch_theme', 'inkblot_after_switch_theme');
@@ -63,8 +63,8 @@ if ( ! function_exists('inkblot_customize_preview_init')) :
  * Enqueue dynamic preview script.
  */
 function inkblot_customize_preview_init() {
-	wp_register_script('automattic-color', get_template_directory_uri() . '/-/js/color.js');
-	wp_enqueue_script('inkblot-customize-script', get_template_directory_uri() . '/-/js/customize.js', array('jquery', 'customize-preview', 'underscore', 'automattic-color'), '', true);
+	wp_register_script('automattic-color', get_template_directory_uri() . '/_/js/color.js');
+	wp_enqueue_script('inkblot-customize-script', get_template_directory_uri() . '/_/js/customize.js', array('jquery', 'customize-preview', 'underscore', 'automattic-color'), '', true);
 }
 endif;
 
@@ -105,7 +105,7 @@ function inkblot_wp_loaded() {
 	if (isset($_GET['inkblot-mods'])) {
 		header('Content-Type: text/css');
 		
-		require_once get_template_directory() . '/-/php/style.php';
+		require_once get_template_directory() . '/_/php/style.php';
 		
 		exit;
 	}
@@ -117,7 +117,7 @@ if ( ! function_exists('inkblot_widgets_init')) :
  * Register widgetized areas.
  */
 function inkblot_widgets_init() {
-	$sidebars = require get_template_directory() . '/-/php/sidebars.php';
+	$sidebars = require get_template_directory() . '/_/php/sidebars.php';
 	
 	foreach ($sidebars as $id => $sidebar) {
 		register_sidebar(array(
@@ -140,7 +140,7 @@ if ( ! function_exists('inkblot_wp_enqueue_scripts')) :
 function inkblot_wp_enqueue_scripts() {
 	wp_enqueue_style('inkblot-theme', get_stylesheet_uri());
 	
-	wp_add_inline_style('inkblot-theme', require get_template_directory() . '/-/php/style.php');
+	wp_add_inline_style('inkblot-theme', require get_template_directory() . '/_/php/style.php');
 	
 	if (get_theme_mod('font') or get_theme_mod('header_font') or get_theme_mod('page_font') or get_theme_mod('title_font') or get_theme_mod('trim_font')) {
 		$fonts = array_filter(array(
@@ -154,7 +154,7 @@ function inkblot_wp_enqueue_scripts() {
 		wp_enqueue_style('inkblot-font', add_query_arg(array('family' => implode('|', $fonts)), "https://fonts.googleapis.com/css"));
 	}
 	
-	wp_enqueue_script('inkblot-script', get_template_directory_uri() . '/-/js/script.js', array('jquery'), '', true);
+	wp_enqueue_script('inkblot-script', get_template_directory_uri() . '/_/js/script.js', array('jquery'), '', true);
 	
 	if (is_singular() and comments_open() and get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');
@@ -169,7 +169,7 @@ if ( ! function_exists('inkblot_after_setup_theme')) :
  * @uses Inkblot::$dir
  */
 function inkblot_after_setup_theme() {
-	load_theme_textdomain('inkblot', get_template_directory() . '/-/l10n');
+	load_theme_textdomain('inkblot', get_template_directory() . '/_/l10n');
 	
 	add_editor_style(get_stylesheet_uri());
 	
@@ -224,7 +224,7 @@ if ( ! function_exists('inkblot_wp_footer')) :
  */
 function inkblot_wp_footer() {
 	if (is_customize_preview()) :
-		$mod = require get_template_directory() . '/-/php/mods.php'; ?>
+		$mod = require get_template_directory() . '/_/php/mods.php'; ?>
 		
 		<wbr class="inkblot"
 			<?php foreach ($mod as $key => $default) : ?>
