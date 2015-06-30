@@ -820,7 +820,7 @@ function inkblot_customize_register($customize) {
 	
 	/* ----- Widgets -------------------------------------------------------- */
 	
-	$sidebars = require get_template_directory() . '/-/php/sidebars.php';
+	$sidebars = require get_template_directory() . '/_/php/sidebars.php';
 	
 	foreach (array_keys($sidebars) as $sidebar) {
 		$customize->add_setting("sidebar-{$sidebar}-columns", array(
@@ -1086,7 +1086,7 @@ function inkblot_admin_enqueue_scripts($page) {
 	global $post;
 	
 	if ('post.php' === $page and $post and 'page' === $post->post_type) {
-		wp_enqueue_script('inkblot-templates-script', get_template_directory_uri() . '/-/js/templates.js', array('jquery'));
+		wp_enqueue_script('inkblot-templates-script', get_template_directory_uri() . '/_/js/templates.js', array('jquery'));
 	} else if ('appearance_page_custom-header' === $page) {
 		if (get_theme_mod('font') or get_theme_mod('page_font')) {
 			$fonts = array_filter(array(
@@ -1105,8 +1105,8 @@ if ( ! function_exists('inkblot_customize_controls_enqueue_scripts')) :
  * Enqueue custom control scripts.
  */
 function inkblot_customize_controls_enqueue_scripts() {
-	wp_enqueue_style('inkblot-customize-controls', get_template_directory_uri() . '/-/css/customize-controls.css');
-	wp_enqueue_script('inkblot-customize-controls', get_template_directory_uri() . '/-/js/customize-controls.js', array('jquery', 'customize-controls'), '', true);
+	wp_enqueue_style('inkblot-customize-controls', get_template_directory_uri() . '/_/css/customize-controls.css');
+	wp_enqueue_script('inkblot-customize-controls', get_template_directory_uri() . '/_/js/customize-controls.js', array('jquery', 'customize-controls'), '', true);
 }
 endif;
 
@@ -1118,7 +1118,7 @@ if ( ! function_exists('inkblot_customize_controls_print_footer_scripts')) :
  * dynamic customizer controls.
  */
 function inkblot_customize_controls_print_footer_scripts() {
-	$themes = require get_template_directory() . '/-/php/schemes.php';
+	$themes = require get_template_directory() . '/_/php/schemes.php';
 	
 	foreach ($themes as $id => $meta) : ?>
 		
@@ -1427,7 +1427,7 @@ if ( ! function_exists('inkblot_get_scheme_choices')) :
  * @return array
  */
 function inkblot_get_scheme_choices() {
-	$themes = require get_template_directory() . '/-/php/schemes.php';
+	$themes = require get_template_directory() . '/_/php/schemes.php';
 	$options = array();
 	
 	foreach ($themes as $key => $meta) {

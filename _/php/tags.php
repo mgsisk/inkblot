@@ -310,7 +310,7 @@ if ( ! function_exists('inkblot_widgetized')) :
  */
 function inkblot_widgetized($id, $class = '') {
 	$widget = '';
-	$sidebars = require get_template_directory() . '/-/php/sidebars.php';
+	$sidebars = require get_template_directory() . '/_/php/sidebars.php';
 	
 	if ($count = inkblot_count_widgets($id, 0) or is_customize_preview()) :
 		$columns = "columns-{$count}";

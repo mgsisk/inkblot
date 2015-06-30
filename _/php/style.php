@@ -83,7 +83,7 @@ function inkblot_css($selectors = '', $property = '', $value = '') {
 }
 endif;
 
-if (is_readable(get_template_directory() . '/-/php/mods.php') and $mod = require get_template_directory() . '/-/php/mods.php') :
+if (is_readable(get_template_directory() . '/_/php/mods.php') and $mod = require get_template_directory() . '/_/php/mods.php') :
 	$css = is_customize_preview() ? '/*preview*/' : '';
 	$editor = isset($_GET['inkblot-mods']) and 'editor' === $_GET['inkblot-mods'];
 	
